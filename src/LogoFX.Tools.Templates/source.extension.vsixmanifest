@@ -1,20 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="LogoFX.Tools.Templates..6c296f55-0bac-4f6d-bb07-7e245c0b360e" Version="1.0.0.0" Language="en-US" Publisher="LogoFX Team" />
+    <Identity Id="LogoFX.Tools.Templates..484ca409-0d03-4da2-b406-16c59ba0aa1e" Version="1.0" Language="en-US" Publisher="LogoFX Team" />
     <DisplayName>LogoFX Template Pack</DisplayName>
     <Description xml:space="preserve">A collection of Visual Studio Item- and Project Templates to facilitate the development process using Caliburn.Micro and LogoFX MVVM frameworks.</Description>
     <License>LICENSE</License>
   </Metadata>
-  <Installation>
-    <InstallationTarget Version="[12.0)" Id="Microsoft.VisualStudio.Premium" />
-    <InstallationTarget Version="[12.0,13.0)" Id="Microsoft.VisualStudio.Pro" />
-    <InstallationTarget Version="[12.0,13.0)" Id="Microsoft.VisualStudio.Ultimate" />
-    <InstallationTarget Version="[12.0,13.0)" Id="Microsoft.VisualStudio.VSWinExpress" />
-    <InstallationTarget Version="[12.0,13.0)" Id="Microsoft.VisualStudio.VPDExpress" />
-    <InstallationTarget Version="[12.0,13.0)" Id="Microsoft.VisualStudio.VWDExpress" />
-    <InstallationTarget Version="[12.0,13.0)" Id="Microsoft.VisualStudio.VSLS" />
-    <InstallationTarget Version="[12.0,13.0)" Id="Microsoft.VisualStudio.VSWinDesktopExpress" />
+  <Installation AllUsers="true">
+    <InstallationTarget Id="Microsoft.VisualStudio.Enterprise" Version="[14.0,15.0)" />
   </Installation>
   <Dependencies>
     <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />

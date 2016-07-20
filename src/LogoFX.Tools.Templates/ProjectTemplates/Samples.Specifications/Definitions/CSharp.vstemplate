@@ -1,0 +1,26 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="ProjectGroup">
+  <TemplateData>
+    <Name>LogoFX Template Pack</Name>
+    <Description>Creates Specifications using Caliburn.Micro and LogoFX MVVM frameworks.</Description>
+    <ProjectType>CSharp</ProjectType>
+    <DefaultName>LogoFX.Specifications</DefaultName>
+    <SortOrder>5000</SortOrder>
+    <Icon>icon.png</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <ProjectCollection>
+      <SolutionFolder CreateOnDisk="false" Name="App">
+        <SolutionFolder CreateOnDisk="false" Name="Client">
+          <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Launcher">Launcher\MyTemplate.vstemplate</ProjectTemplateLink>
+          <SolutionFolder CreateOnDisk="false" Name="Presentation">
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Presentation.Shell">Shell\MyTemplate.vstemplate</ProjectTemplateLink>
+          </SolutionFolder>
+        </SolutionFolder>
+      </SolutionFolder>
+    </ProjectCollection>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>TemplateBuilder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
+    <FullClassName>TemplateBuilder.RootWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>
