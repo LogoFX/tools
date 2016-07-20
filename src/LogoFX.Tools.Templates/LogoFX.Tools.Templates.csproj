@@ -96,7 +96,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ProjectTemplates\" />
+    <Folder Include="ProjectTemplates\Samples.Specifications\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="TemplateBuilder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

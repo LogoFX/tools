@@ -20,9 +20,8 @@
     <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
   </Dependencies>
   <Assets>
-    <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="Project" d:ProjectName="%CurrentProject%.ViewModel" d:TargetPath="|LogoFX.Tools.Templates.ViewModel;TemplateProjectOutputGroup|" Path="ItemTemplates" d:VsixSubPath="ItemTemplates" />
-    <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="Project" d:ProjectName="%CurrentProject%.UserControlView" d:TargetPath="|LogoFX.Tools.Templates.UserControlView;TemplateProjectOutputGroup|" Path="ItemTemplates" d:VsixSubPath="ItemTemplates" />
     <Asset Type="Microsoft.VisualStudio.ItemTemplate" Path="Output\ItemTemplates" />
     <Asset Type="Microsoft.VisualStudio.ProjectTemplate" Path="Output\ProjectTemplates" />
+    <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="File" Path="TemplateBuilder.dll" AssemblyName="TemplateBuilder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
   </Assets>
 </PackageManifest>
