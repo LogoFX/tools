@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TemplateReport>
-  <ItemTemplates />
-  <ProjectTemplates>
-    <ProjectTemplate Path="ProjectTemplates\Samples.Specifications\Definitions\CSharp.vstemplate" Name="LogoFX Template Pack" Description="Creates Specifications using Caliburn.Micro and LogoFX MVVM frameworks." ProjectType="CSharp" ProjectSubType="" />
-  </ProjectTemplates>
-  <Snippets />
-</TemplateReport>
