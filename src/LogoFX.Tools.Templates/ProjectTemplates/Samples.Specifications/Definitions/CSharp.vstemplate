@@ -21,6 +21,12 @@
               <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Contracts.Dto">Client\Data\Contracts\Dto\MyTemplate.vstemplate</ProjectTemplateLink>
               <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Contracts.Providers">Client\Data\Contracts\Providers\MyTemplate.vstemplate</ProjectTemplateLink>
             </SolutionFolder>
+            <SolutionFolder CreateOnDisk="false" Name="Fake">
+              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Fake.Containers">Client\Data\Fake\Containers\MyTemplate.vstemplate</ProjectTemplateLink>
+              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Fake.ProviderBuilders">Client\Data\Fake\ProviderBuilders\MyTemplate.vstemplate</ProjectTemplateLink>
+              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Fake.ProviderBuilders.Setup">Client\Data\Fake\ProviderBuildersSetup\MyTemplate.vstemplate</ProjectTemplateLink>
+              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Fake.Providers">Client\Data\Fake\Providers\MyTemplate.vstemplate</ProjectTemplateLink>
+            </SolutionFolder>
           </SolutionFolder>
           <SolutionFolder CreateOnDisk="false" Name="Model">
             <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Model">Client\Model\Root\MyTemplate.vstemplate</ProjectTemplateLink>

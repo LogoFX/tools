@@ -58,6 +58,10 @@
     <Content Include="index.html" />
     <Content Include="ProjectTemplates\Samples.Specifications\Client\Data\Contracts\Dto\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\Client\Data\Contracts\Providers\MyTemplate.vstemplate" />
+    <Content Include="ProjectTemplates\Samples.Specifications\Client\Data\Fake\Containers\MyTemplate.vstemplate" />
+    <Content Include="ProjectTemplates\Samples.Specifications\Client\Data\Fake\ProviderBuildersSetup\MyTemplate.vstemplate" />
+    <Content Include="ProjectTemplates\Samples.Specifications\Client\Data\Fake\ProviderBuilders\MyTemplate.vstemplate" />
+    <Content Include="ProjectTemplates\Samples.Specifications\Client\Data\Fake\Providers\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\Client\Model\Contracts\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\Client\Model\Root\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\Client\Model\Shared\MyTemplate.vstemplate" />
