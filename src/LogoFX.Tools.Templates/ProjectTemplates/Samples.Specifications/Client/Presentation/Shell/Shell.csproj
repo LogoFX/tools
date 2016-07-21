@@ -321,13 +321,13 @@
       <Project>{a4245326-bb01-4b7a-b4de-6ebca9c8094e}</Project>
       <Name>$saferootprojectname$.Client.Presentation.Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Samples.Client.Model.Contracts\Samples.Client.Model.Contracts.csproj">
+    <ProjectReference Include="..\$saferootprojectname$.Client.Model.Contracts\$saferootprojectname$.Client.Model.Contracts.csproj">
       <Project>{536D34E4-A409-4567-B7C6-58F50206740E}</Project>
-      <Name>Samples.Client.Model.Contracts</Name>
+      <Name>$saferootprojectname$.Client.Model.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Samples.Client.Model.Shared\Samples.Client.Model.Shared.csproj">
+    <ProjectReference Include="..\$saferootprojectname$.Client.Model.Shared\$saferootprojectname$.Client.Model.Shared.csproj">
       <Project>{49724A56-9FA9-44C4-B731-1E414EE598BC}</Project>
-      <Name>Samples.Client.Model.Shared</Name>
+      <Name>$saferootprojectname$.Client.Model.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
