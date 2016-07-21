@@ -57,6 +57,7 @@
   <ItemGroup>
     <Content Include="index.html" />
     <Content Include="ProjectTemplates\Samples.Specifications\Client\Data\Contracts\Dto\MyTemplate.vstemplate" />
+    <Content Include="ProjectTemplates\Samples.Specifications\Client\Data\Contracts\Providers\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\Client\Model\Contracts\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\Client\Model\Root\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\Client\Model\Shared\MyTemplate.vstemplate" />

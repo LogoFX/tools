@@ -19,6 +19,7 @@
           <SolutionFolder CreateOnDisk="false" Name="Data">
             <SolutionFolder CreateOnDisk="false" Name="Contracts">
               <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Contracts.Dto">Client\Data\Contracts\Dto\MyTemplate.vstemplate</ProjectTemplateLink>
+              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Contracts.Providers">Client\Data\Contracts\Providers\MyTemplate.vstemplate</ProjectTemplateLink>
             </SolutionFolder>
           </SolutionFolder>
           <SolutionFolder CreateOnDisk="false" Name="Model">
