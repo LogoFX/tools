@@ -4,7 +4,6 @@
     <Identity Id="LogoFX.Tools.Templates..484ca409-0d03-4da2-b406-16c59ba0aa1e" Version="1.0" Language="en-US" Publisher="LogoFX Team" />
     <DisplayName>LogoFX Template Pack</DisplayName>
     <Description xml:space="preserve">A collection of Visual Studio Item- and Project Templates to facilitate the development process using Caliburn.Micro and LogoFX MVVM frameworks.</Description>
-    <License>LICENSE</License>
   </Metadata>
   <Installation AllUsers="true">
     <InstallationTarget Id="Microsoft.VisualStudio.Enterprise" Version="[14.0,15.0)" />
@@ -15,6 +14,6 @@
   <Assets>
     <Asset Type="Microsoft.VisualStudio.ItemTemplate" Path="Output\ItemTemplates" />
     <Asset Type="Microsoft.VisualStudio.ProjectTemplate" Path="Output\ProjectTemplates" />
-    <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="File" Path="TemplateBuilder.dll" AssemblyName="TemplateBuilder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="File" Path="TemplateBuilder.dll" AssemblyName="TemplateBuilder, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null" />
   </Assets>
 </PackageManifest>
