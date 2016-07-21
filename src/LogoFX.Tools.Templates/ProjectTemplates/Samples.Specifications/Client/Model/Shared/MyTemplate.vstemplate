@@ -1,8 +1,8 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-    <Name>Contracts</Name>
+    <Name>Shared</Name>
     <Description>Project description here</Description>
-    <DefaultName>$saferootprojectname$.Client.Model.Contracts</DefaultName>
+    <DefaultName>$saferootprojectname$.Client.Model.Shared</DefaultName>
 
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType></ProjectSubType>
@@ -17,7 +17,7 @@
     <Icon></Icon>
   </TemplateData>
   <TemplateContent>
-    <Project TargetFileName="$saferootprojectname$.Client.Model.Contracts.csproj" File="Contracts.csproj" ReplaceParameters="true">
+    <Project TargetFileName="$saferootprojectname$.Client.Model.Shared.csproj" File="Shared.csproj" ReplaceParameters="true">
     </Project>
   </TemplateContent>
   <WizardExtension>
