@@ -17,7 +17,8 @@
             <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Presentation.Shell">Client\Presentation\Shell\MyTemplate.vstemplate</ProjectTemplateLink>
           </SolutionFolder>
           <SolutionFolder CreateOnDisk="false" Name="Model">
-            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Model">Client\Model\MyTemplate.vstemplate</ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Model">Client\Model\Root\MyTemplate.vstemplate</ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Model.Contracts">Client\Model\Contracts\MyTemplate.vstemplate</ProjectTemplateLink>
           </SolutionFolder>
         </SolutionFolder>
       </SolutionFolder>
