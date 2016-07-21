@@ -11,9 +11,9 @@
     <ProjectCollection>
       <SolutionFolder CreateOnDisk="false" Name="App">
         <SolutionFolder CreateOnDisk="false" Name="Client">
-          <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Launcher">Launcher\MyTemplate.vstemplate</ProjectTemplateLink>
+          <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Launcher">Client\Launcher\MyTemplate.vstemplate</ProjectTemplateLink>
           <SolutionFolder CreateOnDisk="false" Name="Presentation">
-            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Presentation.Shell">Shell\MyTemplate.vstemplate</ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Presentation.Shell">Client\Presentation\Shell\MyTemplate.vstemplate</ProjectTemplateLink>
           </SolutionFolder>
         </SolutionFolder>
       </SolutionFolder>
