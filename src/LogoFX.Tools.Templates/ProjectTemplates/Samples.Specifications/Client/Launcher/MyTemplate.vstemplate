@@ -1,6 +1,6 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-    <Name>Launcher</Name>
+    <Name>Client.Launcher</Name>
     <Description>Project description here</Description>
     <DefaultName>$saferootprojectname$.Client.Launcher</DefaultName>
 
@@ -21,7 +21,7 @@
     </Project>
   </TemplateContent>
   <WizardExtension>
-    <Assembly>TemplateBuilder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
+    <Assembly>TemplateBuilder, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
     <FullClassName>TemplateBuilder.ChildWizard</FullClassName>
   </WizardExtension>
 </VSTemplate>
