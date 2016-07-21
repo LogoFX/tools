@@ -15,5 +15,6 @@
     <Asset Type="Microsoft.VisualStudio.ItemTemplate" Path="Output\ItemTemplates" />
     <Asset Type="Microsoft.VisualStudio.ProjectTemplate" Path="Output\ProjectTemplates" />
     <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="File" Path="TemplateBuilder.dll" AssemblyName="TemplateBuilder, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="%CurrentProject%.Wizard" Path="|LogoFX.Tools.Templates.Wizard|" AssemblyName="|LogoFX.Tools.Templates.Wizard;AssemblyName|" />
   </Assets>
 </PackageManifest>

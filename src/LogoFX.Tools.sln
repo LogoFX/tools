@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.Templates", "LogoFX.Tools.Templates\LogoFX.Tools.Templates.csproj", "{EDF177C8-9FD3-4219-97E4-1A6D5122C777}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.Templates.Wizard", "LogoFX.Tools.Templates.Wizard\LogoFX.Tools.Templates.Wizard.csproj", "{49CC73EF-E0EC-48F2-8F53-A6FDA3EB7631}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{EDF177C8-9FD3-4219-97E4-1A6D5122C777}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDF177C8-9FD3-4219-97E4-1A6D5122C777}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDF177C8-9FD3-4219-97E4-1A6D5122C777}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49CC73EF-E0EC-48F2-8F53-A6FDA3EB7631}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49CC73EF-E0EC-48F2-8F53-A6FDA3EB7631}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49CC73EF-E0EC-48F2-8F53-A6FDA3EB7631}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49CC73EF-E0EC-48F2-8F53-A6FDA3EB7631}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
