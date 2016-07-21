@@ -1,8 +1,8 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-    <Name>Shell</Name>
+    <Name>Shared</Name>
     <Description>Project description here</Description>
-    <DefaultName>$saferootprojectname$.Client.Presentation.Shell</DefaultName>
+    <DefaultName>$saferootprojectname$.Client.Presentation.Shared</DefaultName>
 
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType></ProjectSubType>
@@ -17,7 +17,7 @@
     <Icon></Icon>
   </TemplateData>
   <TemplateContent>
-    <Project TargetFileName="$saferootprojectname$.Client.Presentation.Shell.csproj" File="Shell.csproj" ReplaceParameters="true">
+    <Project TargetFileName="$saferootprojectname$.Client.Presentation.Shared.csproj" File="Shared.csproj" ReplaceParameters="true">
     </Project>
   </TemplateContent>
   <WizardExtension>

@@ -317,9 +317,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LogoFX.Samples.Specifications.Client.Presentation.Shared\LogoFX.Samples.Specifications.Client.Presentation.Shared.csproj">
+    <ProjectReference Include="..\$saferootprojectname$.Client.Presentation.Shared\$saferootprojectname$.Client.Presentation.Shared.csproj">
       <Project>{a4245326-bb01-4b7a-b4de-6ebca9c8094e}</Project>
-      <Name>LogoFX.Samples.Specifications.Client.Presentation.Shared</Name>
+      <Name>$saferootprojectname$.Client.Presentation.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\Samples.Client.Model.Contracts\Samples.Client.Model.Contracts.csproj">
       <Project>{536D34E4-A409-4567-B7C6-58F50206740E}</Project>
