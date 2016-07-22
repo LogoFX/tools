@@ -3,7 +3,7 @@ using System.Windows.Input;
 using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.ViewModel.Extensions;
-using Samples.Client.Model.Contracts;
+using $saferootprojectname$.Client.Model.Contracts;
 
 namespace $safeprojectname$.ViewModels
 {   

@@ -6,7 +6,7 @@ using Caliburn.Micro;
 using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.ViewModel.Services;
 using LogoFX.Core;
-using Samples.Client.Model.Shared;
+using $saferootprojectname$.Client.Model.Shared;
 using Solid.Practices.Scheduling;
 
 namespace $safeprojectname$.ViewModels

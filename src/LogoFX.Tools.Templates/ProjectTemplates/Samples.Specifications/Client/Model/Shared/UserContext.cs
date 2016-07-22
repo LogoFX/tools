@@ -1,4 +1,4 @@
-﻿using Samples.Client.Model.Contracts;
+﻿using $saferootprojectname$.Client.Model.Contracts;
 
 namespace $safeprojectname$
 {

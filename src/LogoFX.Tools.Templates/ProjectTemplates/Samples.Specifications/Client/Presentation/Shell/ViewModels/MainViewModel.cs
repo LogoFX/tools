@@ -1,7 +1,7 @@
 using Caliburn.Micro;
 using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.ViewModel.Services;
-using Samples.Client.Model.Contracts;
+using $saferootprojectname$.Client.Model.Contracts;
 
 namespace $safeprojectname$.ViewModels
 {

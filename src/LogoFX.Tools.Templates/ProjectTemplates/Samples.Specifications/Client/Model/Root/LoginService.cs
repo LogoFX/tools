@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using JetBrains.Annotations;
-using Samples.Client.Data.Contracts.Providers;
+using $saferootprojectname$.Client.Data.Contracts.Providers;
 using $safeprojectname$.Contracts;
 using $safeprojectname$.Shared;
 

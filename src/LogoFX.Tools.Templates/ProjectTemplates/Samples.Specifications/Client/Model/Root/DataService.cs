@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using LogoFX.Core;
-using Samples.Client.Data.Contracts.Providers;
+using $saferootprojectname$.Client.Data.Contracts.Providers;
 using $safeprojectname$.Contracts;
 using $safeprojectname$.Mappers;
 

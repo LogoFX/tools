@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Samples.Client.Data.Contracts.Dto;
-using Samples.Client.Data.Contracts.Providers;
+using $saferootprojectname$.Client.Data.Contracts.Dto;
+using $saferootprojectname$.Client.Data.Contracts.Providers;
 
 namespace $safeprojectname$
 {

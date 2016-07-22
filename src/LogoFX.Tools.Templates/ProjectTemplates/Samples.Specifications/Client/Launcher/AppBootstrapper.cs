@@ -1,6 +1,6 @@
 ﻿using LogoFX.Client.Bootstrapping;
 using LogoFX.Client.Bootstrapping.Adapters.Unity;
-using LogoFX.Samples.Specifications.Client.Presentation.Shell.ViewModels;
+using $saferootprojectname$.Client.Presentation.Shell.ViewModels;
 
 namespace $safeprojectname$
 {

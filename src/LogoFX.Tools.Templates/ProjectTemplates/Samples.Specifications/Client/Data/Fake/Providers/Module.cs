@@ -1,9 +1,9 @@
 ﻿using System;
 using JetBrains.Annotations;
-using Samples.Client.Data.Contracts.Dto;
-using Samples.Client.Data.Contracts.Providers;
-using Samples.Specifications.Client.Data.Fake.Containers;
-using Samples.Specifications.Client.Data.Fake.ProviderBuilders;
+using $saferootprojectname$.Client.Data.Contracts.Dto;
+using $saferootprojectname$.Client.Data.Contracts.Providers;
+using $saferootprojectname$.Client.Data.Fake.Containers;
+using $saferootprojectname$.Client.Data.Fake.ProviderBuilders;
 using Solid.Practices.IoC;
 using Solid.Practices.Modularity;
 

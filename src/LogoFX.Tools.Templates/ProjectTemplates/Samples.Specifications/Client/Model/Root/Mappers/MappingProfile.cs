@@ -1,6 +1,6 @@
 ﻿using System;
 using AutoMapper;
-using Samples.Client.Data.Contracts.Dto;
+using $saferootprojectname$.Client.Data.Contracts.Dto;
 using $safeprojectname$.Contracts;
 
 namespace $safeprojectname$.Mappers

@@ -1,5 +1,5 @@
 ﻿using JetBrains.Annotations;
-using Samples.Client.Data.Contracts.Providers;
+using $saferootprojectname$.Client.Data.Contracts.Providers;
 using Solid.Practices.IoC;
 using Solid.Practices.Modularity;
 

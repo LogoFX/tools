@@ -125,13 +125,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\$saferootprojectname$.Specifications.Client.Data.Fake.Containers\$saferootprojectname$.Specifications.Client.Data.Fake.Containers.csproj">
+    <ProjectReference Include="..\$saferootprojectname$.Client.Data.Fake.Containers\$saferootprojectname$.Client.Data.Fake.Containers.csproj">
       <Project>{064BD680-2955-4CEC-A56B-B48891EC6AA1}</Project>
-      <Name>$saferootprojectname$.Specifications.Client.Data.Fake.Containers</Name>
+      <Name>$saferootprojectname$.Client.Data.Fake.Containers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\$saferootprojectname$.Specifications.Client.Data.Fake.ProviderBuilders\$saferootprojectname$.Specifications.Client.Data.Fake.ProviderBuilders.csproj">
+    <ProjectReference Include="..\$saferootprojectname$.Client.Data.Fake.ProviderBuilders\$saferootprojectname$.Client.Data.Fake.ProviderBuilders.csproj">
       <Project>{AF68283B-5283-4DEF-8DA0-6FB6CA85C1BD}</Project>
-      <Name>$saferootprojectname$.Specifications.Client.Data.Fake.ProviderBuilders</Name>
+      <Name>$saferootprojectname$.Client.Data.Fake.ProviderBuilders</Name>
     </ProjectReference>
     <ProjectReference Include="..\$saferootprojectname$.Client.Data.Contracts.Dto\$saferootprojectname$.Client.Data.Contracts.Dto.csproj">
       <Project>{8A567338-89FB-49AA-80FE-B47AE861D6A7}</Project>

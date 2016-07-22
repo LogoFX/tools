@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Samples.Client.Data.Contracts.Dto;
+using $saferootprojectname$.Client.Data.Contracts.Dto;
 
 namespace $safeprojectname$
 {
