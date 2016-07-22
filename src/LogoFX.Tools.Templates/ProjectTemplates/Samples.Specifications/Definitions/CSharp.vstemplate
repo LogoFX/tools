@@ -27,6 +27,9 @@
               <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Fake.ProviderBuilders.Setup">Client\Data\Fake\ProviderBuildersSetup\MyTemplate.vstemplate</ProjectTemplateLink>
               <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Fake.Providers">Client\Data\Fake\Providers\MyTemplate.vstemplate</ProjectTemplateLink>
             </SolutionFolder>
+            <SolutionFolder CreateOnDisk="false" Name="Real">
+              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Real.Providers">Client\Data\Real\Providers\MyTemplate.vstemplate</ProjectTemplateLink>
+            </SolutionFolder>
           </SolutionFolder>
           <SolutionFolder CreateOnDisk="false" Name="Model">
             <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Model">Client\Model\Root\MyTemplate.vstemplate</ProjectTemplateLink>

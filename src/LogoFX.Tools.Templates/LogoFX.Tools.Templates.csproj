@@ -62,6 +62,7 @@
     <Content Include="ProjectTemplates\Samples.Specifications\Client\Data\Fake\ProviderBuildersSetup\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\Client\Data\Fake\ProviderBuilders\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\Client\Data\Fake\Providers\MyTemplate.vstemplate" />
+    <Content Include="ProjectTemplates\Samples.Specifications\Client\Data\Real\Providers\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\Client\Model\Contracts\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\Client\Model\Root\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\Client\Model\Shared\MyTemplate.vstemplate" />
