@@ -38,6 +38,13 @@
           </SolutionFolder>
         </SolutionFolder>
       </SolutionFolder>
+      <SolutionFolder CreateOnDisk="false" Name="Tests">
+        <SolutionFolder CreateOnDisk="false" Name="Acceptance">
+          <SolutionFolder CreateOnDisk="false" Name="Infra">
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Infra.Fake">Tests\Acceptance\Infra\Fake\MyTemplate.vstemplate</ProjectTemplateLink>
+          </SolutionFolder>
+        </SolutionFolder>
+      </SolutionFolder>
     </ProjectCollection>
   </TemplateContent>
   <WizardExtension>
