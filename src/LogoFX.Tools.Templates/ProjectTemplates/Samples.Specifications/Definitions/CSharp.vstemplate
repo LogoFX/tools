@@ -43,6 +43,8 @@
           <SolutionFolder CreateOnDisk="false" Name="Infra">
             <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Infra.Fake">Tests\Acceptance\Infra\Fake\MyTemplate.vstemplate</ProjectTemplateLink>
             <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Infra.Launcher">Tests\Acceptance\Infra\Launcher\MyTemplate.vstemplate</ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Infra.Providers">Tests\Acceptance\Infra\Providers\MyTemplate.vstemplate</ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Infra.Real">Tests\Acceptance\Infra\Real\MyTemplate.vstemplate</ProjectTemplateLink>
           </SolutionFolder>
         </SolutionFolder>
       </SolutionFolder>
