@@ -80,8 +80,8 @@
     <Content Include="ProjectTemplates\Samples.Specifications\Tests\Acceptance\Infra\Real\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\Tests\Acceptance\Specs\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\Tests\Acceptance\Steps\Adapters\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Tests\Acceptance\Steps\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\Tests\Acceptance\Steps\Platform\MyTemplate.vstemplate" />
+    <Content Include="ProjectTemplates\Samples.Specifications\Tests\Acceptance\Steps\Root\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\Tests\Acceptance\TestData\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\_preprocess.xml" />
     <Content Include="stylesheet.css" />

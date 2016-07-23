@@ -50,9 +50,9 @@
             <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Specs">Tests\Acceptance\Specs\MyTemplate.vstemplate</ProjectTemplateLink>
           </SolutionFolder>
           <SolutionFolder CreateOnDisk="false" Name="Steps">
-            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Steps">Tests\Acceptance\Steps\MyTemplate.vstemplate</ProjectTemplateLink>
-            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Steps.Adapters">Tests\Acceptance\Steps\MyTemplate.vstemplate</ProjectTemplateLink>
-            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Steps.Platform">Tests\Acceptance\Steps\MyTemplate.vstemplate</ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Steps">Tests\Acceptance\Steps\Root\MyTemplate.vstemplate</ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Steps.Adapters">Tests\Acceptance\Steps\Adapters\MyTemplate.vstemplate</ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Steps.Platform">Tests\Acceptance\Steps\Platform\MyTemplate.vstemplate</ProjectTemplateLink>
           </SolutionFolder>
           <SolutionFolder CreateOnDisk="false" Name="TestData">
             <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.TestData">Tests\Acceptance\TestData\MyTemplate.vstemplate</ProjectTemplateLink>
