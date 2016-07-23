@@ -76,6 +76,7 @@
     <Content Include="ProjectTemplates\Samples.Specifications\Tests\Acceptance\Infra\Launcher\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\Tests\Acceptance\Infra\Providers\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\Tests\Acceptance\Infra\Real\MyTemplate.vstemplate" />
+    <Content Include="ProjectTemplates\Samples.Specifications\Tests\Acceptance\Specs\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\_preprocess.xml" />
     <Content Include="stylesheet.css" />
   </ItemGroup>

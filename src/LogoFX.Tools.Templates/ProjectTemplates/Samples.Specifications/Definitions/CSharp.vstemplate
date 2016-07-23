@@ -46,6 +46,9 @@
             <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Infra.Providers">Tests\Acceptance\Infra\Providers\MyTemplate.vstemplate</ProjectTemplateLink>
             <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Infra.Real">Tests\Acceptance\Infra\Real\MyTemplate.vstemplate</ProjectTemplateLink>
           </SolutionFolder>
+          <SolutionFolder CreateOnDisk="false" Name="Specs">
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Specs">Tests\Acceptance\Specs\MyTemplate.vstemplate</ProjectTemplateLink>
+          </SolutionFolder>
         </SolutionFolder>
       </SolutionFolder>
     </ProjectCollection>
