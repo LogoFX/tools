@@ -49,6 +49,20 @@
           <SolutionFolder CreateOnDisk="false" Name="Specs">
             <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Specs">Tests\Acceptance\Specs\MyTemplate.vstemplate</ProjectTemplateLink>
           </SolutionFolder>
+          <SolutionFolder CreateOnDisk="false" Name="Steps">
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Steps">Tests\Acceptance\Steps\MyTemplate.vstemplate</ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Steps.Adapters">Tests\Acceptance\Steps\MyTemplate.vstemplate</ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Steps.Platform">Tests\Acceptance\Steps\MyTemplate.vstemplate</ProjectTemplateLink>
+          </SolutionFolder>
+          <SolutionFolder CreateOnDisk="false" Name="TestData">
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.TestData">Tests\Acceptance\TestData\MyTemplate.vstemplate</ProjectTemplateLink>
+          </SolutionFolder>
+          <SolutionFolder CreateOnDisk="false" Name="Contracts">
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Contracts">Tests\Acceptance\Contracts\MyTemplate.vstemplate</ProjectTemplateLink>
+          </SolutionFolder>
+          <SolutionFolder CreateOnDisk="false" Name="EndToEnd">
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.EndToEnd">Tests\Acceptance\EndToEnd\MyTemplate.vstemplate</ProjectTemplateLink>
+          </SolutionFolder>
         </SolutionFolder>
       </SolutionFolder>
     </ProjectCollection>
