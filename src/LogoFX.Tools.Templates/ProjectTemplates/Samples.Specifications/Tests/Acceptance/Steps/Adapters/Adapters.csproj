@@ -90,7 +90,7 @@
       <Project>{528F0326-586A-4BD6-ADAD-CB530F8E1DD2}</Project>
       <Name>$saferootprojectname$.Tests.Acceptance.Steps.Platform</Name>
     </ProjectReference>
-    <ProjectReference Include="..\$saferootprojectname$.Tests.Acceptance.Steps\$saferootprojectname$Tests.Acceptance.Steps.csproj">
+    <ProjectReference Include="..\$saferootprojectname$.Tests.Acceptance.Steps\$saferootprojectname$.Tests.Acceptance.Steps.csproj">
       <Project>{DE972164-E8D0-4601-B3BE-B36AD22D7581}</Project>
       <Name>$saferootprojectname$.Tests.Acceptance.Steps</Name>
     </ProjectReference>

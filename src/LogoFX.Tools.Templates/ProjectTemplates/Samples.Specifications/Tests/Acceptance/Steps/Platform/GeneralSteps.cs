@@ -16,7 +16,7 @@ namespace $safeprojectname$
         {
             var testDirectory = Directory.GetCurrentDirectory();            
             var applicationDirectory = Directory.GetParent(testDirectory).FullName;
-            var applicationPath = Path.Combine(applicationDirectory, "Samples.Specifications.Client.Launcher.exe");
+            var applicationPath = Path.Combine(applicationDirectory, "$saferootprojectname$.Client.Launcher.exe");
             Directory.SetCurrentDirectory(applicationDirectory);
             _startApplicationService.StartApplication(applicationPath);            
             Directory.SetCurrentDirectory(testDirectory);

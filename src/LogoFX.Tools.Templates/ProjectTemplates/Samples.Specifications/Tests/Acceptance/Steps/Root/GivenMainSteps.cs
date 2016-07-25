@@ -1,8 +1,8 @@
 ﻿#if FAKE
 using System.Collections.Generic;
 using LogoFX.Client.Testing.Contracts;
-using Samples.Client.Data.Contracts.Dto;
-using Samples.Specifications.Client.Data.Fake.ProviderBuilders;
+using $saferootprojectname$.Client.Data.Contracts.Dto;
+using $saferootprojectname$.Client.Data.Fake.ProviderBuilders;
 #endif
 
 #if REAL
