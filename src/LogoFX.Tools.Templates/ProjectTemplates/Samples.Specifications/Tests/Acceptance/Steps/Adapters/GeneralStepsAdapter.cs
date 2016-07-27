@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using $saferootprojectname$.Tests.Acceptance.Steps.Platform;
+using TechTalk.SpecFlow;
 
 namespace $safeprojectname$
 {
