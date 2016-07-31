@@ -18,6 +18,8 @@
   </TemplateData>
   <TemplateContent>
     <Project TargetFileName="$saferootprojectname$.Client.Launcher.csproj" File="Launcher.csproj" ReplaceParameters="true">
+      <ProjectItem TargetFileName="index.html" OpenInWebBrowser="true">index.html</ProjectItem>
+      <ProjectItem TargetFileName="stylesheet.css">stylesheet.css</ProjectItem>
     </Project>
   </TemplateContent>
   <WizardExtension>
