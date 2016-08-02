@@ -21,7 +21,7 @@
     </Project>
   </TemplateContent>
   <WizardExtension>
-    <Assembly>TemplateBuilder, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
-    <FullClassName>TemplateBuilder.ChildWizard</FullClassName>
+        <Assembly>LogoFX.Tools.Templates.Wizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
+    <FullClassName>LogoFX.Tools.Templates.Wizard.ProjectWizard</FullClassName>
   </WizardExtension>
 </VSTemplate>

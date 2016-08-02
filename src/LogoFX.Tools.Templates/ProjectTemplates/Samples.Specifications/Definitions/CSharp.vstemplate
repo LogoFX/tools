@@ -1,6 +1,6 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="ProjectGroup">
   <TemplateData>
-    <Name>LogoFX Template Pack</Name>
+    <Name>LogoFX WPF Template Pack</Name>
     <Description>Creates Specifications using Caliburn.Micro and LogoFX MVVM frameworks.</Description>
     <ProjectType>CSharp</ProjectType>
     <DefaultName>LogoFX.Specifications</DefaultName>
