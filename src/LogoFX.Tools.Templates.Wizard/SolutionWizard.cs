@@ -13,6 +13,8 @@ namespace LogoFX.Tools.Templates.Wizard
     {
         private const string Title = "New LogoFX WPF Samples Application";
 
+        private const string SolutionFolderKind = "{66A26720-8FB5-11D2-AA7E-00C04F688DDE}";
+
         private readonly TemplateBuilder.SolutionWizard _solutionWizard = 
             new TemplateBuilder.SolutionWizard();
 
@@ -91,39 +93,46 @@ namespace LogoFX.Tools.Templates.Wizard
             _solutionWizard.ProjectFinishedGenerating(project);
         }
 
-        private IList<Project> GetProjects()
+        private IList<Project> GetProjects(bool allowSolutionFolders = false)
         {
-            Projects projects = this._solution.Projects;
+            Projects projects = _solution.Projects;
             List<Project> projectList = new List<Project>();
             foreach (object obj in projects)
             {
                 Project solutionFolder = obj as Project;
-                if (solutionFolder != null)
-                {
-                    if (solutionFolder.Kind == "{66A26720-8FB5-11D2-AA7E-00C04F688DDE}")
-                        projectList.AddRange(GetSolutionFolderProjects(solutionFolder));
-                    else
-                        projectList.Add(solutionFolder);
-                }
+                AddProjectsToList(solutionFolder, projectList, allowSolutionFolders);
             }
             return projectList;
         }
 
-        private static IEnumerable<Project> GetSolutionFolderProjects(Project solutionFolder)
+        private IEnumerable<Project> GetSolutionFolderProjects(Project solutionFolder, bool allowSolutionFolders)
         {
             List<Project> projectList = new List<Project>();
             for (int index = 1; index <= solutionFolder.ProjectItems.Count; ++index)
             {
                 Project subProject = solutionFolder.ProjectItems.Item(index).SubProject;
-                if (subProject != null)
-                {
-                    if (subProject.Kind == "{66A26720-8FB5-11D2-AA7E-00C04F688DDE}")
-                        projectList.AddRange(GetSolutionFolderProjects(subProject));
-                    else
-                        projectList.Add(subProject);
-                }
+                AddProjectsToList(subProject, projectList, allowSolutionFolders);
             }
             return projectList;
+        }
+
+        private void AddProjectsToList(Project rootProject, List<Project> projectList, bool allowSolutionFolders)
+        {
+            if (rootProject != null)
+            {
+                if (rootProject.Kind == SolutionFolderKind)
+                {
+                    projectList.AddRange(GetSolutionFolderProjects(rootProject, allowSolutionFolders));
+                    if (allowSolutionFolders)
+                    {
+                        projectList.Add(rootProject);
+                    }
+                }
+                else
+                {
+                    projectList.Add(rootProject);
+                }
+            }
         }
     }
 }
