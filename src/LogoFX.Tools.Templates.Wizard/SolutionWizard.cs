@@ -125,7 +125,6 @@ namespace LogoFX.Tools.Templates.Wizard
         private void RemoveConditions(Project project)
         {
             var projectFilePath = project.FileName;
-            var solutionFilePath = project.DTE.Solution.FileName;
 
             if (!string.Equals(Path.GetExtension(projectFilePath), ".csproj"))
             {

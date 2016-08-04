@@ -10,6 +10,7 @@ namespace $safeprojectname$
     {
         public void RegisterModule(IIocContainerRegistrator iocContainer)
         {
+            iocContainer.RegisterSingleton<ILoginProvider, LoginProvider>();
             iocContainer.RegisterSingleton<IWarehouseProvider, WarehouseProvider>();
         }
     }

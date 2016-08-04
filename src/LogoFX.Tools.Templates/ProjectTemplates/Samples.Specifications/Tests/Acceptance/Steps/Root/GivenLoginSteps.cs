@@ -10,6 +10,7 @@ namespace $safeprojectname$
 {
     public class GivenLoginSteps
     {
+#if FAKE
         private readonly IBuilderRegistrationService _builderRegistrationService;
         private readonly LoginProviderBuilder _loginProviderBuilder;
 
@@ -19,10 +20,11 @@ namespace $safeprojectname$
             _builderRegistrationService = builderRegistrationService;
             _loginProviderBuilder = loginProviderBuilder;
         }
+#endif
 
         public void SetupAuthenticatedUserWithCredentials(string username, string password)
         {
-#if FAKE            
+#if FAKE
             _loginProviderBuilder.WithUser(username, password);
             _builderRegistrationService.RegisterBuilder(_loginProviderBuilder);
 #endif
@@ -34,7 +36,7 @@ namespace $safeprojectname$
 
         public void SetupLoginSuccessfullyWithUsername(string username)
         {
-#if FAKE            
+#if FAKE
             _loginProviderBuilder.WithSuccessfulLogin(username);
             _builderRegistrationService.RegisterBuilder(_loginProviderBuilder);
 #endif
