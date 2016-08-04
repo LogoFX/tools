@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using EnvDTE;
 using EnvDTE100;
 using EnvDTE80;
+using Microsoft.Build.Construction;
 using Microsoft.VisualStudio.TemplateWizard;
 
 namespace LogoFX.Tools.Templates.Wizard
@@ -14,6 +16,19 @@ namespace LogoFX.Tools.Templates.Wizard
         private const string Title = "New LogoFX WPF Samples Application";
 
         private const string SolutionFolderKind = "{66A26720-8FB5-11D2-AA7E-00C04F688DDE}";
+
+        private const string DebugWithFakeKey = "$debugwithfake$";
+
+        private const string DebugWithFakeCondition =
+            @"  <PropertyGroup Condition=""'$(Configuration)|$(Platform)' == 'DebugWithFake|AnyCPU'"">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\Bin\DebugWithFake\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>";
 
         private readonly TemplateBuilder.SolutionWizard _solutionWizard = 
             new TemplateBuilder.SolutionWizard();
@@ -83,14 +98,63 @@ namespace LogoFX.Tools.Templates.Wizard
 
             if (!_wizardData.FakeData)
             {
-                var projects = GetProjects();
+                var projects = GetProjects(true);
                 foreach (var p in projects.Where(p => p.Name.Contains(".Fake.")))
                 {
                     _solution.Remove(p);
                 }
             }
 
+            if (!_wizardData.FakeData || !_wizardData.Tests)
+            {
+                RemoveConditions();
+            }
+
             _solutionWizard.ProjectFinishedGenerating(project);
+        }
+
+        private void RemoveConditions()
+        {
+            var projects = GetProjects();
+            foreach (var project in projects)
+            {
+                RemoveConditions(project);
+            }
+        }
+
+        private void RemoveConditions(Project project)
+        {
+            var projectFilePath = project.FileName;
+            var solutionFilePath = project.DTE.Solution.FileName;
+
+            if (!string.Equals(Path.GetExtension(projectFilePath), ".csproj"))
+            {
+                return;
+            }
+
+            var buildProject = new Microsoft.Build.Evaluation.Project(projectFilePath);
+            var allGroups = buildProject.Xml.PropertyGroups;
+
+            var toRemove = new List<ProjectPropertyGroupElement>();
+
+            if (!_wizardData.FakeData)
+            {
+                toRemove.AddRange(allGroups.Where(x => x.Condition.Contains("Fake")));
+            }
+
+            if (!_wizardData.Tests)
+            {
+                toRemove.AddRange(allGroups.Where(x => x.Condition.Contains("Tests")));
+            }
+
+            if (toRemove.Count > 0)
+            {
+                foreach (var pg in toRemove.Distinct())
+                {
+                    buildProject.Xml.RemoveChild(pg);
+                }
+                buildProject.Save();
+            }
         }
 
         private IList<Project> GetProjects(bool allowSolutionFolders = false)
