@@ -17,19 +17,6 @@ namespace LogoFX.Tools.Templates.Wizard
 
         private const string SolutionFolderKind = "{66A26720-8FB5-11D2-AA7E-00C04F688DDE}";
 
-        private const string DebugWithFakeKey = "$debugwithfake$";
-
-        private const string DebugWithFakeCondition =
-            @"  <PropertyGroup Condition=""'$(Configuration)|$(Platform)' == 'DebugWithFake|AnyCPU'"">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\Bin\DebugWithFake\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>";
-
         private readonly TemplateBuilder.SolutionWizard _solutionWizard = 
             new TemplateBuilder.SolutionWizard();
 
