@@ -1,0 +1,23 @@
+﻿<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name>Client.Tests.Integration.Infra.Core</Name>
+    <Description></Description>
+    <DefaultName>$saferootprojectname$.Client.Tests.Integration.Infra.Core</DefaultName>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType></ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <Icon></Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="$saferootprojectname$.Client.Tests.Integration.Infra.Core.csproj" File="MyProject.csproj" ReplaceParameters="true" />
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>LogoFX.Tools.Templates.Wizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
+    <FullClassName>LogoFX.Tools.Templates.Wizard.ProjectWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>
