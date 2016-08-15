@@ -57,7 +57,45 @@ namespace LogoFX.Tools.Templates.Wizard
 
         public void RunFinished()
         {
+            if (!_wizardData.Tests)
+            {
+                var testSolutionFolder = _solution.Projects
+                    .OfType<Project>()
+                    .FirstOrDefault(p => p.Name == "Tests");
+                if (testSolutionFolder != null)
+                {
+                    _solution.Remove(testSolutionFolder);
+                }
+            }
+
+            IList<Project> projects;
+            if (!_wizardData.FakeData)
+            {
+                projects = GetProjects(true);
+                foreach (var p in projects.Where(p => p.Name.Contains(".Fake.")))
+                {
+                    _solution.Remove(p);
+                }
+            }
+
+            if (!_wizardData.FakeData || !_wizardData.Tests)
+            {
+                RemoveConditions();
+            }
+
             _solutionWizard.RunFinished();
+
+            projects = GetProjects(true);
+            var startupProjectName = projects.First(x => x.Name.EndsWith("Launcher")).Name;
+
+            if (!string.IsNullOrEmpty(startupProjectName))
+            {
+                _solution.Properties.Item("StartupProject").Value = startupProjectName;
+                var fn = _solution.FullName;
+                fn = _solution.FileName;
+                var p = _solution.SolutionBuild.StartupProjects;
+            }
+
         }
 
         public void BeforeOpeningFile(ProjectItem projectItem)
@@ -72,31 +110,6 @@ namespace LogoFX.Tools.Templates.Wizard
 
         public void ProjectFinishedGenerating(Project project)
         {
-            if (!_wizardData.Tests)
-            {
-                var testSolutionFolder = _solution.Projects
-                    .OfType<Project>()
-                    .FirstOrDefault(p => p.Name == "Tests");
-                if (testSolutionFolder != null)
-                {
-                    _solution.Remove(testSolutionFolder);
-                }
-            }
-
-            if (!_wizardData.FakeData)
-            {
-                var projects = GetProjects(true);
-                foreach (var p in projects.Where(p => p.Name.Contains(".Fake.")))
-                {
-                    _solution.Remove(p);
-                }
-            }
-
-            if (!_wizardData.FakeData || !_wizardData.Tests)
-            {
-                RemoveConditions();
-            }
-
             _solutionWizard.ProjectFinishedGenerating(project);
         }
 

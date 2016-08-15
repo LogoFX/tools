@@ -1,7 +1,0 @@
-﻿<xaml:SharedResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                                xmlns:xaml="clr-namespace:LogoFX.Client.Mvvm.View.Xaml;assembly=LogoFX.Client.Mvvm.View.Platform">
-    <xaml:SharedResourceDictionary.MergedDictionaries>
-        <xaml:SharedResourceDictionary Source="pack://application:,,,/Themes/Baselight/Controls/MetroWindow.xaml" />
-        <xaml:SharedResourceDictionary Source="pack://application:,,,/Themes/Baselight/Controls/StringFormats.xaml" />
-    </xaml:SharedResourceDictionary.MergedDictionaries>
-</xaml:SharedResourceDictionary>

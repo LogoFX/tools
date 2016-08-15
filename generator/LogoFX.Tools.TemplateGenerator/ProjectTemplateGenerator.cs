@@ -8,65 +8,6 @@ using Microsoft.Build.Evaluation;
 
 namespace LogoFX.Tools.TemplateGenerator
 {
-    internal abstract class ProjectItemTemplateGenerator : GeneratorBase
-    {
-        private readonly string _fileName;
-
-        protected ProjectItemTemplateGenerator(string fileName)
-        {
-            _fileName = fileName;
-        }
-
-        public void Process()
-        {
-            ProcessInternal();
-        }
-
-        protected abstract void ProcessInternal();
-
-        protected string GetFileContent()
-        {
-            return File.ReadAllText(_fileName);
-        }
-
-        protected void SaveFileContent(string content)
-        {
-            File.WriteAllText(_fileName, content);
-        }
-    }
-
-    internal sealed class CSFileGenerator : ProjectItemTemplateGenerator
-    {
-        private readonly string _rootNamespace;
-        private readonly ISolutionTemplateInfo _solutionTemplateInfo;
-
-        public CSFileGenerator(string fileName, string rootNamespace, ISolutionTemplateInfo solutionTemplateInfo) 
-            : base(fileName)
-        {
-            _rootNamespace = rootNamespace;
-            _solutionTemplateInfo = solutionTemplateInfo;
-        }
-
-        protected override void ProcessInternal()
-        {
-            var content = GetFileContent();
-            content = content.Replace(_rootNamespace, "$safeprojectname$");
-
-            foreach (var project in _solutionTemplateInfo.GetProjectsPlain())
-            {
-                if (!content.Contains(project.Name))
-                {
-                    continue;
-                }
-
-                content = content.Replace(project.Name, SafeRootProjectName(project));
-            }
-
-            SaveFileContent(content);
-        }
-    }
-
-
     internal sealed class ProjectTemplateGenerator : GeneratorBase
     {
         private readonly IProjectTemplateInfo _projectTemplateInfo;
@@ -93,8 +34,12 @@ namespace LogoFX.Tools.TemplateGenerator
 
             var newProjectName = Path.GetFileName(_projectTemplateInfo.FileName);
             Debug.Assert(newProjectName != null, "newProjectName != null");
+            if (newProjectName.Length > 12)
+            {
+                newProjectName = "MyProject.csproj";
+            }
 
-            var newAbsolutePath = Path.Combine(projectFolder, newProjectName);
+                var newAbsolutePath = Path.Combine(projectFolder, newProjectName);
             File.Copy(_projectTemplateInfo.FileName, newAbsolutePath);
 
             Project project = new Project(newAbsolutePath);
@@ -119,19 +64,31 @@ namespace LogoFX.Tools.TemplateGenerator
                     case "Compile":
                     case "None":
                     case "Page":
+                    case "ApplicationDefinition":
                     case "EmbeddedResource":
+                    case "Content":
                         newFileName = CopyProjectItem(item, from, projectFolder);
                         break;
                 }
 
+                if (string.IsNullOrWhiteSpace(newFileName))
+                {
+                    continue;
+                }
+
+                ProjectItemTemplateGenerator fileGenerator = null;
+
                 switch (item.ItemType)
                 {
                     case "Compile":
-                        var fileGenerator = new CSFileGenerator(newFileName, rootNamespace, _solutionTemplateInfo);
-                        fileGenerator.Process();
+                        fileGenerator = new CSFileGenerator(newFileName, rootNamespace, _solutionTemplateInfo);
+                        break;
+                    case "Page":
+                        fileGenerator = new XamlFileGenerator(newFileName, rootNamespace, _solutionTemplateInfo);
                         break;
                 }
 
+                fileGenerator?.Process();
             }
 
             project.Save();
@@ -142,6 +99,12 @@ namespace LogoFX.Tools.TemplateGenerator
         private string CopyProjectItem(ProjectItem item, string from, string to)
         {
             var oldFileName = Path.Combine(from, item.EvaluatedInclude);
+
+            if (!File.Exists(oldFileName))
+            {
+                return null;
+            }
+
             var newFileName = Path.Combine(to, item.EvaluatedInclude);
             var newFolder = Path.GetDirectoryName(newFileName);
             if (!Directory.Exists(newFolder))
