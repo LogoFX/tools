@@ -84,6 +84,7 @@ namespace LogoFX.Tools.TemplateGenerator
                         fileGenerator = new CSFileGenerator(newFileName, rootNamespace, _solutionTemplateInfo);
                         break;
                     case "Page":
+                    case "ApplicationDefinition":
                         fileGenerator = new XamlFileGenerator(newFileName, rootNamespace, _solutionTemplateInfo);
                         break;
                 }
