@@ -1,14 +1,14 @@
 using LogoFX.Bootstrapping;
-using LogoFX.Client.Bootstrapping.Adapters.Unity;
 using LogoFX.Client.Mvvm.ViewModel.Services;
 using LogoFX.Client.Mvvm.ViewModelFactory.Unity;
+using Solid.Practices.IoC;
 
 namespace $safeprojectname$
 {    
     public static class BootstrapperExtensions
     {
-        public static IBootstrapperWithContainerAdapter<UnityContainerAdapter> UseShared(
-            this IBootstrapperWithContainerAdapter<UnityContainerAdapter> bootstrapper)
+        public static IBootstrapperWithContainerAdapter<TContainerAdapter> UseShared<TContainerAdapter>(
+            this IBootstrapperWithContainerAdapter<TContainerAdapter> bootstrapper) where TContainerAdapter : IIocContainer
         {
             return bootstrapper.UseViewModelCreatorService().UseViewModelFactory();
         }

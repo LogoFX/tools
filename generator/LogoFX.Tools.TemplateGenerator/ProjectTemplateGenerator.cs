@@ -78,13 +78,14 @@ namespace LogoFX.Tools.TemplateGenerator
 
                 ProjectItemTemplateGenerator fileGenerator = null;
 
-                switch (item.ItemType)
+                var ext = Path.GetExtension(newFileName);
+                switch (ext)
                 {
-                    case "Compile":
+                    case ".cs":
+                    case ".config":
                         fileGenerator = new CSFileGenerator(newFileName, rootNamespace, _solutionTemplateInfo);
                         break;
-                    case "Page":
-                    case "ApplicationDefinition":
+                    case ".xaml":
                         fileGenerator = new XamlFileGenerator(newFileName, rootNamespace, _solutionTemplateInfo);
                         break;
                 }
