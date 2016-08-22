@@ -1,13 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="LogoFX.Tools.Templates..484ca409-0d03-4da2-b406-16c59ba0aa1e" Version="1.0" Language="en-US" Publisher="LogoFX Team" />
-    <DisplayName>LogoFX WPF Template Pack Extension</DisplayName>
+    <Identity Id="LogoFX.Tools.Templates..484ca409-0d03-4da2-b406-16c59ba0aa1e" Version="1.0.1" Language="en-US" Publisher="LogoFX Team" />
+    <DisplayName>LogoFX Template Pack</DisplayName>
     <Description xml:space="preserve">A collection of Visual Studio Item- and Project Templates to facilitate the development process using Caliburn.Micro and LogoFX MVVM frameworks.</Description>
-    <License>LICENSE.txt</License>
+    <MoreInfo>http://www.logoui.co.il/en</MoreInfo>
+    <License>LICENSE</License>
+    <GettingStartedGuide>index.html</GettingStartedGuide>
+    <Tags>WPF,UWP, Windows Store, XAML, MVVM, Specflow, Spec, TDD, BDD, Windows Phone, Patterns, Design Patterns, Patterns &amp; Practices</Tags>
   </Metadata>
   <Installation AllUsers="true">
-    <InstallationTarget Id="Microsoft.VisualStudio.Enterprise" Version="[14.0,15.0)" />
+    <InstallationTarget Id="Microsoft.VisualStudio.Enterprise" Version="[14.0, 15.0)" />
+    <InstallationTarget Version="[14.0, 15.0)" Id="Microsoft.VisualStudio.Community" />
+    <InstallationTarget Version="[14.0, 15.0)" Id="Microsoft.VisualStudio.Pro" />
   </Installation>
   <Dependencies>
     <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
