@@ -48,6 +48,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="LICENSE">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\template-builder.props" />
     <None Include="source.extension.vsixmanifest">
@@ -55,7 +59,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="index.html" />
+    <Content Include="index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="ProjectTemplates\Samples.Specifications\Definitions\CSharp.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\Samples.Client.Data.Contracts.Dto\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\Samples.Client.Data.Contracts.Providers\MyTemplate.vstemplate" />

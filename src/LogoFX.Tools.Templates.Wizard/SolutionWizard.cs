@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -34,10 +33,13 @@ namespace LogoFX.Tools.Templates.Wizard
             }
 
             DTE2 dtE2 = automationObject as DTE2;
-            if (dtE2 != null)
+            // ReSharper disable SuspiciousTypeConversion.Global
+            var solution4 = dtE2 as Solution4;
+            if (solution4 != null)
             {
                 _solution = (Solution4) dtE2.Solution;
             }
+            // ReSharper restore SuspiciousTypeConversion.Global
 
             var projectName = replacementsDictionary["$projectname$"];
             var form = new UserInputForm
@@ -91,9 +93,6 @@ namespace LogoFX.Tools.Templates.Wizard
             if (!string.IsNullOrEmpty(startupProjectName))
             {
                 _solution.Properties.Item("StartupProject").Value = startupProjectName;
-                var fn = _solution.FullName;
-                fn = _solution.FileName;
-                var p = _solution.SolutionBuild.StartupProjects;
             }
 
         }
