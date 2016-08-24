@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using EnvDTE;
 using EnvDTE100;
 using EnvDTE80;
+using LogoFX.Tools.Templates.Wizard.ViewModel;
 using Microsoft.Build.Construction;
 using Microsoft.VisualStudio.TemplateWizard;
 
@@ -19,7 +20,7 @@ namespace LogoFX.Tools.Templates.Wizard
         private readonly TemplateBuilder.SolutionWizard _solutionWizard = 
             new TemplateBuilder.SolutionWizard();
 
-        private readonly WizardData _wizardData = new WizardData();
+        private readonly WizardViewModel _wizardViewModel = new WizardViewModel();
 
         private Solution4 _solution;
 
@@ -34,7 +35,7 @@ namespace LogoFX.Tools.Templates.Wizard
 
             DTE2 dtE2 = automationObject as DTE2;
             // ReSharper disable SuspiciousTypeConversion.Global
-            var solution4 = dtE2 as Solution4;
+            var solution4 = dtE2.Solution as Solution4;
             if (solution4 != null)
             {
                 _solution = (Solution4) dtE2.Solution;
@@ -42,14 +43,16 @@ namespace LogoFX.Tools.Templates.Wizard
             // ReSharper restore SuspiciousTypeConversion.Global
 
             var projectName = replacementsDictionary["$projectname$"];
-            var form = new UserInputForm
-            {
-                Text = $"{Title} - {projectName}"
-            };
 
-            form.DataToScreen(_wizardData);
-            var res = form.ShowDialog() == DialogResult.OK;
-            form.ScreenToData(_wizardData);
+            _wizardViewModel.Title = $"{Title} - {projectName}";
+
+            var window = WpfServices.CreateWindow<Views.WizardWindow>(_wizardViewModel);
+            WpfServices.SetWindowOwner(window, dtE2.MainWindow);
+            bool retVal = false;
+            while (!retVal)
+            {
+                retVal = window.ShowDialog() ?? false;
+            }
         }
 
         public bool ShouldAddProjectItem(string filePath)
@@ -59,7 +62,7 @@ namespace LogoFX.Tools.Templates.Wizard
 
         public void RunFinished()
         {
-            if (!_wizardData.Tests)
+            if (!_wizardViewModel.Tests)
             {
                 var testSolutionFolder = _solution.Projects
                     .OfType<Project>()
@@ -71,7 +74,7 @@ namespace LogoFX.Tools.Templates.Wizard
             }
 
             IList<Project> projects;
-            if (!_wizardData.FakeData)
+            if (!_wizardViewModel.FakeData)
             {
                 projects = GetProjects(true);
                 foreach (var p in projects.Where(p => p.Name.Contains(".Fake.")))
@@ -80,7 +83,7 @@ namespace LogoFX.Tools.Templates.Wizard
                 }
             }
 
-            if (!_wizardData.FakeData || !_wizardData.Tests)
+            if (!_wizardViewModel.FakeData || !_wizardViewModel.Tests)
             {
                 RemoveConditions();
             }
@@ -135,12 +138,12 @@ namespace LogoFX.Tools.Templates.Wizard
 
             var toRemove = new List<ProjectPropertyGroupElement>();
 
-            if (!_wizardData.FakeData)
+            if (!_wizardViewModel.FakeData)
             {
                 toRemove.AddRange(allGroups.Where(x => x.Condition.Contains("Fake")));
             }
 
-            if (!_wizardData.Tests)
+            if (!_wizardViewModel.Tests)
             {
                 toRemove.AddRange(allGroups.Where(x => x.Condition.Contains("Tests")));
             }
