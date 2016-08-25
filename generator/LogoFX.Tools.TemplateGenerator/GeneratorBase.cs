@@ -8,7 +8,7 @@ namespace LogoFX.Tools.TemplateGenerator
     {
         private static readonly string[] s_names = { ".Client.", ".Tests." };
 
-        protected static readonly XNamespace s_ns = XNamespace.Get("http://schemas.microsoft.com/developer/vstemplate/2005");
+        protected static readonly XNamespace Ns = XNamespace.Get("http://schemas.microsoft.com/developer/vstemplate/2005");
 
         protected string GetRootName(string projectName)
         {
@@ -37,6 +37,13 @@ namespace LogoFX.Tools.TemplateGenerator
         protected string SafeRootProjectName(IProjectTemplateInfo projectTemplateInfo)
         {
             return $"$saferootprojectname$.{projectTemplateInfo.NameWithoutRoot}";
+        }
+
+        protected XElement MakeWizardExtension(string assemblyName, string className)
+        {
+            return new XElement(Ns + "WizardExtension",
+                new XElement(Ns + "Assembly", assemblyName),
+                new XElement(Ns + "FullClassName", className));
         }
     }
 }

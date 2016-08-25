@@ -17,17 +17,12 @@ namespace LogoFX.Tools.Templates.Wizard
 
         private const string SolutionFolderKind = "{66A26720-8FB5-11D2-AA7E-00C04F688DDE}";
 
-        private readonly TemplateBuilder.SolutionWizard _solutionWizard = 
-            new TemplateBuilder.SolutionWizard();
-
         private readonly WizardViewModel _wizardViewModel = new WizardViewModel();
 
         private Solution4 _solution;
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
-            _solutionWizard.RunStarted(automationObject, replacementsDictionary, runKind, customParams);
-
             if (runKind != WizardRunKind.AsMultiProject)
             {
                 return;
@@ -57,7 +52,7 @@ namespace LogoFX.Tools.Templates.Wizard
 
         public bool ShouldAddProjectItem(string filePath)
         {
-            return _solutionWizard.ShouldAddProjectItem(filePath);
+            return true;
         }
 
         public void RunFinished()
@@ -88,8 +83,6 @@ namespace LogoFX.Tools.Templates.Wizard
                 RemoveConditions();
             }
 
-            _solutionWizard.RunFinished();
-
             projects = GetProjects(true);
             var startupProjectName = projects.First(x => x.Name.EndsWith("Launcher")).Name;
 
@@ -102,17 +95,17 @@ namespace LogoFX.Tools.Templates.Wizard
 
         public void BeforeOpeningFile(ProjectItem projectItem)
         {
-            _solutionWizard.BeforeOpeningFile(projectItem);
+
         }
 
         public void ProjectItemFinishedGenerating(ProjectItem projectItem)
         {
-            _solutionWizard.ProjectItemFinishedGenerating(projectItem);
+
         }
 
         public void ProjectFinishedGenerating(Project project)
         {
-            _solutionWizard.ProjectFinishedGenerating(project);
+
         }
 
         private void RemoveConditions()

@@ -58,7 +58,7 @@ namespace LogoFX.Tools.TemplateGenerator
             {
                 if (solutionItem is ISolutionFolderTemplateInfo)
                 {
-                    var folderElement = new XElement(s_ns + "SolutionFolder",
+                    var folderElement = new XElement(Ns + "SolutionFolder",
                         new XAttribute("Name", solutionItem.Name),
                         new XAttribute("CreateOnDisk", false));
                     rootElement.Add(folderElement);
@@ -67,7 +67,7 @@ namespace LogoFX.Tools.TemplateGenerator
                 else
                 {
                     var projectTemplateInfo = (IProjectTemplateInfo) solutionItem;
-                    var projectLinkElement = new XElement(s_ns + "ProjectTemplateLink",
+                    var projectLinkElement = new XElement(Ns + "ProjectTemplateLink",
                         new XAttribute("ProjectName", SafeProjectName(projectTemplateInfo)),
                         VSTemplateName(projectTemplateInfo));
                     rootElement.Add(projectLinkElement);
@@ -82,26 +82,28 @@ namespace LogoFX.Tools.TemplateGenerator
 
         private void CreateDefinitions(string destinationFolder, ISolutionTemplateInfo solutionTemplateInfo)
         {
-            var projectCollection = new XElement(s_ns + "ProjectCollection");
+            var projectCollection = new XElement(Ns + "ProjectCollection");
             CreateXElement(projectCollection, solutionTemplateInfo);
 
             var doc = new XDocument(
-                new XElement(s_ns + "VSTemplate",
+                new XElement(Ns + "VSTemplate",
                     new XAttribute("Version", "3.0.0"),
                     new XAttribute("Type", "ProjectGroup"),
-                    new XElement(s_ns + "TemplateData",
-                        new XElement(s_ns + "Name", _templateData.Name),
-                        new XElement(s_ns + "Description", _templateData.Description),
-                        new XElement(s_ns + "ProjectType", _templateData.ProjectType),
-                        new XElement(s_ns + "DefaultName", _templateData.DefaultName),
-                        new XElement(s_ns + "SortOrder", _templateData.SortOrder),
-                        new XElement(s_ns + "Icon", _templateData.DefaultName)),
-                    new XElement(s_ns + "TemplateContent",
-                        projectCollection),
-                    new XElement(s_ns + "WizardExtension",
-                        new XElement(s_ns + "Assembly", "LogoFX.Tools.Templates.Wizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"),
-                        new XElement(s_ns + "FullClassName", "LogoFX.Tools.Templates.Wizard.SolutionWizard")
-                        )));
+                    new XElement(Ns + "TemplateData",
+                        new XElement(Ns + "Name", _templateData.Name),
+                        new XElement(Ns + "Description", _templateData.Description),
+                        new XElement(Ns + "ProjectType", _templateData.ProjectType),
+                        new XElement(Ns + "DefaultName", _templateData.DefaultName),
+                        new XElement(Ns + "SortOrder", _templateData.SortOrder),
+                        new XElement(Ns + "Icon", _templateData.DefaultName)),
+                    new XElement(Ns + "TemplateContent", projectCollection),
+                    MakeWizardExtension(
+                        "LogoFX.Tools.Templates.Wizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                        "LogoFX.Tools.Templates.Wizard.SolutionWizard"),
+                    MakeWizardExtension(
+                        "TemplateBuilder, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null",
+                        "TemplateBuilder.SolutionWizard")
+                    ));
 
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.OmitXmlDeclaration = true;

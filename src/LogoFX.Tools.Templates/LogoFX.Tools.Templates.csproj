@@ -68,35 +68,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="ProjectTemplates\Samples.Specifications\Definitions\CSharp.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Client.Data.Contracts.Dto\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Client.Data.Contracts.Providers\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Client.Model.Contracts\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Client.Model.Shared\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Client.Model\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Client.Data.Fake.Containers\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Client.Data.Fake.ProviderBuilders.Setup\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Client.Data.Fake.ProviderBuilders\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Client.Data.Fake.Providers\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Client.Data.Real.Providers\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Client.Launcher.Shared\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Client.Launcher\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Client.Presentation.Shared\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Client.Presentation.Shell\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Client.Tests.Integration.Domain\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Client.Tests.Integration.Infra.Core\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Client.Tests.Integration.Infra.Shared\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Client.Tests.Integration.Infra\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Client.Tests.Integration\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Tests.Acceptance.Specs\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Tests.Acceptance.Steps.Adapters\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Tests.Data\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Tests.Domain\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Tests.EndToEnd.Domain\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Tests.EndToEnd.Infra.Fake\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Tests.EndToEnd.Infra.Launcher\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Tests.EndToEnd.Infra.Providers\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Tests.EndToEnd.Infra.Real\MyTemplate.vstemplate" />
-    <Content Include="ProjectTemplates\Samples.Specifications\Samples.Specifications.Tests.Steps\MyTemplate.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\_preprocess.xml" />
     <Content Include="stylesheet.css" />
   </ItemGroup>

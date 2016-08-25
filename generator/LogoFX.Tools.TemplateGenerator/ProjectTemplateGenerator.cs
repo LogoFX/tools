@@ -132,38 +132,39 @@ namespace LogoFX.Tools.TemplateGenerator
 
         private void CreateDefinitions(string projectFolder, string newProjectFileName)
         {
-            var projectCollection = new XElement(s_ns + "Project",
+            var projectCollection = new XElement(Ns + "Project",
                 new XAttribute("TargetFileName", SafeRootProjectName(_projectTemplateInfo) + ".csproj"),
                 new XAttribute("File", newProjectFileName),
                 new XAttribute("ReplaceParameters", true));
 
-            XDocument doc = new XDocument(
-                new XElement(s_ns + "VSTemplate",
+            var doc = new XDocument(
+                new XElement(Ns + "VSTemplate",
                     new XAttribute("Version", "3.0.0"),
                     new XAttribute("Type", "Project"),
-                    new XElement(s_ns + "TemplateData",
-                        new XElement(s_ns + "Name", _projectTemplateInfo.NameWithoutRoot),
-                        new XElement(s_ns + "Description", ""),
-                        new XElement(s_ns + "DefaultName", SafeRootProjectName(_projectTemplateInfo)),
-                        new XElement(s_ns + "ProjectType", "CSharp"),
-                        new XElement(s_ns + "ProjectSubType", ""),
-                        new XElement(s_ns + "SortOrder", 1000),
-                        new XElement(s_ns + "CreateNewFolder", true),
-                        new XElement(s_ns + "ProvideDefaultName", true),
-                        new XElement(s_ns + "LocationField", "Enabled"),
-                        new XElement(s_ns + "EnableLocationBrowseButton", true),
-                        new XElement(s_ns + "NumberOfParentCategoriesToRollUp", 1),
-                        new XElement(s_ns + "Icon", "")),
-                    new XElement(s_ns + "TemplateContent",
-                        projectCollection),
-                    new XElement(s_ns + "WizardExtension",
-                        new XElement(s_ns + "Assembly", "LogoFX.Tools.Templates.Wizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"),
-                        new XElement(s_ns + "FullClassName", "LogoFX.Tools.Templates.Wizard.ProjectWizard")
-                        )));
+                    new XElement(Ns + "TemplateData",
+                        new XElement(Ns + "Name", _projectTemplateInfo.NameWithoutRoot),
+                        new XElement(Ns + "Description", ""),
+                        new XElement(Ns + "DefaultName", SafeRootProjectName(_projectTemplateInfo)),
+                        new XElement(Ns + "ProjectType", "CSharp"),
+                        new XElement(Ns + "ProjectSubType", ""),
+                        new XElement(Ns + "SortOrder", 1000),
+                        new XElement(Ns + "CreateNewFolder", true),
+                        new XElement(Ns + "ProvideDefaultName", true),
+                        new XElement(Ns + "LocationField", "Enabled"),
+                        new XElement(Ns + "EnableLocationBrowseButton", true),
+                        new XElement(Ns + "NumberOfParentCategoriesToRollUp", 1),
+                        new XElement(Ns + "Icon", "")),
+                    new XElement(Ns + "TemplateContent", projectCollection),
+                    MakeWizardExtension(
+                        "TemplateBuilder, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null",
+                        "TemplateBuilder.ChildWizard")
+                    ));
 
-            XmlWriterSettings settings = new XmlWriterSettings();
-            settings.OmitXmlDeclaration = true;
-            settings.Indent = true;
+            XmlWriterSettings settings = new XmlWriterSettings
+            {
+                OmitXmlDeclaration = true,
+                Indent = true
+            };
 
             var templateFile = Path.Combine(projectFolder, "MyTemplate.vstemplate");
 

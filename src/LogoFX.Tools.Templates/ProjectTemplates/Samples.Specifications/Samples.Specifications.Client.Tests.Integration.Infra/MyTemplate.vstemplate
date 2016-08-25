@@ -17,7 +17,7 @@
     <Project TargetFileName="$saferootprojectname$.Client.Tests.Integration.Infra.csproj" File="MyProject.csproj" ReplaceParameters="true" />
   </TemplateContent>
   <WizardExtension>
-    <Assembly>LogoFX.Tools.Templates.Wizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
-    <FullClassName>LogoFX.Tools.Templates.Wizard.ProjectWizard</FullClassName>
+    <Assembly>TemplateBuilder, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
+    <FullClassName>TemplateBuilder.ChildWizard</FullClassName>
   </WizardExtension>
 </VSTemplate>
