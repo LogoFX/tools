@@ -1,6 +1,6 @@
 ﻿<VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
   <TemplateData>
-    <Name>LogoFX Universal Template Pack</Name>
+    <Name>LogoFX Universal Template Pack 2</Name>
     <Description>Creates Specifications using Caliburn.Micro and LogoFX MVVM frameworks.</Description>
     <ProjectType>CSharp</ProjectType>
     <DefaultName>LogoFX.Universal</DefaultName>

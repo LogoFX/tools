@@ -69,6 +69,8 @@
     </Content>
     <Content Include="ProjectTemplates\Samples.Specifications\Definitions\CSharp.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\_preprocess.xml" />
+    <Content Include="ProjectTemplates\UWP\Definitions\CSharp.vstemplate" />
+    <Content Include="ProjectTemplates\UWP\_preprocess.xml" />
     <Content Include="stylesheet.css" />
   </ItemGroup>
   <ItemGroup>
