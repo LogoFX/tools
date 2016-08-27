@@ -7,10 +7,10 @@ using Caliburn.Micro;
 using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.ViewModel.Contracts;
-using LogoFX.Tools.TemplateGenerator.App.Properties;
+using LogoFX.Tools.TemplateGenerator.Shell.Properties;
 using Microsoft.Win32;
 
-namespace LogoFX.Tools.TemplateGenerator.App.ViewModels
+namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {
     [UsedImplicitly]
     public sealed class ShellViewModel : Screen, ICanBeBusy

@@ -1,4 +1,6 @@
-﻿namespace LogoFX.Tools.TemplateGenerator.App
+﻿using LogoFX.Client.Bootstrapping;
+
+namespace LogoFX.Tools.TemplateGenerator.Launcher
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -8,7 +10,7 @@
         public App()
         {
             var bootstrapper = new AppBootstrapper();
-            bootstrapper.Initialize();
+            bootstrapper.UseResolver().Initialize();
         }
     }
 }

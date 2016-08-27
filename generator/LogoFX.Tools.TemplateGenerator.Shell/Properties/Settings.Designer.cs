@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LogoFX.Tools.TemplateGenerator.App.Properties {
+namespace LogoFX.Tools.TemplateGenerator.Shell.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
