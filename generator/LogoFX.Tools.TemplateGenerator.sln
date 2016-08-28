@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.TemplateGenerator.App", "LogoFX.Tools.TemplateGenerator.App\LogoFX.Tools.TemplateGenerator.App.csproj", "{5356B203-095E-4205-857F-BCED3324C3F1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.TemplateGenerator", "LogoFX.Tools.TemplateGenerator\LogoFX.Tools.TemplateGenerator.csproj", "{6588154F-33F5-458E-8445-433228326999}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.TemplateGenerator.VsExtension", "LogoFX.Tools.TemplateGenerator.VsExtension\LogoFX.Tools.TemplateGenerator.VsExtension.csproj", "{A68DAB90-3E35-4C4F-8B91-D47FD5926F8B}"
@@ -13,16 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.TemplateGenera
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.TemplateGenerator.Launcher", "LogoFX.Tools.TemplateGenerator.Launcher\LogoFX.Tools.TemplateGenerator.Launcher.csproj", "{3E119547-01CC-47AD-88A1-6F9F00352A36}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.TemplateGenerator.VsExtension.Bridge", "LogoFX.Tools.TemplateGenerator.VsExtension.Bridge\LogoFX.Tools.TemplateGenerator.VsExtension.Bridge.csproj", "{59D8FCDD-0DC7-4C71-869B-2D9B8AD8D669}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5356B203-095E-4205-857F-BCED3324C3F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5356B203-095E-4205-857F-BCED3324C3F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5356B203-095E-4205-857F-BCED3324C3F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5356B203-095E-4205-857F-BCED3324C3F1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6588154F-33F5-458E-8445-433228326999}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6588154F-33F5-458E-8445-433228326999}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6588154F-33F5-458E-8445-433228326999}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{3E119547-01CC-47AD-88A1-6F9F00352A36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E119547-01CC-47AD-88A1-6F9F00352A36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E119547-01CC-47AD-88A1-6F9F00352A36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59D8FCDD-0DC7-4C71-869B-2D9B8AD8D669}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59D8FCDD-0DC7-4C71-869B-2D9B8AD8D669}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59D8FCDD-0DC7-4C71-869B-2D9B8AD8D669}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59D8FCDD-0DC7-4C71-869B-2D9B8AD8D669}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

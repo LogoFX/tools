@@ -6,8 +6,8 @@
 
 using System;
 using System.ComponentModel.Design;
+using LogoFX.Tools.TemplateGenerator.VsExtension.Bridge;
 using Microsoft.VisualStudio.Shell;
-using LogoFX.Client.Bootstrapping;
 
 namespace LogoFX.Tools.TemplateGenerator.VsExtension
 {
@@ -94,10 +94,9 @@ namespace LogoFX.Tools.TemplateGenerator.VsExtension
         /// <param name="e">Event args.</param>
         private void MenuItemCallback(object sender, EventArgs e)
         {
-            if (_appBootstrapper != null)
+            if (_appBootstrapper == null)
             {
                 _appBootstrapper = new AppBootstrapper();
-                _appBootstrapper.UseResolver().Initialize();
             }
 
             //string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
