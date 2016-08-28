@@ -5,15 +5,14 @@ using System.Windows.Input;
 using Avalon.Windows.Dialogs;
 using Caliburn.Micro;
 using JetBrains.Annotations;
-using LogoFX.Client.Mvvm.Commanding;
-using LogoFX.Client.Mvvm.ViewModel.Contracts;
 using LogoFX.Tools.TemplateGenerator.Shell.Properties;
+using Microsoft.Expression.Interactivity.Core;
 using Microsoft.Win32;
 
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {
     [UsedImplicitly]
-    public sealed class ShellViewModel : Screen, ICanBeBusy
+    public sealed class ShellViewModel : Screen
     {
         #region Fields
 
@@ -30,30 +29,28 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             get
             {
                 return _browseSolutionFileCommand ??
-                       (_browseSolutionFileCommand = ActionCommand
-                           .When(() => true)
-                           .Do(() =>
+                       (_browseSolutionFileCommand = new ActionCommand(() =>
+                       {
+                           OpenFileDialog openFileDialog = new OpenFileDialog
                            {
-                               OpenFileDialog openFileDialog = new OpenFileDialog
-                               {
-                                   Multiselect = false,
-                                   CheckFileExists = true,
-                                   CheckPathExists = true,
-                                   DefaultExt = ".sln",
-                                   InitialDirectory = Path.GetDirectoryName(SolutionFileName),
-                                   Filter = "Visual Studio Solution (*.sln)|*.sln",
-                                   Title = "Solution File"
-                               };
+                               Multiselect = false,
+                               CheckFileExists = true,
+                               CheckPathExists = true,
+                               DefaultExt = ".sln",
+                               InitialDirectory = Path.GetDirectoryName(SolutionFileName),
+                               Filter = "Visual Studio Solution (*.sln)|*.sln",
+                               Title = "Solution File"
+                           };
 
-                               var retVal = openFileDialog.ShowDialog(Application.Current.MainWindow) ?? false;
+                           var retVal = openFileDialog.ShowDialog(Application.Current.MainWindow) ?? false;
 
-                               if (!retVal)
-                               {
-                                   return;
-                               }
+                           if (!retVal)
+                           {
+                               return;
+                           }
 
-                               SolutionFileName = openFileDialog.FileName;
-                           }));
+                           SolutionFileName = openFileDialog.FileName;
+                       }));
             }
         }
 
@@ -64,26 +61,24 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             get
             {
                 return _browseDestinationFolderCommand ??
-                       (_browseDestinationFolderCommand = ActionCommand
-                           .When(() => true)
-                           .Do(() =>
+                       (_browseDestinationFolderCommand = new ActionCommand(() =>
+                       {
+                           FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog
                            {
-                               FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog
-                               {
-                                   RootSpecialFolder = Environment.SpecialFolder.MyComputer,
-                                   SelectedPath = DestinationFolder,
-                                   Title = "Destination Path"
-                               };
+                               RootSpecialFolder = Environment.SpecialFolder.MyComputer,
+                               SelectedPath = DestinationFolder,
+                               Title = "Destination Path"
+                           };
 
-                               var retVal = folderBrowserDialog.ShowDialog(Application.Current.MainWindow) ?? false;
+                           var retVal = folderBrowserDialog.ShowDialog(Application.Current.MainWindow) ?? false;
 
-                               if (!retVal)
-                               {
-                                   return;
-                               }
+                           if (!retVal)
+                           {
+                               return;
+                           }
 
-                               DestinationFolder = folderBrowserDialog.SelectedPath;
-                           }));
+                           DestinationFolder = folderBrowserDialog.SelectedPath;
+                       }));
             }
         }
 
@@ -94,22 +89,18 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             get
             {
                 return _getInfoCommand ??
-                       (_getInfoCommand = ActionCommand
-                           .When(() => !string.IsNullOrWhiteSpace(SolutionFileName) &&
-                                       File.Exists(SolutionFileName))
-                           .Do(() =>
-                           {
-                               _solutionTemplateGenerator = new SolutionTemplateGenerator(
-                                   SolutionFileName,
-                                   new TemplateDataInfo
-                                   {
-                                       Name = Name,
-                                       Description = Description,
-                                       DefaultName = DefaultName,
-                                   });
-                               SolutionTemplateInfo = _solutionTemplateGenerator.GetInfo();
-                           })
-                           .RequeryOnPropertyChanged(this, () => SolutionFileName));
+                       (_getInfoCommand = new ActionCommand(() =>
+                       {
+                           _solutionTemplateGenerator = new SolutionTemplateGenerator(
+                               SolutionFileName,
+                               new TemplateDataInfo
+                               {
+                                   Name = Name,
+                                   Description = Description,
+                                   DefaultName = DefaultName,
+                               });
+                           SolutionTemplateInfo = _solutionTemplateGenerator.GetInfo();
+                       }));
             }
         }
 
@@ -120,27 +111,27 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             get
             {
                 return _generateTemplateCommand ??
-                       (_generateTemplateCommand = ActionCommand
-                           .When(() => !string.IsNullOrWhiteSpace(DestinationFolder) &&
-                                       Directory.Exists(DestinationFolder) &&
-                                       SolutionTemplateInfo != null)
-                           .Do(async () =>
+                       (_generateTemplateCommand = new ActionCommand(async () =>
+                       {
+                           if (!Directory.Exists(DestinationFolder) ||
+                               SolutionTemplateInfo == null)
                            {
-                               IsBusy = true;
+                               return;
+                           }
 
-                               try
-                               {
-                                   await _solutionTemplateGenerator.GenerateAsync(DestinationFolder, SolutionTemplateInfo);
-                                   SolutionTemplateInfo = null;
-                               }
+                           IsBusy = true;
 
-                               finally
-                               {
-                                   IsBusy = false;
-                               }
-                           })
-                           .RequeryOnPropertyChanged(this, () => DestinationFolder)
-                           .RequeryOnPropertyChanged(this, () => SolutionTemplateInfo));
+                           try
+                           {
+                               await _solutionTemplateGenerator.GenerateAsync(DestinationFolder, SolutionTemplateInfo);
+                               SolutionTemplateInfo = null;
+                           }
+
+                           finally
+                           {
+                               IsBusy = false;
+                           }
+                       }));
             }
         }
 

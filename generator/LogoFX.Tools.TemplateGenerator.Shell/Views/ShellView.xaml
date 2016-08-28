@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
@@ -55,7 +54,7 @@
                     VerticalAlignment="Center">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <commanding:ExecuteCommandAction Command="{Binding Path=BrowseSolutionFileCommand, Mode=OneTime}" />
+                        <i:InvokeCommandAction Command="{Binding Path=BrowseSolutionFileCommand, Mode=OneTime}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
@@ -75,7 +74,7 @@
                     VerticalAlignment="Center">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <commanding:ExecuteCommandAction Command="{Binding Path=BrowseDestinationFolderCommand, Mode=OneTime}" />
+                        <i:InvokeCommandAction Command="{Binding Path=BrowseDestinationFolderCommand, Mode=OneTime}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
@@ -128,7 +127,7 @@
                         Content="Get Info">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
-                            <commanding:ExecuteCommandAction Command="{Binding Path=GetInfoCommand, Mode=OneTime}" />
+                            <i:InvokeCommandAction Command="{Binding Path=GetInfoCommand, Mode=OneTime}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Button>
@@ -138,7 +137,7 @@
                         Content="Generate">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
-                            <commanding:ExecuteCommandAction Command="{Binding Path=GenerateTemplateCommand, Mode=OneTime}" />
+                            <i:InvokeCommandAction Command="{Binding Path=GenerateTemplateCommand, Mode=OneTime}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Button>

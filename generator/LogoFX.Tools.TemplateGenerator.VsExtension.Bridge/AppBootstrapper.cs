@@ -1,27 +1,28 @@
-﻿using LogoFX.Client.Bootstrapping;
-using LogoFX.Client.Bootstrapping.Adapters.SimpleContainer;
+﻿using System.Threading.Tasks;
+using System.Windows;
+using Caliburn.Micro;
 using LogoFX.Tools.TemplateGenerator.Shell.ViewModels;
 
 namespace LogoFX.Tools.TemplateGenerator.VsExtension.Bridge
 {
-    internal sealed class AppBootstrapperInternal : BootstrapperContainerBase<SimpleContainerAdapter>
-        .WithRootObject<ShellViewModel>
+    public sealed class AppBootstrapper : BootstrapperBase
     {
-        public AppBootstrapperInternal()
-            : base(new SimpleContainerAdapter())
-        {
-        }
-    }
-
-    public sealed class AppBootstrapper
-    {
-        private readonly AppBootstrapperInternal _appBootstrapperInternal;
-
         public AppBootstrapper()
         {
-            _appBootstrapperInternal = new AppBootstrapperInternal();
-            _appBootstrapperInternal.UseResolver().Initialize();
+            Initialize();
 
+            DelayedStartup();
+        }
+
+        private async void DelayedStartup()
+        {
+            await Task.Delay(500);
+            OnStartup(Application, null);
+        }
+
+        protected override void OnStartup(object sender, StartupEventArgs e)
+        {
+            DisplayRootViewFor<ShellViewModel>();
         }
     }
 }
