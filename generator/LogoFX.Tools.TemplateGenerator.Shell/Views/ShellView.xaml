@@ -142,7 +142,7 @@
                     </i:Interaction.Triggers>
                 </Button>
             </Grid>
-            
+
             <Grid Grid.Row="1">
                 <ItemsControl ItemsSource="{Binding Path=SolutionTemplateInfo.RootNamespaces}">
                     <ItemsControl.ItemTemplate>
@@ -155,11 +155,6 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </Grid>
-           
         </Grid>
-        
-        <xctk:BusyIndicator Grid.Row="0"
-                            Grid.RowSpan="4"
-                            IsBusy="{Binding Path=IsBusy, Mode=OneWay}"/>
     </Grid>
 </Window>
