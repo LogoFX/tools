@@ -5,9 +5,9 @@ using System.Windows.Input;
 using Avalon.Windows.Dialogs;
 using Caliburn.Micro;
 using JetBrains.Annotations;
+using LogoFX.Tools.TemplateGenerator.Contracts;
 using LogoFX.Tools.TemplateGenerator.Shell.Properties;
 using Microsoft.Expression.Interactivity.Core;
-using Microsoft.Win32;
 
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {
@@ -17,42 +17,20 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         #region Fields
 
         private SolutionTemplateGenerator _solutionTemplateGenerator;
+        private readonly IDataService _dataService;
+
+        #endregion
+
+        #region Constructors
+
+        public ShellViewModel()
+        {
+            _dataService = IoC.Get<IDataService>();
+        }
 
         #endregion
 
         #region Commands
-
-        private ICommand _browseSolutionFileCommand;
-
-        public ICommand BrowseSolutionFileCommand
-        {
-            get
-            {
-                return _browseSolutionFileCommand ??
-                       (_browseSolutionFileCommand = new ActionCommand(() =>
-                       {
-                           OpenFileDialog openFileDialog = new OpenFileDialog
-                           {
-                               Multiselect = false,
-                               CheckFileExists = true,
-                               CheckPathExists = true,
-                               DefaultExt = ".sln",
-                               InitialDirectory = Path.GetDirectoryName(SolutionFileName),
-                               Filter = "Visual Studio Solution (*.sln)|*.sln",
-                               Title = "Solution File"
-                           };
-
-                           var retVal = openFileDialog.ShowDialog(Application.Current.MainWindow) ?? false;
-
-                           if (!retVal)
-                           {
-                               return;
-                           }
-
-                           SolutionFileName = openFileDialog.FileName;
-                       }));
-            }
-        }
 
         private ICommand _browseDestinationFolderCommand;
 
@@ -272,11 +250,9 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         {
             base.OnActivate();
 
-            var solutionFileName = Settings.Default.SolutionFileName;
-            if (File.Exists(solutionFileName))
-            {
-                SolutionFileName = solutionFileName;
-            }
+            var dte = _dataService.GetDte();
+            var solution = dte.Solution;
+            SolutionFileName = solution.FullName;
 
             var destinationPath = Settings.Default.DestinationPath;
             if (Directory.Exists(destinationPath))
@@ -295,7 +271,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
             if (close)
             {
-                Settings.Default.SolutionFileName = SolutionFileName;
                 Settings.Default.DestinationPath = DestinationFolder;
                 Settings.Default.Name = Name;
                 Settings.Default.Description = Description;

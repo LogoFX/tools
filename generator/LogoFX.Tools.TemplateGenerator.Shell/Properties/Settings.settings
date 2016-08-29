@@ -2,9 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LogoFX.Tools.TemplateGenerator.Shell.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="SolutionFileName" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="DestinationPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>

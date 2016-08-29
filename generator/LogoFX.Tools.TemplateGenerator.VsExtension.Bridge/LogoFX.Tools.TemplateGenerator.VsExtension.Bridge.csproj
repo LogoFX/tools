@@ -48,6 +48,9 @@
       <HintPath>..\packages\Caliburn.Micro.3.0.1\lib\net45\Caliburn.Micro.Platform.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -66,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="DataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +78,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Contracts\LogoFX.Tools.TemplateGenerator.Contracts.csproj">
+      <Project>{EA8D96DD-5289-4B7D-8C93-E6AD7DC090FC}</Project>
+      <Name>LogoFX.Tools.TemplateGenerator.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Shell\LogoFX.Tools.TemplateGenerator.Shell.csproj">
       <Project>{F4EAE3F0-643B-48AD-8C01-C40C781836D7}</Project>
       <Name>LogoFX.Tools.TemplateGenerator.Shell</Name>

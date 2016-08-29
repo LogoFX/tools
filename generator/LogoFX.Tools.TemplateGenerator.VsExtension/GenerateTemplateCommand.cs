@@ -96,7 +96,7 @@ namespace LogoFX.Tools.TemplateGenerator.VsExtension
         {
             if (_appBootstrapper == null)
             {
-                _appBootstrapper = new AppBootstrapper();
+                _appBootstrapper = new AppBootstrapper(ServiceProvider);
             }
 
             //string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);

@@ -26,18 +26,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string SolutionFileName {
-            get {
-                return ((string)(this["SolutionFileName"]));
-            }
-            set {
-                this["SolutionFileName"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string DestinationPath {
             get {
                 return ((string)(this["DestinationPath"]));

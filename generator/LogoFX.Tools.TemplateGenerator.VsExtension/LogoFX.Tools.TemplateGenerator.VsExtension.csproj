@@ -193,6 +193,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Contracts\LogoFX.Tools.TemplateGenerator.Contracts.csproj">
+      <Project>{EA8D96DD-5289-4B7D-8C93-E6AD7DC090FC}</Project>
+      <Name>LogoFX.Tools.TemplateGenerator.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.VsExtension.Bridge\LogoFX.Tools.TemplateGenerator.VsExtension.Bridge.csproj">
       <Project>{59d8fcdd-0dc7-4c71-869b-2d9b8ad8d669}</Project>
       <Name>LogoFX.Tools.TemplateGenerator.VsExtension.Bridge</Name>

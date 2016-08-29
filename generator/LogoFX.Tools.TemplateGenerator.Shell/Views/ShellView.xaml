@@ -47,17 +47,6 @@
                      VerticalAlignment="Center"
                      IsReadOnly="True"
                      Text="{Binding Path=SolutionFileName, Mode=OneWay}" />
-            <Button Grid.Row="0"
-                    Grid.Column="5"
-                    Content="Browse..."
-                    Width="100"
-                    VerticalAlignment="Center">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Click">
-                        <i:InvokeCommandAction Command="{Binding Path=BrowseSolutionFileCommand, Mode=OneTime}" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </Button>
 
             <TextBlock Grid.Row="1"
                        Grid.Column="1"
