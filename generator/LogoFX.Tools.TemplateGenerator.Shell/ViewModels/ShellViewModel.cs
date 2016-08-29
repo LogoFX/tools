@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Avalon.Windows.Dialogs;
@@ -252,6 +253,23 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
             var dte = _dataService.GetDte();
             var solution = dte.Solution;
+
+            if (solution == null || string.IsNullOrEmpty(solution.FullName))
+            {
+                MessageBox.Show(Application.Current.MainWindow,
+                    "Solution not loaded.",
+                    DisplayName,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+
+                Task.Run(() =>
+                {
+                    TryClose();
+                });
+
+                return;
+            }
+
             SolutionFileName = solution.FullName;
 
             var destinationPath = Settings.Default.DestinationPath;

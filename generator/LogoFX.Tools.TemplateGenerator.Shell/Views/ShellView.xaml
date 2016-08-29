@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModels:ShellViewModel}"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="ToolWindow"
+        ShowInTaskbar="False"
         Height="600" 
         Width="1024">
     <Grid>
