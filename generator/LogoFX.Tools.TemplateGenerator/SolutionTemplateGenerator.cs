@@ -6,8 +6,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using EnvDTE;
 using Microsoft.Build.Construction;
 using Microsoft.Build.Evaluation;
+using Project = Microsoft.Build.Evaluation.Project;
 
 namespace LogoFX.Tools.TemplateGenerator
 {
@@ -18,12 +20,12 @@ namespace LogoFX.Tools.TemplateGenerator
 
         private SolutionTemplateInfo _solutionTemplateInfo;
 
-        private readonly string _solutioFileName;
+        private readonly Solution _solution;
         private readonly TemplateDataInfo _templateData;
 
-        public SolutionTemplateGenerator(string solutioFileName, TemplateDataInfo templateData)
+        public SolutionTemplateGenerator(Solution solution, TemplateDataInfo templateData)
         {
-            _solutioFileName = solutioFileName;
+            _solution = solution;
             _templateData = templateData;
         }
 
@@ -152,7 +154,7 @@ namespace LogoFX.Tools.TemplateGenerator
 
         private SolutionTemplateInfo GenerateTemplateInfo()
         {
-            SolutionFile solution = SolutionFile.Parse(_solutioFileName);
+            SolutionFile solution = SolutionFile.Parse(_solution.FullName);
             SolutionTemplateInfo solutionTemplateInfo = new SolutionTemplateInfo();
 
             var folders= new Dictionary<Guid, SolutionFolderTemplateInfo>();

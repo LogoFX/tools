@@ -31,7 +31,7 @@ namespace LogoFX.Tools.TemplateGenerator.VsExtension
         /// <summary>
         /// VS Package that provides this command, not null.
         /// </summary>
-        private readonly Package package;
+        private readonly Package _package;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GenerateTemplateCommand"/> class.
@@ -45,13 +45,13 @@ namespace LogoFX.Tools.TemplateGenerator.VsExtension
                 throw new ArgumentNullException("package");
             }
 
-            this.package = package;
+            _package = package;
 
-            OleMenuCommandService commandService = this.ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
+            OleMenuCommandService commandService = ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
             if (commandService != null)
             {
                 var menuCommandID = new CommandID(CommandSet, CommandId);
-                var menuItem = new MenuCommand(this.MenuItemCallback, menuCommandID);
+                var menuItem = new MenuCommand(MenuItemCallback, menuCommandID);
                 commandService.AddCommand(menuItem);
             }
         }
@@ -72,7 +72,7 @@ namespace LogoFX.Tools.TemplateGenerator.VsExtension
         {
             get
             {
-                return this.package;
+                return _package;
             }
         }
 

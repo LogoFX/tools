@@ -6,6 +6,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
+        xmlns:controls="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.Controls"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModels:ShellViewModel}"
         WindowStartupLocation="CenterOwner"
@@ -21,82 +22,9 @@
             <RowDefinition Height="32" />
         </Grid.RowDefinitions>            
         
-        <Grid Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="5" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="5" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="5" />
-            </Grid.ColumnDefinitions>
-            
-            <TextBlock Grid.Row="0"
-                       Grid.Column="1"
-                       VerticalAlignment="Center"
-                       Text="Solution:" />
-            <TextBox Grid.Row="0"
-                     Grid.Column="3"
-                     VerticalAlignment="Center"
-                     IsReadOnly="True"
-                     Text="{Binding Path=SolutionFileName, Mode=OneWay}" />
-
-            <TextBlock Grid.Row="1"
-                       Grid.Column="1"
-                       VerticalAlignment="Center"
-                       Text="Destination Folder:" />
-            <TextBox Grid.Row="1"
-                     Grid.Column="3"
-                     VerticalAlignment="Center"
-                     Text="{Binding Path=DestinationFolder, Mode=TwoWay}" />
-            <Button Grid.Row="1"
-                    Grid.Column="5"
-                    Content="Browse..."
-                    Width="100"
-                    VerticalAlignment="Center">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Click">
-                        <i:InvokeCommandAction Command="{Binding Path=BrowseDestinationFolderCommand, Mode=OneTime}" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </Button>
-
-            <TextBlock Grid.Row="2"
-                       Grid.Column="1"
-                       VerticalAlignment="Center"
-                       Text="Name:" />
-            <TextBox Grid.Row="2"
-                     Grid.Column="3"
-                     VerticalAlignment="Center"
-                     Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-            <TextBlock Grid.Row="3"
-                       Grid.Column="1"
-                       VerticalAlignment="Center"
-                       Text="Description:" />
-            <TextBox Grid.Row="3"
-                     Grid.Column="3"
-                     VerticalAlignment="Center"
-                     Text="{Binding Path=Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-            <TextBlock Grid.Row="4"
-                       Grid.Column="1"
-                       VerticalAlignment="Center"
-                       Text="Default Name:" />
-            <TextBox Grid.Row="4"
-                     Grid.Column="3"
-                     VerticalAlignment="Center"
-                     Text="{Binding Path=DefaultName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        </Grid>
+        <!--<Grid Grid.Row="1">
+            <ContentControl x:Name="ActiveConfiguration" />
+        </Grid>-->
 
         <Grid Grid.Row="2" Margin="5">
             <Grid.RowDefinitions>
@@ -112,16 +40,6 @@
                     <ColumnDefinition Width="5" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-
-                <Button Grid.Column="0"
-                        Width="100"
-                        Content="Get Info">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Click">
-                            <i:InvokeCommandAction Command="{Binding Path=GetInfoCommand, Mode=OneTime}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </Button>
 
                 <Button Grid.Column="2"
                         Width="100"
@@ -147,5 +65,9 @@
                 </ItemsControl>
             </Grid>
         </Grid>
+
+        <controls:BusyIndicator Grid.Row="0"
+                                Grid.RowSpan="4"
+                                IsBusy="{Binding Path=IsBusy, Mode=OneWay}"/>
     </Grid>
 </Window>

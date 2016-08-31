@@ -5,10 +5,12 @@ using System.Windows;
 using System.Windows.Input;
 using Avalon.Windows.Dialogs;
 using Caliburn.Micro;
+using EnvDTE;
 using JetBrains.Annotations;
 using LogoFX.Tools.TemplateGenerator.Contracts;
 using LogoFX.Tools.TemplateGenerator.Shell.Properties;
 using Microsoft.Expression.Interactivity.Core;
+using Window = System.Windows.Window;
 
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {
@@ -42,43 +44,19 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                 return _browseDestinationFolderCommand ??
                        (_browseDestinationFolderCommand = new ActionCommand(() =>
                        {
-                           FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog
-                           {
-                               RootSpecialFolder = Environment.SpecialFolder.MyComputer,
-                               SelectedPath = DestinationFolder,
-                               Title = "Destination Path"
-                           };
+                           FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+                           folderBrowserDialog.RootSpecialFolder = Environment.SpecialFolder.MyComputer;
+                           //folderBrowserDialog.SelectedPath = DestinationFolder;
+                           folderBrowserDialog.Title = "Destination Path";
 
-                           var retVal = folderBrowserDialog.ShowDialog(Application.Current.MainWindow) ?? false;
+                           var retVal = folderBrowserDialog.ShowDialog() ?? false;
 
                            if (!retVal)
                            {
                                return;
                            }
 
-                           DestinationFolder = folderBrowserDialog.SelectedPath;
-                       }));
-            }
-        }
-
-        private ICommand _getInfoCommand;
-
-        public ICommand GetInfoCommand
-        {
-            get
-            {
-                return _getInfoCommand ??
-                       (_getInfoCommand = new ActionCommand(() =>
-                       {
-                           _solutionTemplateGenerator = new SolutionTemplateGenerator(
-                               SolutionFileName,
-                               new TemplateDataInfo
-                               {
-                                   Name = Name,
-                                   Description = Description,
-                                   DefaultName = DefaultName,
-                               });
-                           SolutionTemplateInfo = _solutionTemplateGenerator.GetInfo();
+                           //DestinationFolder = folderBrowserDialog.SelectedPath;
                        }));
             }
         }
@@ -92,24 +70,24 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                 return _generateTemplateCommand ??
                        (_generateTemplateCommand = new ActionCommand(async () =>
                        {
-                           if (!Directory.Exists(DestinationFolder) ||
-                               SolutionTemplateInfo == null)
-                           {
-                               return;
-                           }
+                           //if (!Directory.Exists(DestinationFolder) ||
+                           //    SolutionTemplateInfo == null)
+                           //{
+                           //    return;
+                           //}
 
-                           IsBusy = true;
+                           //IsBusy = true;
 
-                           try
-                           {
-                               await _solutionTemplateGenerator.GenerateAsync(DestinationFolder, SolutionTemplateInfo);
-                               SolutionTemplateInfo = null;
-                           }
+                           //try
+                           //{
+                           //    await _solutionTemplateGenerator.GenerateAsync(DestinationFolder, SolutionTemplateInfo);
+                           //    SolutionTemplateInfo = null;
+                           //}
 
-                           finally
-                           {
-                               IsBusy = false;
-                           }
+                           //finally
+                           //{
+                           //    IsBusy = false;
+                           //}
                        }));
             }
         }
@@ -135,70 +113,19 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             }
         }
 
-        private string _destinationFolder;
+        private ConfigurationViewModel _activeConfiguration;
 
-        public string DestinationFolder
+        public ConfigurationViewModel ActiveConfiguration
         {
-            get { return _destinationFolder; }
-            set
+            get { return _activeConfiguration; }
+            private set
             {
-                if (value == _destinationFolder)
+                if (_activeConfiguration == value)
                 {
                     return;
                 }
 
-                _destinationFolder = value;
-                NotifyOfPropertyChange(() => DestinationFolder);
-            }
-        }
-
-        private string _name;
-
-        public string Name
-        {
-            get { return _name; }
-            set
-            {
-                if (_name == value)
-                {
-                    return;
-                }
-
-                _name = value;
-                NotifyOfPropertyChange();
-            }
-        }
-
-        private string _description;
-
-        public string Description
-        {
-            get { return _description; }
-            set
-            {
-                if (_description == value)
-                {
-                    return;
-                }
-
-                _description = value;
-                NotifyOfPropertyChange();
-            }
-        }
-
-        private string _defaultName;
-
-        public string DefaultName
-        {
-            get { return _defaultName; }
-            set
-            {
-                if (_defaultName == value)
-                {
-                    return;
-                }
-
-                _defaultName = value;
+                _activeConfiguration = value;
                 NotifyOfPropertyChange();
             }
         }
@@ -239,6 +166,27 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
         #endregion
 
+        #region Private Members
+
+        private void GetInfo(Solution solution)
+        {
+            var configuration = _dataService.LoadConfiguration();
+            ActiveConfiguration = new ConfigurationViewModel(configuration);
+            _dataService.SaveConfiguration(configuration);
+
+            //_solutionTemplateGenerator = new SolutionTemplateGenerator(
+            //    solution,
+            //    new TemplateDataInfo
+            //    {
+            //        Name = Name,
+            //        Description = Description,
+            //        DefaultName = DefaultName,
+            //    });
+            //SolutionTemplateInfo = _solutionTemplateGenerator.GetInfo();
+        }
+
+        #endregion
+
         #region Overrides
 
         public override string DisplayName
@@ -273,28 +221,30 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             SolutionFileName = solution.FullName;
 
             var destinationPath = Settings.Default.DestinationPath;
-            if (Directory.Exists(destinationPath))
-            {
-                DestinationFolder = destinationPath;
-            }
+            //if (Directory.Exists(destinationPath))
+            //{
+            //    DestinationFolder = destinationPath;
+            //}
 
-            Name = Settings.Default.Name;
-            Description = Settings.Default.Description;
-            DefaultName = Settings.Default.DefaultName;
+            //Name = Settings.Default.Name;
+            //Description = Settings.Default.Description;
+            //DefaultName = Settings.Default.DefaultName;
+
+            GetInfo(solution);
         }
 
         protected override void OnDeactivate(bool close)
         {
             base.OnDeactivate(close);
 
-            if (close)
-            {
-                Settings.Default.DestinationPath = DestinationFolder;
-                Settings.Default.Name = Name;
-                Settings.Default.Description = Description;
-                Settings.Default.DefaultName = DefaultName;
-                Settings.Default.Save();
-            }
+            //if (close)
+            //{
+            //    Settings.Default.DestinationPath = DestinationFolder;
+            //    Settings.Default.Name = Name;
+            //    Settings.Default.Description = Description;
+            //    Settings.Default.DefaultName = DefaultName;
+            //    Settings.Default.Save();
+            //}
         }
 
         #endregion
