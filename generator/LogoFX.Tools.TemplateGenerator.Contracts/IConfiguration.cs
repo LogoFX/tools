@@ -8,6 +8,6 @@ namespace LogoFX.Tools.TemplateGenerator.Contracts
 
         ISolutionConfiguration CreateNewSolutionConfiguration(string solutionFullName);
 
-        void AddSolutionConfiguration(ISolutionConfiguration solutionConfiguration);
+        void RemoveSolutionConfiguration(string solutionFileName);
     }
 }

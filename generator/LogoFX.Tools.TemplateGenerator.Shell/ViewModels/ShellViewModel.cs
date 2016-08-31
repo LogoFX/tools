@@ -1,5 +1,5 @@
 ﻿using System;
-using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -8,9 +8,7 @@ using Caliburn.Micro;
 using EnvDTE;
 using JetBrains.Annotations;
 using LogoFX.Tools.TemplateGenerator.Contracts;
-using LogoFX.Tools.TemplateGenerator.Shell.Properties;
 using Microsoft.Expression.Interactivity.Core;
-using Window = System.Windows.Window;
 
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {
@@ -35,32 +33,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
         #region Commands
 
-        private ICommand _browseDestinationFolderCommand;
-
-        public ICommand BrowseDestinationFolderCommand
-        {
-            get
-            {
-                return _browseDestinationFolderCommand ??
-                       (_browseDestinationFolderCommand = new ActionCommand(() =>
-                       {
-                           FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-                           folderBrowserDialog.RootSpecialFolder = Environment.SpecialFolder.MyComputer;
-                           //folderBrowserDialog.SelectedPath = DestinationFolder;
-                           folderBrowserDialog.Title = "Destination Path";
-
-                           var retVal = folderBrowserDialog.ShowDialog() ?? false;
-
-                           if (!retVal)
-                           {
-                               return;
-                           }
-
-                           //DestinationFolder = folderBrowserDialog.SelectedPath;
-                       }));
-            }
-        }
-
         private ICommand _generateTemplateCommand;
 
         public ICommand GenerateTemplateCommand
@@ -70,24 +42,33 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                 return _generateTemplateCommand ??
                        (_generateTemplateCommand = new ActionCommand(async () =>
                        {
-                           //if (!Directory.Exists(DestinationFolder) ||
-                           //    SolutionTemplateInfo == null)
-                           //{
-                           //    return;
-                           //}
+                           if (!ActiveConfiguration.CanGenerate ||
+                               SolutionTemplateInfo == null)
+                           {
+                               return;
+                           }
 
-                           //IsBusy = true;
+                           IsBusy = true;
 
-                           //try
-                           //{
-                           //    await _solutionTemplateGenerator.GenerateAsync(DestinationFolder, SolutionTemplateInfo);
-                           //    SolutionTemplateInfo = null;
-                           //}
+                           try
+                           {
+                               TemplateDataInfo templateData = new TemplateDataInfo
+                               {
+                                   DefaultName = ActiveConfiguration.DefaultName,
+                                   Description = ActiveConfiguration.Description,
+                                   Name = ActiveConfiguration.Name
+                               };
 
-                           //finally
-                           //{
-                           //    IsBusy = false;
-                           //}
+                               await _solutionTemplateGenerator.GenerateAsync(templateData, ActiveConfiguration.DestinationPath, SolutionTemplateInfo);
+                               SolutionTemplateInfo = null;
+
+                               TryClose();
+                           }
+
+                           finally
+                           {
+                               IsBusy = false;
+                           }
                        }));
             }
         }
@@ -96,26 +77,9 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
         #region Public Properties
 
-        private string _solutionFileName;
+        private SolutionConfigurationViewModel _activeConfiguration;
 
-        public string SolutionFileName
-        {
-            get { return _solutionFileName; }
-            private set
-            {
-                if (value == _solutionFileName)
-                {
-                    return;
-                }
-
-                _solutionFileName = value;
-                NotifyOfPropertyChange(() => SolutionFileName);
-            }
-        }
-
-        private ConfigurationViewModel _activeConfiguration;
-
-        public ConfigurationViewModel ActiveConfiguration
+        public SolutionConfigurationViewModel ActiveConfiguration
         {
             get { return _activeConfiguration; }
             private set
@@ -148,6 +112,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         }
 
         private bool _isBusy;
+        private IConfiguration _configuration;
 
         public bool IsBusy
         {
@@ -168,21 +133,21 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
         #region Private Members
 
-        private void GetInfo(Solution solution)
+        private async Task GetInfoAsync(Solution solution)
         {
-            var configuration = _dataService.LoadConfiguration();
-            ActiveConfiguration = new ConfigurationViewModel(configuration);
-            _dataService.SaveConfiguration(configuration);
+            var solutionFileName = solution.FullName;
+            _configuration = _dataService.LoadConfiguration();
+            var solutionConfiguration = _configuration.SolutionConfigurations
+                .SingleOrDefault(x => x.FileName == solutionFileName);
+            if (solutionConfiguration == null)
+            {
+                solutionConfiguration = _configuration.CreateNewSolutionConfiguration(solutionFileName);
+                _dataService.SaveConfiguration(_configuration);
+            }
+            ActiveConfiguration = new SolutionConfigurationViewModel(solutionConfiguration);
 
-            //_solutionTemplateGenerator = new SolutionTemplateGenerator(
-            //    solution,
-            //    new TemplateDataInfo
-            //    {
-            //        Name = Name,
-            //        Description = Description,
-            //        DefaultName = DefaultName,
-            //    });
-            //SolutionTemplateInfo = _solutionTemplateGenerator.GetInfo();
+            _solutionTemplateGenerator = new SolutionTemplateGenerator(solution);
+            SolutionTemplateInfo = await _solutionTemplateGenerator.GetInfoAsync();
         }
 
         #endregion
@@ -195,7 +160,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             set { }
         }
 
-        protected override void OnActivate()
+        protected override async void OnActivate()
         {
             base.OnActivate();
 
@@ -210,7 +175,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                     MessageBoxButton.OK,
                     MessageBoxImage.Warning);
 
-                Task.Run(() =>
+                await Task.Run(() =>
                 {
                     TryClose();
                 });
@@ -218,33 +183,29 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                 return;
             }
 
-            SolutionFileName = solution.FullName;
+            IsBusy = true;
+            try
+            {
+                await GetInfoAsync(solution);
+            }
 
-            var destinationPath = Settings.Default.DestinationPath;
-            //if (Directory.Exists(destinationPath))
-            //{
-            //    DestinationFolder = destinationPath;
-            //}
-
-            //Name = Settings.Default.Name;
-            //Description = Settings.Default.Description;
-            //DefaultName = Settings.Default.DefaultName;
-
-            GetInfo(solution);
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         protected override void OnDeactivate(bool close)
         {
             base.OnDeactivate(close);
 
-            //if (close)
-            //{
-            //    Settings.Default.DestinationPath = DestinationFolder;
-            //    Settings.Default.Name = Name;
-            //    Settings.Default.Description = Description;
-            //    Settings.Default.DefaultName = DefaultName;
-            //    Settings.Default.Save();
-            //}
+            if (close)
+            {
+                if (_configuration != null)
+                {
+                    _dataService.SaveConfiguration(_configuration);
+                }
+            }
         }
 
         #endregion

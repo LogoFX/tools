@@ -2,6 +2,7 @@
 {
     public interface ISolutionConfiguration
     {
+        string FileName { get; }
         string DestinationPath { get; set; }
         string Name { get; set; }
         string Description { get; set; }

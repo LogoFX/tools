@@ -1,24 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
+using System.Linq;
 using LogoFX.Tools.TemplateGenerator.Contracts;
 
 namespace LogoFX.Tools.TemplateGenerator.VsExtension.Bridge
 {
     public sealed class Configuration : IConfiguration
     {
-        private List<SolutionConfiguration> _solutionConfigurations =
-            new List<SolutionConfiguration>();
+        IEnumerable<ISolutionConfiguration> IConfiguration.SolutionConfigurations => SolutionConfigurations;
 
-        public IEnumerable<ISolutionConfiguration> SolutionConfigurations { get; }
+        public List<SolutionConfiguration> SolutionConfigurations { get; set; }
+
         public ISolutionConfiguration CreateNewSolutionConfiguration(string solutionFullName)
         {
-            throw new NotImplementedException();
+            var solutionConfiguration = new SolutionConfiguration
+            {
+                FileName = solutionFullName
+            };
+            SolutionConfigurations.Add(solutionConfiguration);
+            return solutionConfiguration;
         }
 
-        public void AddSolutionConfiguration(ISolutionConfiguration solutionConfiguration)
+        public void RemoveSolutionConfiguration(string solutionFileName)
         {
-            throw new NotImplementedException();
+            var solutionConfiguration = SolutionConfigurations.Single(x => x.FileName == solutionFileName);
+            SolutionConfigurations.Remove(solutionConfiguration);
         }
     }
 }

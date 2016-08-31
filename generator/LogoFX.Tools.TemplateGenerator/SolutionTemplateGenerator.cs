@@ -21,30 +21,33 @@ namespace LogoFX.Tools.TemplateGenerator
         private SolutionTemplateInfo _solutionTemplateInfo;
 
         private readonly Solution _solution;
-        private readonly TemplateDataInfo _templateData;
 
-        public SolutionTemplateGenerator(Solution solution, TemplateDataInfo templateData)
+        public SolutionTemplateGenerator(Solution solution)
         {
             _solution = solution;
-            _templateData = templateData;
         }
 
-        public ISolutionTemplateInfo GetInfo()
+        public async Task<ISolutionTemplateInfo> GetInfoAsync()
         {
-            return _solutionTemplateInfo ?? (_solutionTemplateInfo = GenerateTemplateInfo());
+            if (_solutionTemplateInfo == null)
+            {
+                _solutionTemplateInfo = await GenerateTemplateInfoAsync();
+            }
+
+            return _solutionTemplateInfo;
         }
 
-        public async Task GenerateAsync(string destinationFolder, ISolutionTemplateInfo solutionTemplateInfo = null)
+        public async Task GenerateAsync(TemplateDataInfo templateData, string destinationFolder, ISolutionTemplateInfo solutionTemplateInfo = null)
         {
             if (solutionTemplateInfo == null)
             {
-                solutionTemplateInfo = GetInfo();
+                solutionTemplateInfo = await GetInfoAsync();
             }
 
             CleanDestination(destinationFolder);
             Directory.CreateDirectory(destinationFolder);
 
-            CreateDefinitions(destinationFolder, solutionTemplateInfo);
+            CreateDefinitions(templateData, destinationFolder, solutionTemplateInfo);
             CreatePrepropcess(destinationFolder);
 
             foreach (var projectTemplateInfo in solutionTemplateInfo.GetProjectsPlain())
@@ -82,7 +85,7 @@ namespace LogoFX.Tools.TemplateGenerator
             return $"{projectTemplateInfo.Name}\\MyTemplate.vstemplate";
         }
 
-        private void CreateDefinitions(string destinationFolder, ISolutionTemplateInfo solutionTemplateInfo)
+        private void CreateDefinitions(TemplateDataInfo templateData, string destinationFolder, ISolutionTemplateInfo solutionTemplateInfo)
         {
             var projectCollection = new XElement(Ns + "ProjectCollection");
             CreateXElement(projectCollection, solutionTemplateInfo);
@@ -92,12 +95,12 @@ namespace LogoFX.Tools.TemplateGenerator
                     new XAttribute("Version", "3.0.0"),
                     new XAttribute("Type", "ProjectGroup"),
                     new XElement(Ns + "TemplateData",
-                        new XElement(Ns + "Name", _templateData.Name),
-                        new XElement(Ns + "Description", _templateData.Description),
-                        new XElement(Ns + "ProjectType", _templateData.ProjectType),
-                        new XElement(Ns + "DefaultName", _templateData.DefaultName),
-                        new XElement(Ns + "SortOrder", _templateData.SortOrder),
-                        new XElement(Ns + "Icon", _templateData.DefaultName)),
+                        new XElement(Ns + "Name", templateData.Name),
+                        new XElement(Ns + "Description", templateData.Description),
+                        new XElement(Ns + "ProjectType", templateData.ProjectType),
+                        new XElement(Ns + "DefaultName", templateData.DefaultName),
+                        new XElement(Ns + "SortOrder", templateData.SortOrder),
+                        new XElement(Ns + "Icon", templateData.DefaultName)),
                     new XElement(Ns + "TemplateContent", projectCollection),
                     MakeWizardExtension(
                         "LogoFX.Tools.Templates.Wizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -152,7 +155,7 @@ namespace LogoFX.Tools.TemplateGenerator
             Directory.Delete(destinationFolder, true);
         }
 
-        private SolutionTemplateInfo GenerateTemplateInfo()
+        private async Task<SolutionTemplateInfo> GenerateTemplateInfoAsync()
         {
             SolutionFile solution = SolutionFile.Parse(_solution.FullName);
             SolutionTemplateInfo solutionTemplateInfo = new SolutionTemplateInfo();
@@ -162,7 +165,7 @@ namespace LogoFX.Tools.TemplateGenerator
 
             foreach (var proj in solution.ProjectsInOrder)
             {
-                CreateSolutionItemTemplateInfo(solution, solutionTemplateInfo, proj, folders);
+                await CreateSolutionItemTemplateInfoAsync(solution, solutionTemplateInfo, proj, folders);
             }
 
             ProjectCollection.GlobalProjectCollection.UnloadAllProjects();
@@ -170,7 +173,7 @@ namespace LogoFX.Tools.TemplateGenerator
             return solutionTemplateInfo;
         }
 
-        private SolutionItemTemplateInfo CreateSolutionItemTemplateInfo(SolutionFile solution,
+        private async Task<SolutionItemTemplateInfo> CreateSolutionItemTemplateInfoAsync(SolutionFile solution,
             SolutionTemplateInfo solutionTemplateInfo,
             ProjectInSolution proj, 
             IDictionary<Guid, SolutionFolderTemplateInfo> folders)
@@ -184,7 +187,7 @@ namespace LogoFX.Tools.TemplateGenerator
                 ProjectInSolution parentProj;
                 if (solution.ProjectsByGuid.TryGetValue(proj.ParentProjectGuid, out parentProj))
                 {
-                    folder = (SolutionFolderTemplateInfo) CreateSolutionItemTemplateInfo(solution, solutionTemplateInfo, parentProj, folders);
+                    folder = (SolutionFolderTemplateInfo) await CreateSolutionItemTemplateInfoAsync(solution, solutionTemplateInfo, parentProj, folders);
                 }
             }
 
