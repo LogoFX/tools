@@ -10,6 +10,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.Controls
         public BusyIndicator()
         {
             InitializeComponent();
+            Visibility = Visibility.Hidden;
         }
 
         public static readonly DependencyProperty IsBusyProperty =
