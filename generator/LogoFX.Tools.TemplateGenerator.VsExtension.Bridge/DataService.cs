@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Xml.Serialization;
-using EnvDTE;
 using LogoFX.Tools.TemplateGenerator.Contracts;
 
 namespace LogoFX.Tools.TemplateGenerator.VsExtension.Bridge
@@ -23,7 +22,7 @@ namespace LogoFX.Tools.TemplateGenerator.VsExtension.Bridge
 
         public string GetSolutionFileName()
         {
-            var dte = (DTE)_serviceProvider.GetService(typeof(DTE));
+            var dte = (EnvDTE.DTE) _serviceProvider.GetService(typeof(EnvDTE.DTE));
             return dte?.Solution?.FullName;
         }
 

@@ -47,6 +47,10 @@
       <HintPath>..\packages\Caliburn.Micro.3.0.1\lib\net45\Caliburn.Micro.Platform.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="JetBrains.Annotations, Version=10.1.5.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.10.1.5\lib\net\JetBrains.Annotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="LogoFX.Bootstrapping, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LogoFX.Bootstrapping.1.6.0\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Bootstrapping.dll</HintPath>
       <Private>True</Private>
@@ -205,6 +209,10 @@
     <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Shell\LogoFX.Tools.TemplateGenerator.Shell.csproj">
       <Project>{F4EAE3F0-643B-48AD-8C01-C40C781836D7}</Project>
       <Name>LogoFX.Tools.TemplateGenerator.Shell</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator\LogoFX.Tools.TemplateGenerator.csproj">
+      <Project>{6588154F-33F5-458E-8445-433228326999}</Project>
+      <Name>LogoFX.Tools.TemplateGenerator</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

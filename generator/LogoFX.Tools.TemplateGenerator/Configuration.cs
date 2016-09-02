@@ -2,7 +2,7 @@
 using System.Linq;
 using LogoFX.Tools.TemplateGenerator.Contracts;
 
-namespace LogoFX.Tools.TemplateGenerator.VsExtension.Bridge
+namespace LogoFX.Tools.TemplateGenerator
 {
     public sealed class Configuration : IConfiguration
     {

@@ -1,6 +1,6 @@
 ﻿using LogoFX.Tools.TemplateGenerator.Contracts;
 
-namespace LogoFX.Tools.TemplateGenerator.VsExtension.Bridge
+namespace LogoFX.Tools.TemplateGenerator
 {
     public sealed class SolutionConfiguration : ISolutionConfiguration
     {
