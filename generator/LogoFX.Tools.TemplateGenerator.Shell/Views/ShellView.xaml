@@ -7,6 +7,7 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
         xmlns:controls="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.Controls"
+        xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModels:ShellViewModel}"
         WindowStartupLocation="CenterOwner"
@@ -14,19 +15,25 @@
         ShowInTaskbar="False"
         Height="600" 
         Width="1024">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="32" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="32" />
-        </Grid.RowDefinitions>            
-        
-        <Grid Grid.Row="1">
-            <ContentControl x:Name="ActiveConfiguration" />
-        </Grid>
+        </Grid.RowDefinitions>
 
-        <Grid Grid.Row="2" Margin="5">
+        <CheckBox Grid.Row="0"
+                  VerticalAlignment="Center"
+                  Margin="5"
+                  Content="Multisolution"
+                  IsChecked="{Binding Path=IsMultisolution, Mode=TwoWay}" />
+        
+        <ContentControl Grid.Row="0" 
+                        cal:View.Model="{Binding Path=ActiveConfiguration, Mode=OneWay}" />
+
+        <Grid Grid.Row="1" Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
                 <RowDefinition Height="*" />

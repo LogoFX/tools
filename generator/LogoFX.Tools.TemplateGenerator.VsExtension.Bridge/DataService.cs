@@ -21,9 +21,10 @@ namespace LogoFX.Tools.TemplateGenerator.VsExtension.Bridge
             _configFileName = Path.Combine(path, "TemplateGenerator.cfg");
         }
 
-        public DTE GetDte()
+        public string GetSolutionFileName()
         {
-            return (DTE) _serviceProvider.GetService(typeof(DTE));
+            var dte = (DTE)_serviceProvider.GetService(typeof(DTE));
+            return dte?.Solution?.FullName;
         }
 
         public IConfiguration LoadConfiguration()

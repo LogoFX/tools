@@ -1,24 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace LogoFX.Tools.TemplateGenerator.Shell.Controls
 {
     /// <summary>
     /// Interaction logic for BusyIndicator.xaml
     /// </summary>
-    public partial class BusyIndicator : UserControl
+    public partial class BusyIndicator
     {
         public BusyIndicator()
         {
@@ -30,7 +17,19 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.Controls
                 "IsBusy",
                 typeof(bool),
                 typeof(BusyIndicator),
-                new PropertyMetadata(false));
+                new PropertyMetadata(
+                    false,
+                    OnIsBusyChanged));
+
+        private static void OnIsBusyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((BusyIndicator) d).OnIsBusyChanged((bool) e.NewValue, (bool) e.OldValue);
+        }
+
+        private void OnIsBusyChanged(bool newValue, bool oldValue)
+        {
+            Visibility = newValue ? Visibility.Visible : Visibility.Collapsed;
+        }
 
         public bool IsBusy
         {

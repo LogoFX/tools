@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -77,6 +78,25 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
         #region Public Properties
 
+        private bool _isMultisolution;
+
+        public bool IsMultisolution
+        {
+            get { return _isMultisolution; }
+            set
+            {
+                if (_isMultisolution == value)
+                {
+                    return;
+                }
+
+                _isMultisolution = value;
+                NotifyOfPropertyChange();
+
+                UpdateMultisolutionInfo();
+            }
+        }
+
         private SolutionConfigurationViewModel _activeConfiguration;
 
         public SolutionConfigurationViewModel ActiveConfiguration
@@ -129,13 +149,29 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             }
         }
 
+        private WizardConfigurationViewModel _wizardConfiguration;
+
+        public WizardConfigurationViewModel WizardConfiguration
+        {
+            get { return _wizardConfiguration; }
+            private set
+            {
+                if (_wizardConfiguration == value)
+                {
+                    return;
+                }
+
+                _wizardConfiguration = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
         #endregion
 
         #region Private Members
 
-        private async Task GetInfoAsync(Solution solution)
+        private async Task GetInfoAsync(string solutionFileName)
         {
-            var solutionFileName = solution.FullName;
             _configuration = _dataService.LoadConfiguration();
             var solutionConfiguration = _configuration.SolutionConfigurations
                 .SingleOrDefault(x => x.FileName == solutionFileName);
@@ -146,8 +182,45 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             }
             ActiveConfiguration = new SolutionConfigurationViewModel(solutionConfiguration);
 
-            _solutionTemplateGenerator = new SolutionTemplateGenerator(solution);
+            _solutionTemplateGenerator = new SolutionTemplateGenerator(solutionFileName);
             SolutionTemplateInfo = await _solutionTemplateGenerator.GetInfoAsync();
+        }
+
+        private async Task<WizardConfiguration> UpdateMultisolutionInfoAsync()
+        {
+            var wizardConfigurator = new WizardConfigurator();
+            var fileName = wizardConfigurator.GetWizardConfigurationFileName(ActiveConfiguration.DestinationPath);
+
+            if (File.Exists(fileName))
+            {
+                return null;
+            }
+
+            var wizardConfiguration = await wizardConfigurator.LoadAsync(fileName);
+            return wizardConfiguration;
+        }
+
+        private async void UpdateMultisolutionInfo()
+        {
+            if (!IsMultisolution)
+            {
+                WizardConfiguration = null;
+            }
+
+            IsBusy = true;
+
+            try
+            {
+                var wizardConfiguration = await UpdateMultisolutionInfoAsync();
+                WizardConfiguration = wizardConfiguration == null
+                    ? null
+                    : new WizardConfigurationViewModel(wizardConfiguration);
+            }
+
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         #endregion
@@ -164,10 +237,9 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         {
             base.OnActivate();
 
-            var dte = _dataService.GetDte();
-            var solution = dte.Solution;
+            var solutionFileName = _dataService.GetSolutionFileName();
 
-            if (solution == null || string.IsNullOrEmpty(solution.FullName))
+            if (string.IsNullOrEmpty(solutionFileName))
             {
                 MessageBox.Show(Application.Current.MainWindow,
                     "Solution not loaded.",
@@ -186,7 +258,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             IsBusy = true;
             try
             {
-                await GetInfoAsync(solution);
+                await GetInfoAsync(solutionFileName);
             }
 
             finally

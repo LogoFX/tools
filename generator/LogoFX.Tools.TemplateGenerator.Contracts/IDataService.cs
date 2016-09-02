@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using EnvDTE;
-
-namespace LogoFX.Tools.TemplateGenerator.Contracts
+﻿namespace LogoFX.Tools.TemplateGenerator.Contracts
 {
     public interface IDataService
     {
-        DTE GetDte();
+        string GetSolutionFileName();
 
         IConfiguration LoadConfiguration();
 

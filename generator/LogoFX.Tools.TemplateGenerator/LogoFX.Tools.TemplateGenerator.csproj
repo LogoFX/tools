@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\common\WizardConfiguration.cs">
+      <Link>WizardConfiguration.cs</Link>
+    </Compile>
+    <Compile Include="..\..\common\WizardConfigurator.cs">
+      <Link>WizardConfigurator.cs</Link>
+    </Compile>
     <Compile Include="CSFileGenerator.cs" />
     <Compile Include="GeneratorBase.cs" />
     <Compile Include="IProjectTemplateInfo.cs" />
