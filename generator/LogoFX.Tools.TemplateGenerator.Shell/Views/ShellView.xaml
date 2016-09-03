@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
         xmlns:controls="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.Controls"
         xmlns:cal="http://www.caliburnproject.org"
@@ -19,8 +18,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="32" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="32" />
         </Grid.RowDefinitions>
 
@@ -30,47 +29,51 @@
                   Content="Multisolution"
                   IsChecked="{Binding Path=IsMultisolution, Mode=TwoWay}" />
         
-        <ContentControl Grid.Row="1" 
-                        cal:View.Model="{Binding Path=ActiveConfiguration, Mode=OneWay}" />
+        <TabControl Grid.Row="1" Margin="5">
+            <TabItem Header="Configuration">
+                <ContentControl cal:View.Model="{Binding Path=ActiveConfiguration, Mode=OneWay}" />
+            </TabItem>
 
-        <Grid Grid.Row="2" Margin="5">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+            <TabItem Header="Wizard Configuration">
+                <ContentControl cal:View.Model="{Binding Path=WizardConfiguration, Mode=OneWay}" />
+            </TabItem>
 
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="5" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="5" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <Button Grid.Column="2"
-                        Width="100"
-                        Content="Generate">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Click">
-                            <i:InvokeCommandAction Command="{Binding Path=GenerateTemplateCommand, Mode=OneTime}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </Button>
-            </Grid>
-
-            <Grid Grid.Row="1">
-                <ItemsControl ItemsSource="{Binding Path=SolutionTemplateInfo.RootNamespaces}">
+            <TabItem Header="Root Namespaces">
+                <ItemsControl Margin="5"
+                              ItemsSource="{Binding Path=SolutionTemplateInfo.RootNamespaces}">
                     <ItemsControl.ItemTemplate>
-                        <DataTemplate DataType="{x:Type system:String}">
+                        <DataTemplate>
                             <Grid Height="40">
                                 <TextBox Text="{Binding Mode=OneWay}"
+                                         IsReadOnly="True"
                                          VerticalAlignment="Center" />
                             </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-            </Grid>
+            </TabItem>
+        </TabControl>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="2"
+                    Margin="0,5,0,5"
+                    IsEnabled="{Binding Path=CanGenerate, Mode=OneWay}"
+                    Width="100"
+                    Content="Generate">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:InvokeCommandAction Command="{Binding Path=GenerateTemplateCommand, Mode=OneTime}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
         </Grid>
 
         <controls:BusyIndicator Grid.Row="0"

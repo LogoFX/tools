@@ -14,6 +14,10 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         {
         }
 
+        public event EventHandler DestinationPathChanged = delegate { };
+
+        public event EventHandler CanGenerateUpdated = delegate { };
+
         private ICommand _browseDestinationFolderCommand;
 
         public ICommand BrowseDestinationFolderCommand
@@ -56,6 +60,8 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
                 Model.DestinationPath = value;
                 NotifyOfPropertyChange();
+                DestinationPathChanged(this, EventArgs.Empty);
+                CanGenerateUpdated(this, EventArgs.Empty);
             }
         }
 
@@ -71,6 +77,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
                 Model.Name = value;
                 NotifyOfPropertyChange();
+                CanGenerateUpdated(this, EventArgs.Empty);
             }
         }
 
@@ -101,6 +108,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
                 Model.DefaultName = value;
                 NotifyOfPropertyChange();
+                CanGenerateUpdated(this, EventArgs.Empty);
             }
         }
 

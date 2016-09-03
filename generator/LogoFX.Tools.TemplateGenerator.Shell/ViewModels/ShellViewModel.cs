@@ -17,6 +17,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         #region Fields
 
         private SolutionTemplateGenerator _solutionTemplateGenerator;
+        private IConfiguration _configuration;
         private readonly IDataService _dataService;
 
         #endregion
@@ -41,12 +42,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                 return _generateTemplateCommand ??
                        (_generateTemplateCommand = new ActionCommand(async () =>
                        {
-                           if (!ActiveConfiguration.CanGenerate ||
-                               SolutionTemplateInfo == null)
-                           {
-                               return;
-                           }
-
                            IsBusy = true;
 
                            try
@@ -107,9 +102,32 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                     return;
                 }
 
+                if (_activeConfiguration != null)
+                {
+                    _activeConfiguration.DestinationPathChanged -= OnDestinationPathChanged;
+                    _activeConfiguration.CanGenerateUpdated -= OnCanGenerateUpdated;
+                }
+
                 _activeConfiguration = value;
+
+                if (_activeConfiguration != null)
+                {
+                    _activeConfiguration.CanGenerateUpdated += OnCanGenerateUpdated;
+                    _activeConfiguration.DestinationPathChanged += OnDestinationPathChanged;
+                }
+
                 NotifyOfPropertyChange();
             }
+        }
+
+        private void OnCanGenerateUpdated(object sender, EventArgs e)
+        {
+            NotifyOfPropertyChange(() => CanGenerate);
+        }
+
+        private void OnDestinationPathChanged(object sender, EventArgs e)
+        {
+            UpdateMultisolutionInfo();
         }
 
         private ISolutionTemplateInfo _solutionTemplateInfo;
@@ -126,11 +144,11 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
                 _solutionTemplateInfo = value;
                 NotifyOfPropertyChange();
+                NotifyOfPropertyChange(() => CanGenerate);
             }
         }
 
         private bool _isBusy;
-        private IConfiguration _configuration;
 
         public bool IsBusy
         {
@@ -164,6 +182,20 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             }
         }
 
+        public bool CanGenerate
+        {
+            get
+            {
+                if (!ActiveConfiguration.CanGenerate ||
+                   SolutionTemplateInfo == null)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
         #endregion
 
         #region Private Members
@@ -189,9 +221,9 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             var wizardConfigurator = new WizardConfigurator();
             var fileName = wizardConfigurator.GetWizardConfigurationFileName(ActiveConfiguration.DestinationPath);
 
-            if (File.Exists(fileName))
+            if (!File.Exists(fileName))
             {
-                return null;
+                return new WizardConfiguration();
             }
 
             var wizardConfiguration = await wizardConfigurator.LoadAsync(fileName);
@@ -200,9 +232,10 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
         private async void UpdateMultisolutionInfo()
         {
-            if (!IsMultisolution)
+            if (string.IsNullOrEmpty(ActiveConfiguration.DestinationPath))
             {
                 WizardConfiguration = null;
+                return;
             }
 
             IsBusy = true;
@@ -263,6 +296,8 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             {
                 IsBusy = false;
             }
+
+            UpdateMultisolutionInfo();
         }
 
         protected override void OnDeactivate(bool close)
