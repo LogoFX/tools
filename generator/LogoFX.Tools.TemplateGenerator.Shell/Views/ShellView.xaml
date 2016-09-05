@@ -7,6 +7,7 @@
         xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
         xmlns:controls="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.Controls"
         xmlns:cal="http://www.caliburnproject.org"
+        xmlns:converters="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.Converters"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModels:ShellViewModel}"
         WindowStartupLocation="CenterOwner"
@@ -14,6 +15,10 @@
         ShowInTaskbar="False"
         Height="600" 
         Width="1024">
+    
+    <Window.Resources>
+        <converters:InverseConverter x:Key="InverseConverter" />
+    </Window.Resources>
     
     <Grid>
         <Grid.RowDefinitions>
@@ -23,11 +28,11 @@
             <RowDefinition Height="32" />
         </Grid.RowDefinitions>
 
-        <CheckBox Grid.Row="0"
+        <!--<CheckBox Grid.Row="0"
                   VerticalAlignment="Center"
                   Margin="5"
                   Content="Multisolution"
-                  IsChecked="{Binding Path=IsMultisolution, Mode=TwoWay}" />
+                  IsChecked="{Binding Path=IsMultisolution, Mode=TwoWay}" />-->
         
         <TabControl Grid.Row="1" Margin="5">
             <TabItem Header="Configuration">
@@ -57,17 +62,40 @@
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="5" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="5" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="2"
-                    Margin="0,5,0,5"
+            <Button Grid.Column="0"
+                    Margin="5"
+                    IsEnabled="{Binding Path=IsMultisolution, Mode=OneWay, Converter={StaticResource InverseConverter}}"
+                    Width="120"
+                    Content="Make Multisolution">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:InvokeCommandAction Command="{Binding Path=MakeMultiSolutionCommand, Mode=OneTime}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+
+            <Button Grid.Column="1"
+                    Margin="5"
+                    IsEnabled="{Binding Path=IsMultisolution, Mode=OneWay}"
+                    Width="120"
+                    Content="Make Single Solution">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:InvokeCommandAction Command="{Binding Path=MakeSingleSolutionCommand, Mode=OneTime}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+
+            <Button Grid.Column="3"
+                    Margin="5"
                     IsEnabled="{Binding Path=CanGenerate, Mode=OneWay}"
-                    Width="100"
-                    Content="Generate">
+                    Width="200"
+                    Content="Generate Template">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
                         <i:InvokeCommandAction Command="{Binding Path=GenerateTemplateCommand, Mode=OneTime}" />

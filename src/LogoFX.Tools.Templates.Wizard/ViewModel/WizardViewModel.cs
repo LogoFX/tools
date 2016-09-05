@@ -1,6 +1,4 @@
-﻿using System.Windows.Input;
-using Caliburn.Micro;
-using LogoFX.Client.Mvvm.Commanding;
+﻿using Caliburn.Micro;
 
 namespace LogoFX.Tools.Templates.Wizard.ViewModel
 {

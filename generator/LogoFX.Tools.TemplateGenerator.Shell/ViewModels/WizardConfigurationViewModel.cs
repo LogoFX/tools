@@ -6,5 +6,7 @@
             : base(model)
         {
         }
+
+        public bool IsMultisolution => Model.Solutions.Count > 0;
     }
 }

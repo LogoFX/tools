@@ -4,16 +4,16 @@ using System.Xml.Serialization;
 
 namespace LogoFX.Tools.TemplateGenerator
 {
-    public sealed class WizardConfigurator
+    public static class WizardConfigurator
     {
-        private const string CfgFileName = "WizardConfigureation.xml";
+        private const string CfgFileName = "WizardConfiguration.xml";
 
-        public string GetWizardConfigurationFileName(string path)
+        public static string GetWizardConfigurationFileName(string path)
         {
             return Path.Combine(path, CfgFileName);
         }
 
-        public Task<WizardConfiguration> LoadAsync(string fileName)
+        public static Task<WizardConfiguration> LoadAsync(string fileName)
         {
             return Task.Run(() =>
             {
@@ -25,7 +25,7 @@ namespace LogoFX.Tools.TemplateGenerator
             });
         }
 
-        public Task SaveAsync(string fileName, WizardConfiguration wizardConfiguration)
+        public static Task SaveAsync(string fileName, WizardConfiguration wizardConfiguration)
         {
             return Task.Run(() =>
             {

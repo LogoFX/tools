@@ -4,8 +4,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:viewModel="clr-namespace:LogoFX.Tools.Templates.Wizard.ViewModel"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
         mc:Ignorable="d"
         Width="400"
         Height="240"
@@ -15,6 +13,7 @@
         d:DesignHeight="300" 
         d:DesignWidth="300"
         d:DataContext="{d:DesignInstance viewModel:WizardViewModel}">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />

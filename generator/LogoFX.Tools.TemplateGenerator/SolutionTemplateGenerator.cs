@@ -20,10 +20,12 @@ namespace LogoFX.Tools.TemplateGenerator
         private SolutionTemplateInfo _solutionTemplateInfo;
 
         private readonly string _solutionFileName;
+        private string _currentName;
 
         public SolutionTemplateGenerator(string solutionFileName)
         {
             _solutionFileName = solutionFileName;
+            _currentName = Path.GetFileNameWithoutExtension(_solutionFileName);
         }
 
         public async Task<ISolutionTemplateInfo> GetInfoAsync()
@@ -36,23 +38,41 @@ namespace LogoFX.Tools.TemplateGenerator
             return _solutionTemplateInfo;
         }
 
-        public async Task GenerateAsync(TemplateDataInfo templateData, string destinationFolder, ISolutionTemplateInfo solutionTemplateInfo = null)
+        public async Task GenerateAsync(
+            TemplateDataInfo templateData, 
+            string destinationFolder, 
+            ISolutionTemplateInfo solutionTemplateInfo,
+            WizardConfiguration wizardConfiguration)
         {
             if (solutionTemplateInfo == null)
             {
                 solutionTemplateInfo = await GetInfoAsync();
             }
 
-            CleanDestination(destinationFolder);
-            Directory.CreateDirectory(destinationFolder);
+            CleanDestination(destinationFolder, wizardConfiguration);
+
+            if (!Directory.Exists(destinationFolder))
+            {
+                Directory.CreateDirectory(destinationFolder);
+            }
 
             CreateDefinitions(templateData, destinationFolder, solutionTemplateInfo);
             CreatePrepropcess(destinationFolder);
 
+            var solutionFolder = destinationFolder;
+            if (wizardConfiguration != null)
+            {
+                solutionFolder = Path.Combine(destinationFolder, _currentName);
+                if (!Directory.Exists(solutionFolder))
+                {
+                    Directory.CreateDirectory(destinationFolder);
+                }
+            }
+
             foreach (var projectTemplateInfo in solutionTemplateInfo.GetProjectsPlain())
             {
                 var projectGenerator = new ProjectTemplateGenerator(projectTemplateInfo, solutionTemplateInfo);
-                await projectGenerator.GenerateAsync(destinationFolder);
+                await projectGenerator.GenerateAsync(solutionFolder);
             }
         }
 
@@ -109,9 +129,11 @@ namespace LogoFX.Tools.TemplateGenerator
                         "TemplateBuilder.SolutionWizard")
                     ));
 
-            XmlWriterSettings settings = new XmlWriterSettings();
-            settings.OmitXmlDeclaration = true;
-            settings.Indent = true;
+            XmlWriterSettings settings = new XmlWriterSettings
+            {
+                OmitXmlDeclaration = true,
+                Indent = true
+            };
 
             var definitionsPath = Path.Combine(destinationFolder, DefinitionsFolderName);
             Directory.CreateDirectory(definitionsPath);
@@ -144,14 +166,39 @@ namespace LogoFX.Tools.TemplateGenerator
             }
         }
 
-        private void CleanDestination(string destinationFolder)
+        private void CleanDestination(string destinationFolder, WizardConfiguration wizardConfiguration)
         {
             if (!Directory.Exists(destinationFolder))
             {
                 return;
             }
 
-            Directory.Delete(destinationFolder, true);
+            if (wizardConfiguration == null)
+            {
+                Directory.Delete(destinationFolder, true);
+                return;
+            }
+
+            var dir = new DirectoryInfo(destinationFolder);
+            foreach (var info in dir.EnumerateFileSystemInfos())
+            {
+                if (info is FileInfo)
+                {
+                    info.Delete();
+                    continue;
+                }
+
+                if (FileNameEquals(_currentName, info.Name) ||
+                    wizardConfiguration.Solutions.All(x => !FileNameEquals(x.Name, info.Name)))
+                {
+                    ((DirectoryInfo) info).Delete(true);
+                }
+            }
+        }
+
+        private bool FileNameEquals(string fileName1, string filename2)
+        {
+            return string.Compare(fileName1, fileName1, StringComparison.OrdinalIgnoreCase) == 0;
         }
 
         private async Task<SolutionTemplateInfo> GenerateTemplateInfoAsync()

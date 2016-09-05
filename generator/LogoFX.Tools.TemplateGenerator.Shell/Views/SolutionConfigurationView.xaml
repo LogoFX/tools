@@ -23,34 +23,35 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="5" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="0" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="5" />
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="0"
-                       Grid.Column="1"
-                       VerticalAlignment="Center"
-                       Text="Solution File:" />
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   Text="Solution File:" />
         <TextBox Grid.Row="0"
-                     Grid.Column="3"
-                     VerticalAlignment="Center"
-                     IsReadOnly="True"
-                     Text="{Binding Path=SolutionFileName, Mode=OneWay}" />
+                 Grid.Column="3"
+                 VerticalAlignment="Center"
+                 IsReadOnly="True"
+                 Text="{Binding Path=SolutionFileName, Mode=OneWay}" />
 
         <TextBlock Grid.Row="1"
-                       Grid.Column="1"
-                       VerticalAlignment="Center"
-                       Text="Destination Folder:" />
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   Text="Destination Folder:" />
         <TextBox Grid.Row="1"
-                     Grid.Column="3"
-                     VerticalAlignment="Center"
-                     Text="{Binding Path=DestinationPath, Mode=TwoWay}" />
+                 Grid.Column="3"
+                 VerticalAlignment="Center"
+                 Text="{Binding Path=DestinationPath, Mode=TwoWay}" />
         <Button Grid.Row="1"
-                    Grid.Column="5"
-                    Content="Browse..."
-                    Width="100"
-                    VerticalAlignment="Center">
+                Grid.Column="5"
+                Content="..."
+                ToolTip="Browse for destination folder."
+                Width="20"
+                VerticalAlignment="Center">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="Click">
                     <i:InvokeCommandAction Command="{Binding Path=BrowseDestinationFolderCommand, Mode=OneTime}" />
