@@ -11,10 +11,12 @@ namespace LogoFX.Tools.TemplateGenerator
         private const string DefinitionTemplateName = "CSharp.vstemplate";
 
         private readonly string _destinationFolder;
+        private readonly string _subFolder;
 
-        public DefinitionsGenerator(string destinationFolder)
+        public DefinitionsGenerator(string destinationFolder, string subFolder)
         {
             _destinationFolder = destinationFolder;
+            _subFolder = subFolder;
         }
 
         public ISolutionFolderTemplateInfo LoadDefinitions()
@@ -42,7 +44,7 @@ namespace LogoFX.Tools.TemplateGenerator
         public void CreateDefinitions(TemplateDataInfo templateData, ISolutionTemplateInfo solutionTemplateInfo)
         {
             var projectCollection = new XElement(Ns + "ProjectCollection");
-            CreateXElement(projectCollection, solutionTemplateInfo);
+            CreateItems(projectCollection, solutionTemplateInfo);
 
             var doc = new XDocument(
                 new XElement(Ns + "VSTemplate",
@@ -86,7 +88,7 @@ namespace LogoFX.Tools.TemplateGenerator
             return definitionFile;
         }
 
-        private void CreateXElement(XElement rootElement, ISolutionFolderTemplateInfo solutionFolder)
+        private void CreateItems(XElement rootElement, ISolutionFolderTemplateInfo solutionFolder)
         {
             foreach (var solutionItem in solutionFolder.Items)
             {
@@ -96,7 +98,7 @@ namespace LogoFX.Tools.TemplateGenerator
                         new XAttribute("Name", solutionItem.Name),
                         new XAttribute("CreateOnDisk", false));
                     rootElement.Add(folderElement);
-                    CreateXElement(folderElement, (ISolutionFolderTemplateInfo)solutionItem);
+                    CreateItems(folderElement, (ISolutionFolderTemplateInfo)solutionItem);
                 }
                 else
                 {
@@ -111,7 +113,12 @@ namespace LogoFX.Tools.TemplateGenerator
 
         private string VSTemplateName(IProjectTemplateInfo projectTemplateInfo)
         {
-            return $"{projectTemplateInfo.Name}\\MyTemplate.vstemplate";
+            if (string.IsNullOrEmpty(_subFolder))
+            {
+                return $"{projectTemplateInfo.Name}\\MyTemplate.vstemplate";
+            }
+
+            return $"{_subFolder}\\{projectTemplateInfo.Name}\\MyTemplate.vstemplate";
         }
     }
 }

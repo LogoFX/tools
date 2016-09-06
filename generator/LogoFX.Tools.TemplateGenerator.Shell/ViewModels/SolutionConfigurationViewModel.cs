@@ -131,11 +131,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                     return false;
                 }
 
-                if (!Directory.Exists(DestinationPath))
-                {
-                    return false;
-                }
-
                 return true;
             }
         }

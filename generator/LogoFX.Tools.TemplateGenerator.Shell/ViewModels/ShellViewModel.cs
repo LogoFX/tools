@@ -93,6 +93,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                 }
 
                 NotifyOfPropertyChange();
+                NotifyOfPropertyChange(() => CanGenerate);
             }
         }
 
@@ -202,6 +203,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             try
             {
                 await MakeMultiSolutionAsync();
+                await GetInfoAsync();
             }
 
             finally
@@ -237,6 +239,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             try
             {
                 await MakeSingleSolutionAsync();
+                await GetInfoAsync();
             }
 
             finally
@@ -271,7 +274,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
                 if (IsMultisolution)
                 {
-                    await SaveWizardConfigurationAsync();
                     wizardConfiguration = WizardConfiguration.Model;
                 }
 
@@ -280,6 +282,11 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                     ActiveConfiguration.DestinationPath,
                     SolutionTemplateInfo,
                     wizardConfiguration);
+
+                if (IsMultisolution)
+                {
+                    await SaveWizardConfigurationAsync();
+                }
 
                 SolutionTemplateInfo = null;
 
@@ -318,7 +325,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             }
             ActiveConfiguration = new SolutionConfigurationViewModel(solutionConfiguration);
 
-            _solutionTemplateGenerator = new SolutionTemplateGenerator(solutionFileName);
+            _solutionTemplateGenerator = new SolutionTemplateGenerator(solutionFileName, IsMultisolution);
             SolutionTemplateInfo = await _solutionTemplateGenerator.GetInfoAsync();
         }
 
@@ -371,10 +378,8 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             set { }
         }
 
-        protected override async void OnActivate()
+        private async Task GetInfoAsync()
         {
-            base.OnActivate();
-
             var solutionFileName = _dataService.GetSolutionFileName();
 
             if (string.IsNullOrEmpty(solutionFileName))
@@ -393,10 +398,17 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                 return;
             }
 
+            await GetInfoAsync(solutionFileName);
+        }
+
+        protected override async void OnActivate()
+        {
+            base.OnActivate();
+
             IsBusy = true;
             try
             {
-                await GetInfoAsync(solutionFileName);
+                await GetInfoAsync();
             }
 
             finally

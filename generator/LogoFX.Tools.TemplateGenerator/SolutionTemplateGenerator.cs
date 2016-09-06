@@ -18,12 +18,14 @@ namespace LogoFX.Tools.TemplateGenerator
         private SolutionTemplateInfo _solutionTemplateInfo;
 
         private readonly string _solutionFileName;
+        private readonly bool _isMultisolution;
         private readonly string _currentName;
 
-        public SolutionTemplateGenerator(string solutionFileName)
+        public SolutionTemplateGenerator(string solutionFileName, bool isMultisolution)
         {
             _solutionFileName = solutionFileName;
-            _currentName = Path.GetFileNameWithoutExtension(_solutionFileName);
+            _isMultisolution = isMultisolution;
+            _currentName = Path.GetFileNameWithoutExtension(solutionFileName);
         }
 
         public async Task<ISolutionTemplateInfo> GetInfoAsync()
@@ -54,14 +56,17 @@ namespace LogoFX.Tools.TemplateGenerator
                 Directory.CreateDirectory(destinationFolder);
             }
 
-            var definitionsGenerator = new DefinitionsGenerator(destinationFolder);
+            var definitionsGenerator = new DefinitionsGenerator(destinationFolder, _isMultisolution ? _currentName : null);
 
-            solutionTemplateInfo = Rebuild(definitionsGenerator, solutionTemplateInfo, wizardConfiguration);
+            if (_isMultisolution)
+            {
+                solutionTemplateInfo = RebuildForMultisolution(definitionsGenerator, solutionTemplateInfo);
+            }
             definitionsGenerator.CreateDefinitions(templateData, solutionTemplateInfo);
             CreatePrepropcess(destinationFolder);
 
             var solutionFolder = destinationFolder;
-            if (wizardConfiguration != null)
+            if (_isMultisolution)
             {
                 solutionFolder = Path.Combine(destinationFolder, _currentName);
                 if (!Directory.Exists(solutionFolder))
@@ -77,16 +82,8 @@ namespace LogoFX.Tools.TemplateGenerator
             }
         }
 
-        private ISolutionTemplateInfo Rebuild(
-            DefinitionsGenerator definitionsGenerator,
-            ISolutionTemplateInfo solutionTemplateInfo, 
-            WizardConfiguration wizardConfiguration)
+        private ISolutionTemplateInfo RebuildForMultisolution(DefinitionsGenerator definitionsGenerator, ISolutionTemplateInfo solutionTemplateInfo)
         {
-            if (wizardConfiguration == null || wizardConfiguration.Solutions.Count == 0)
-            {
-                return solutionTemplateInfo;
-            }
-
             var newSolutionInfo = new SolutionTemplateInfo();
             foreach (var rn in solutionTemplateInfo.RootNamespaces)
             {
@@ -143,7 +140,7 @@ namespace LogoFX.Tools.TemplateGenerator
                 return;
             }
 
-            if (wizardConfiguration == null)
+            if (!_isMultisolution)
             {
                 Directory.Delete(destinationFolder, true);
                 return;
@@ -166,9 +163,9 @@ namespace LogoFX.Tools.TemplateGenerator
             }
         }
 
-        private bool FileNameEquals(string fileName1, string filename2)
+        private bool FileNameEquals(string fileName1, string fileName2)
         {
-            return string.Compare(fileName1, fileName1, StringComparison.OrdinalIgnoreCase) == 0;
+            return string.Compare(fileName1, fileName2, StringComparison.OrdinalIgnoreCase) == 0;
         }
 
         private async Task<SolutionTemplateInfo> GenerateTemplateInfoAsync()
