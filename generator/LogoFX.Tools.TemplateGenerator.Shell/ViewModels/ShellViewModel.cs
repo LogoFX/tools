@@ -53,7 +53,18 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
         #region Public Properties
 
-        public bool IsMultisolution => WizardConfiguration.IsMultisolution;
+        public bool IsMultisolution
+        {
+            get
+            {
+                if (WizardConfiguration == null)
+                {
+                    return false;
+                }
+
+                return WizardConfiguration.IsMultisolution;
+            }
+        }
 
         private SolutionConfigurationViewModel _activeConfiguration;
 
@@ -144,6 +155,9 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
                 _wizardConfiguration = value;
                 NotifyOfPropertyChange();
+
+                NotifyOfPropertyChange(() => CanGenerate);
+                NotifyOfPropertyChange(() => IsMultisolution);
             }
         }
 
@@ -152,7 +166,8 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             get
             {
                 if (!ActiveConfiguration.CanGenerate ||
-                   SolutionTemplateInfo == null)
+                   SolutionTemplateInfo == null ||
+                   WizardConfiguration == null)
                 {
                     return false;
                 }

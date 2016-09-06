@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using LogoFX.Tools.TemplateGenerator.Contracts;
 
 namespace LogoFX.Tools.TemplateGenerator
 {

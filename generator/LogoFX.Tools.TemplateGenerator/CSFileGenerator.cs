@@ -1,3 +1,5 @@
+using LogoFX.Tools.TemplateGenerator.Contracts;
+
 namespace LogoFX.Tools.TemplateGenerator
 {
     internal sealed class CSFileGenerator : ProjectItemTemplateGenerator

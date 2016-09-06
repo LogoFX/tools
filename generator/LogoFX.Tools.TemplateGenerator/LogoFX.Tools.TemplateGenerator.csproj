@@ -52,11 +52,6 @@
     <Compile Include="Configuration.cs" />
     <Compile Include="CSFileGenerator.cs" />
     <Compile Include="GeneratorBase.cs" />
-    <Compile Include="IProjectTemplateInfo.cs" />
-    <Compile Include="ISolutionFolderTemplateInfo.cs" />
-    <Compile Include="ISolutionFolderTemplateInfoExtensions.cs" />
-    <Compile Include="ISolutionItemTemplateInfo.cs" />
-    <Compile Include="ISolutionTemplateInfo.cs" />
     <Compile Include="ProjectItemTemplateGenerator.cs" />
     <Compile Include="ProjectTemplateGenerator.cs" />
     <Compile Include="ProjectTemplateInfo.cs" />

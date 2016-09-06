@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Security.Cryptography.X509Certificates;
 
-namespace LogoFX.Tools.TemplateGenerator
+namespace LogoFX.Tools.TemplateGenerator.Contracts
 {
     public interface ISolutionItemTemplateInfo
     {

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using LogoFX.Tools.TemplateGenerator.Contracts;
 using Microsoft.Build.Construction;
 using Microsoft.Build.Evaluation;
 using Project = Microsoft.Build.Evaluation.Project;
@@ -20,7 +21,7 @@ namespace LogoFX.Tools.TemplateGenerator
         private SolutionTemplateInfo _solutionTemplateInfo;
 
         private readonly string _solutionFileName;
-        private string _currentName;
+        private readonly string _currentName;
 
         public SolutionTemplateGenerator(string solutionFileName)
         {

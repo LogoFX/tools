@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using LogoFX.Tools.TemplateGenerator.Contracts;
 using Microsoft.Build.Evaluation;
 
 namespace LogoFX.Tools.TemplateGenerator

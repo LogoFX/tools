@@ -1,4 +1,4 @@
-﻿namespace LogoFX.Tools.TemplateGenerator
+﻿namespace LogoFX.Tools.TemplateGenerator.Contracts
 {
     public interface IProjectTemplateInfo : ISolutionItemTemplateInfo
     {
