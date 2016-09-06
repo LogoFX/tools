@@ -15,9 +15,6 @@ namespace LogoFX.Tools.TemplateGenerator
 {
     public sealed class SolutionTemplateGenerator : GeneratorBase
     {
-        private const string DefinitionsFolderName = "Definitions";
-        private const string DefinitionTemplateName = "CSharp.vstemplate";
-
         private SolutionTemplateInfo _solutionTemplateInfo;
 
         private readonly string _solutionFileName;
@@ -57,7 +54,10 @@ namespace LogoFX.Tools.TemplateGenerator
                 Directory.CreateDirectory(destinationFolder);
             }
 
-            CreateDefinitions(templateData, destinationFolder, solutionTemplateInfo);
+            var definitionsGenerator = new DefinitionsGenerator(destinationFolder);
+
+            solutionTemplateInfo = Rebuild(definitionsGenerator, solutionTemplateInfo, wizardConfiguration);
+            definitionsGenerator.CreateDefinitions(templateData, solutionTemplateInfo);
             CreatePrepropcess(destinationFolder);
 
             var solutionFolder = destinationFolder;
@@ -77,73 +77,42 @@ namespace LogoFX.Tools.TemplateGenerator
             }
         }
 
-        private void CreateXElement(XElement rootElement, ISolutionFolderTemplateInfo solutionFolder)
+        private ISolutionTemplateInfo Rebuild(
+            DefinitionsGenerator definitionsGenerator,
+            ISolutionTemplateInfo solutionTemplateInfo, 
+            WizardConfiguration wizardConfiguration)
         {
-            foreach (var solutionItem in solutionFolder.Items)
+            if (wizardConfiguration == null || wizardConfiguration.Solutions.Count == 0)
             {
-                if (solutionItem is ISolutionFolderTemplateInfo)
+                return solutionTemplateInfo;
+            }
+
+            var newSolutionInfo = new SolutionTemplateInfo();
+            foreach (var rn in solutionTemplateInfo.RootNamespaces)
+            {
+                newSolutionInfo.RootNamespaces.Add(rn);
+            }
+            var solutionFolder = new SolutionFolderTemplateInfo(Guid.Empty, _currentName);
+            foreach (var item in solutionTemplateInfo.Items)
+            {
+                solutionFolder.Items.Add((SolutionItemTemplateInfo) item);
+            }
+            newSolutionInfo.Items.Add(solutionFolder);
+
+            var oldSolutionInfo = definitionsGenerator.LoadDefinitions();
+
+            if (oldSolutionInfo != null)
+            {
+                foreach (var oldSolutionItem in oldSolutionInfo.Items)
                 {
-                    var folderElement = new XElement(Ns + "SolutionFolder",
-                        new XAttribute("Name", solutionItem.Name),
-                        new XAttribute("CreateOnDisk", false));
-                    rootElement.Add(folderElement);
-                    CreateXElement(folderElement, (ISolutionFolderTemplateInfo) solutionItem);
-                }
-                else
-                {
-                    var projectTemplateInfo = (IProjectTemplateInfo) solutionItem;
-                    var projectLinkElement = new XElement(Ns + "ProjectTemplateLink",
-                        new XAttribute("ProjectName", SafeProjectName(projectTemplateInfo)),
-                        VSTemplateName(projectTemplateInfo));
-                    rootElement.Add(projectLinkElement);
+                    if (oldSolutionItem.Name != _currentName)
+                    {
+                        newSolutionInfo.Items.Add((SolutionItemTemplateInfo) oldSolutionItem);
+                    }
                 }
             }
-        }
 
-        private string VSTemplateName(IProjectTemplateInfo projectTemplateInfo)
-        {
-            return $"{projectTemplateInfo.Name}\\MyTemplate.vstemplate";
-        }
-
-        private void CreateDefinitions(TemplateDataInfo templateData, string destinationFolder, ISolutionTemplateInfo solutionTemplateInfo)
-        {
-            var projectCollection = new XElement(Ns + "ProjectCollection");
-            CreateXElement(projectCollection, solutionTemplateInfo);
-
-            var doc = new XDocument(
-                new XElement(Ns + "VSTemplate",
-                    new XAttribute("Version", "3.0.0"),
-                    new XAttribute("Type", "ProjectGroup"),
-                    new XElement(Ns + "TemplateData",
-                        new XElement(Ns + "Name", templateData.Name),
-                        new XElement(Ns + "Description", templateData.Description),
-                        new XElement(Ns + "ProjectType", templateData.ProjectType),
-                        new XElement(Ns + "DefaultName", templateData.DefaultName),
-                        new XElement(Ns + "SortOrder", templateData.SortOrder),
-                        new XElement(Ns + "Icon", templateData.DefaultName)),
-                    new XElement(Ns + "TemplateContent", projectCollection),
-                    MakeWizardExtension(
-                        "LogoFX.Tools.Templates.Wizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-                        "LogoFX.Tools.Templates.Wizard.SolutionWizard"),
-                    MakeWizardExtension(
-                        "TemplateBuilder, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null",
-                        "TemplateBuilder.SolutionWizard")
-                    ));
-
-            XmlWriterSettings settings = new XmlWriterSettings
-            {
-                OmitXmlDeclaration = true,
-                Indent = true
-            };
-
-            var definitionsPath = Path.Combine(destinationFolder, DefinitionsFolderName);
-            Directory.CreateDirectory(definitionsPath);
-            var definitionFile = Path.Combine(definitionsPath, DefinitionTemplateName);
-
-            using (XmlWriter xw = XmlWriter.Create(definitionFile, settings))
-            {
-                doc.Save(xw);
-            }
+            return newSolutionInfo;
         }
 
         private void CreatePrepropcess(string destinationFolder)

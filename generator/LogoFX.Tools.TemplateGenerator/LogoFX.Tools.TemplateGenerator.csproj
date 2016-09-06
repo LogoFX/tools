@@ -51,6 +51,7 @@
     </Compile>
     <Compile Include="Configuration.cs" />
     <Compile Include="CSFileGenerator.cs" />
+    <Compile Include="DefinitionsGenerator.cs" />
     <Compile Include="GeneratorBase.cs" />
     <Compile Include="ProjectItemTemplateGenerator.cs" />
     <Compile Include="ProjectTemplateGenerator.cs" />
