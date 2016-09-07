@@ -71,6 +71,9 @@
     <Content Include="ProjectTemplates\Samples.Specifications\_preprocess.xml" />
     <Content Include="ProjectTemplates\UWP\Definitions\CSharp.vstemplate" />
     <Content Include="ProjectTemplates\UWP\_preprocess.xml" />
+    <Content Include="ProjectTemplates\Wizard\Definitions\CSharp.vstemplate" />
+    <Content Include="ProjectTemplates\Wizard\WizardConfiguration.xml" />
+    <Content Include="ProjectTemplates\Wizard\_preprocess.xml" />
     <Content Include="stylesheet.css" />
   </ItemGroup>
   <ItemGroup>
