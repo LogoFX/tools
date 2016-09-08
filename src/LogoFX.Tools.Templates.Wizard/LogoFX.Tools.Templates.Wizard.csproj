@@ -134,7 +134,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Properties\template-builder.props" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\WizardWindow.xaml">
