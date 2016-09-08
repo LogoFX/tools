@@ -405,6 +405,8 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         {
             base.OnActivate();
 
+            UpdateWizardConfiguration();
+
             IsBusy = true;
             try
             {
@@ -415,8 +417,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             {
                 IsBusy = false;
             }
-
-            UpdateWizardConfiguration();
         }
 
         protected override void OnDeactivate(bool close)
