@@ -5,7 +5,7 @@ using MinimalisticWpf.Client.Data.Contracts.Providers;
 namespace MinimalisticWpf.Client.Data.Fake.Providers
 {
     [UsedImplicitly]
-    public sealed class FakeLoginProvider : ILoginProvider
+    internal sealed class FakeLoginProvider : ILoginProvider
     {
         public void Login(string username, string password)
         {

@@ -6,7 +6,7 @@ using MinimalisticWpf.Client.Data.Contracts.Providers;
 namespace MinimalisticWpf.Client.Data.Real.Providers
 {
     [UsedImplicitly]
-    public sealed class WarehouseProvider : IWarehouseProvider
+    internal sealed class WarehouseProvider : IWarehouseProvider
     {
         public IEnumerable<WarehouseItemDto> GetWarehouseItems()
         {

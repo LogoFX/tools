@@ -8,7 +8,7 @@ using MinimalisticWpf.Client.Data.Contracts.Providers;
 namespace MinimalisticWpf.Client.Data.Fake.Providers
 {
     [UsedImplicitly]
-    public sealed class FakeWarehouseProvider : IWarehouseProvider
+    internal sealed class FakeWarehouseProvider : IWarehouseProvider
     {
         private readonly Random _random = new Random();
 

@@ -26,8 +26,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugWithFake|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\DebugWithFake\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;FAKE</DefineConstants>
+    <OutputPath>..\bin\DebugWithFake\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -36,7 +36,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugWithReal|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\DebugWithReal\</OutputPath>
+    <OutputPath>..\bin\DebugWithReal\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -117,10 +117,6 @@
       <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Services.Core.1.1.4\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Mvvm.ViewModel.Services.Middleware.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Services.Platform, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Services.1.0.6\lib\net45\LogoFX.Client.Mvvm.ViewModel.Services.Platform.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="LogoFX.Client.Mvvm.ViewModel.Shared, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Shared.1.0.4\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Mvvm.ViewModel.Shared.dll</HintPath>
       <Private>True</Private>
@@ -186,17 +182,12 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.3.0.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -244,30 +235,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MinimalisticWpf.Client.Data.Contracts.Dto\MinimalisticWpf.Client.Data.Contracts.Dto.csproj">
-      <Project>{968BDB4A-DB70-4214-A492-A27FA446C563}</Project>
-      <Name>MinimalisticWpf.Client.Data.Contracts.Dto</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MinimalisticWpf.Client.Data.Contracts.Providers\MinimalisticWpf.Client.Data.Contracts.Providers.csproj">
-      <Project>{B7B79EA1-8332-4C36-8C15-61C403DF946D}</Project>
-      <Name>MinimalisticWpf.Client.Data.Contracts.Providers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MinimalisticWpf.Client.Data.Fake.Providers\MinimalisticWpf.Client.Data.Fake.Providers.csproj">
-      <Project>{B0ECC98E-39B2-453F-9383-E6D8052D3668}</Project>
-      <Name>MinimalisticWpf.Client.Data.Fake.Providers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MinimalisticWpf.Client.Data.Real.Providers\MinimalisticWpf.Client.Data.Real.Providers.csproj">
-      <Project>{62F9A7B5-B4A3-4266-8B37-59FE656A66CC}</Project>
-      <Name>MinimalisticWpf.Client.Data.Real.Providers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MinimalisticWpf.Client.Model.Contracts\MinimalisticWpf.Client.Model.Contracts.csproj">
-      <Project>{2e709e28-b664-4586-961e-3c05f954a38e}</Project>
-      <Name>MinimalisticWpf.Client.Model.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MinimalisticWpf.Client.Model\MinimalisticWpf.Client.Model.csproj">
-      <Project>{7a0acdb1-e125-4cb6-bb20-f805c238955b}</Project>
-      <Name>MinimalisticWpf.Client.Model</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MinimalisticWpf.Client.Presentation.Shell\MinimalisticWpf.Client.Presentation.Shell.csproj">
       <Project>{94A1069A-45FD-422B-BA5D-531F55EE6AEE}</Project>
       <Name>MinimalisticWpf.Client.Presentation.Shell</Name>
