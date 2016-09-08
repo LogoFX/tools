@@ -5,7 +5,7 @@ using $saferootprojectname$.Client.Data.Contracts.Providers;
 namespace $safeprojectname$
 {
     [UsedImplicitly]
-    public sealed class FakeLoginProvider : ILoginProvider
+    internal sealed class FakeLoginProvider : ILoginProvider
     {
         public void Login(string username, string password)
         {

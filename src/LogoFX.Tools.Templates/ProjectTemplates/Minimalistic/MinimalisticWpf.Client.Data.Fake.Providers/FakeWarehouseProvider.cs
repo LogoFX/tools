@@ -8,7 +8,7 @@ using $saferootprojectname$.Client.Data.Contracts.Providers;
 namespace $safeprojectname$
 {
     [UsedImplicitly]
-    public sealed class FakeWarehouseProvider : IWarehouseProvider
+    internal sealed class FakeWarehouseProvider : IWarehouseProvider
     {
         private readonly Random _random = new Random();
 

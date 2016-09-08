@@ -1,11 +1,11 @@
 ﻿<VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
   <TemplateData>
-    <Name>Minimalistic WPF Application</Name>
-    <Description>Minimalistic WPF Application</Description>
+    <Name>Simple WPF Application</Name>
+    <Description>Simple WPF Application</Description>
     <ProjectType>CSharp</ProjectType>
-    <DefaultName>Minimalistic</DefaultName>
+    <DefaultName>Simple</DefaultName>
     <SortOrder>5000</SortOrder>
-    <Icon>Minimalistic</Icon>
+    <Icon>Simple</Icon>
   </TemplateData>
   <TemplateContent>
     <ProjectCollection>

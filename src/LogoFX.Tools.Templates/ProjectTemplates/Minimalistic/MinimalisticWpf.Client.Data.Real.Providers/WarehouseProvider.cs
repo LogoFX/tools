@@ -6,7 +6,7 @@ using $saferootprojectname$.Client.Data.Contracts.Providers;
 namespace $safeprojectname$
 {
     [UsedImplicitly]
-    public sealed class WarehouseProvider : IWarehouseProvider
+    internal sealed class WarehouseProvider : IWarehouseProvider
     {
         public IEnumerable<WarehouseItemDto> GetWarehouseItems()
         {
