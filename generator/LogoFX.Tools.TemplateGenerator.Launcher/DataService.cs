@@ -21,7 +21,8 @@ namespace LogoFX.Tools.TemplateGenerator.Launcher
 
         public string GetSolutionFileName()
         {
-            return @"c:\Projects\LogoUI\LogoFX\Samples.Specifications\Specifications.sln";
+            //return @"c:\Projects\LogoUI\LogoFX\Samples.Specifications\Specifications.sln";
+            return @"c:\Projects\LogoUI\LogoFX\tools\tsrc\MinimalisticWpf\MinimalisticWpf.sln";
         }
 
         public IConfiguration LoadConfiguration()

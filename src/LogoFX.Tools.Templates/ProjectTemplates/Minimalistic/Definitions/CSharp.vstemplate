@@ -1,0 +1,47 @@
+﻿<VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name>Minimalistic WPF Application</Name>
+    <Description>Minimalistic WPF Application</Description>
+    <ProjectType>CSharp</ProjectType>
+    <DefaultName>Minimalistic</DefaultName>
+    <SortOrder>5000</SortOrder>
+    <Icon>Minimalistic</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <ProjectCollection>
+      <SolutionFolder Name="App" CreateOnDisk="false">
+        <SolutionFolder Name="Client" CreateOnDisk="false">
+          <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Launcher">MinimalisticWpf.Client.Launcher\MyTemplate.vstemplate</ProjectTemplateLink>
+          <SolutionFolder Name="Presentation" CreateOnDisk="false">
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Presentation.Shell">MinimalisticWpf.Client.Presentation.Shell\MyTemplate.vstemplate</ProjectTemplateLink>
+          </SolutionFolder>
+          <SolutionFolder Name="Data" CreateOnDisk="false">
+            <SolutionFolder Name="Contracts" CreateOnDisk="false">
+              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Contracts.Dto">MinimalisticWpf.Client.Data.Contracts.Dto\MyTemplate.vstemplate</ProjectTemplateLink>
+              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Contracts.Providers">MinimalisticWpf.Client.Data.Contracts.Providers\MyTemplate.vstemplate</ProjectTemplateLink>
+            </SolutionFolder>
+            <SolutionFolder Name="Fake" CreateOnDisk="false">
+              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Fake.Providers">MinimalisticWpf.Client.Data.Fake.Providers\MyTemplate.vstemplate</ProjectTemplateLink>
+            </SolutionFolder>
+            <SolutionFolder Name="Real" CreateOnDisk="false">
+              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Real.Providers">MinimalisticWpf.Client.Data.Real.Providers\MyTemplate.vstemplate</ProjectTemplateLink>
+            </SolutionFolder>
+          </SolutionFolder>
+          <SolutionFolder Name="Model" CreateOnDisk="false">
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Model">MinimalisticWpf.Client.Model\MyTemplate.vstemplate</ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Model.Contracts">MinimalisticWpf.Client.Model.Contracts\MyTemplate.vstemplate</ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Model.Shared">MinimalisticWpf.Client.Model.Shared\MyTemplate.vstemplate</ProjectTemplateLink>
+          </SolutionFolder>
+        </SolutionFolder>
+      </SolutionFolder>
+    </ProjectCollection>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>LogoFX.Tools.Templates.Wizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
+    <FullClassName>LogoFX.Tools.Templates.Wizard.SolutionWizard</FullClassName>
+  </WizardExtension>
+  <WizardExtension>
+    <Assembly>TemplateBuilder, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
+    <FullClassName>TemplateBuilder.SolutionWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

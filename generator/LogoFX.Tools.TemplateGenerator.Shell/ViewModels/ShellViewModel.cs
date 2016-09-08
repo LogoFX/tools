@@ -405,11 +405,11 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         {
             base.OnActivate();
 
-            UpdateWizardConfiguration();
-
             IsBusy = true;
             try
             {
+                await GetInfoAsync();
+                UpdateWizardConfiguration();
                 await GetInfoAsync();
             }
 

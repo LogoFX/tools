@@ -36,17 +36,17 @@ namespace LogoFX.Tools.Templates.Wizard
             }
             // ReSharper restore SuspiciousTypeConversion.Global
 
-            var projectName = replacementsDictionary["$projectname$"];
+            //var projectName = replacementsDictionary["$projectname$"];
 
-            _wizardViewModel.Title = $"{Title} - {projectName}";
+            //_wizardViewModel.Title = $"{Title} - {projectName}";
 
-            var window = WpfServices.CreateWindow<Views.WizardWindow>(_wizardViewModel);
-            WpfServices.SetWindowOwner(window, dtE2.MainWindow);
-            bool retVal = false;
-            while (!retVal)
-            {
-                retVal = window.ShowDialog() ?? false;
-            }
+            //var window = WpfServices.CreateWindow<Views.WizardWindow>(_wizardViewModel);
+            //WpfServices.SetWindowOwner(window, dtE2.MainWindow);
+            //bool retVal = false;
+            //while (!retVal)
+            //{
+            //    retVal = window.ShowDialog() ?? false;
+            //}
         }
 
         public bool ShouldAddProjectItem(string filePath)

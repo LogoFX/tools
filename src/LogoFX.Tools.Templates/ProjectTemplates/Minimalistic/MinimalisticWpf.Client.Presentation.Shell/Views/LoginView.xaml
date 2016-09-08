@@ -1,0 +1,88 @@
+<UserControl x:Class="$safeprojectname$.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:$safeprojectname$.ViewModels"
+             xmlns:behaviors="clr-namespace:LogoFX.Client.Mvvm.View.Interactivity.Behaviors;assembly=LogoFX.Client.Mvvm.View.Platform"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance viewModels:LoginViewModel}"
+             d:DesignHeight="300" 
+             d:DesignWidth="300">
+    <Grid VerticalAlignment="Center"
+          HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Text="User Name:" />
+        <TextBox Grid.Row="0"
+                 Grid.Column="1"
+                 Margin="5,0,0,0" 
+                 VerticalAlignment="Center"
+                 Text="{Binding Path=UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Text="Password:" />
+        <PasswordBox Grid.Row="1"
+                     Grid.Column="1"
+                     Margin="5,0,0,0" 
+                     VerticalAlignment="Center"
+                     behaviors:PasswordHelper.BindPassword="True"
+                     behaviors:PasswordHelper.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   VerticalAlignment="Center"
+                   Foreground="Red"
+                   Text="{Binding Path=LoginFailureCause, Mode=OneWay}" />
+        
+        <Grid Grid.Row="3" 
+              Grid.Column="0" 
+              Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Column="0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    Content="Login">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <commanding:ExecuteCommandAction Command="{Binding Path=LoginCommand, Mode=OneTime}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+
+            <Button Grid.Column="2"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    Content="Cancel">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <commanding:ExecuteCommandAction Command="{Binding Path=CancelCommand, Mode=OneTime}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

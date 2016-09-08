@@ -67,6 +67,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="ProjectTemplates\Minimalistic\Definitions\CSharp.vstemplate" />
+    <Content Include="ProjectTemplates\Minimalistic\_preprocess.xml" />
     <Content Include="ProjectTemplates\Samples.Specifications\Definitions\CSharp.vstemplate" />
     <Content Include="ProjectTemplates\Samples.Specifications\_preprocess.xml" />
     <Content Include="ProjectTemplates\UWP\Definitions\CSharp.vstemplate" />
