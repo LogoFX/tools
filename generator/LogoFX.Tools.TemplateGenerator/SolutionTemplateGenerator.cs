@@ -109,12 +109,6 @@ namespace LogoFX.Tools.TemplateGenerator
                 }
             }
 
-            newSolutionInfo.Items.Add(new ProjectTemplateInfo(Guid.Empty, "WizardConfiguration")
-            {
-                NameWithoutRoot = "WizardConfiguration",
-                FileName = "Jopa.xml"
-            });
-
             return newSolutionInfo;
         }
 

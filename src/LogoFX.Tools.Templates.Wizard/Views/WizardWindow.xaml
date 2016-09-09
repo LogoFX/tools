@@ -5,8 +5,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:viewModel="clr-namespace:LogoFX.Tools.Templates.Wizard.ViewModel"
         mc:Ignorable="d"
-        Width="400"
-        Height="240"
+        Width="800"
+        Height="600"
         WindowStartupLocation="CenterOwner"
         WindowStyle="ToolWindow"
         Title="{Binding Path=Title, Mode=OneWay}"
@@ -14,30 +14,84 @@
         d:DesignWidth="300"
         d:DataContext="{d:DesignInstance viewModel:WizardViewModel}">
     
-    <Grid>
+    <Grid Margin="24">
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
-            <RowDefinition Height="40" />
             <RowDefinition Height="*" />
             <RowDefinition Height="24" />
+            <RowDefinition Height="24" />
         </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="24" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Background="White"
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    Padding="24">
+                <ListBox ItemsSource="{Binding Path=Solutions, Mode=OneTime}"
+                         SelectedValue="{}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Width="100">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="64" />
+                                    <RowDefinition Height="32" />
+                                </Grid.RowDefinitions>
+                                
+                                <Border Grid.Row="0" Background="Gray">
+                                    
+                                </Border>
+
+                                <TextBlock Grid.Row="1"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           TextAlignment="Center"
+                                           TextWrapping="WrapWithOverflow"
+                                           Text="{Binding Path=Model.Caption, Mode=OneWay}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+            </Border>
+            
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <CheckBox Grid.Row="0"
+                          Content="Create Tests"
+                          IsEnabled="{Binding Path=TestOption, Mode=OneWay}"
+                          IsChecked="{Binding Path=CreateTests, Mode=TwoWay}"
+                          VerticalAlignment="Center" />
+
+                <CheckBox Grid.Row="1"
+                          Content="Create Fakes"
+                          IsEnabled="{Binding Path=FakeOption, Mode=OneWay}"
+                          IsChecked="{Binding Path=CreateFakes, Mode=TwoWay}"
+                          VerticalAlignment="Center" />
+            </Grid>
+        </Grid>
         
-        <CheckBox Grid.Row="0"
-                  Content="Fake data support"
-                  IsChecked="{Binding Path=FakeData, Mode=TwoWay}"
-                  VerticalAlignment="Center" />
-
-        <CheckBox Grid.Row="1"
-                  Content="Tests"
-                  IsChecked="{Binding Path=Tests, Mode=TwoWay}"
-                  VerticalAlignment="Center" />
-
         <Button Grid.Row="2"
                 Width="100"
                 Height="24"
                 Content="Ok"
                 IsDefault="True"
                 Click="OkClick"
+                IsEnabled="{Binding Path=OkEnabled, Mode=OneWay}"
                 VerticalAlignment="Bottom"
                 HorizontalAlignment="Center">
         </Button>

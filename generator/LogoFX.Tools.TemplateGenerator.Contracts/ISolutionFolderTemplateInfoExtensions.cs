@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace LogoFX.Tools.TemplateGenerator.Contracts
@@ -12,7 +13,11 @@ namespace LogoFX.Tools.TemplateGenerator.Contracts
                 ISolutionFolderTemplateInfo folder = item as ISolutionFolderTemplateInfo;
                 if (folder == null)
                 {
-                    result.Add((IProjectTemplateInfo)item);
+                    var projectInfo = (IProjectTemplateInfo) item;
+                    if (projectInfo.Id != Guid.Empty)
+                    {
+                        result.Add(projectInfo);
+                    }
                 }
                 else
                 {

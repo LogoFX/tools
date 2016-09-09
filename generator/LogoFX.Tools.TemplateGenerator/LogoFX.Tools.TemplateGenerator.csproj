@@ -46,9 +46,6 @@
     <Compile Include="..\..\common\WizardConfiguration.cs">
       <Link>WizardConfiguration.cs</Link>
     </Compile>
-    <Compile Include="..\..\common\WizardConfigurator.cs">
-      <Link>WizardConfigurator.cs</Link>
-    </Compile>
     <Compile Include="Configuration.cs" />
     <Compile Include="CSFileGenerator.cs" />
     <Compile Include="DefinitionsGenerator.cs" />
@@ -63,6 +60,7 @@
     <Compile Include="SolutionTemplateGenerator.cs" />
     <Compile Include="SolutionTemplateInfo.cs" />
     <Compile Include="TemplateDataInfo.cs" />
+    <Compile Include="WizardConfigurator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LogoFX.Tools.TemplateGenerator.snk" />

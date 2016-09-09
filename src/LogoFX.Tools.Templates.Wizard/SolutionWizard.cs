@@ -16,7 +16,7 @@ namespace LogoFX.Tools.Templates.Wizard
 
         private const string SolutionFolderKind = "{66A26720-8FB5-11D2-AA7E-00C04F688DDE}";
 
-        private readonly WizardViewModel _wizardViewModel = new WizardViewModel();
+        private WizardViewModel _wizardViewModel;
 
         private Solution4 _solution;
 
@@ -36,17 +36,24 @@ namespace LogoFX.Tools.Templates.Wizard
             }
             // ReSharper restore SuspiciousTypeConversion.Global
 
-            //var projectName = replacementsDictionary["$projectname$"];
+            var wizardConfiguration = WizardConfigurationData.GetWizardConfiguration();
+            if (!wizardConfiguration.ShowWizardWindow())
+            {
+                return;
+            }
 
-            //_wizardViewModel.Title = $"{Title} - {projectName}";
+            var projectName = replacementsDictionary["$projectname$"];
 
-            //var window = WpfServices.CreateWindow<Views.WizardWindow>(_wizardViewModel);
-            //WpfServices.SetWindowOwner(window, dtE2.MainWindow);
-            //bool retVal = false;
-            //while (!retVal)
-            //{
-            //    retVal = window.ShowDialog() ?? false;
-            //}
+            _wizardViewModel = new WizardViewModel(wizardConfiguration);
+            _wizardViewModel.Title = $"{Title} - {projectName}";
+
+            var window = WpfServices.CreateWindow<Views.WizardWindow>(_wizardViewModel);
+            WpfServices.SetWindowOwner(window, dtE2.MainWindow);
+            bool retVal = false;
+            while (!retVal)
+            {
+                retVal = window.ShowDialog() ?? false;
+            }
         }
 
         public bool ShouldAddProjectItem(string filePath)
@@ -56,30 +63,34 @@ namespace LogoFX.Tools.Templates.Wizard
 
         public void RunFinished()
         {
-            if (!_wizardViewModel.Tests)
-            {
-                var testSolutionFolder = _solution.Projects
-                    .OfType<Project>()
-                    .FirstOrDefault(p => p.Name == "Tests");
-                if (testSolutionFolder != null)
-                {
-                    _solution.Remove(testSolutionFolder);
-                }
-            }
-
             IList<Project> projects;
-            if (!_wizardViewModel.FakeData)
-            {
-                projects = GetProjects(true);
-                foreach (var p in projects.Where(p => p.Name.Contains(".Fake.")))
-                {
-                    _solution.Remove(p);
-                }
-            }
 
-            if (!_wizardViewModel.FakeData || !_wizardViewModel.Tests)
+            if (_wizardViewModel != null)
             {
-                RemoveConditions();
+                if (!_wizardViewModel.CreateTests)
+                {
+                    var testSolutionFolder = _solution.Projects
+                        .OfType<Project>()
+                        .FirstOrDefault(p => p.Name == "Tests");
+                    if (testSolutionFolder != null)
+                    {
+                        _solution.Remove(testSolutionFolder);
+                    }
+                }
+
+                if (!_wizardViewModel.CreateFakes)
+                {
+                    projects = GetProjects(true);
+                    foreach (var p in projects.Where(p => p.Name.Contains(".Fake.")))
+                    {
+                        _solution.Remove(p);
+                    }
+                }
+
+                if (!_wizardViewModel.CreateTests || !_wizardViewModel.CreateFakes)
+                {
+                    RemoveConditions();
+                }
             }
 
             projects = GetProjects(true);
@@ -130,12 +141,12 @@ namespace LogoFX.Tools.Templates.Wizard
 
             var toRemove = new List<ProjectPropertyGroupElement>();
 
-            if (!_wizardViewModel.FakeData)
+            if (!_wizardViewModel.FakeOption)
             {
                 toRemove.AddRange(allGroups.Where(x => x.Condition.Contains("Fake")));
             }
 
-            if (!_wizardViewModel.Tests)
+            if (!_wizardViewModel.TestOption)
             {
                 toRemove.AddRange(allGroups.Where(x => x.Condition.Contains("Tests")));
             }
