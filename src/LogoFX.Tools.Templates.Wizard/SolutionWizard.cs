@@ -63,44 +63,8 @@ namespace LogoFX.Tools.Templates.Wizard
 
         public void RunFinished()
         {
-            IList<Project> projects;
-
-            if (_wizardViewModel != null)
-            {
-                if (!_wizardViewModel.CreateTests)
-                {
-                    var testSolutionFolder = _solution.Projects
-                        .OfType<Project>()
-                        .FirstOrDefault(p => p.Name == "Tests");
-                    if (testSolutionFolder != null)
-                    {
-                        _solution.Remove(testSolutionFolder);
-                    }
-                }
-
-                if (!_wizardViewModel.CreateFakes)
-                {
-                    projects = GetProjects(true);
-                    foreach (var p in projects.Where(p => p.Name.Contains(".Fake.")))
-                    {
-                        _solution.Remove(p);
-                    }
-                }
-
-                if (!_wizardViewModel.CreateTests || !_wizardViewModel.CreateFakes)
-                {
-                    RemoveConditions();
-                }
-            }
-
-            projects = GetProjects(true);
-            var startupProjectName = projects.First(x => x.Name.EndsWith("Launcher")).Name;
-
-            if (!string.IsNullOrEmpty(startupProjectName))
-            {
-                _solution.Properties.Item("StartupProject").Value = startupProjectName;
-            }
-
+            ApplyWizardModifications();
+            SetStartupProject();
         }
 
         public void BeforeOpeningFile(ProjectItem projectItem)
@@ -124,6 +88,60 @@ namespace LogoFX.Tools.Templates.Wizard
             foreach (var project in projects)
             {
                 RemoveConditions(project);
+            }
+        }
+
+        private void ApplyWizardModifications()
+        {
+            if (_wizardViewModel == null)
+            {
+                return;
+            }
+
+            if (!_wizardViewModel.CreateTests)
+            {
+                RemoveTestProjects();
+            }
+
+            if (!_wizardViewModel.CreateFakes)
+            {
+                RemoveFakesProjects();
+            }
+
+            if (!_wizardViewModel.CreateTests || !_wizardViewModel.CreateFakes)
+            {
+                RemoveConditions();
+            }
+        }
+
+        private void RemoveTestProjects()
+        {
+            var testSolutionFolder = _solution.Projects
+                .OfType<Project>()
+                .FirstOrDefault(p => p.Name == "Tests");
+            if (testSolutionFolder != null)
+            {
+                _solution.Remove(testSolutionFolder);
+            }
+        }
+
+        private void RemoveFakesProjects()
+        {
+            var projects = GetProjects(true);
+            foreach (var p in projects.Where(p => p.Name.Contains(".Fake.")))
+            {
+                _solution.Remove(p);
+            }
+        }
+
+        private void SetStartupProject()
+        {
+            var projects = GetProjects(true);
+            var startupProjectName = projects.First(x => x.Name.EndsWith("Launcher")).Name;
+
+            if (!string.IsNullOrEmpty(startupProjectName))
+            {
+                _solution.Properties.Item("StartupProject").Value = startupProjectName;
             }
         }
 
