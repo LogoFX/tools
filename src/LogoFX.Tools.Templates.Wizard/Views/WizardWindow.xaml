@@ -33,7 +33,7 @@
                     BorderThickness="1"
                     Padding="24">
                 <ListBox ItemsSource="{Binding Path=Solutions, Mode=OneTime}"
-                         SelectedValue="{}">
+                         SelectedValue="{Binding Path=SelectedSolution, Mode=TwoWay}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid Width="100">

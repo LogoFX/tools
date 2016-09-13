@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using EnvDTE;
 using EnvDTE100;
 using EnvDTE80;
+using LogoFX.Tools.TemplateGenerator;
+using LogoFX.Tools.Templates.Wizard.Model;
 using LogoFX.Tools.Templates.Wizard.ViewModel;
 using Microsoft.Build.Construction;
 using Microsoft.VisualStudio.TemplateWizard;
@@ -98,6 +101,11 @@ namespace LogoFX.Tools.Templates.Wizard
                 return;
             }
 
+            if (_wizardViewModel.SelectedSolution != null)
+            {
+                RemoveMultiSolution(_wizardViewModel.SelectedSolution.Model);
+            }
+
             if (!_wizardViewModel.CreateTests)
             {
                 RemoveTestProjects();
@@ -111,6 +119,69 @@ namespace LogoFX.Tools.Templates.Wizard
             if (!_wizardViewModel.CreateTests || !_wizardViewModel.CreateFakes)
             {
                 RemoveConditions();
+            }
+        }
+
+        private void RemoveMultiSolution(SolutionInfo solutionInfo)
+        {
+            SolutionFolderTemplate selected = null;
+            foreach (var p in _solution.Projects.OfType<Project>().ToList())
+            {
+                if (p.Name == solutionInfo.Name)
+                {
+                    selected = new SolutionFolderTemplate(p);
+                }
+
+                _solution.Remove(p);
+            }
+
+            Debug.Assert(selected != null, "selected != null");
+            foreach (var p in selected.Items)
+            {
+                AddProjectToSolution(null, p);
+            }
+        }
+
+        private void AddProjectToSolution(Project parent, SolutionItemTemplate project)
+        {
+            if (project is SolutionFolderTemplate)
+            {
+                AddSolutionFolder(parent, (SolutionFolderTemplate) project);
+            }
+            else
+            {
+                AddProject(parent, (ProjectTemplate) project);
+            }
+        }
+
+        private void AddSolutionFolder(Project parent, SolutionFolderTemplate solutionFolder)
+        {
+            if (parent == null)
+            {
+                var addedProject = _solution.AddSolutionFolder(solutionFolder.Name);
+            }
+            else
+            {
+                var addedProject = parent.ProjectItems.AddFolder(solutionFolder.Name);
+                var pp = addedProject as Project;
+            }
+
+            //foreach (Project item in solutionFolder.ProjectItems)
+            //{
+            //    AddProjectToSolution(addedProject, item);
+            //}
+        }
+
+        private void AddProject(Project parent, ProjectTemplate project)
+        {
+            if (parent == null)
+            {
+                var addedProject = _solution.AddFromFile(project.FileName);
+            }
+            else
+            {
+                var addedProject = parent.ProjectItems.AddFromFile(project.FileName);
+                var pp = addedProject as Project;
             }
         }
 

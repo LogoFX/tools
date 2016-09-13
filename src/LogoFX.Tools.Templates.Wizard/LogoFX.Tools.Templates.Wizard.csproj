@@ -120,6 +120,11 @@
     <Compile Include="..\..\common\WizardConfiguration.cs">
       <Link>WizardConfiguration.cs</Link>
     </Compile>
+    <Compile Include="Model\ProjectTemplate.cs" />
+    <Compile Include="Model\SolutionFolderTemplate.cs" />
+    <Compile Include="Model\SolutionItemCollectionTemplate.cs" />
+    <Compile Include="Model\SolutionItemTemplate.cs" />
+    <Compile Include="Model\SolutionTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolutionWizard.cs" />
     <Compile Include="ViewModel\ObjectViewModel.cs" />
