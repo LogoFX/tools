@@ -10,6 +10,6 @@ namespace MinimalisticWpf.Client.Model
             Username = username;
         }
 
-        public string Username { get; }
+        public string Username { get; private set; }
     }
 }

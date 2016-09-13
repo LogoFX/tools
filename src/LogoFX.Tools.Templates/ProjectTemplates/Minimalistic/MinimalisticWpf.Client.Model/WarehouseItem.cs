@@ -14,7 +14,7 @@ namespace $safeprojectname$
             Quantity = quantity;
         }
 
-        public string Kind { get; }
+        public string Kind { get; private set; }
 
         private double _price;
         public double Price

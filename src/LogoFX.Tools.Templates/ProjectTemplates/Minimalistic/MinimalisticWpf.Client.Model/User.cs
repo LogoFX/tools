@@ -10,6 +10,6 @@ namespace $safeprojectname$
             Username = username;
         }
 
-        public string Username { get; }
+        public string Username { get; private set; }
     }
 }
