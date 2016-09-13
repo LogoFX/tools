@@ -120,6 +120,7 @@
     <Compile Include="..\..\common\WizardConfiguration.cs">
       <Link>WizardConfiguration.cs</Link>
     </Compile>
+    <Compile Include="MinimalisticSolutionWizard.cs" />
     <Compile Include="Model\ProjectTemplate.cs" />
     <Compile Include="Model\SolutionFolderTemplate.cs" />
     <Compile Include="Model\SolutionItemCollectionTemplate.cs" />
@@ -133,8 +134,8 @@
       <DependentUpon>WizardWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\WizardViewModel.cs" />
-    <Compile Include="WizardConfigurationData.cs" />
     <Compile Include="WizardConfigurationExtensions.cs" />
+    <Compile Include="WizardSolutionWizard.cs" />
     <Compile Include="WpfServices.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>

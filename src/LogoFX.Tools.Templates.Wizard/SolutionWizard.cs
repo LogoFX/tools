@@ -13,15 +13,19 @@ using Microsoft.VisualStudio.TemplateWizard;
 
 namespace LogoFX.Tools.Templates.Wizard
 {
-    public sealed class SolutionWizard : IWizard
+    public abstract class SolutionWizard : IWizard
     {
-        private const string Title = "New LogoFX WPF Samples Application";
+        #region Fields
 
         private const string SolutionFolderKind = "{66A26720-8FB5-11D2-AA7E-00C04F688DDE}";
 
         private WizardViewModel _wizardViewModel;
 
         private Solution4 _solution;
+
+        #endregion
+
+        #region Constructors
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
@@ -39,7 +43,7 @@ namespace LogoFX.Tools.Templates.Wizard
             }
             // ReSharper restore SuspiciousTypeConversion.Global
 
-            var wizardConfiguration = WizardConfigurationData.GetWizardConfiguration();
+            var wizardConfiguration = GetWizardConfiguration();
             if (!wizardConfiguration.ShowWizardWindow())
             {
                 return;
@@ -59,31 +63,23 @@ namespace LogoFX.Tools.Templates.Wizard
             }
         }
 
-        public bool ShouldAddProjectItem(string filePath)
-        {
-            return true;
-        }
+        #endregion
 
-        public void RunFinished()
-        {
-            ApplyWizardModifications();
-            SetStartupProject();
-        }
+        #region Public Propeties
 
-        public void BeforeOpeningFile(ProjectItem projectItem)
-        {
+        public string Title => GetTitle();
 
-        }
+        #endregion
 
-        public void ProjectItemFinishedGenerating(ProjectItem projectItem)
-        {
+        #region Protected
 
-        }
+        protected abstract string GetTitle();
 
-        public void ProjectFinishedGenerating(Project project)
-        {
+        protected abstract WizardConfiguration GetWizardConfiguration();
 
-        }
+        #endregion
+
+        #region Private Members
 
         private void RemoveConditions()
         {
@@ -146,11 +142,11 @@ namespace LogoFX.Tools.Templates.Wizard
         {
             if (project is SolutionFolderTemplate)
             {
-                AddSolutionFolder(parent, (SolutionFolderTemplate) project);
+                AddSolutionFolder(parent, (SolutionFolderTemplate)project);
             }
             else
             {
-                AddProject(parent, (ProjectTemplate) project);
+                AddProject(parent, (ProjectTemplate)project);
             }
         }
 
@@ -291,5 +287,37 @@ namespace LogoFX.Tools.Templates.Wizard
                 }
             }
         }
+
+        #endregion
+
+        #region IWizard
+
+        public bool ShouldAddProjectItem(string filePath)
+        {
+            return true;
+        }
+
+        public void RunFinished()
+        {
+            ApplyWizardModifications();
+            SetStartupProject();
+        }
+
+        public void BeforeOpeningFile(ProjectItem projectItem)
+        {
+
+        }
+
+        public void ProjectItemFinishedGenerating(ProjectItem projectItem)
+        {
+
+        }
+
+        public void ProjectFinishedGenerating(Project project)
+        {
+
+        }
+
+        #endregion
     }
 }

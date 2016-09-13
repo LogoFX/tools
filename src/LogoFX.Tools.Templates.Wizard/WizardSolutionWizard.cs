@@ -3,9 +3,14 @@ using LogoFX.Tools.TemplateGenerator;
 
 namespace LogoFX.Tools.Templates.Wizard
 {
-    internal static class WizardConfigurationData
+    public sealed class WizardSolutionWizard : SolutionWizard
     {
-        public static WizardConfiguration GetWizardConfiguration()
+        protected override string GetTitle()
+        {
+            return "New LogoFX Application";
+        }
+
+        protected override WizardConfiguration GetWizardConfiguration()
         {
             return new WizardConfiguration
             {
