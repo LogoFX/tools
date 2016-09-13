@@ -10,9 +10,9 @@
     <Tags>WPF,UWP, Windows Store, XAML, MVVM, Specflow, Spec, TDD, BDD, Windows Phone, Patterns, Design Patterns, Patterns &amp; Practices</Tags>
   </Metadata>
   <Installation AllUsers="true">
-    <InstallationTarget Id="Microsoft.VisualStudio.Enterprise" Version="[14.0, 15.0)" />
-    <InstallationTarget Version="[14.0, 15.0)" Id="Microsoft.VisualStudio.Community" />
-    <InstallationTarget Version="[14.0, 15.0)" Id="Microsoft.VisualStudio.Pro" />
+    <InstallationTarget Id="Microsoft.VisualStudio.Enterprise" Version="[12.0, 15.0)" />
+    <InstallationTarget Version="[12.0, 15.0)" Id="Microsoft.VisualStudio.Community" />
+    <InstallationTarget Version="[12.0, 15.0)" Id="Microsoft.VisualStudio.Pro" />
   </Installation>
   <Dependencies>
     <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
