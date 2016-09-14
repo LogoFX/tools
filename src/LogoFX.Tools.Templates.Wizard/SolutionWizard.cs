@@ -138,7 +138,7 @@ namespace LogoFX.Tools.Templates.Wizard
             }
         }
 
-        private void AddProjectToSolution(Project parent, SolutionItemTemplate project)
+        private void AddProjectToSolution(SolutionFolder parent, SolutionItemTemplate project)
         {
             if (project is SolutionFolderTemplate)
             {
@@ -150,35 +150,23 @@ namespace LogoFX.Tools.Templates.Wizard
             }
         }
 
-        private void AddSolutionFolder(Project parent, SolutionFolderTemplate solutionFolder)
+        private void AddSolutionFolder(SolutionFolder parent, SolutionFolderTemplate solutionFolder)
         {
-            if (parent == null)
-            {
-                var addedProject = _solution.AddSolutionFolder(solutionFolder.Name);
-            }
-            else
-            {
-                var addedProject = parent.ProjectItems.AddFolder(solutionFolder.Name);
-                var pp = addedProject as Project;
-            }
+            var addedProject = parent == null
+                ? _solution.AddSolutionFolder(solutionFolder.Name)
+                : parent.AddSolutionFolder(solutionFolder.Name);
 
-            //foreach (Project item in solutionFolder.ProjectItems)
-            //{
-            //    AddProjectToSolution(addedProject, item);
-            //}
+            foreach (var item in solutionFolder.Items)
+            {
+                AddProjectToSolution(addedProject.Object as SolutionFolder, item);
+            }
         }
 
-        private void AddProject(Project parent, ProjectTemplate project)
+        private void AddProject(SolutionFolder parent, ProjectTemplate project)
         {
-            if (parent == null)
-            {
-                var addedProject = _solution.AddFromFile(project.FileName);
-            }
-            else
-            {
-                var addedProject = parent.ProjectItems.AddFromFile(project.FileName);
-                var pp = addedProject as Project;
-            }
+            var addedProject = parent == null
+                ? _solution.AddFromFile(project.FileName)
+                : parent.AddFromFile(project.FileName);
         }
 
         private void RemoveTestProjects()
