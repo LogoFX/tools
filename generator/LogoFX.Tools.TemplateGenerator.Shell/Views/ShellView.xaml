@@ -40,10 +40,6 @@
                 <ContentControl cal:View.Model="{Binding Path=ActiveConfiguration, Mode=OneWay}" />
             </TabItem>
 
-            <TabItem Header="Wizard Configuration">
-                <ContentControl cal:View.Model="{Binding Path=WizardConfiguration, Mode=OneWay}" />
-            </TabItem>
-
             <TabItem Header="Root Namespaces">
                 <ItemsControl Margin="5"
                               ItemsSource="{Binding Path=SolutionTemplateInfo.RootNamespaces}">
@@ -65,6 +61,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
@@ -93,6 +90,17 @@
             </Button>
 
             <Button Grid.Column="3"
+                    Margin="5"                    
+                    Width="120"
+                    Content="Save">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:InvokeCommandAction Command="{Binding Path=SaveCommand, Mode=OneTime}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+
+            <Button Grid.Column="4"
                     Margin="5"                    
                     Width="200"
                     Content="Generate Template">

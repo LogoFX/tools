@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:controls="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.Controls"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance viewModels:SolutionConfigurationViewModel}"
              d:DesignHeight="300" 
@@ -13,9 +15,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition Height="40" />
-            <RowDefinition Height="40" />
-            <RowDefinition Height="40" />
-            <RowDefinition Height="40" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -45,7 +46,8 @@
         <TextBox Grid.Row="1"
                  Grid.Column="3"
                  VerticalAlignment="Center"
-                 Text="{Binding Path=DestinationPath, Mode=TwoWay}" />
+                 IsReadOnly="True"
+                 Text="{Binding Path=DestinationPath, Mode=OneWay}" />
         <Button Grid.Row="1"
                 Grid.Column="5"
                 Content="..."
@@ -60,30 +62,17 @@
         </Button>
 
         <TextBlock Grid.Row="2"
-                       Grid.Column="1"
-                       VerticalAlignment="Center"
-                       Text="Name:" />
-        <TextBox Grid.Row="2"
-                     Grid.Column="3"
-                     VerticalAlignment="Center"
-                     Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                   Grid.Column="1"
+                   Grid.ColumnSpan="5"
+                   Text="Wizard Configuration"
+                   FontWeight="Bold" />
+        <ContentControl Grid.Row="3"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="5"
+                        cal:View.Model="{Binding Path=WizardConfiguration, Mode=OneWay}" />
 
-        <TextBlock Grid.Row="3"
-                       Grid.Column="1"
-                       VerticalAlignment="Center"
-                       Text="Description:" />
-        <TextBox Grid.Row="3"
-                     Grid.Column="3"
-                     VerticalAlignment="Center"
-                     Text="{Binding Path=Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-        <TextBlock Grid.Row="4"
-                       Grid.Column="1"
-                       VerticalAlignment="Center"
-                       Text="Default Name:" />
-        <TextBox Grid.Row="4"
-                     Grid.Column="3"
-                     VerticalAlignment="Center"
-                     Text="{Binding Path=DefaultName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <controls:BusyIndicator Grid.Row="0"
+                                Grid.RowSpan="4"
+                                IsBusy="{Binding Path=IsBusy, Mode=OneWay}"/>
     </Grid>
 </UserControl>

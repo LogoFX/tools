@@ -39,7 +39,6 @@ namespace LogoFX.Tools.TemplateGenerator
         }
 
         public async Task GenerateAsync(
-            TemplateDataInfo templateData, 
             string destinationFolder, 
             ISolutionTemplateInfo solutionTemplateInfo,
             WizardConfiguration wizardConfiguration)
@@ -62,7 +61,14 @@ namespace LogoFX.Tools.TemplateGenerator
             {
                 solutionTemplateInfo = RebuildForMultisolution(definitionsGenerator, solutionTemplateInfo);
             }
-            definitionsGenerator.CreateDefinitions(templateData, solutionTemplateInfo);
+
+            definitionsGenerator.CreateDefinitions(new TemplateDataInfo
+            {
+                DefaultName = wizardConfiguration.DefaultName,
+                Description = wizardConfiguration.Description,
+                Name = wizardConfiguration.Name
+            }, solutionTemplateInfo);
+
             CreatePrepropcess(destinationFolder);
 
             var solutionFolder = destinationFolder;

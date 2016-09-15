@@ -13,6 +13,12 @@ namespace LogoFX.Tools.TemplateGenerator
 
         public bool FakeOption { get; set; }
 
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        public string DefaultName { get; set; }
+
         public List<SolutionInfo> Solutions { get; set; }
     }
 

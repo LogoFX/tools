@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalon.Windows.Dialogs;
 using LogoFX.Tools.TemplateGenerator.Contracts;
@@ -7,16 +8,19 @@ using Microsoft.Expression.Interactivity.Core;
 
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {
-    public class SolutionConfigurationViewModel : ObjectViewModel<ISolutionConfiguration>
+    public sealed class SolutionConfigurationViewModel : CanGenerateViewModel<ISolutionConfiguration>
     {
+        #region Fields
+
         public SolutionConfigurationViewModel(ISolutionConfiguration model) 
             : base(model)
         {
+            DestinationPath = model.DestinationPath;
         }
 
-        public event EventHandler DestinationPathChanged = delegate { };
+        #endregion
 
-        public event EventHandler CanGenerateUpdated = delegate { };
+        #region Commands
 
         private ICommand _browseDestinationFolderCommand;
 
@@ -46,93 +50,189 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             }
         }
 
+        #endregion
+
+        #region Public Properties
+
         public string SolutionFileName => Model.FileName;
 
+        private string _destinationPath;
         public string DestinationPath
         {
-            get { return Model.DestinationPath; }
-            set
+            get { return _destinationPath; }
+            private set
             {
-                if (value == Model.DestinationPath)
+                if (value == _destinationPath)
                 {
                     return;
                 }
 
+                _destinationPath = value;
                 Model.DestinationPath = value;
                 NotifyOfPropertyChange();
-                DestinationPathChanged(this, EventArgs.Empty);
-                CanGenerateUpdated(this, EventArgs.Empty);
+                UpdateWizardConfiguration();
             }
         }
 
-        public string Name
+        private WizardConfigurationViewModel _wizardConfiguration;
+
+        public WizardConfigurationViewModel WizardConfiguration
         {
-            get { return Model.Name; }
-            set
+            get { return _wizardConfiguration; }
+            private set
             {
-                if (value == Model.Name)
+                if (_wizardConfiguration == value)
                 {
                     return;
                 }
 
-                Model.Name = value;
-                NotifyOfPropertyChange();
-                CanGenerateUpdated(this, EventArgs.Empty);
-            }
-        }
-
-        public string Description
-        {
-            get { return Model.Description; }
-            set
-            {
-                if (value == Model.Description)
+                if (_wizardConfiguration != null)
                 {
-                    return;
+                    _wizardConfiguration.CanGenerateUpdated -= CanGenerateChanged;
                 }
 
-                Model.Description = value;
-                NotifyOfPropertyChange();
-            }
-        }
+                _wizardConfiguration = value;
 
-        public string DefaultName
-        {
-            get { return Model.DefaultName; }
-            set
-            {
-                if (value == Model.DefaultName)
+                if (_wizardConfiguration != null)
                 {
-                    return;
+                    _wizardConfiguration.CanGenerateUpdated += CanGenerateChanged;
                 }
 
-                Model.DefaultName = value;
                 NotifyOfPropertyChange();
-                CanGenerateUpdated(this, EventArgs.Empty);
+
+                OnCanGenerateUpdated();
             }
         }
 
-        public bool CanGenerate
+        private void CanGenerateChanged(object sender, EventArgs e)
+        {
+            OnCanGenerateUpdated();
+        }
+
+        public bool IsMultisolution
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(DestinationPath))
+                if (WizardConfiguration == null)
                 {
                     return false;
                 }
 
-                if (string.IsNullOrWhiteSpace(Name))
-                {
-                    return false;
-                }
-
-                if (string.IsNullOrWhiteSpace(DefaultName))
-                {
-                    return false;
-                }
-
-                return true;
+                return WizardConfiguration.IsMultisolution;
             }
         }
+
+        private bool _isBusy;
+
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            private set
+            {
+                if (_isBusy == value)
+                {
+                    return;
+                }
+
+                _isBusy = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        public async Task MakeMultiSolutionAsync()
+        {
+            var name = Path.GetFileNameWithoutExtension(SolutionFileName);
+
+            WizardConfiguration.Model.Solutions.Add(new SolutionInfo
+            {
+                Caption = name,
+                IconName = string.Empty,
+                Name = name
+            });
+
+            await SaveWizardConfigurationAsync();
+
+            NotifyOfPropertyChange(() => IsMultisolution);
+        }
+
+        public void MakeSingleSolution()
+        {
+            WizardConfiguration.Model.Solutions.Clear();
+
+            NotifyOfPropertyChange(() => IsMultisolution);
+        }
+
+        public async Task SaveWizardConfigurationAsync()
+        {
+            var destinationPath = DestinationPath;
+
+            if (!Directory.Exists(destinationPath))
+            {
+                Directory.CreateDirectory(destinationPath);
+            }
+
+            WizardConfiguration wizardConfiguration = WizardConfiguration.Model;
+            var fileName = WizardConfigurator.GetWizardConfigurationFileName(destinationPath);
+            await WizardConfigurator.SaveAsync(fileName, wizardConfiguration);
+        }
+
+        #endregion
+
+        #region Private Members
+
+        private async void UpdateWizardConfiguration()
+        {
+            if (string.IsNullOrEmpty(DestinationPath))
+            {
+                WizardConfiguration = null;
+                return;
+            }
+
+            IsBusy = true;
+
+            try
+            {
+                var wizardConfiguration = await UpdateWizardConfigurationAsync();
+                WizardConfiguration = new WizardConfigurationViewModel(wizardConfiguration);
+            }
+
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private async Task<WizardConfiguration> UpdateWizardConfigurationAsync()
+        {
+            WizardConfiguration wizardConfiguration;
+            var fileName = WizardConfigurator.GetWizardConfigurationFileName(DestinationPath);
+
+            if (!File.Exists(fileName))
+            {
+                wizardConfiguration = new WizardConfiguration();
+            }
+            else
+            {
+                wizardConfiguration = await WizardConfigurator.LoadAsync(fileName);
+            }
+
+            return wizardConfiguration;
+        }
+
+        #endregion
+
+        #region Overrides
+
+        protected override bool GetCanGenerate()
+        {
+            //return !string.IsNullOrWhiteSpace(DestinationPath);
+            return WizardConfiguration != null && WizardConfiguration.CanGenerate;
+        }
+
+        #endregion
     }
 }
