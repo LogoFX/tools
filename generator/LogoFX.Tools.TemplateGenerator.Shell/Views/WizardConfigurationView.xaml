@@ -23,12 +23,15 @@
                 <RowDefinition Height="40" />
                 <RowDefinition Height="40" />
                 <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="5" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0"
@@ -57,6 +60,28 @@
                      Grid.Column="2"
                      VerticalAlignment="Center"
                      Text="{Binding Path=DefaultName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBlock Grid.Row="3"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Text="Solution Wizard File:" />
+            <TextBox Grid.Row="3"
+                 Grid.Column="2"
+                 VerticalAlignment="Center"
+                 IsReadOnly="True"
+                 Text="{Binding Path=CodeFileName, Mode=OneWay}" />
+            <Button Grid.Row="3"
+                    Grid.Column="4"
+                    Content="..."
+                    ToolTip="Browse for solution wizard code file."
+                    Width="20"
+                    VerticalAlignment="Center">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:InvokeCommandAction Command="{Binding Path=BrowseCodeFileCommand, Mode=OneTime}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
         </Grid>
 
         <Grid Grid.Row="1">
@@ -80,72 +105,74 @@
                    Margin="5"
                    Text="Solution Aliaces:" />
 
-        <ItemsControl Grid.Row="3"
-                      ItemsSource="{Binding Path=Model.Solutions}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="Blue"
+        <ScrollViewer Grid.Row="3"
+                      VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Path=Model.Solutions}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Blue"
                             BorderThickness="1"
                             Margin="5"
                             Padding="5">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="32" />
-                                <RowDefinition Height="32" />
-                                <RowDefinition Height="32" />
-                            </Grid.RowDefinitions>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="32" />
+                                    <RowDefinition Height="32" />
+                                    <RowDefinition Height="32" />
+                                </Grid.RowDefinitions>
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="ColumnKey" />
-                                <ColumnDefinition Width="5" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="ColumnKey" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
 
-                            <!--Name-->
-                            <TextBlock Grid.Row="0"
+                                <!--Name-->
+                                <TextBlock Grid.Row="0"
                                    Grid.Column="0"
                                    Grid.ColumnSpan="3" 
                                    FontSize="16"
                                    VerticalAlignment="Center"
                                    Text="{Binding Path=Name, Mode=OneWay}"/>
 
-                            <!--Caption-->
-                            <TextBlock Grid.Row="1"
+                                <!--Caption-->
+                                <TextBlock Grid.Row="1"
                                    Grid.Column="0"
                                    VerticalAlignment="Center"
                                    Text="Solution Caption in Wizard:"/>
-                            <TextBox Grid.Row="1"
+                                <TextBox Grid.Row="1"
                                  Grid.Column="2"
                                  Text="{Binding Path=Caption, Mode=TwoWay}"
                                  VerticalAlignment="Center" />
 
-                            <!--Icon-->
-                            <TextBlock Grid.Row="2"
+                                <!--Icon-->
+                                <TextBlock Grid.Row="2"
                                    Grid.Column="0"
                                    VerticalAlignment="Center"
                                    Text="Solution Icon in Wizard:"/>
-                            <TextBox Grid.Row="2"
+                                <TextBox Grid.Row="2"
                                  Grid.Column="2"
                                  Text="{Binding Path=IconName, Mode=TwoWay}"
                                  VerticalAlignment="Center" />
 
-                            <Button Grid.Row="2"
+                                <Button Grid.Row="2"
                                 Grid.Column="3"
                                 Content="..."
                                 ToolTip="Browse for destination folder."
                                 Width="20"
                                 VerticalAlignment="Center">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="Click">
-                                        <i:InvokeCommandAction Command="{Binding Path=BrowseDestinationFolderCommand, Mode=OneTime}" />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </Button>
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <i:InvokeCommandAction Command="{Binding Path=BrowseDestinationFolderCommand, Mode=OneTime}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Button>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </UserControl>

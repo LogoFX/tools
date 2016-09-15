@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WizardConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <TestOption>false</TestOption>
-  <FakeOption>false</FakeOption>
+  <TestOption>true</TestOption>
+  <FakeOption>true</FakeOption>
+  <Name>LogoFX Application</Name>
+  <Description>LogoFX Application Wizard</Description>
+  <DefaultName>LogoFX</DefaultName>
+  <CodeFileName>C:\Projects\LogoUI\LogoFX\tools\src\LogoFX.Tools.Templates.Wizard\WizardSolutionWizard.cs</CodeFileName>
   <Solutions>
     <SolutionInfo>
       <Name>Specifications</Name>
-      <Caption>Specifications</Caption>
+      <Caption>WPF Desktop Application</Caption>
       <IconName />
     </SolutionInfo>
   </Solutions>

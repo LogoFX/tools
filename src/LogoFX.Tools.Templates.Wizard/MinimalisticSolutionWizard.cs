@@ -1,4 +1,5 @@
-﻿using LogoFX.Tools.TemplateGenerator;
+using System.Collections.Generic;
+using LogoFX.Tools.TemplateGenerator;
 
 namespace LogoFX.Tools.Templates.Wizard
 {
@@ -6,12 +7,16 @@ namespace LogoFX.Tools.Templates.Wizard
     {
         protected override string GetTitle()
         {
-            return "New LogoFX WPF Simple Application";
+        return "New Simple WPF Application";
         }
 
         protected override WizardConfiguration GetWizardConfiguration()
         {
-            return new WizardConfiguration();
+            return new WizardConfiguration
+            {
+                FakeOption=false,
+                TestOption=false,
+            };
         }
     }
 }

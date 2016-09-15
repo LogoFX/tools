@@ -9,76 +9,74 @@
   </TemplateData>
   <TemplateContent>
     <ProjectCollection>
-      <SolutionFolder Name="Specifications" CreateOnDisk="false">
-        <SolutionFolder Name="App" CreateOnDisk="false">
-          <SolutionFolder Name="Client" CreateOnDisk="false">
-            <SolutionFolder Name="Presentation" CreateOnDisk="false">
-              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Presentation.Shared">Specifications\Samples.Specifications.Client.Presentation.Shared\MyTemplate.vstemplate</ProjectTemplateLink>
-              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Presentation.Shell">Specifications\Samples.Specifications.Client.Presentation.Shell\MyTemplate.vstemplate</ProjectTemplateLink>
-            </SolutionFolder>
-            <SolutionFolder Name="Model" CreateOnDisk="false">
-              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Model.Contracts">Specifications\Samples.Client.Model.Contracts\MyTemplate.vstemplate</ProjectTemplateLink>
-              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Model.Shared">Specifications\Samples.Client.Model.Shared\MyTemplate.vstemplate</ProjectTemplateLink>
-              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Model">Specifications\Samples.Client.Model\MyTemplate.vstemplate</ProjectTemplateLink>
-            </SolutionFolder>
-            <SolutionFolder Name="Data" CreateOnDisk="false">
-              <SolutionFolder Name="Contracts" CreateOnDisk="false">
-                <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Contracts.Dto">Specifications\Samples.Client.Data.Contracts.Dto\MyTemplate.vstemplate</ProjectTemplateLink>
-                <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Contracts.Providers">Specifications\Samples.Client.Data.Contracts.Providers\MyTemplate.vstemplate</ProjectTemplateLink>
-              </SolutionFolder>
-              <SolutionFolder Name="Fake" CreateOnDisk="false">
-                <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Fake.Containers">Specifications\Samples.Specifications.Client.Data.Fake.Containers\MyTemplate.vstemplate</ProjectTemplateLink>
-                <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Fake.ProviderBuilders">Specifications\Samples.Specifications.Client.Data.Fake.ProviderBuilders\MyTemplate.vstemplate</ProjectTemplateLink>
-                <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Fake.Providers">Specifications\Samples.Specifications.Client.Data.Fake.Providers\MyTemplate.vstemplate</ProjectTemplateLink>
-                <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Fake.ProviderBuilders.Setup">Specifications\Samples.Specifications.Client.Data.Fake.ProviderBuilders.Setup\MyTemplate.vstemplate</ProjectTemplateLink>
-              </SolutionFolder>
-              <SolutionFolder Name="Real" CreateOnDisk="false">
-                <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Real.Providers">Specifications\Samples.Specifications.Client.Data.Real.Providers\MyTemplate.vstemplate</ProjectTemplateLink>
-              </SolutionFolder>
-            </SolutionFolder>
-            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Launcher">Specifications\Samples.Specifications.Client.Launcher\MyTemplate.vstemplate</ProjectTemplateLink>
-            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Launcher.Shared">Specifications\Samples.Specifications.Client.Launcher.Shared\MyTemplate.vstemplate</ProjectTemplateLink>
+      <SolutionFolder Name="App" CreateOnDisk="false">
+        <SolutionFolder Name="Client" CreateOnDisk="false">
+          <SolutionFolder Name="Presentation" CreateOnDisk="false">
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Presentation.Shared">Samples.Specifications.Client.Presentation.Shared\MyTemplate.vstemplate</ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Presentation.Shell">Samples.Specifications.Client.Presentation.Shell\MyTemplate.vstemplate</ProjectTemplateLink>
           </SolutionFolder>
-        </SolutionFolder>
-        <SolutionFolder Name="Tests" CreateOnDisk="false">
-          <SolutionFolder Name="Acceptance" CreateOnDisk="false">
-            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Steps.Adapters">Specifications\Samples.Specifications.Tests.Acceptance.Steps.Adapters\MyTemplate.vstemplate</ProjectTemplateLink>
-            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Specs">Specifications\Samples.Specifications.Tests.Acceptance.Specs\MyTemplate.vstemplate</ProjectTemplateLink>
-          </SolutionFolder>
-          <SolutionFolder Name="EndToEnd" CreateOnDisk="false">
-            <SolutionFolder Name="Infra" CreateOnDisk="false">
-              <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.EndToEnd.Infra.Fake">Specifications\Samples.Specifications.Tests.EndToEnd.Infra.Fake\MyTemplate.vstemplate</ProjectTemplateLink>
-              <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.EndToEnd.Infra.Launcher">Specifications\Samples.Specifications.Tests.EndToEnd.Infra.Launcher\MyTemplate.vstemplate</ProjectTemplateLink>
-              <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.EndToEnd.Infra.Providers">Specifications\Samples.Specifications.Tests.EndToEnd.Infra.Providers\MyTemplate.vstemplate</ProjectTemplateLink>
-              <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.EndToEnd.Infra.Real">Specifications\Samples.Specifications.Tests.EndToEnd.Infra.Real\MyTemplate.vstemplate</ProjectTemplateLink>
-            </SolutionFolder>
-            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.EndToEnd.Domain">Specifications\Samples.Specifications.Tests.EndToEnd.Domain\MyTemplate.vstemplate</ProjectTemplateLink>
-          </SolutionFolder>
-          <SolutionFolder Name="Integration" CreateOnDisk="false">
-            <SolutionFolder Name="Infra" CreateOnDisk="false">
-              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Tests.Integration.Infra.Core">Specifications\Samples.Specifications.Client.Tests.Integration.Infra.Core\MyTemplate.vstemplate</ProjectTemplateLink>
-              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Tests.Integration.Infra.Shared">Specifications\Samples.Specifications.Client.Tests.Integration.Infra.Shared\MyTemplate.vstemplate</ProjectTemplateLink>
-              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Tests.Integration.Infra">Specifications\Samples.Specifications.Client.Tests.Integration.Infra\MyTemplate.vstemplate</ProjectTemplateLink>
-            </SolutionFolder>
-            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Tests.Integration.Domain">Specifications\Samples.Specifications.Client.Tests.Integration.Domain\MyTemplate.vstemplate</ProjectTemplateLink>
-            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Tests.Integration">Specifications\Samples.Specifications.Client.Tests.Integration\MyTemplate.vstemplate</ProjectTemplateLink>
-          </SolutionFolder>
-          <SolutionFolder Name="Domain" CreateOnDisk="false">
-            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Domain">Specifications\Samples.Specifications.Tests.Domain\MyTemplate.vstemplate</ProjectTemplateLink>
+          <SolutionFolder Name="Model" CreateOnDisk="false">
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Model.Contracts">Samples.Client.Model.Contracts\MyTemplate.vstemplate</ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Model.Shared">Samples.Client.Model.Shared\MyTemplate.vstemplate</ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Model">Samples.Client.Model\MyTemplate.vstemplate</ProjectTemplateLink>
           </SolutionFolder>
           <SolutionFolder Name="Data" CreateOnDisk="false">
-            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Data">Specifications\Samples.Specifications.Tests.Data\MyTemplate.vstemplate</ProjectTemplateLink>
+            <SolutionFolder Name="Contracts" CreateOnDisk="false">
+              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Contracts.Dto">Samples.Client.Data.Contracts.Dto\MyTemplate.vstemplate</ProjectTemplateLink>
+              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Contracts.Providers">Samples.Client.Data.Contracts.Providers\MyTemplate.vstemplate</ProjectTemplateLink>
+            </SolutionFolder>
+            <SolutionFolder Name="Fake" CreateOnDisk="false">
+              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Fake.Containers">Samples.Specifications.Client.Data.Fake.Containers\MyTemplate.vstemplate</ProjectTemplateLink>
+              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Fake.ProviderBuilders">Samples.Specifications.Client.Data.Fake.ProviderBuilders\MyTemplate.vstemplate</ProjectTemplateLink>
+              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Fake.Providers">Samples.Specifications.Client.Data.Fake.Providers\MyTemplate.vstemplate</ProjectTemplateLink>
+              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Fake.ProviderBuilders.Setup">Samples.Specifications.Client.Data.Fake.ProviderBuilders.Setup\MyTemplate.vstemplate</ProjectTemplateLink>
+            </SolutionFolder>
+            <SolutionFolder Name="Real" CreateOnDisk="false">
+              <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Data.Real.Providers">Samples.Specifications.Client.Data.Real.Providers\MyTemplate.vstemplate</ProjectTemplateLink>
+            </SolutionFolder>
           </SolutionFolder>
-          <SolutionFolder Name="Steps" CreateOnDisk="false">
-            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Steps">Specifications\Samples.Specifications.Tests.Steps\MyTemplate.vstemplate</ProjectTemplateLink>
+          <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Launcher">Samples.Specifications.Client.Launcher\MyTemplate.vstemplate</ProjectTemplateLink>
+          <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Launcher.Shared">Samples.Specifications.Client.Launcher.Shared\MyTemplate.vstemplate</ProjectTemplateLink>
+        </SolutionFolder>
+      </SolutionFolder>
+      <SolutionFolder Name="Tests" CreateOnDisk="false">
+        <SolutionFolder Name="Acceptance" CreateOnDisk="false">
+          <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Steps.Adapters">Samples.Specifications.Tests.Acceptance.Steps.Adapters\MyTemplate.vstemplate</ProjectTemplateLink>
+          <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Acceptance.Specs">Samples.Specifications.Tests.Acceptance.Specs\MyTemplate.vstemplate</ProjectTemplateLink>
+        </SolutionFolder>
+        <SolutionFolder Name="EndToEnd" CreateOnDisk="false">
+          <SolutionFolder Name="Infra" CreateOnDisk="false">
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.EndToEnd.Infra.Fake">Samples.Specifications.Tests.EndToEnd.Infra.Fake\MyTemplate.vstemplate</ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.EndToEnd.Infra.Launcher">Samples.Specifications.Tests.EndToEnd.Infra.Launcher\MyTemplate.vstemplate</ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.EndToEnd.Infra.Providers">Samples.Specifications.Tests.EndToEnd.Infra.Providers\MyTemplate.vstemplate</ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.EndToEnd.Infra.Real">Samples.Specifications.Tests.EndToEnd.Infra.Real\MyTemplate.vstemplate</ProjectTemplateLink>
           </SolutionFolder>
+          <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.EndToEnd.Domain">Samples.Specifications.Tests.EndToEnd.Domain\MyTemplate.vstemplate</ProjectTemplateLink>
+        </SolutionFolder>
+        <SolutionFolder Name="Integration" CreateOnDisk="false">
+          <SolutionFolder Name="Infra" CreateOnDisk="false">
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Tests.Integration.Infra.Core">Samples.Specifications.Client.Tests.Integration.Infra.Core\MyTemplate.vstemplate</ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Tests.Integration.Infra.Shared">Samples.Specifications.Client.Tests.Integration.Infra.Shared\MyTemplate.vstemplate</ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Tests.Integration.Infra">Samples.Specifications.Client.Tests.Integration.Infra\MyTemplate.vstemplate</ProjectTemplateLink>
+          </SolutionFolder>
+          <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Tests.Integration.Domain">Samples.Specifications.Client.Tests.Integration.Domain\MyTemplate.vstemplate</ProjectTemplateLink>
+          <ProjectTemplateLink ProjectName="$safeprojectname$.Client.Tests.Integration">Samples.Specifications.Client.Tests.Integration\MyTemplate.vstemplate</ProjectTemplateLink>
+        </SolutionFolder>
+        <SolutionFolder Name="Domain" CreateOnDisk="false">
+          <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Domain">Samples.Specifications.Tests.Domain\MyTemplate.vstemplate</ProjectTemplateLink>
+        </SolutionFolder>
+        <SolutionFolder Name="Data" CreateOnDisk="false">
+          <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Data">Samples.Specifications.Tests.Data\MyTemplate.vstemplate</ProjectTemplateLink>
+        </SolutionFolder>
+        <SolutionFolder Name="Steps" CreateOnDisk="false">
+          <ProjectTemplateLink ProjectName="$safeprojectname$.Tests.Steps">Samples.Specifications.Tests.Steps\MyTemplate.vstemplate</ProjectTemplateLink>
         </SolutionFolder>
       </SolutionFolder>
     </ProjectCollection>
   </TemplateContent>
   <WizardExtension>
     <Assembly>LogoFX.Tools.Templates.Wizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
-    <FullClassName>LogoFX.Tools.Templates.Wizard.WizardSolutionWizard</FullClassName>
+    <FullClassName>LogoFX.Tools.Templates.Wizard.SolutionWizard</FullClassName>
   </WizardExtension>
   <WizardExtension>
     <Assembly>TemplateBuilder, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null</Assembly>

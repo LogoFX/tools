@@ -4,5 +4,6 @@
   <FakeOption>false</FakeOption>
   <Name>Simple WPF Application</Name>
   <DefaultName>Simple</DefaultName>
+  <CodeFileName>C:\Projects\LogoUI\LogoFX\tools\src\LogoFX.Tools.Templates.Wizard\MinimalisticSolutionWizard.cs</CodeFileName>
   <Solutions />
 </WizardConfiguration>

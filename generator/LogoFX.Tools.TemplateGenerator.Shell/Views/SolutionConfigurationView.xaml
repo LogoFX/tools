@@ -16,7 +16,7 @@
             <RowDefinition Height="40" />
             <RowDefinition Height="40" />
             <RowDefinition Height="32" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -73,6 +73,8 @@
 
         <controls:BusyIndicator Grid.Row="0"
                                 Grid.RowSpan="4"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="7"
                                 IsBusy="{Binding Path=IsBusy, Mode=OneWay}"/>
     </Grid>
 </UserControl>

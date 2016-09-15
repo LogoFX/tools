@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
@@ -69,6 +70,7 @@ namespace LogoFX.Tools.TemplateGenerator
                 Name = wizardConfiguration.Name
             }, solutionTemplateInfo);
 
+            CreateWizardSolutionFile(wizardConfiguration);
             CreatePrepropcess(destinationFolder);
 
             var solutionFolder = destinationFolder;
@@ -116,6 +118,58 @@ namespace LogoFX.Tools.TemplateGenerator
             }
 
             return newSolutionInfo;
+        }
+
+        private string BoolToString(bool value)
+        {
+            return value ? "true" : "false";
+        }
+
+        private void CreateWizardSolutionFile(WizardConfiguration wizardConfiguration)
+        {
+            var fileName = wizardConfiguration.CodeFileName;
+            var name = Path.GetFileNameWithoutExtension(fileName);
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("using System.Collections.Generic;");
+            sb.AppendLine("using LogoFX.Tools.TemplateGenerator;");
+            sb.AppendLine();
+            sb.AppendLine("namespace LogoFX.Tools.Templates.Wizard");
+            sb.AppendLine("{");
+            sb.AppendLine($"    public sealed class {name} : SolutionWizard");
+            sb.AppendLine("    {");
+            sb.AppendLine("        protected override string GetTitle()");
+            sb.AppendLine("        {");
+            sb.AppendLine($"        return \"New {wizardConfiguration.Name}\";");
+            sb.AppendLine("        }");
+            sb.AppendLine();
+            sb.AppendLine("        protected override WizardConfiguration GetWizardConfiguration()");
+            sb.AppendLine("        {");
+            sb.AppendLine("            return new WizardConfiguration");
+            sb.AppendLine("            {");
+            sb.AppendLine($"                FakeOption={BoolToString(wizardConfiguration.FakeOption)},");
+            sb.AppendLine($"                TestOption={BoolToString(wizardConfiguration.TestOption)},");
+            if (wizardConfiguration.Solutions.Count > 0)
+            {
+                sb.AppendLine("                Solutions = new List<SolutionInfo>");
+                sb.AppendLine("                {");
+                foreach (var solution in wizardConfiguration.Solutions)
+                {
+                    sb.AppendLine("                    new SolutionInfo");
+                    sb.AppendLine("                    {");
+                    sb.AppendLine($"                        Name = \"{solution.Name}\",");
+                    sb.AppendLine($"                        Caption = \"{solution.Caption}\",");
+                    sb.AppendLine($"                        IconName = \"{solution.IconName}\",");
+                    sb.AppendLine("                    },");
+                }
+                sb.AppendLine("                },");
+            }
+            sb.AppendLine("            };");
+            sb.AppendLine("        }");
+            sb.AppendLine("    }");
+            sb.AppendLine("}");
+
+            File.WriteAllText(fileName, sb.ToString());
         }
 
         private void CreatePrepropcess(string destinationFolder)

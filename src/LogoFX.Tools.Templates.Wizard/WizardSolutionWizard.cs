@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using LogoFX.Tools.TemplateGenerator;
 
 namespace LogoFX.Tools.Templates.Wizard
@@ -7,24 +7,24 @@ namespace LogoFX.Tools.Templates.Wizard
     {
         protected override string GetTitle()
         {
-            return "New LogoFX Application";
+        return "New LogoFX Application";
         }
 
         protected override WizardConfiguration GetWizardConfiguration()
         {
             return new WizardConfiguration
             {
-                FakeOption = true,
-                TestOption = true,
+                FakeOption=true,
+                TestOption=true,
                 Solutions = new List<SolutionInfo>
                 {
                     new SolutionInfo
                     {
                         Name = "Specifications",
                         Caption = "WPF Desktop Application",
-                        IconName = ""
-                    }
-                }
+                        IconName = "",
+                    },
+                },
             };
         }
     }
