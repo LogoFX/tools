@@ -49,8 +49,6 @@ namespace LogoFX.Tools.TemplateGenerator
                 solutionTemplateInfo = await GetInfoAsync();
             }
 
-            CleanDestination(destinationFolder, wizardConfiguration);
-
             if (!Directory.Exists(destinationFolder))
             {
                 Directory.CreateDirectory(destinationFolder);
@@ -63,11 +61,13 @@ namespace LogoFX.Tools.TemplateGenerator
                 solutionTemplateInfo = RebuildForMultisolution(definitionsGenerator, solutionTemplateInfo);
             }
 
+            CleanDestination(destinationFolder, wizardConfiguration);
             definitionsGenerator.CreateDefinitions(new TemplateDataInfo
             {
                 DefaultName = wizardConfiguration.DefaultName,
                 Description = wizardConfiguration.Description,
-                Name = wizardConfiguration.Name
+                Name = wizardConfiguration.Name,
+                WizardClassName = Path.GetFileNameWithoutExtension(wizardConfiguration.CodeFileName)
             }, solutionTemplateInfo);
 
             CreateWizardSolutionFile(wizardConfiguration);

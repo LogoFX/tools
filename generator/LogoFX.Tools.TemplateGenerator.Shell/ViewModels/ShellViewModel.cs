@@ -260,13 +260,13 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             if (solutionConfiguration == null)
             {
                 solutionConfiguration = _configuration.CreateNewSolutionConfiguration(solutionFileName);
-                //_dataService.SaveConfiguration(_configuration);
                 await SaveAsync(false);
             }
-            ActiveConfiguration = new SolutionConfigurationViewModel(solutionConfiguration);
-
-            _solutionTemplateGenerator = new SolutionTemplateGenerator(solutionFileName, IsMultisolution);
-            SolutionTemplateInfo = await _solutionTemplateGenerator.GetInfoAsync();
+            ActiveConfiguration = new SolutionConfigurationViewModel(solutionConfiguration, async wc =>
+            {
+                _solutionTemplateGenerator = new SolutionTemplateGenerator(solutionFileName, IsMultisolution);
+                SolutionTemplateInfo = await _solutionTemplateGenerator.GetInfoAsync();
+            });
         }
 
         private async Task SaveAsync(bool saveWizardConfiguration)

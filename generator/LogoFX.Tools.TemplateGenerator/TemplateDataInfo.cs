@@ -18,5 +18,7 @@ namespace LogoFX.Tools.TemplateGenerator
         public string DefaultName { get; set; }
         public int SortOrder { get; set; }
         public string Icon { get; set; }
+
+        public string WizardClassName { get; set; }
     }
 }

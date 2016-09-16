@@ -12,9 +12,16 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
     {
         #region Fields
 
-        public SolutionConfigurationViewModel(ISolutionConfiguration model) 
+        private readonly Action<WizardConfiguration> _wizardConfigurationUpdatedAction;
+        
+        #endregion
+
+        #region Constructors
+
+        public SolutionConfigurationViewModel(ISolutionConfiguration model, Action<WizardConfiguration> wizardConfigurationUpdatedAction)
             : base(model)
         {
+            _wizardConfigurationUpdatedAction = wizardConfigurationUpdatedAction;
             DestinationPath = model.DestinationPath;
         }
 
@@ -198,6 +205,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             {
                 var wizardConfiguration = await UpdateWizardConfigurationAsync();
                 WizardConfiguration = new WizardConfigurationViewModel(wizardConfiguration);
+                _wizardConfigurationUpdatedAction?.Invoke(wizardConfiguration);
             }
 
             finally

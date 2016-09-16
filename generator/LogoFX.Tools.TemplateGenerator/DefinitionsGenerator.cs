@@ -1,4 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using LogoFX.Tools.TemplateGenerator.Contracts;
@@ -35,10 +39,71 @@ namespace LogoFX.Tools.TemplateGenerator
             }
 
             var solutionTemplateInfo = new SolutionTemplateInfo();
-
-            var element = doc.Element("VSTemplate");
-
+            var projectCollection = GetProjectCollection(doc);
+            foreach (var item in projectCollection)
+            {
+                solutionTemplateInfo.Items.Add(item);
+            }
             return solutionTemplateInfo;
+        }
+
+        private XElement GetContentTemplateElement(XDocument doc)
+        {
+            var vsTemplateElement = doc.Element(Ns + "VSTemplate");
+            var templateContentElement = vsTemplateElement.Element(Ns + "TemplateContent");
+
+            return templateContentElement;
+        }
+
+        private XElement GetProjectCollectionElement(XElement templateContentElement)
+        {
+            var result = templateContentElement.Element(Ns + "ProjectCollection");
+            return result;
+        }
+
+        private IEnumerable<SolutionItemTemplateInfo> GetProjectCollection(XDocument doc)
+        {
+            var templateContentElement = GetContentTemplateElement(doc);
+            var projectCollectionElement = GetProjectCollectionElement(templateContentElement);
+            return GetSolutionItems(projectCollectionElement);
+        }
+
+        private IEnumerable<SolutionItemTemplateInfo> GetSolutionItems(XElement element)
+        {
+            foreach (var e in element.Elements())
+            {
+                switch (e.Name.LocalName)
+                {
+                    case "SolutionFolder":
+                        yield return GetSolutionFolder(e);
+                        break;
+                    case "ProjectTemplateLink":
+                        yield return GetProject(e);
+                        break;
+                    default:
+                        throw new ArgumentException($"Unknown XML elemnt '{element.Name.LocalName}'");
+                }
+            }
+        }
+
+        private SolutionFolderTemplateInfo GetSolutionFolder(XElement folderElement)
+        {
+            var name = folderElement.Attribute("Name").Value;
+            SolutionFolderTemplateInfo result = new SolutionFolderTemplateInfo(Guid.Empty, name);
+            foreach (var item in GetSolutionItems(folderElement))
+            {
+                result.Items.Add(item);
+            }
+            return result;
+        }
+
+        private ProjectTemplateInfo GetProject(XElement projectElement)
+        {
+            var name = projectElement.Attribute("ProjectName").Value;
+            ProjectTemplateInfo result = new ProjectTemplateInfo(Guid.Empty, name);
+            result.FileName = projectElement.Value;
+            result.NameWithoutRoot = name.Substring(name.LastIndexOf("$.", StringComparison.Ordinal) + 2);
+            return result;
         }
 
         public void CreateDefinitions(TemplateDataInfo templateData, ISolutionTemplateInfo solutionTemplateInfo)
@@ -60,7 +125,7 @@ namespace LogoFX.Tools.TemplateGenerator
                     new XElement(Ns + "TemplateContent", projectCollection),
                     MakeWizardExtension(
                         "LogoFX.Tools.Templates.Wizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-                        "LogoFX.Tools.Templates.Wizard.SolutionWizard"),
+                        $"LogoFX.Tools.Templates.Wizard.{templateData.WizardClassName}"),
                     MakeWizardExtension(
                         "TemplateBuilder, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null",
                         "TemplateBuilder.SolutionWizard")
