@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:controls="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.Controls"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance viewModels:WizardConfigurationViewModel}"
              d:DesignHeight="300" 

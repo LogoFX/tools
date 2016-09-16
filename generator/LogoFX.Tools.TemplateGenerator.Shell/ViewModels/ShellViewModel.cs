@@ -99,6 +99,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         private void OnCanGenerateUpdated(object sender, EventArgs e)
         {
             NotifyOfPropertyChange(() => CanGenerate);
+            NotifyOfPropertyChange(() => IsMultisolution);
         }
 
         private ISolutionTemplateInfo _solutionTemplateInfo;
