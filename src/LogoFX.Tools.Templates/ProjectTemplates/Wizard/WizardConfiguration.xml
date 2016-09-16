@@ -12,5 +12,10 @@
       <Caption>WPF Desktop Application</Caption>
       <IconName />
     </SolutionInfo>
+    <SolutionInfo>
+      <Name>Samples.Universal</Name>
+      <Caption>UWP Application</Caption>
+      <IconName />
+    </SolutionInfo>
   </Solutions>
 </WizardConfiguration>

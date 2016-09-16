@@ -238,7 +238,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                     SolutionTemplateInfo,
                     ActiveConfiguration.WizardConfiguration.Model);
 
-                //await ActiveConfiguration.SaveWizardConfigurationAsync();
                 await SaveAsync(true);
 
                 SolutionTemplateInfo = null;
@@ -266,6 +265,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             {
                 _solutionTemplateGenerator = new SolutionTemplateGenerator(solutionFileName, IsMultisolution);
                 SolutionTemplateInfo = await _solutionTemplateGenerator.GetInfoAsync();
+                ActiveConfiguration.AddCurrentSolutionConfiguration();
             });
         }
 

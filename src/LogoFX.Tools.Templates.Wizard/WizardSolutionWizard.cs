@@ -24,6 +24,12 @@ namespace LogoFX.Tools.Templates.Wizard
                         Caption = "WPF Desktop Application",
                         IconName = "",
                     },
+                    new SolutionInfo
+                    {
+                        Name = "Samples.Universal",
+                        Caption = "UWP Application",
+                        IconName = "",
+                    },
                 },
             };
         }

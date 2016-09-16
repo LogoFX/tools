@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalon.Windows.Dialogs;
@@ -152,7 +153,20 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
         public async Task MakeMultiSolutionAsync()
         {
+            AddCurrentSolutionConfiguration();
+            await SaveWizardConfigurationAsync();
+
+            NotifyOfPropertyChange(() => IsMultisolution);
+        }
+
+        public void AddCurrentSolutionConfiguration()
+        {
             var name = Path.GetFileNameWithoutExtension(SolutionFileName);
+
+            if (WizardConfiguration.Model.Solutions.Any(x => x.Name == name))
+            {
+                return;
+            }
 
             WizardConfiguration.Model.Solutions.Add(new SolutionInfo
             {
@@ -161,9 +175,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                 Name = name
             });
 
-            await SaveWizardConfigurationAsync();
-
-            NotifyOfPropertyChange(() => IsMultisolution);
         }
 
         public void MakeSingleSolution()
