@@ -25,46 +25,6 @@ namespace LogoFX.Tools.Templates.Wizard
 
         #endregion
 
-        #region Constructors
-
-        public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
-        {
-            if (runKind != WizardRunKind.AsMultiProject)
-            {
-                return;
-            }
-
-            DTE2 dtE2 = automationObject as DTE2;
-            // ReSharper disable SuspiciousTypeConversion.Global
-            var solution4 = dtE2.Solution as Solution4;
-            if (solution4 != null)
-            {
-                _solution = (Solution4) dtE2.Solution;
-            }
-            // ReSharper restore SuspiciousTypeConversion.Global
-
-            var wizardConfiguration = GetWizardConfiguration();
-            if (!wizardConfiguration.ShowWizardWindow())
-            {
-                return;
-            }
-
-            var projectName = replacementsDictionary["$projectname$"];
-
-            _wizardViewModel = new WizardViewModel(wizardConfiguration);
-            _wizardViewModel.Title = $"{Title} - {projectName}";
-
-            var window = WpfServices.CreateWindow<Views.WizardWindow>(_wizardViewModel);
-            WpfServices.SetWindowOwner(window, dtE2.MainWindow);
-            bool retVal = false;
-            while (!retVal)
-            {
-                retVal = window.ShowDialog() ?? false;
-            }
-        }
-
-        #endregion
-
         #region Public Propeties
 
         public string Title => GetTitle();
@@ -279,6 +239,42 @@ namespace LogoFX.Tools.Templates.Wizard
         #endregion
 
         #region IWizard
+
+        public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
+        {
+            if (runKind != WizardRunKind.AsMultiProject)
+            {
+                return;
+            }
+
+            DTE2 dtE2 = automationObject as DTE2;
+            // ReSharper disable SuspiciousTypeConversion.Global
+            var solution4 = dtE2.Solution as Solution4;
+            if (solution4 != null)
+            {
+                _solution = (Solution4)dtE2.Solution;
+            }
+            // ReSharper restore SuspiciousTypeConversion.Global
+
+            var wizardConfiguration = GetWizardConfiguration();
+            if (!wizardConfiguration.ShowWizardWindow())
+            {
+                return;
+            }
+
+            var projectName = replacementsDictionary["$projectname$"];
+
+            _wizardViewModel = new WizardViewModel(wizardConfiguration);
+            _wizardViewModel.Title = $"{Title} - {projectName}";
+
+            var window = WpfServices.CreateWindow<Views.WizardWindow>(_wizardViewModel);
+            WpfServices.SetWindowOwner(window, dtE2.MainWindow);
+            var retVal = window.ShowDialog() ?? false;
+            if (!retVal)
+            {
+                throw new WizardCancelledException();
+            }
+        }
 
         public bool ShouldAddProjectItem(string filePath)
         {

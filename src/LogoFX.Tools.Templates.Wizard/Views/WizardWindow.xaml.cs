@@ -16,5 +16,10 @@ namespace LogoFX.Tools.Templates.Wizard.Views
         {
             DialogResult = true;
         }
+
+        private void CancelClick(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+        }
     }
 }
