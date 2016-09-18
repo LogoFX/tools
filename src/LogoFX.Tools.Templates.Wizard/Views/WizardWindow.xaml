@@ -95,7 +95,7 @@
 
                 <CheckBox Grid.Row="3"
                           IsEnabled="False"
-                          Content="With Sample"
+                          Content="Support Navigation"
                           VerticalAlignment="Center" />
                 
                 <Border Grid.Row="4"
