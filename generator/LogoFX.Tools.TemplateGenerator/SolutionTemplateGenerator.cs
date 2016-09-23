@@ -140,7 +140,7 @@ namespace LogoFX.Tools.TemplateGenerator
             sb.AppendLine("    {");
             sb.AppendLine("        protected override string GetTitle()");
             sb.AppendLine("        {");
-            sb.AppendLine($"        return \"New {wizardConfiguration.Name}\";");
+            sb.AppendLine($"            return \"New {wizardConfiguration.Name}\";");
             sb.AppendLine("        }");
             sb.AppendLine();
             sb.AppendLine("        protected override WizardConfiguration GetWizardConfiguration()");
