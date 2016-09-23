@@ -16,6 +16,12 @@ namespace LogoFX.Tools.TemplateGenerator
             {
                 FileName = solutionFullName
             };
+
+            if (SolutionConfigurations == null)
+            {
+                SolutionConfigurations = new List<SolutionConfiguration>();
+            }
+
             SolutionConfigurations.Add(solutionConfiguration);
             return solutionConfiguration;
         }

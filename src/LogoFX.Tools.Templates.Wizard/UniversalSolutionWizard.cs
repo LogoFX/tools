@@ -3,17 +3,15 @@ using LogoFX.Tools.TemplateGenerator;
 
 namespace LogoFX.Tools.Templates.Wizard
 {
-    public sealed class WizardSolutionWizard : SolutionWizard
+    public sealed class UniversalSolutionWizard : SolutionWizard
     {
         protected override string GetTitle()
         {
-        return "New LogoFX Application";
+            return "New LogoFX UWP Application";
         }
 
         protected override WizardConfiguration GetWizardConfiguration()
         {
-            return null;
-
             return new WizardConfiguration
             {
                 FakeOption=true,
@@ -22,14 +20,8 @@ namespace LogoFX.Tools.Templates.Wizard
                 {
                     new SolutionInfo
                     {
-                        Name = "Specifications",
-                        Caption = "WPF Desktop Application",
-                        IconName = "",
-                    },
-                    new SolutionInfo
-                    {
                         Name = "Samples.Universal",
-                        Caption = "UWP Application",
+                        Caption = "Samples.Universal",
                         IconName = "",
                     },
                 },

@@ -254,8 +254,16 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         private async Task GetInfoAsync(string solutionFileName)
         {
             _configuration = _dataService.LoadConfiguration();
-            var solutionConfiguration = _configuration.SolutionConfigurations
-                .SingleOrDefault(x => x.FileName == solutionFileName);
+            ISolutionConfiguration solutionConfiguration;
+            if (_configuration.SolutionConfigurations == null)
+            {
+                solutionConfiguration = _configuration.CreateNewSolutionConfiguration(solutionFileName);
+            }
+            else
+            {
+                solutionConfiguration = _configuration.SolutionConfigurations
+                    .SingleOrDefault(x => x.FileName == solutionFileName);
+            }
             if (solutionConfiguration == null)
             {
                 solutionConfiguration = _configuration.CreateNewSolutionConfiguration(solutionFileName);

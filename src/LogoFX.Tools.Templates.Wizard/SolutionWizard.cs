@@ -152,11 +152,19 @@ namespace LogoFX.Tools.Templates.Wizard
         private void SetStartupProject()
         {
             var projects = GetProjects(true);
-            var startupProjectName = projects.First(x => x.Name.EndsWith("Launcher")).Name;
-
-            if (!string.IsNullOrEmpty(startupProjectName))
+            var startupProject = projects.FirstOrDefault(x => x.Name.EndsWith("Launcher"));
+            if (startupProject == null)
             {
-                _solution.Properties.Item("StartupProject").Value = startupProjectName;
+                startupProject = projects.FirstOrDefault(x => x.Name.EndsWith("Shell"));
+            }
+            if (startupProject == null)
+            {
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(startupProject.Name))
+            {
+                _solution.Properties.Item("StartupProject").Value = startupProject.Name;
             }
         }
 
@@ -257,7 +265,8 @@ namespace LogoFX.Tools.Templates.Wizard
             // ReSharper restore SuspiciousTypeConversion.Global
 
             var wizardConfiguration = GetWizardConfiguration();
-            if (!wizardConfiguration.ShowWizardWindow())
+            if (wizardConfiguration == null ||
+                !wizardConfiguration.ShowWizardWindow())
             {
                 return;
             }
