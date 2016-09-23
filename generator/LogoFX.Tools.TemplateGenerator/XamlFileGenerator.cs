@@ -2,12 +2,12 @@ using LogoFX.Tools.TemplateGenerator.Contracts;
 
 namespace LogoFX.Tools.TemplateGenerator
 {
-    internal sealed class CSFileGenerator : ProjectItemTemplateGenerator
+    internal sealed class XamlFileGenerator : ProjectItemTemplateGenerator
     {
         private readonly string _rootNamespace;
         private readonly ISolutionTemplateInfo _solutionTemplateInfo;
 
-        public CSFileGenerator(string fileName, string rootNamespace, ISolutionTemplateInfo solutionTemplateInfo) 
+        public XamlFileGenerator(string fileName, string rootNamespace, ISolutionTemplateInfo solutionTemplateInfo)
             : base(fileName)
         {
             _rootNamespace = rootNamespace;

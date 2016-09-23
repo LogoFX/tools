@@ -61,6 +61,7 @@
     <Compile Include="SolutionTemplateInfo.cs" />
     <Compile Include="TemplateDataInfo.cs" />
     <Compile Include="WizardConfigurator.cs" />
+    <Compile Include="XamlFileGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LogoFX.Tools.TemplateGenerator.snk" />

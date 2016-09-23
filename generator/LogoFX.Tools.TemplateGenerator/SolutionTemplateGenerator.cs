@@ -67,10 +67,15 @@ namespace LogoFX.Tools.TemplateGenerator
                 DefaultName = wizardConfiguration.DefaultName,
                 Description = wizardConfiguration.Description,
                 Name = wizardConfiguration.Name,
-                WizardClassName = Path.GetFileNameWithoutExtension(wizardConfiguration.CodeFileName)
+                WizardClassName = _isMultisolution
+                    ? Path.GetFileNameWithoutExtension(wizardConfiguration.CodeFileName)
+                    : "SolutionWizard"
             }, solutionTemplateInfo);
 
-            CreateWizardSolutionFile(wizardConfiguration);
+            if (_isMultisolution)
+            {
+                CreateWizardSolutionFile(wizardConfiguration);
+            }
             CreatePrepropcess(destinationFolder);
 
             var solutionFolder = destinationFolder;
