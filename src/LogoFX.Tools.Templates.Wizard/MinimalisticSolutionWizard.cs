@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using LogoFX.Tools.TemplateGenerator;
 
 namespace LogoFX.Tools.Templates.Wizard
@@ -12,11 +11,7 @@ namespace LogoFX.Tools.Templates.Wizard
 
         protected override WizardConfiguration GetWizardConfiguration()
         {
-            return new WizardConfiguration
-            {
-                FakeOption=false,
-                TestOption=false,
-            };
+            return null;
         }
     }
 }
