@@ -153,6 +153,8 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
         public async Task MakeMultiSolutionAsync()
         {
+            WizardConfiguration.Model.IsMultisolution = true;
+
             AddCurrentSolutionConfiguration();
             await SaveWizardConfigurationAsync();
 
@@ -174,13 +176,23 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                 IconName = string.Empty,
                 Name = name
             });
-
         }
 
-        public void MakeSingleSolution()
+        public async Task MakeSingleSolutionAsync()
         {
-            WizardConfiguration.Model.Solutions.Clear();
+            var name = Path.GetFileNameWithoutExtension(SolutionFileName);
 
+            foreach (var solution in WizardConfiguration.Model.Solutions.ToList())
+            {
+                if (solution.Name != name)
+                {
+                    WizardConfiguration.Model.Solutions.Remove(solution);
+                }
+            }
+
+            WizardConfiguration.Model.IsMultisolution = false;
+
+            await SaveWizardConfigurationAsync();
             NotifyOfPropertyChange(() => IsMultisolution);
         }
 
@@ -233,6 +245,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             if (!File.Exists(fileName))
             {
                 wizardConfiguration = new WizardConfiguration();
+                await Task.Delay(100);
             }
             else
             {

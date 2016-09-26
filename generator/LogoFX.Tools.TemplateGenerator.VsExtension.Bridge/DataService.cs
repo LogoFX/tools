@@ -60,5 +60,7 @@ namespace LogoFX.Tools.TemplateGenerator.VsExtension.Bridge
                 serializer.Serialize(sw, configuration);
             }
         }
+
+        public bool ShowInTaskbar => false;
     }
 }

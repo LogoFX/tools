@@ -130,6 +130,50 @@ namespace LogoFX.Tools.TemplateGenerator
             return value ? "true" : "false";
         }
 
+        private void Generate_WizardConfiguration_Solutions(StringBuilder sb, IEnumerable<SolutionInfo> solutions)
+        {
+            sb.AppendLine("                Solutions = new List<SolutionInfo>");
+            sb.AppendLine("                {");
+            foreach (var solution in solutions)
+            {
+                sb.AppendLine("                    new SolutionInfo");
+                sb.AppendLine("                    {");
+                sb.AppendLine($"                        Name = \"{solution.Name}\",");
+                sb.AppendLine($"                        Caption = \"{solution.Caption}\",");
+                sb.AppendLine($"                        IconName = \"{solution.IconName}\",");
+                sb.AppendLine("                    },");
+            }
+            sb.AppendLine("                },");
+        }
+
+        private void Generate_WizardConfigurtion(StringBuilder sb, WizardConfiguration wizardConfiguration)
+        {
+            sb.AppendLine("            return new WizardConfiguration");
+            sb.AppendLine("            {");
+            sb.AppendLine($"                FakeOption={BoolToString(wizardConfiguration.FakeOption)},");
+            sb.AppendLine($"                TestOption={BoolToString(wizardConfiguration.TestOption)},");
+            if (wizardConfiguration.Solutions.Count > 0)
+            {
+                Generate_WizardConfiguration_Solutions(sb, wizardConfiguration.Solutions);
+            }
+            sb.AppendLine("            };");
+        }
+
+        private void Generate_GetWizardConfiguration(StringBuilder sb, WizardConfiguration wizardConfiguration)
+        {
+            sb.AppendLine("        protected override WizardConfiguration GetWizardConfiguration()");
+            sb.AppendLine("        {");
+            if (wizardConfiguration.IsMultisolution)
+            {
+                Generate_WizardConfigurtion(sb, wizardConfiguration);
+            }
+            else
+            {
+                sb.AppendLine("        return null;");
+            }
+            sb.AppendLine("        }");
+        }
+
         private void CreateWizardSolutionFile(WizardConfiguration wizardConfiguration)
         {
             var fileName = wizardConfiguration.CodeFileName;
@@ -143,34 +187,15 @@ namespace LogoFX.Tools.TemplateGenerator
             sb.AppendLine("{");
             sb.AppendLine($"    public sealed class {name} : SolutionWizard");
             sb.AppendLine("    {");
+
             sb.AppendLine("        protected override string GetTitle()");
             sb.AppendLine("        {");
             sb.AppendLine($"            return \"New {wizardConfiguration.Name}\";");
             sb.AppendLine("        }");
             sb.AppendLine();
-            sb.AppendLine("        protected override WizardConfiguration GetWizardConfiguration()");
-            sb.AppendLine("        {");
-            sb.AppendLine("            return new WizardConfiguration");
-            sb.AppendLine("            {");
-            sb.AppendLine($"                FakeOption={BoolToString(wizardConfiguration.FakeOption)},");
-            sb.AppendLine($"                TestOption={BoolToString(wizardConfiguration.TestOption)},");
-            if (wizardConfiguration.Solutions.Count > 0)
-            {
-                sb.AppendLine("                Solutions = new List<SolutionInfo>");
-                sb.AppendLine("                {");
-                foreach (var solution in wizardConfiguration.Solutions)
-                {
-                    sb.AppendLine("                    new SolutionInfo");
-                    sb.AppendLine("                    {");
-                    sb.AppendLine($"                        Name = \"{solution.Name}\",");
-                    sb.AppendLine($"                        Caption = \"{solution.Caption}\",");
-                    sb.AppendLine($"                        IconName = \"{solution.IconName}\",");
-                    sb.AppendLine("                    },");
-                }
-                sb.AppendLine("                },");
-            }
-            sb.AppendLine("            };");
-            sb.AppendLine("        }");
+
+            Generate_GetWizardConfiguration(sb, wizardConfiguration);
+
             sb.AppendLine("    }");
             sb.AppendLine("}");
 

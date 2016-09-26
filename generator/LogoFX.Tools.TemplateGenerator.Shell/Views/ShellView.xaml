@@ -12,7 +12,7 @@
         d:DataContext="{d:DesignInstance viewModels:ShellViewModel}"
         WindowStartupLocation="CenterOwner"
         WindowStyle="ToolWindow"
-        ShowInTaskbar="False"
+        ShowInTaskbar="{Binding Path=ShowInTaskbar, Mode=OneTime}"
         Height="600" 
         Width="1024">
     

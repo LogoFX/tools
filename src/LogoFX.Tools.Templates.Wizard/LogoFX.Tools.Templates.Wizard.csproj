@@ -128,6 +128,7 @@
     <Compile Include="Model\SolutionTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolutionWizard.cs" />
+    <Compile Include="UniversalSolutionWizard.cs" />
     <Compile Include="ViewModel\ObjectViewModel.cs" />
     <Compile Include="ViewModel\SolutionInfoViewModel.cs" />
     <Compile Include="Views\WizardWindow.xaml.cs">

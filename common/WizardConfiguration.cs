@@ -21,6 +21,8 @@ namespace LogoFX.Tools.TemplateGenerator
 
         public string CodeFileName { get; set; }
 
+        public bool IsMultisolution { get; set; }
+
         public List<SolutionInfo> Solutions { get; set; }
     }
 

@@ -7,5 +7,7 @@
         IConfiguration LoadConfiguration();
 
         void SaveConfiguration(IConfiguration configuration);
+
+        bool ShowInTaskbar { get; }
     }
 }

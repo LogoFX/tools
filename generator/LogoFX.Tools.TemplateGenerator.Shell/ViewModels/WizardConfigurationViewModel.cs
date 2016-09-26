@@ -17,7 +17,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         public ICommand BrowseCodeFileCommand => _browseCodeFileCommand ??
                                                  (_browseCodeFileCommand = new ActionCommand(BrowseCodeFile));
 
-        public bool IsMultisolution => Model.Solutions.Count > 0;
+        public bool IsMultisolution => Model.IsMultisolution;
 
         public string Name
         {

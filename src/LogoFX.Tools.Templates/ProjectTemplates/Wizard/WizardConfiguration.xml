@@ -6,6 +6,7 @@
   <Description>LogoFX Application Wizard</Description>
   <DefaultName>LogoFX</DefaultName>
   <CodeFileName>C:\Projects\LogoUI\LogoFX\tools\src\LogoFX.Tools.Templates.Wizard\WizardSolutionWizard.cs</CodeFileName>
+  <IsMultisolution>false</IsMultisolution>
   <Solutions>
     <SolutionInfo>
       <Name>Specifications</Name>

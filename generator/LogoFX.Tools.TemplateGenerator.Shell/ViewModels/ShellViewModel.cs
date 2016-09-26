@@ -151,6 +151,11 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             }
         }
 
+        public bool ShowInTaskbar
+        {
+            get { return _dataService.ShowInTaskbar; }
+        }
+
         #endregion
 
         #region Private Members
@@ -221,8 +226,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         private async Task MakeSingleSolutionAsync()
         {
             await CleanDestinationFolderAsync();
-
-            ActiveConfiguration.MakeSingleSolution();
+            await ActiveConfiguration.MakeSingleSolutionAsync();
 
             NotifyOfPropertyChange(() => IsMultisolution);
         }
@@ -271,7 +275,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             }
             ActiveConfiguration = new SolutionConfigurationViewModel(solutionConfiguration, async wc =>
             {
-                _solutionTemplateGenerator = new SolutionTemplateGenerator(solutionFileName, IsMultisolution);
+                _solutionTemplateGenerator = new SolutionTemplateGenerator(solutionFileName, wc.IsMultisolution);
                 SolutionTemplateInfo = await _solutionTemplateGenerator.GetInfoAsync();
                 ActiveConfiguration.AddCurrentSolutionConfiguration();
             });

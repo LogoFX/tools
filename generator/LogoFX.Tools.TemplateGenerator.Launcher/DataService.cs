@@ -60,5 +60,7 @@ namespace LogoFX.Tools.TemplateGenerator.Launcher
                 serializer.Serialize(sw, configuration);
             }
         }
+
+        public bool ShowInTaskbar => true;
     }
 }

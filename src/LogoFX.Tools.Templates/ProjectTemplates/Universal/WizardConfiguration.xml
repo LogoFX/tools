@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WizardConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <TestOption>true</TestOption>
-  <FakeOption>true</FakeOption>
-  <Name>LogoFX UWP Application</Name>
-  <Description>Creates new LogoFX UWP Application solution</Description>
+  <TestOption>false</TestOption>
+  <FakeOption>false</FakeOption>
+  <Name>LogoFX Universal Application</Name>
+  <Description>Creates LogoFX Universal Application solution.</Description>
   <DefaultName>LogoFX.Uwp</DefaultName>
   <CodeFileName>C:\Projects\LogoUI\LogoFX\tools\src\LogoFX.Tools.Templates.Wizard\UniversalSolutionWizard.cs</CodeFileName>
+  <IsMultisolution>false</IsMultisolution>
   <Solutions>
     <SolutionInfo>
       <Name>Samples.Universal</Name>
       <Caption>Samples.Universal</Caption>
       <IconName />
+      <Items />
     </SolutionInfo>
   </Solutions>
 </WizardConfiguration>
