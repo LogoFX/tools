@@ -3,7 +3,7 @@
   <TestOption>false</TestOption>
   <FakeOption>false</FakeOption>
   <Name>LogoFX Universal Application</Name>
-  <Description>Creates LogoFX Universal Application solution.</Description>
+  <Description>Creates LogoFX Universal Application</Description>
   <DefaultName>LogoFX.Uwp</DefaultName>
   <CodeFileName>C:\Projects\LogoUI\LogoFX\tools\src\LogoFX.Tools.Templates.Wizard\UniversalSolutionWizard.cs</CodeFileName>
   <IsMultisolution>false</IsMultisolution>

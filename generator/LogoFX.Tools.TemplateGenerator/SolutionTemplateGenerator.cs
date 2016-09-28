@@ -67,15 +67,10 @@ namespace LogoFX.Tools.TemplateGenerator
                 DefaultName = wizardConfiguration.DefaultName,
                 Description = wizardConfiguration.Description,
                 Name = wizardConfiguration.Name,
-                WizardClassName = _isMultisolution
-                    ? Path.GetFileNameWithoutExtension(wizardConfiguration.CodeFileName)
-                    : "SolutionWizard"
+                WizardClassName = Path.GetFileNameWithoutExtension(wizardConfiguration.CodeFileName)
             }, solutionTemplateInfo);
 
-            if (_isMultisolution)
-            {
-                CreateWizardSolutionFile(wizardConfiguration);
-            }
+            CreateWizardSolutionFile(wizardConfiguration);
             CreatePrepropcess(destinationFolder);
 
             var solutionFolder = destinationFolder;
@@ -169,7 +164,7 @@ namespace LogoFX.Tools.TemplateGenerator
             }
             else
             {
-                sb.AppendLine("        return null;");
+                sb.AppendLine("            return null;");
             }
             sb.AppendLine("        }");
         }
@@ -245,15 +240,15 @@ namespace LogoFX.Tools.TemplateGenerator
                     continue;
                 }
 
-                if (FileNameEquals(_currentName, info.Name) ||
-                    wizardConfiguration.Solutions.All(x => !FileNameEquals(x.Name, info.Name)))
+                if (FileNamesAreEqual(_currentName, info.Name) ||
+                    wizardConfiguration.Solutions.All(x => !FileNamesAreEqual(x.Name, info.Name)))
                 {
                     ((DirectoryInfo) info).Delete(true);
                 }
             }
         }
 
-        private bool FileNameEquals(string fileName1, string fileName2)
+        private bool FileNamesAreEqual(string fileName1, string fileName2)
         {
             return string.Compare(fileName1, fileName2, StringComparison.OrdinalIgnoreCase) == 0;
         }
