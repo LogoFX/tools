@@ -1,7 +1,7 @@
 ﻿<VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
   <TemplateData>
     <Name>LogoFX Universal Application</Name>
-    <Description>Creates LogoFX Universal Application</Description>
+    <Description>Creates new LogoFX Universal Application</Description>
     <ProjectType>CSharp</ProjectType>
     <DefaultName>LogoFX.Uwp</DefaultName>
     <SortOrder>5000</SortOrder>

@@ -40,7 +40,7 @@ namespace LogoFX.Tools.TemplateGenerator
                 newProjectName = "MyProject.csproj";
             }
 
-                var newAbsolutePath = Path.Combine(projectFolder, newProjectName);
+            var newAbsolutePath = Path.Combine(projectFolder, newProjectName);
             File.Copy(_projectTemplateInfo.FileName, newAbsolutePath);
 
             Project project = new Project(newAbsolutePath);
@@ -53,7 +53,7 @@ namespace LogoFX.Tools.TemplateGenerator
             x = project.GetProperty("AssemblyName");
             x.UnevaluatedValue = "$safeprojectname$";
 
-            foreach (var item in project.Items)
+            foreach (var item in project.Items.ToList())
             {
                 string newFileName = null;
 
@@ -69,6 +69,10 @@ namespace LogoFX.Tools.TemplateGenerator
                     case "EmbeddedResource":
                     case "Content":
                         newFileName = CopyProjectItem(item, from, projectFolder);
+                        if (string.IsNullOrEmpty(newFileName))
+                        {
+                            var success = project.RemoveItem(item);
+                        }
                         break;
                 }
 
