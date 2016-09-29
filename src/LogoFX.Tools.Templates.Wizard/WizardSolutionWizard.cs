@@ -7,13 +7,11 @@ namespace LogoFX.Tools.Templates.Wizard
     {
         protected override string GetTitle()
         {
-        return "New LogoFX Application";
+            return "New LogoFX Application";
         }
 
         protected override WizardConfiguration GetWizardConfiguration()
         {
-            return null;
-
             return new WizardConfiguration
             {
                 FakeOption=true,
@@ -23,32 +21,7 @@ namespace LogoFX.Tools.Templates.Wizard
                     new SolutionInfo
                     {
                         Name = "Specifications",
-                        Caption = "WPF Desktop Application",
-                        IconName = "",
-                        Items = new List<SolutionItemInfo>
-                        {
-                            new SolutionFolderInfo
-                            {
-                                Name = "App",
-                                Items = new List<SolutionItemInfo>
-                                {
-                                    new SolutionFolderInfo
-                                    {
-                                        Name = "Client"
-                                    },
-                                    new ProjectInfo
-                                    {
-                                        ProjectName = "$safeprojectname$.Client.Presentation.Shared",
-                                        FileName = @"Specifications\Samples.Specifications.Client.Presentation.Shared\MyTemplate.vstemplate"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    new SolutionInfo
-                    {
-                        Name = "Samples.Universal",
-                        Caption = "UWP Application",
+                        Caption = "Specifications",
                         IconName = "",
                     },
                 },

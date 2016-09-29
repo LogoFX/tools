@@ -11,7 +11,7 @@ namespace LogoFX.Tools.TemplateGenerator
             new ObservableCollection<string>();
 
         public SolutionTemplateInfo()
-            : base(Guid.Empty, string.Empty)
+            : base(Guid.Empty, string.Empty, false)
         {
         }
 

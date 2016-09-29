@@ -97,7 +97,7 @@ namespace LogoFX.Tools.TemplateGenerator
             {
                 newSolutionInfo.RootNamespaces.Add(rn);
             }
-            var solutionFolder = new SolutionFolderTemplateInfo(Guid.Empty, _currentName);
+            var solutionFolder = new SolutionFolderTemplateInfo(Guid.Empty, _currentName, true);
             foreach (var item in solutionTemplateInfo.Items)
             {
                 solutionFolder.Items.Add((SolutionItemTemplateInfo) item);
@@ -310,7 +310,7 @@ namespace LogoFX.Tools.TemplateGenerator
                     {
                         return folders[id];
                     }
-                    result = new SolutionFolderTemplateInfo(id, proj.ProjectName);
+                    result = new SolutionFolderTemplateInfo(id, proj.ProjectName, false);
                     folders.Add(id, (SolutionFolderTemplateInfo) result);
                     break;
                 default:

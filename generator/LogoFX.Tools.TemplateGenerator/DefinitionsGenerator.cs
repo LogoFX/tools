@@ -87,7 +87,8 @@ namespace LogoFX.Tools.TemplateGenerator
         private SolutionFolderTemplateInfo GetSolutionFolder(XElement folderElement)
         {
             var name = folderElement.Attribute("Name").Value;
-            SolutionFolderTemplateInfo result = new SolutionFolderTemplateInfo(Guid.Empty, name);
+            var createOnDisk = bool.Parse(folderElement.Attribute("CreateOnDisk").Value);
+            SolutionFolderTemplateInfo result = new SolutionFolderTemplateInfo(Guid.Empty, name, createOnDisk);
             foreach (var item in GetSolutionItems(folderElement))
             {
                 result.Items.Add(item);
@@ -155,13 +156,14 @@ namespace LogoFX.Tools.TemplateGenerator
         {
             foreach (var solutionItem in solutionFolder.Items)
             {
-                if (solutionItem is ISolutionFolderTemplateInfo)
+                var folder = solutionItem as ISolutionFolderTemplateInfo;
+                if (folder != null)
                 {
                     var folderElement = new XElement(Ns + "SolutionFolder",
-                        new XAttribute("Name", solutionItem.Name),
-                        new XAttribute("CreateOnDisk", false));
+                        new XAttribute("Name", folder.Name),
+                        new XAttribute("CreateOnDisk", folder.CreateOnDisk));
                     rootElement.Add(folderElement);
-                    CreateItems(folderElement, (ISolutionFolderTemplateInfo)solutionItem);
+                    CreateItems(folderElement, folder);
                 }
                 else
                 {
