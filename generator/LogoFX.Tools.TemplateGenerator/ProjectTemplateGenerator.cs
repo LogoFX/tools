@@ -68,6 +68,9 @@ namespace LogoFX.Tools.TemplateGenerator
                     case "ApplicationDefinition":
                     case "EmbeddedResource":
                     case "Content":
+                    case "AppxManifest":
+                    case "Service":
+                    case "SDKReference":
                         newFileName = CopyProjectItem(item, from, projectFolder);
                         if (string.IsNullOrEmpty(newFileName))
                         {

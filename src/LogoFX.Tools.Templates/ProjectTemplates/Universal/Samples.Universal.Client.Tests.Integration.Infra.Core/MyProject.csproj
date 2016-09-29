@@ -105,12 +105,13 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="project.json" />
+    <None Include="project.lock.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StructureHelper.cs" />
-    <EmbeddedResource Include="Properties\Samples.Universal.Client.Tests.Integration.Infra.Core.rd.xml" />
+    <EmbeddedResource Include="Properties\ClassLibrary.rd.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\$saferootprojectname$.Client.Presentation.Shell\$saferootprojectname$.Client.Presentation.Shell.csproj">
