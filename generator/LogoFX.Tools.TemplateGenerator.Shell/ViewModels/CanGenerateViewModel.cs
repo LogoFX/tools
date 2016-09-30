@@ -1,4 +1,5 @@
 ﻿using System;
+using LogoFX.Client.Mvvm.ViewModel;
 
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {

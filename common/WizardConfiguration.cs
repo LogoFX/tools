@@ -33,6 +33,7 @@ namespace LogoFX.Tools.TemplateGenerator
             Items = new List<SolutionItemInfo>();
         }
 
+        public string FileName { get; set; }
         public string Name { get; set; }
         public string Caption { get; set; }
         public string IconName { get; set; }

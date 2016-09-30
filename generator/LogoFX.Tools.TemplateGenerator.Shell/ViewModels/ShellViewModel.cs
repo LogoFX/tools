@@ -3,31 +3,33 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
+using Avalon.Windows.Dialogs;
 using Caliburn.Micro;
 using JetBrains.Annotations;
+using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Tools.TemplateGenerator.Contracts;
-using Microsoft.Expression.Interactivity.Core;
+using LogoFX.Tools.TemplateGenerator.Shell.Properties;
 
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {
     [UsedImplicitly]
-    public sealed class ShellViewModel : Screen
+    public sealed partial class ShellViewModel : Screen
     {
         #region Fields
 
         private SolutionTemplateGenerator _solutionTemplateGenerator;
-        private IConfiguration _configuration;
         private readonly IDataService _dataService;
 
         #endregion
 
         #region Constructors
 
-        public ShellViewModel()
+        public ShellViewModel(IDataService dataService)
         {
-            _dataService = IoC.Get<IDataService>();
+            _dataService = dataService;
+
+            DestinationPath = Settings.Default.DestinationPath;
         }
 
         #endregion
@@ -35,20 +37,93 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         #region Commands
 
         private ICommand _generateTemplateCommand;
-        public ICommand GenerateTemplateCommand => _generateTemplateCommand ??
-                                                   (_generateTemplateCommand = new ActionCommand(GenerateTemplate));
+
+        public ICommand GenerateTemplateCommand
+        {
+            get
+            {
+                return _generateTemplateCommand ??
+                       (_generateTemplateCommand = ActionCommand
+                           .When(() => CanGenerate)
+                           .Do(GenerateTemplate)
+                           .RequeryOnPropertyChanged(this, () => CanGenerate));
+            }
+        }
 
         private ICommand _saveCommand;
-        public ICommand SaveCommand => _saveCommand ??
-                                       (_saveCommand = new ActionCommand(SaveTemplate));
+
+        public ICommand SaveCommand
+        {
+            get
+            {
+                return _saveCommand ??
+                       (_saveCommand = ActionCommand
+                           .When(() => !string.IsNullOrEmpty(DestinationPath))
+                           .Do(SaveTemplate)
+                           .RequeryOnPropertyChanged(this, () => DestinationPath));
+            }
+        }
 
         private ICommand _makeMultiSolutionCommand;
-        public ICommand MakeMultiSolutionCommand => _makeMultiSolutionCommand ??
-                                                    (_makeMultiSolutionCommand = new ActionCommand(MakeMultiSolution));
+
+        public ICommand MakeMultiSolutionCommand
+        {
+            get
+            {
+                return _makeMultiSolutionCommand ??
+                       (_makeMultiSolutionCommand = ActionCommand
+                           .When(() => !IsMultisolution && !string.IsNullOrEmpty(DestinationPath))
+                           .Do(MakeMultiSolution)
+                           .RequeryOnPropertyChanged(this, () => IsMultisolution)
+                           .RequeryOnPropertyChanged(this, () => DestinationPath));
+            }
+        }
 
         private ICommand _makeSingleSolutionCommand;
-        public ICommand MakeSingleSolutionCommand => _makeSingleSolutionCommand ??
-                                                    (_makeSingleSolutionCommand = new ActionCommand(MakeSingleSolution));
+
+        public ICommand MakeSingleSolutionCommand
+        {
+            get
+            {
+                return _makeSingleSolutionCommand ??
+                       (_makeSingleSolutionCommand = ActionCommand
+                           .When(() => IsMultisolution && !string.IsNullOrEmpty(DestinationPath))
+                           .Do(MakeSingleSolution)
+                           .RequeryOnPropertyChanged(this, () => IsMultisolution)
+                           .RequeryOnPropertyChanged(this, () => DestinationPath));
+            }
+        }
+
+        private ICommand _browseDestinationFolderCommand;
+        public ICommand BrowseDestinationFolderCommand
+        {
+            get
+            {
+                return _browseDestinationFolderCommand ??
+                       (_browseDestinationFolderCommand = ActionCommand
+                           .When(() => true)
+                           .Do(() =>
+                           {
+                               FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog
+                               {
+                                   RootSpecialFolder = Environment.SpecialFolder.MyComputer,
+                                   SelectedPath = DestinationPath,
+                                   Title = "Destination Path"
+                               };
+
+                               var retVal = folderBrowserDialog.ShowDialog() ?? false;
+
+                               if (!retVal)
+                               {
+                                   return;
+                               }
+
+                               DestinationPath = folderBrowserDialog.SelectedPath;
+                               Settings.Default.DestinationPath = DestinationPath;
+                               Settings.Default.Save();
+                           }));
+            }
+        }
 
         #endregion
 
@@ -58,45 +133,16 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         {
             get
             {
-                if (ActiveConfiguration == null)
+                if (WizardConfiguration == null)
                 {
                     return false;
                 }
 
-                return ActiveConfiguration.IsMultisolution;
+                return WizardConfiguration.IsMultisolution;
             }
         }
 
-        private SolutionConfigurationViewModel _activeConfiguration;
-
-        public SolutionConfigurationViewModel ActiveConfiguration
-        {
-            get { return _activeConfiguration; }
-            private set
-            {
-                if (_activeConfiguration == value)
-                {
-                    return;
-                }
-
-                if (_activeConfiguration != null)
-                {
-                    _activeConfiguration.CanGenerateUpdated -= OnCanGenerateUpdated;
-                }
-
-                _activeConfiguration = value;
-
-                if (_activeConfiguration != null)
-                {
-                    _activeConfiguration.CanGenerateUpdated += OnCanGenerateUpdated;
-                }
-
-                NotifyOfPropertyChange();
-                NotifyOfPropertyChange(() => CanGenerate);
-            }
-        }
-
-        private void OnCanGenerateUpdated(object sender, EventArgs e)
+        private void OnCanGenerateUpdated()
         {
             NotifyOfPropertyChange(() => CanGenerate);
             NotifyOfPropertyChange(() => IsMultisolution);
@@ -141,8 +187,9 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         {
             get
             {
-                if (!ActiveConfiguration.CanGenerate ||
-                   SolutionTemplateInfo == null)
+                if (WizardConfiguration == null ||
+                    !WizardConfiguration.CanGenerate ||
+                    SolutionTemplateInfo == null)
                 {
                     return false;
                 }
@@ -151,9 +198,21 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             }
         }
 
-        public bool ShowInTaskbar
+        private string _destinationPath;
+        public string DestinationPath
         {
-            get { return _dataService.ShowInTaskbar; }
+            get { return _destinationPath; }
+            private set
+            {
+                if (value == _destinationPath)
+                {
+                    return;
+                }
+
+                _destinationPath = value;
+                NotifyOfPropertyChange();
+                UpdateWizardConfiguration();
+            }
         }
 
         #endregion
@@ -162,12 +221,12 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
         private void SaveTemplate()
         {
-            Save(true);
+            Save();
         }
 
         private Task CleanDestinationFolderAsync()
         {
-            var destinationPath = ActiveConfiguration.DestinationPath;
+            var destinationPath = DestinationPath;
 
             return Task.Run(() =>
             {
@@ -187,7 +246,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             try
             {
                 await MakeMultiSolutionAsync();
-                await GetInfoAsync();
             }
 
             finally
@@ -200,10 +258,27 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         {
             await CleanDestinationFolderAsync();
 
-            await ActiveConfiguration.MakeMultiSolutionAsync();
+            WizardConfiguration.Model.IsMultisolution = true;
+
+            await SaveWizardConfigurationAsync();
 
             NotifyOfPropertyChange(() => IsMultisolution);
         }
+
+        public async Task SaveWizardConfigurationAsync()
+        {
+            var destinationPath = DestinationPath;
+
+            if (!Directory.Exists(destinationPath))
+            {
+                Directory.CreateDirectory(destinationPath);
+            }
+
+            WizardConfiguration wizardConfiguration = WizardConfiguration.Model;
+            var fileName = WizardConfigurator.GetWizardConfigurationFileName(destinationPath);
+            await WizardConfigurator.SaveAsync(fileName, wizardConfiguration);
+        }
+
 
         private async void MakeSingleSolution()
         {
@@ -214,7 +289,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             try
             {
                 await MakeSingleSolutionAsync();
-                await GetInfoAsync();
             }
 
             finally
@@ -226,7 +300,15 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         private async Task MakeSingleSolutionAsync()
         {
             await CleanDestinationFolderAsync();
-            await ActiveConfiguration.MakeSingleSolutionAsync();
+
+            foreach (var solution in WizardConfiguration.Model.Solutions.ToList())
+            {
+                WizardConfiguration.Model.Solutions.Remove(solution);
+            }
+
+            WizardConfiguration.Model.IsMultisolution = false;
+
+            await SaveWizardConfigurationAsync();
 
             NotifyOfPropertyChange(() => IsMultisolution);
         }
@@ -238,11 +320,11 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             try
             {
                 await _solutionTemplateGenerator.GenerateAsync(
-                    ActiveConfiguration.DestinationPath,
+                    DestinationPath,
                     SolutionTemplateInfo,
-                    ActiveConfiguration.WizardConfiguration.Model);
+                    WizardConfiguration.Model);
 
-                await SaveAsync(true);
+                await SaveAsync();
 
                 SolutionTemplateInfo = null;
 
@@ -255,52 +337,23 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             }
         }
 
-        private async Task GetInfoAsync(string solutionFileName)
+        private async Task SaveAsync()
         {
-            _configuration = _dataService.LoadConfiguration();
-            ISolutionConfiguration solutionConfiguration;
-            if (_configuration.SolutionConfigurations == null)
+            if (WizardConfiguration == null)
             {
-                solutionConfiguration = _configuration.CreateNewSolutionConfiguration(solutionFileName);
+                return;
             }
-            else
-            {
-                solutionConfiguration = _configuration.SolutionConfigurations
-                    .SingleOrDefault(x => x.FileName == solutionFileName);
-            }
-            if (solutionConfiguration == null)
-            {
-                solutionConfiguration = _configuration.CreateNewSolutionConfiguration(solutionFileName);
-                await SaveAsync(false);
-            }
-            ActiveConfiguration = new SolutionConfigurationViewModel(solutionConfiguration, async wc =>
-            {
-                _solutionTemplateGenerator = new SolutionTemplateGenerator(solutionFileName, wc.IsMultisolution);
-                SolutionTemplateInfo = await _solutionTemplateGenerator.GetInfoAsync();
-                ActiveConfiguration.AddCurrentSolutionConfiguration();
-            });
+
+            await SaveWizardConfigurationAsync();
         }
 
-        private async Task SaveAsync(bool saveWizardConfiguration)
-        {
-            if (_configuration != null)
-            {
-                _dataService.SaveConfiguration(_configuration);
-            }
-
-            if (saveWizardConfiguration && ActiveConfiguration != null)
-            {
-                await ActiveConfiguration.SaveWizardConfigurationAsync();
-            }
-        }
-
-        private async void Save(bool saveWizardConfiguration)
+        private async void Save()
         {
             IsBusy = true;
 
             try
             {
-                await SaveAsync(saveWizardConfiguration);
+                await SaveAsync();
             }
 
             finally
@@ -319,29 +372,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             set { }
         }
 
-        private async Task GetInfoAsync()
-        {
-            var solutionFileName = _dataService.GetSolutionFileName();
-
-            if (string.IsNullOrEmpty(solutionFileName))
-            {
-                MessageBox.Show(Application.Current.MainWindow,
-                    "Solution not loaded.",
-                    DisplayName,
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning);
-
-                await Task.Run(() =>
-                {
-                    TryClose();
-                });
-
-                return;
-            }
-
-            await GetInfoAsync(solutionFileName);
-        }
-
         protected override async void OnActivate()
         {
             base.OnActivate();
@@ -349,7 +379,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             IsBusy = true;
             try
             {
-                await GetInfoAsync();
             }
 
             finally
@@ -364,7 +393,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
             if (close)
             {
-                Save(false);
+                Save();
             }
         }
 

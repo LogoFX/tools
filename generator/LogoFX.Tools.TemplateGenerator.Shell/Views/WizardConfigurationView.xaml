@@ -13,7 +13,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -99,79 +98,5 @@
                       IsChecked="{Binding Path=Model.TestOption, Mode=TwoWay}"
                       Content="Allow 'Test' option" />
         </Grid>
-        
-        <TextBlock Grid.Row="2"
-                   Margin="5"
-                   Text="Solution Aliaces:" />
-
-        <ScrollViewer Grid.Row="3"
-                      VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Path=Model.Solutions}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderBrush="Blue"
-                            BorderThickness="1"
-                            Margin="5"
-                            Padding="5">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="32" />
-                                    <RowDefinition Height="32" />
-                                    <RowDefinition Height="32" />
-                                </Grid.RowDefinitions>
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" SharedSizeGroup="ColumnKey" />
-                                    <ColumnDefinition Width="5" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-
-                                <!--Name-->
-                                <TextBlock Grid.Row="0"
-                                   Grid.Column="0"
-                                   Grid.ColumnSpan="3" 
-                                   FontSize="16"
-                                   VerticalAlignment="Center"
-                                   Text="{Binding Path=Name, Mode=OneWay}"/>
-
-                                <!--Caption-->
-                                <TextBlock Grid.Row="1"
-                                   Grid.Column="0"
-                                   VerticalAlignment="Center"
-                                   Text="Solution Caption in Wizard:"/>
-                                <TextBox Grid.Row="1"
-                                 Grid.Column="2"
-                                 Text="{Binding Path=Caption, Mode=TwoWay}"
-                                 VerticalAlignment="Center" />
-
-                                <!--Icon-->
-                                <TextBlock Grid.Row="2"
-                                   Grid.Column="0"
-                                   VerticalAlignment="Center"
-                                   Text="Solution Icon in Wizard:"/>
-                                <TextBox Grid.Row="2"
-                                 Grid.Column="2"
-                                 Text="{Binding Path=IconName, Mode=TwoWay}"
-                                 VerticalAlignment="Center" />
-
-                                <Button Grid.Row="2"
-                                Grid.Column="3"
-                                Content="..."
-                                ToolTip="Browse for destination folder."
-                                Width="20"
-                                VerticalAlignment="Center">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="Click">
-                                            <i:InvokeCommandAction Command="{Binding Path=BrowseDestinationFolderCommand, Mode=OneTime}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </Button>
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
     </Grid>
 </UserControl>

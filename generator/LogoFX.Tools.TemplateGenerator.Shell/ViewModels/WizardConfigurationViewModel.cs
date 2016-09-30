@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using Microsoft.Expression.Interactivity.Core;
+using LogoFX.Client.Mvvm.Commanding;
 using Microsoft.Win32;
 
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
@@ -14,8 +14,16 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
         private ICommand _browseCodeFileCommand;
 
-        public ICommand BrowseCodeFileCommand => _browseCodeFileCommand ??
-                                                 (_browseCodeFileCommand = new ActionCommand(BrowseCodeFile));
+        public ICommand BrowseCodeFileCommand
+        {
+            get
+            {
+                return _browseCodeFileCommand ??
+                       (_browseCodeFileCommand = ActionCommand
+                           .When(() => true)
+                           .Do(BrowseCodeFile));
+            }
+        }
 
         public bool IsMultisolution => Model.IsMultisolution;
 

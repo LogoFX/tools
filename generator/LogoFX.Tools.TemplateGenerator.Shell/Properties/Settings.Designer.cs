@@ -22,5 +22,17 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DestinationPath {
+            get {
+                return ((string)(this["DestinationPath"]));
+            }
+            set {
+                this["DestinationPath"] = value;
+            }
+        }
     }
 }

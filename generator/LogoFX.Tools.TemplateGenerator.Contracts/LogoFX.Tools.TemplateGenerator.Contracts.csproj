@@ -40,10 +40,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IConfiguration.cs" />
     <Compile Include="IDataService.cs" />
     <Compile Include="IProjectTemplateInfo.cs" />
-    <Compile Include="ISolutionConfiguration.cs" />
     <Compile Include="ISolutionFolderTemplateInfo.cs" />
     <Compile Include="ISolutionFolderTemplateInfoExtensions.cs" />
     <Compile Include="ISolutionItemTemplateInfo.cs" />

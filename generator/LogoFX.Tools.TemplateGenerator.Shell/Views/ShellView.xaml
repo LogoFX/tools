@@ -7,37 +7,58 @@
         xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
         xmlns:controls="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.Controls"
         xmlns:cal="http://www.caliburnproject.org"
-        xmlns:converters="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.Converters"
+        xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModels:ShellViewModel}"
         WindowStartupLocation="CenterOwner"
         WindowStyle="ToolWindow"
-        ShowInTaskbar="{Binding Path=ShowInTaskbar, Mode=OneTime}"
         Height="600" 
         Width="1024">
     
-    <Window.Resources>
-        <converters:InverseConverter x:Key="InverseConverter" />
-        <converters:NotNullToBooleanConverter x:Key="NotNullToBooleanConverter" />
-    </Window.Resources>
-    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="32" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="32" />
         </Grid.RowDefinitions>
 
-        <!--<CheckBox Grid.Row="0"
-                  VerticalAlignment="Center"
-                  Margin="5"
-                  Content="Multisolution"
-                  IsChecked="{Binding Path=IsMultisolution, Mode=TwoWay}" />-->
+        <Grid Grid.Row="0" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       VerticalAlignment="Center"
+                       Text="Destination Folder:" />
+            <TextBox Grid.Column="1"
+                     Margin="5,0,5,0"
+                     VerticalAlignment="Center"
+                     IsReadOnly="True"
+                     Text="{Binding Path=DestinationPath, Mode=OneWay}" />
+            <Button Grid.Column="2"
+                    Content="..."
+                    ToolTip="Browse for destination folder."
+                    Width="20"
+                    VerticalAlignment="Center">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <commanding:ExecuteCommandAction Command="{Binding Path=BrowseDestinationFolderCommand, Mode=OneTime}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+
+        </Grid>
         
         <TabControl Grid.Row="1" Margin="5">
             <TabItem Header="Configuration">
-                <ContentControl cal:View.Model="{Binding Path=ActiveConfiguration, Mode=OneWay}" />
+                <ContentControl Margin="5"
+                                cal:View.Model="{Binding Path=WizardConfiguration, Mode=OneWay}" />
+            </TabItem>
+
+            <TabItem Header="Solutions">
             </TabItem>
 
             <TabItem Header="Root Namespaces">
@@ -56,7 +77,7 @@
             </TabItem>
         </TabControl>
 
-        <Grid Grid.Row="2" IsEnabled="{Binding Path=CanGenerate, Mode=OneWay}">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
@@ -67,24 +88,24 @@
 
             <Button Grid.Column="0"
                     Margin="5"
-                    IsEnabled="{Binding Path=IsMultisolution, Mode=OneWay, Converter={StaticResource InverseConverter}}"
                     Width="120"
                     Content="Make Multisolution">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <i:InvokeCommandAction Command="{Binding Path=MakeMultiSolutionCommand, Mode=OneTime}" />
+                        <commanding:ExecuteCommandAction Command="{Binding Path=MakeMultiSolutionCommand, Mode=OneTime}"
+                                                         ManageEnableState="True" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
 
             <Button Grid.Column="1"
                     Margin="5"
-                    IsEnabled="{Binding Path=IsMultisolution, Mode=OneWay}"
                     Width="120"
                     Content="Make Single Solution">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <i:InvokeCommandAction Command="{Binding Path=MakeSingleSolutionCommand, Mode=OneTime}" />
+                        <commanding:ExecuteCommandAction Command="{Binding Path=MakeSingleSolutionCommand, Mode=OneTime}"
+                                                         ManageEnableState="True" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
@@ -95,7 +116,8 @@
                     Content="Save">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <i:InvokeCommandAction Command="{Binding Path=SaveCommand, Mode=OneTime}" />
+                        <commanding:ExecuteCommandAction Command="{Binding Path=SaveCommand, Mode=OneTime}"
+                                                         ManageEnableState="True" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
@@ -106,7 +128,8 @@
                     Content="Generate Template">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <i:InvokeCommandAction Command="{Binding Path=GenerateTemplateCommand, Mode=OneTime}" />
+                        <commanding:ExecuteCommandAction Command="{Binding Path=GenerateTemplateCommand, Mode=OneTime}"
+                                                         ManageEnableState="True" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>

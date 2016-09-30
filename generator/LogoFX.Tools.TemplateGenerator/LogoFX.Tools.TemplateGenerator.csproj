@@ -46,7 +46,6 @@
     <Compile Include="..\..\common\WizardConfiguration.cs">
       <Link>WizardConfiguration.cs</Link>
     </Compile>
-    <Compile Include="Configuration.cs" />
     <Compile Include="CSFileGenerator.cs" />
     <Compile Include="DefinitionsGenerator.cs" />
     <Compile Include="GeneratorBase.cs" />
@@ -54,7 +53,6 @@
     <Compile Include="ProjectTemplateGenerator.cs" />
     <Compile Include="ProjectTemplateInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SolutionConfiguration.cs" />
     <Compile Include="SolutionFolderTemplateInfo.cs" />
     <Compile Include="SolutionItemTemplateInfo.cs" />
     <Compile Include="SolutionTemplateGenerator.cs" />
