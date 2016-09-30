@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace LogoFX.Tools.TemplateGenerator
 {
@@ -6,7 +7,7 @@ namespace LogoFX.Tools.TemplateGenerator
     {
         public WizardConfiguration()
         {
-            Solutions = new List<SolutionInfo>();
+            Solutions = new ObservableCollection<SolutionInfo>();
         }
 
         public bool TestOption { get; set; }
@@ -21,9 +22,7 @@ namespace LogoFX.Tools.TemplateGenerator
 
         public string CodeFileName { get; set; }
 
-        public bool IsMultisolution { get; set; }
-
-        public List<SolutionInfo> Solutions { get; set; }
+        public ObservableCollection<SolutionInfo> Solutions { get; set; }
     }
 
     public sealed class SolutionInfo

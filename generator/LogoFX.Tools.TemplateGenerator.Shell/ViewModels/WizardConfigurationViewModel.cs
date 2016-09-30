@@ -1,12 +1,19 @@
-﻿using System.Windows;
+﻿using System;
+using System.Linq;
+using System.Windows;
 using System.Windows.Input;
+using Avalon.Windows.Dialogs;
 using LogoFX.Client.Mvvm.Commanding;
+using LogoFX.Client.Mvvm.ViewModel;
+using LogoFX.Tools.TemplateGenerator.Shell.Properties;
 using Microsoft.Win32;
 
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {
     public sealed class WizardConfigurationViewModel : CanGenerateViewModel<WizardConfiguration>
     {
+        private WrappingCollection _solutions;
+
         public WizardConfigurationViewModel(WizardConfiguration model) 
             : base(model)
         {
@@ -25,7 +32,51 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             }
         }
 
-        public bool IsMultisolution => Model.IsMultisolution;
+        private ICommand _addSolutionCommand;
+
+        public ICommand AddSolutionCommand
+        {
+            get
+            {
+                return _addSolutionCommand ??
+                       (_addSolutionCommand = ActionCommand
+                           .When(() => true)
+                           .Do(() =>
+                           {
+                               OpenFileDialog openFileDialog = new OpenFileDialog
+                               {
+                                   Multiselect = false,
+                                   CheckFileExists = true,
+                                   CheckPathExists = true,
+                                   Filter = "Visual Studio Solution (*.sln)|*sln",
+                                   Title = "Select Solution File"
+                               };
+
+                               var retVal = openFileDialog.ShowDialog() ?? false;
+
+                               if (!retVal)
+                               {
+                                   return;
+                               }
+
+                               var fileName = openFileDialog.FileName;
+                               var found = Model.Solutions.FirstOrDefault(x => Utils.FileNamesAreEqual(x.FileName, fileName)) != null;
+
+                               if (found)
+                               {
+                                   MessageBox.Show("Solution already added.", "Add Solution", MessageBoxButton.OK, MessageBoxImage.Warning);
+                               }
+
+                               var solution = new SolutionInfo();
+                               solution.FileName = fileName;
+                               solution.Name = Utils.SolutionFileNameToName(fileName);
+                               solution.Caption = solution.Name;
+                               Model.Solutions.Add(solution);
+                           }));
+            }
+        }
+
+        public bool IsMultisolution => Model.Solutions.Count > 1;
 
         public string Name
         {
@@ -88,6 +139,19 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                 NotifyOfPropertyChange();
                 OnCanGenerateUpdated();
             }
+        }
+
+        public WrappingCollection Solutions
+        {
+            get { return _solutions ?? (_solutions = CreateSolutions()); }
+        }
+
+        private WrappingCollection CreateSolutions()
+        {
+            var solutions = new WrappingCollection();
+            solutions.FactoryMethod = o => new SolutionViewModel((SolutionInfo) o);
+            solutions.AddSource(Model.Solutions);
+            return solutions;
         }
 
         private void BrowseCodeFile()

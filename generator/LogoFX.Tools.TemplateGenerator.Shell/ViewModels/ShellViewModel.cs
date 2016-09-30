@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalon.Windows.Dialogs;
@@ -60,36 +58,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                        (_saveCommand = ActionCommand
                            .When(() => !string.IsNullOrEmpty(DestinationPath))
                            .Do(SaveTemplate)
-                           .RequeryOnPropertyChanged(this, () => DestinationPath));
-            }
-        }
-
-        private ICommand _makeMultiSolutionCommand;
-
-        public ICommand MakeMultiSolutionCommand
-        {
-            get
-            {
-                return _makeMultiSolutionCommand ??
-                       (_makeMultiSolutionCommand = ActionCommand
-                           .When(() => !IsMultisolution && !string.IsNullOrEmpty(DestinationPath))
-                           .Do(MakeMultiSolution)
-                           .RequeryOnPropertyChanged(this, () => IsMultisolution)
-                           .RequeryOnPropertyChanged(this, () => DestinationPath));
-            }
-        }
-
-        private ICommand _makeSingleSolutionCommand;
-
-        public ICommand MakeSingleSolutionCommand
-        {
-            get
-            {
-                return _makeSingleSolutionCommand ??
-                       (_makeSingleSolutionCommand = ActionCommand
-                           .When(() => IsMultisolution && !string.IsNullOrEmpty(DestinationPath))
-                           .Do(MakeSingleSolution)
-                           .RequeryOnPropertyChanged(this, () => IsMultisolution)
                            .RequeryOnPropertyChanged(this, () => DestinationPath));
             }
         }
@@ -224,47 +192,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             Save();
         }
 
-        private Task CleanDestinationFolderAsync()
-        {
-            var destinationPath = DestinationPath;
-
-            return Task.Run(() =>
-            {
-                if (Directory.Exists(destinationPath))
-                {
-                    Directory.Delete(destinationPath, true);
-                }
-            });
-        }
-
-        private async void MakeMultiSolution()
-        {
-            Debug.Assert(!IsMultisolution);
-
-            IsBusy = true;
-
-            try
-            {
-                await MakeMultiSolutionAsync();
-            }
-
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
-        private async Task MakeMultiSolutionAsync()
-        {
-            await CleanDestinationFolderAsync();
-
-            WizardConfiguration.Model.IsMultisolution = true;
-
-            await SaveWizardConfigurationAsync();
-
-            NotifyOfPropertyChange(() => IsMultisolution);
-        }
-
         public async Task SaveWizardConfigurationAsync()
         {
             var destinationPath = DestinationPath;
@@ -277,40 +204,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             WizardConfiguration wizardConfiguration = WizardConfiguration.Model;
             var fileName = WizardConfigurator.GetWizardConfigurationFileName(destinationPath);
             await WizardConfigurator.SaveAsync(fileName, wizardConfiguration);
-        }
-
-
-        private async void MakeSingleSolution()
-        {
-            Debug.Assert(IsMultisolution);
-
-            IsBusy = true;
-
-            try
-            {
-                await MakeSingleSolutionAsync();
-            }
-
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
-        private async Task MakeSingleSolutionAsync()
-        {
-            await CleanDestinationFolderAsync();
-
-            foreach (var solution in WizardConfiguration.Model.Solutions.ToList())
-            {
-                WizardConfiguration.Model.Solutions.Remove(solution);
-            }
-
-            WizardConfiguration.Model.IsMultisolution = false;
-
-            await SaveWizardConfigurationAsync();
-
-            NotifyOfPropertyChange(() => IsMultisolution);
         }
 
         private async void GenerateTemplate()

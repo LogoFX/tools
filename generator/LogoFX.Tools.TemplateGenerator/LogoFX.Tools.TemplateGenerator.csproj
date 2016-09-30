@@ -58,6 +58,7 @@
     <Compile Include="SolutionTemplateGenerator.cs" />
     <Compile Include="SolutionTemplateInfo.cs" />
     <Compile Include="TemplateDataInfo.cs" />
+    <Compile Include="Utils.cs" />
     <Compile Include="WizardConfigurator.cs" />
     <Compile Include="XamlFileGenerator.cs" />
   </ItemGroup>

@@ -153,6 +153,7 @@
     <Compile Include="ViewModels\ShellViewModel.SolutionConfiguration.cs">
       <DependentUpon>ShellViewModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\SolutionViewModel.cs" />
     <Compile Include="ViewModels\WizardConfigurationViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -174,6 +175,10 @@
     <Page Include="Views\ShellView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SolutionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\WizardConfigurationView.xaml">
       <SubType>Designer</SubType>

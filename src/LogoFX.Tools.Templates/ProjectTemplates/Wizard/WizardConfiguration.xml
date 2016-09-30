@@ -2,6 +2,18 @@
 <WizardConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <TestOption>false</TestOption>
   <FakeOption>false</FakeOption>
-  <IsMultisolution>false</IsMultisolution>
-  <Solutions />
+  <Solutions>
+    <SolutionInfo>
+      <FileName>C:\Projects\LogoUI\LogoFX\Samples.Specifications\Specifications.sln</FileName>
+      <Name>Specifications</Name>
+      <Caption>Specifications</Caption>
+      <Items />
+    </SolutionInfo>
+    <SolutionInfo>
+      <FileName>C:\Projects\LogoUI\LogoFX\Samples.Universal\Samples.Universal.sln</FileName>
+      <Name>Samples.Universal</Name>
+      <Caption>Samples.Universal</Caption>
+      <Items />
+    </SolutionInfo>
+  </Solutions>
 </WizardConfiguration>

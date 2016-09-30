@@ -158,7 +158,7 @@ namespace LogoFX.Tools.TemplateGenerator
         {
             sb.AppendLine("        protected override WizardConfiguration GetWizardConfiguration()");
             sb.AppendLine("        {");
-            if (wizardConfiguration.IsMultisolution)
+            if (wizardConfiguration.Solutions.Count > 1)
             {
                 Generate_WizardConfigurtion(sb, wizardConfiguration);
             }
@@ -240,17 +240,12 @@ namespace LogoFX.Tools.TemplateGenerator
                     continue;
                 }
 
-                if (FileNamesAreEqual(_currentName, info.Name) ||
-                    wizardConfiguration.Solutions.All(x => !FileNamesAreEqual(x.Name, info.Name)))
+                if (Utils.FileNamesAreEqual(_currentName, info.Name) ||
+                    wizardConfiguration.Solutions.All(x => !Utils.FileNamesAreEqual(x.Name, info.Name)))
                 {
                     ((DirectoryInfo) info).Delete(true);
                 }
             }
-        }
-
-        private bool FileNamesAreEqual(string fileName1, string fileName2)
-        {
-            return string.Compare(fileName1, fileName2, StringComparison.OrdinalIgnoreCase) == 0;
         }
 
         private async Task<SolutionTemplateInfo> GenerateTemplateInfoAsync()

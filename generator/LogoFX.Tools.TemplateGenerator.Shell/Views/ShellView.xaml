@@ -59,6 +59,9 @@
             </TabItem>
 
             <TabItem Header="Solutions">
+                <ContentControl Margin="5"
+                                cal:View.Model="{Binding Path=WizardConfiguration, Mode=OneWay}" 
+                                cal:View.Context="Solutions" />
             </TabItem>
 
             <TabItem Header="Root Namespaces">
@@ -85,30 +88,6 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-
-            <Button Grid.Column="0"
-                    Margin="5"
-                    Width="120"
-                    Content="Make Multisolution">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Click">
-                        <commanding:ExecuteCommandAction Command="{Binding Path=MakeMultiSolutionCommand, Mode=OneTime}"
-                                                         ManageEnableState="True" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </Button>
-
-            <Button Grid.Column="1"
-                    Margin="5"
-                    Width="120"
-                    Content="Make Single Solution">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Click">
-                        <commanding:ExecuteCommandAction Command="{Binding Path=MakeSingleSolutionCommand, Mode=OneTime}"
-                                                         ManageEnableState="True" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </Button>
 
             <Button Grid.Column="3"
                     Margin="5"                    
