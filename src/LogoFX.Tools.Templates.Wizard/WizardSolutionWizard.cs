@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using LogoFX.Tools.TemplateGenerator;
+using LogoFX.Tools.Common;
 
 namespace LogoFX.Tools.Templates.Wizard
 {
@@ -10,21 +10,21 @@ namespace LogoFX.Tools.Templates.Wizard
             return "New LogoFX Application";
         }
 
-        protected override WizardConfiguration GetWizardConfiguration()
+        protected override WizardConfigurationDto GetWizardConfiguration()
         {
-            return new WizardConfiguration
+            return new WizardConfigurationDto
             {
                 FakeOption=true,
                 TestOption=true,
-                Solutions = new List<SolutionInfo>
+                Solutions = new List<SolutionInfoDto>
                 {
-                    new SolutionInfo
+                    new SolutionInfoDto
                     {
                         Name = "Specifications",
                         Caption = "Specifications",
                         IconName = "",
                     },
-                    new SolutionInfo
+                    new SolutionInfoDto
                     {
                         Name = "Samples.Universal",
                         Caption = "Samples.Universal",
