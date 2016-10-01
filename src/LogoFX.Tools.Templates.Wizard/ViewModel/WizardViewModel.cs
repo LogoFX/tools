@@ -1,17 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Caliburn.Micro;
-using LogoFX.Tools.TemplateGenerator;
+using LogoFX.Tools.Common;
 
 namespace LogoFX.Tools.Templates.Wizard.ViewModel
 {
-    public sealed class WizardViewModel : ObjectViewModel<WizardConfiguration>
+    public sealed class WizardViewModel : ObjectViewModel<WizardConfigurationDto>
     {
         private IEnumerable<SolutionInfoViewModel> _solutions;
 
-        public WizardViewModel(WizardConfiguration model)
+        public WizardViewModel(WizardConfigurationDto model)
             : base(model)
         {
         }

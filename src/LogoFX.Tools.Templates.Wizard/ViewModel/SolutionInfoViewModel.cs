@@ -1,10 +1,10 @@
-﻿using LogoFX.Tools.TemplateGenerator;
+﻿using LogoFX.Tools.Common;
 
 namespace LogoFX.Tools.Templates.Wizard.ViewModel
 {
-    public sealed class SolutionInfoViewModel : ObjectViewModel<SolutionInfo>
+    public sealed class SolutionInfoViewModel : ObjectViewModel<SolutionInfoDto>
     {
-        public SolutionInfoViewModel(SolutionInfo model) 
+        public SolutionInfoViewModel(SolutionInfoDto model) 
             : base(model)
         {
         }

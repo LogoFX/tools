@@ -1,6 +1,8 @@
-﻿using System.IO;
+﻿using System.Collections.ObjectModel;
+using System.IO;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using LogoFX.Tools.Common;
 
 namespace LogoFX.Tools.TemplateGenerator
 {
@@ -36,5 +38,19 @@ namespace LogoFX.Tools.TemplateGenerator
                 }
             });
         }
+    }
+
+    public sealed class WizardConfiguration
+    {
+        public WizardConfiguration()
+        {
+            Solutions = new ObservableCollection<SolutionInfo>();
+        }
+
+        public ObservableCollection<SolutionInfo> Solutions { get; }
+
+        public string ProjectType => "CSharp";
+
+        public int SortOrder => 5000;
     }
 }

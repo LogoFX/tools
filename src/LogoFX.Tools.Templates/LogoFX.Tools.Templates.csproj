@@ -69,8 +69,6 @@
     <Content Include="ProjectTemplates\Minimalistic\Definitions\CSharp.vstemplate" />
     <Content Include="ProjectTemplates\Minimalistic\_preprocess.xml" />
     <Content Include="ProjectTemplates\Universal\Definitions\CSharp.vstemplate" />
-    <Content Include="ProjectTemplates\Wizard\Definitions\CSharp.vstemplate" />
-    <Content Include="ProjectTemplates\Wizard\_preprocess.xml" />
     <Content Include="stylesheet.css" />
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +79,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Tools.Templates.UserControlView\LogoFX.Tools.Templates.UserControlView.csproj">
+      <Project>{d2aab89a-99fc-4693-a8a2-cfda734bfb57}</Project>
+      <Name>LogoFX.Tools.Templates.UserControlView</Name>
+      <VSIXSubPath>ItemTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Tools.Templates.ViewModel\LogoFX.Tools.Templates.ViewModel.csproj">
+      <Project>{dc84d34f-de39-4b7b-8f47-6bec8d071165}</Project>
+      <Name>LogoFX.Tools.Templates.ViewModel</Name>
+      <VSIXSubPath>ItemTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
     <ProjectReference Include="..\LogoFX.Tools.Templates.Wizard\LogoFX.Tools.Templates.Wizard.csproj">
       <Project>{49CC73EF-E0EC-48F2-8F53-A6FDA3EB7631}</Project>
       <Name>LogoFX.Tools.Templates.Wizard</Name>

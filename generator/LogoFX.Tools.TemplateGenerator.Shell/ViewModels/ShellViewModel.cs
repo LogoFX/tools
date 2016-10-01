@@ -116,24 +116,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             NotifyOfPropertyChange(() => IsMultisolution);
         }
 
-        private ISolutionTemplateInfo _solutionTemplateInfo;
-
-        public ISolutionTemplateInfo SolutionTemplateInfo
-        {
-            get { return _solutionTemplateInfo; }
-            private set
-            {
-                if (_solutionTemplateInfo == value)
-                {
-                    return;
-                }
-
-                _solutionTemplateInfo = value;
-                NotifyOfPropertyChange();
-                NotifyOfPropertyChange(() => CanGenerate);
-            }
-        }
-
         private bool _isBusy;
 
         public bool IsBusy
@@ -155,9 +137,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         {
             get
             {
-                if (WizardConfiguration == null ||
-                    !WizardConfiguration.CanGenerate ||
-                    SolutionTemplateInfo == null)
+                if (WizardConfiguration == null || !WizardConfiguration.CanGenerate)
                 {
                     return false;
                 }
@@ -212,14 +192,9 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
             try
             {
-                await _solutionTemplateGenerator.GenerateAsync(
-                    DestinationPath,
-                    SolutionTemplateInfo,
-                    WizardConfiguration.Model);
+                await _solutionTemplateGenerator.GenerateAsync(DestinationPath, WizardConfiguration.Model);
 
                 await SaveAsync();
-
-                SolutionTemplateInfo = null;
 
                 TryClose();
             }

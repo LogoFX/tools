@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
-namespace LogoFX.Tools.TemplateGenerator
+namespace LogoFX.Tools.Common
 {
-    public sealed class WizardConfiguration
+    public class WizardConfigurationDto
     {
-        public WizardConfiguration()
+        public WizardConfigurationDto()
         {
-            Solutions = new ObservableCollection<SolutionInfo>();
+            Solutions = new List<SolutionInfoDto>();
         }
 
         public bool TestOption { get; set; }
@@ -22,42 +21,16 @@ namespace LogoFX.Tools.TemplateGenerator
 
         public string CodeFileName { get; set; }
 
-        public ObservableCollection<SolutionInfo> Solutions { get; set; }
+        public List<SolutionInfoDto> Solutions { get; set; }
+
+        public string IconName { get; set; }
     }
 
-    public sealed class SolutionInfo
+    public sealed class SolutionInfoDto
     {
-        public SolutionInfo()
-        {
-            Items = new List<SolutionItemInfo>();
-        }
-
         public string FileName { get; set; }
         public string Name { get; set; }
         public string Caption { get; set; }
         public string IconName { get; set; }
-        public List<SolutionItemInfo> Items { get; set; }
-    }
-
-    public abstract class SolutionItemInfo
-    {
-    }
-
-    public sealed class SolutionFolderInfo : SolutionItemInfo
-    {
-        public SolutionFolderInfo()
-        {
-            Items = new List<SolutionItemInfo>();
-        }
-
-        public string Name { get; set; }
-
-        public List<SolutionItemInfo> Items { get; set; }
-    }
-
-    public sealed class ProjectInfo : SolutionItemInfo
-    {
-        public string ProjectName { get; set; }
-        public string FileName { get; set; }
     }
 }

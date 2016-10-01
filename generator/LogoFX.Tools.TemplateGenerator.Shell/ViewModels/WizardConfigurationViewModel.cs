@@ -1,11 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using Avalon.Windows.Dialogs;
 using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.ViewModel;
-using LogoFX.Tools.TemplateGenerator.Shell.Properties;
 using Microsoft.Win32;
 
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
@@ -177,7 +174,8 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         {
             return !string.IsNullOrEmpty(Name) &&
                    !string.IsNullOrEmpty(DefaultName) &&
-                   !string.IsNullOrEmpty(CodeFileName);
+                   !string.IsNullOrEmpty(CodeFileName) &&
+                   Model.Solutions.Count > 0;
         }
     }
 }

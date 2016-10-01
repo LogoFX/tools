@@ -1,7 +1,7 @@
 namespace LogoFX.Tools.TemplateGenerator
 {
     /// <summary>
-    /// Information aboud template. Stored in \Definitions\CSharp.vstemplate file.
+    /// Information about template. Stored in \Definitions\CSharp.vstemplate file.
     /// </summary>
     internal sealed class TemplateDataInfo
     {

@@ -1,10 +1,10 @@
-﻿using LogoFX.Tools.TemplateGenerator;
+﻿using LogoFX.Tools.Common;
 
 namespace LogoFX.Tools.Templates.Wizard
 {
     public static class WizardConfigurationExtensions
     {
-        public static bool ShowWizardWindow(this WizardConfiguration wizardConfiguration)
+        public static bool ShowWizardWindow(this WizardConfigurationDto wizardConfiguration)
         {
             return wizardConfiguration.TestOption ||
                    wizardConfiguration.FakeOption ||

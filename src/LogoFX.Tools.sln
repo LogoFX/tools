@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.Templates", "L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.Templates.Wizard", "LogoFX.Tools.Templates.Wizard\LogoFX.Tools.Templates.Wizard.csproj", "{49CC73EF-E0EC-48F2-8F53-A6FDA3EB7631}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.Templates.ViewModel", "LogoFX.Tools.Templates.ViewModel\LogoFX.Tools.Templates.ViewModel.csproj", "{DC84D34F-DE39-4B7B-8F47-6BEC8D071165}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.Templates.UserControlView", "LogoFX.Tools.Templates.UserControlView\LogoFX.Tools.Templates.UserControlView.csproj", "{D2AAB89A-99FC-4693-A8A2-CFDA734BFB57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{49CC73EF-E0EC-48F2-8F53-A6FDA3EB7631}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49CC73EF-E0EC-48F2-8F53-A6FDA3EB7631}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49CC73EF-E0EC-48F2-8F53-A6FDA3EB7631}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC84D34F-DE39-4B7B-8F47-6BEC8D071165}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC84D34F-DE39-4B7B-8F47-6BEC8D071165}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC84D34F-DE39-4B7B-8F47-6BEC8D071165}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC84D34F-DE39-4B7B-8F47-6BEC8D071165}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2AAB89A-99FC-4693-A8A2-CFDA734BFB57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2AAB89A-99FC-4693-A8A2-CFDA734BFB57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2AAB89A-99FC-4693-A8A2-CFDA734BFB57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2AAB89A-99FC-4693-A8A2-CFDA734BFB57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

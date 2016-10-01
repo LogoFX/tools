@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using LogoFX.Tools.TemplateGenerator;
+using LogoFX.Tools.Common;
 
 namespace LogoFX.Tools.Templates.Wizard
 {
@@ -10,7 +9,7 @@ namespace LogoFX.Tools.Templates.Wizard
             return "New LogoFX Universal Application";
         }
 
-        protected override WizardConfiguration GetWizardConfiguration()
+        protected override WizardConfigurationDto GetWizardConfiguration()
         {
             return null;
         }

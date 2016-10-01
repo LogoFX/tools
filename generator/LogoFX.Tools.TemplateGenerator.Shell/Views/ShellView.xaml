@@ -63,21 +63,6 @@
                                 cal:View.Model="{Binding Path=WizardConfiguration, Mode=OneWay}" 
                                 cal:View.Context="Solutions" />
             </TabItem>
-
-            <TabItem Header="Root Namespaces">
-                <ItemsControl Margin="5"
-                              ItemsSource="{Binding Path=SolutionTemplateInfo.RootNamespaces}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Height="40">
-                                <TextBox Text="{Binding Mode=OneWay}"
-                                         IsReadOnly="True"
-                                         VerticalAlignment="Center" />
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </TabItem>
         </TabControl>
 
         <Grid Grid.Row="2">
