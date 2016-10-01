@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using LogoFX.Tools.TemplateGenerator.Contracts;
@@ -68,6 +69,24 @@ namespace LogoFX.Tools.TemplateGenerator
 
         private void CreateItems(XElement rootElement, WizardConfiguration wizardConfiguration)
         {
+            if (wizardConfiguration.Solutions.Count == 1)
+            {
+                CreateItems(rootElement, wizardConfiguration.Solutions.First().SolutionTemplateInfo, null);
+                return;
+            }
+
+            foreach (var solution in wizardConfiguration.Solutions)
+            {
+                var folderElement = new XElement(Ns + "SolutionFolder",
+                    new XAttribute("Name", solution.Name),
+                    new XAttribute("CreateOnDisk", true));
+                rootElement.Add(folderElement);
+                CreateItems(folderElement, solution.SolutionTemplateInfo, solution.Name);
+            }
+        }
+
+        private void CreateItems(XElement rootElement, ISolutionFolderTemplateInfo solutionFolder, string subFolder)
+        {
             foreach (var solutionItem in solutionFolder.Items)
             {
                 var folder = solutionItem as ISolutionFolderTemplateInfo;
@@ -75,29 +94,29 @@ namespace LogoFX.Tools.TemplateGenerator
                 {
                     var folderElement = new XElement(Ns + "SolutionFolder",
                         new XAttribute("Name", folder.Name),
-                        new XAttribute("CreateOnDisk", folder.CreateOnDisk));
+                        new XAttribute("CreateOnDisk", false));
                     rootElement.Add(folderElement);
-                    CreateItems(folderElement, folder);
+                    CreateItems(folderElement, folder, subFolder);
                 }
                 else
                 {
                     var projectTemplateInfo = (IProjectTemplateInfo)solutionItem;
                     var projectLinkElement = new XElement(Ns + "ProjectTemplateLink",
                         new XAttribute("ProjectName", SafeProjectName(projectTemplateInfo)),
-                        VSTemplateName(projectTemplateInfo));
+                        VSTemplateName(projectTemplateInfo, subFolder));
                     rootElement.Add(projectLinkElement);
                 }
             }
         }
 
-        private string VSTemplateName(IProjectTemplateInfo projectTemplateInfo)
+        private string VSTemplateName(IProjectTemplateInfo projectTemplateInfo, string subFolder)
         {
-            if (string.IsNullOrEmpty(_subFolder))
+            if (string.IsNullOrEmpty(subFolder))
             {
                 return $"{projectTemplateInfo.Name}\\MyTemplate.vstemplate";
             }
 
-            return $"{_subFolder}\\{projectTemplateInfo.Name}\\MyTemplate.vstemplate";
+            return $"{subFolder}\\{projectTemplateInfo.Name}\\MyTemplate.vstemplate";
         }
     }
 }

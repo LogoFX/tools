@@ -16,17 +16,12 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
     {
         #region Fields
 
-        private SolutionTemplateGenerator _solutionTemplateGenerator;
-        private readonly IDataService _dataService;
-
         #endregion
 
         #region Constructors
 
-        public ShellViewModel(IDataService dataService)
+        public ShellViewModel()
         {
-            _dataService = dataService;
-
             DestinationPath = Settings.Default.DestinationPath;
         }
 
@@ -183,7 +178,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
             WizardConfiguration wizardConfiguration = WizardConfiguration.Model;
             var fileName = WizardConfigurator.GetWizardConfigurationFileName(destinationPath);
-            await WizardConfigurator.SaveAsync(fileName, wizardConfiguration);
+            await WizardConfigurator.SaveAsync(fileName, wizardConfiguration.ToDto());
         }
 
         private async void GenerateTemplate()
@@ -192,7 +187,8 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
             try
             {
-                await _solutionTemplateGenerator.GenerateAsync(DestinationPath, WizardConfiguration.Model);
+                var solutionTemplateGenerator = new SolutionTemplateGenerator();
+                await solutionTemplateGenerator.GenerateAsync(DestinationPath, WizardConfiguration.Model);
 
                 await SaveAsync();
 

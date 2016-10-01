@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.IO;
+﻿using System.IO;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using LogoFX.Tools.Common;
@@ -15,42 +14,28 @@ namespace LogoFX.Tools.TemplateGenerator
             return Path.Combine(path, CfgFileName);
         }
 
-        public static Task<WizardConfiguration> LoadAsync(string fileName)
+        public static Task<WizardConfigurationDto> LoadAsync(string fileName)
         {
             return Task.Run(() =>
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(WizardConfiguration));
+                XmlSerializer serializer = new XmlSerializer(typeof(WizardConfigurationDto));
                 using (var tr = File.OpenText(fileName))
                 {
-                    return (WizardConfiguration) serializer.Deserialize(tr);
+                    return (WizardConfigurationDto) serializer.Deserialize(tr);
                 }
             });
         }
 
-        public static Task SaveAsync(string fileName, WizardConfiguration wizardConfiguration)
+        public static Task SaveAsync(string fileName, WizardConfigurationDto wizardConfiguration)
         {
             return Task.Run(() =>
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(WizardConfiguration));
+                XmlSerializer serializer = new XmlSerializer(typeof(WizardConfigurationDto));
                 using (var tw = File.CreateText(fileName))
                 {
                     serializer.Serialize(tw, wizardConfiguration);
                 }
             });
         }
-    }
-
-    public sealed class WizardConfiguration
-    {
-        public WizardConfiguration()
-        {
-            Solutions = new ObservableCollection<SolutionInfo>();
-        }
-
-        public ObservableCollection<SolutionInfo> Solutions { get; }
-
-        public string ProjectType => "CSharp";
-
-        public int SortOrder => 5000;
     }
 }

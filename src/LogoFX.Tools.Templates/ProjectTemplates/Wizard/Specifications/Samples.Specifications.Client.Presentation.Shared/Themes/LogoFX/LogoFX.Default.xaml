@@ -1,0 +1,12 @@
+<xaml:SharedResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:xaml="clr-namespace:LogoFX.Client.Mvvm.View.Xaml;assembly=LogoFX.Client.Mvvm.View.Platform">
+    
+    <SolidColorBrush x:Key="LogoFXLightBackground" Color="#FFFAFAFA"/>
+    <SolidColorBrush x:Key="LogoFXLightForeground" Color="#DD000000"/>
+    <SolidColorBrush x:Key="LogoFXDarkBackground" Color="#FF37474f"/>
+    <SolidColorBrush x:Key="LogoFXDarkForeground" Color="#FFFAFAFA"/>
+    
+    
+
+</xaml:SharedResourceDictionary>

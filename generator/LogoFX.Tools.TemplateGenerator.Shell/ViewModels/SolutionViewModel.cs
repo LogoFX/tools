@@ -12,19 +12,17 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             CreateSolutionTemplateInfo();
         }
 
-        private ISolutionTemplateInfo _solutionTemplateInfo;
-
         public ISolutionTemplateInfo SolutionTemplateInfo
         {
-            get { return _solutionTemplateInfo; }
+            get { return Model.SolutionTemplateInfo; }
             private set
             {
-                if (_solutionTemplateInfo == value)
+                if (SolutionTemplateInfo == value)
                 {
                     return;
                 }
 
-                _solutionTemplateInfo = value;
+                Model.SolutionTemplateInfo = value;
                 NotifyOfPropertyChange();
             }
         }

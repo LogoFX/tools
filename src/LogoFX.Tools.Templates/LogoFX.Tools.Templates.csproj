@@ -69,6 +69,7 @@
     <Content Include="ProjectTemplates\Minimalistic\Definitions\CSharp.vstemplate" />
     <Content Include="ProjectTemplates\Minimalistic\_preprocess.xml" />
     <Content Include="ProjectTemplates\Universal\Definitions\CSharp.vstemplate" />
+    <Content Include="ProjectTemplates\Wizard\Definitions\CSharp.vstemplate" />
     <Content Include="stylesheet.css" />
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using LogoFX.Tools.TemplateGenerator.Contracts;
 
 namespace LogoFX.Tools.TemplateGenerator
 {
@@ -12,39 +13,37 @@ namespace LogoFX.Tools.TemplateGenerator
     {
         public async Task GenerateAsync(string destinationFolder, WizardConfiguration wizardConfiguration)
         {
-            if (!Directory.Exists(destinationFolder))
-            {
-                Directory.CreateDirectory(destinationFolder);
-            }
-
             var definitionsGenerator = new DefinitionsGenerator(destinationFolder);
 
-            CleanDestination(destinationFolder, wizardConfiguration);
-            definitionsGenerator.CreateDefinitions(new TemplateDataInfo
-            {
-                DefaultName = wizardConfiguration.DefaultName,
-                Description = wizardConfiguration.Description,
-                Name = wizardConfiguration.Name,
-                WizardClassName = Path.GetFileNameWithoutExtension(wizardConfiguration.CodeFileName)
-            }, solutionTemplateInfo);
+            CleanDestination(destinationFolder);
+            definitionsGenerator.CreateDefinitions(wizardConfiguration);
 
             CreateWizardSolutionFile(wizardConfiguration);
             CreatePrepropcess(destinationFolder);
 
-            var solutionFolder = destinationFolder;
-            if (_isMultisolution)
-            {
-                solutionFolder = Path.Combine(destinationFolder, _currentName);
-                if (!Directory.Exists(solutionFolder))
-                {
-                    Directory.CreateDirectory(destinationFolder);
-                }
-            }
+            var multiSolution = wizardConfiguration.Solutions.Count > 1;
 
-            foreach (var projectTemplateInfo in solutionTemplateInfo.GetProjectsPlain())
+            foreach (var solution in wizardConfiguration.Solutions)
             {
-                var projectGenerator = new ProjectTemplateGenerator(projectTemplateInfo, solutionTemplateInfo);
-                await projectGenerator.GenerateAsync(solutionFolder);
+                string solutionFolder;
+                if (multiSolution)
+                {
+                    solutionFolder = Path.Combine(destinationFolder, solution.Name);
+                    if (!Directory.Exists(solutionFolder))
+                    {
+                        Directory.CreateDirectory(destinationFolder);
+                    }
+                }
+                else
+                {
+                    solutionFolder = destinationFolder;
+                }
+
+                foreach (var projectTemplateInfo in solution.SolutionTemplateInfo.GetProjectsPlain())
+                {
+                    var projectGenerator = new ProjectTemplateGenerator(projectTemplateInfo, solution.SolutionTemplateInfo);
+                    await projectGenerator.GenerateAsync(solutionFolder);
+                }
             }
         }
 
@@ -146,34 +145,14 @@ namespace LogoFX.Tools.TemplateGenerator
             }
         }
 
-        private void CleanDestination(string destinationFolder, WizardConfiguration wizardConfiguration)
+        private void CleanDestination(string destinationFolder)
         {
             if (!Directory.Exists(destinationFolder))
             {
                 return;
             }
 
-            if (!_isMultisolution)
-            {
-                Directory.Delete(destinationFolder, true);
-                return;
-            }
-
-            var dir = new DirectoryInfo(destinationFolder);
-            foreach (var info in dir.EnumerateFileSystemInfos())
-            {
-                if (info is FileInfo)
-                {
-                    info.Delete();
-                    continue;
-                }
-
-                if (Utils.FileNamesAreEqual(_currentName, info.Name) ||
-                    wizardConfiguration.Solutions.All(x => !Utils.FileNamesAreEqual(x.Name, info.Name)))
-                {
-                    ((DirectoryInfo) info).Delete(true);
-                }
-            }
+            Directory.Delete(destinationFolder, true);
         }
     }
 }

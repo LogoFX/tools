@@ -68,7 +68,7 @@ namespace LogoFX.Tools.TemplateGenerator
                     {
                         return folders[id];
                     }
-                    result = new SolutionFolderTemplateInfo(id, proj.ProjectName, false);
+                    result = new SolutionFolderTemplateInfo(id, proj.ProjectName);
                     folders.Add(id, (SolutionFolderTemplateInfo)result);
                     break;
                 default:
