@@ -1,4 +1,3 @@
-using LogoFX.Tools.Common;
 
 namespace LogoFX.Tools.Templates.Wizard
 {
@@ -9,7 +8,7 @@ namespace LogoFX.Tools.Templates.Wizard
         return "New Simple WPF Application";
         }
 
-        protected override WizardConfigurationDto GetWizardConfiguration()
+        protected override WizardConfiguration GetWizardConfiguration()
         {
             return null;
         }

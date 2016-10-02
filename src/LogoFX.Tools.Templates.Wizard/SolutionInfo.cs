@@ -1,7 +1,4 @@
-﻿using System.Xml.Serialization;
-using LogoFX.Tools.TemplateGenerator.Contracts;
-
-namespace LogoFX.Tools.TemplateGenerator
+﻿namespace LogoFX.Tools.Templates.Wizard
 {
     public sealed class SolutionInfo
     {
@@ -9,8 +6,5 @@ namespace LogoFX.Tools.TemplateGenerator
         public string Name { get; set; }
         public string Caption { get; set; }
         public string IconName { get; set; }
-
-        [XmlIgnore]
-        public ISolutionTemplateInfo SolutionTemplateInfo { get; set; }
     }
 }

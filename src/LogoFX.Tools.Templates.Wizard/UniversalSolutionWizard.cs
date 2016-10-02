@@ -1,5 +1,3 @@
-using LogoFX.Tools.Common;
-
 namespace LogoFX.Tools.Templates.Wizard
 {
     public sealed class UniversalSolutionWizard : SolutionWizard
@@ -9,7 +7,7 @@ namespace LogoFX.Tools.Templates.Wizard
             return "New LogoFX Universal Application";
         }
 
-        protected override WizardConfigurationDto GetWizardConfiguration()
+        protected override WizardConfiguration GetWizardConfiguration()
         {
             return null;
         }

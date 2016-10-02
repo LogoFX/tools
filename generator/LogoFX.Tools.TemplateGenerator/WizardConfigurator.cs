@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-using LogoFX.Tools.Common;
 
 namespace LogoFX.Tools.TemplateGenerator
 {
@@ -14,23 +13,23 @@ namespace LogoFX.Tools.TemplateGenerator
             return Path.Combine(path, CfgFileName);
         }
 
-        public static Task<WizardConfigurationDto> LoadAsync(string fileName)
+        public static Task<WizardConfiguration> LoadAsync(string fileName)
         {
             return Task.Run(() =>
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(WizardConfigurationDto));
+                XmlSerializer serializer = new XmlSerializer(typeof(WizardConfiguration));
                 using (var tr = File.OpenText(fileName))
                 {
-                    return (WizardConfigurationDto) serializer.Deserialize(tr);
+                    return (WizardConfiguration) serializer.Deserialize(tr);
                 }
             });
         }
 
-        public static Task SaveAsync(string fileName, WizardConfigurationDto wizardConfiguration)
+        public static Task SaveAsync(string fileName, WizardConfiguration wizardConfiguration)
         {
             return Task.Run(() =>
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(WizardConfigurationDto));
+                XmlSerializer serializer = new XmlSerializer(typeof(WizardConfiguration));
                 using (var tw = File.CreateText(fileName))
                 {
                     serializer.Serialize(tw, wizardConfiguration);

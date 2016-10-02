@@ -5,7 +5,6 @@ using System.Linq;
 using EnvDTE;
 using EnvDTE100;
 using EnvDTE80;
-using LogoFX.Tools.Common;
 using LogoFX.Tools.Templates.Wizard.Model;
 using LogoFX.Tools.Templates.Wizard.ViewModel;
 using Microsoft.Build.Construction;
@@ -34,7 +33,7 @@ namespace LogoFX.Tools.Templates.Wizard
 
         protected abstract string GetTitle();
 
-        protected abstract WizardConfigurationDto GetWizardConfiguration();
+        protected abstract WizardConfiguration GetWizardConfiguration();
 
         #endregion
 
@@ -99,7 +98,7 @@ namespace LogoFX.Tools.Templates.Wizard
             }
         }
 
-        private IEnumerable<Project> RemoveMultiSolution(SolutionInfoDto solutionInfo)
+        private IEnumerable<Project> RemoveMultiSolution(SolutionInfo solutionInfo)
         {
             SolutionFolderTemplate selected = null;
             foreach (var p in _solution.Projects.OfType<Project>().ToList())

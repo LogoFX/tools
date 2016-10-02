@@ -54,11 +54,11 @@ namespace LogoFX.Tools.TemplateGenerator
 
         private void Generate_WizardConfiguration_Solutions(StringBuilder sb, IEnumerable<SolutionInfo> solutions)
         {
-            sb.AppendLine("                Solutions = new List<SolutionInfoDto>");
+            sb.AppendLine("                Solutions = new List<SolutionInfo>");
             sb.AppendLine("                {");
             foreach (var solution in solutions)
             {
-                sb.AppendLine("                    new SolutionInfoDto");
+                sb.AppendLine("                    new SolutionInfo");
                 sb.AppendLine("                    {");
                 sb.AppendLine($"                        Name = \"{solution.Name}\",");
                 sb.AppendLine($"                        Caption = \"{solution.Caption}\",");
@@ -70,7 +70,7 @@ namespace LogoFX.Tools.TemplateGenerator
 
         private void Generate_WizardConfigurtion(StringBuilder sb, WizardConfiguration wizardConfiguration)
         {
-            sb.AppendLine("            return new WizardConfigurationDto");
+            sb.AppendLine("            return new WizardConfiguration");
             sb.AppendLine("            {");
             sb.AppendLine($"                FakeOption={BoolToString(wizardConfiguration.FakeOption)},");
             sb.AppendLine($"                TestOption={BoolToString(wizardConfiguration.TestOption)},");
@@ -83,7 +83,7 @@ namespace LogoFX.Tools.TemplateGenerator
 
         private void Generate_GetWizardConfiguration(StringBuilder sb, WizardConfiguration wizardConfiguration)
         {
-            sb.AppendLine("        protected override WizardConfigurationDto GetWizardConfiguration()");
+            sb.AppendLine("        protected override WizardConfiguration GetWizardConfiguration()");
             sb.AppendLine("        {");
             if (wizardConfiguration.Solutions.Count > 1)
             {
@@ -103,7 +103,6 @@ namespace LogoFX.Tools.TemplateGenerator
 
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("using System.Collections.Generic;");
-            sb.AppendLine("using LogoFX.Tools.Common;");
             sb.AppendLine();
             sb.AppendLine("namespace LogoFX.Tools.Templates.Wizard");
             sb.AppendLine("{");

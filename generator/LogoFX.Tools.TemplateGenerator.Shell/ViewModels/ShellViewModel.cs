@@ -178,7 +178,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
             WizardConfiguration wizardConfiguration = WizardConfiguration.Model;
             var fileName = WizardConfigurator.GetWizardConfigurationFileName(destinationPath);
-            await WizardConfigurator.SaveAsync(fileName, wizardConfiguration.ToDto());
+            await WizardConfigurator.SaveAsync(fileName, wizardConfiguration);
         }
 
         private async void GenerateTemplate()

@@ -75,8 +75,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             }
             else
             {
-                var dto = await WizardConfigurator.LoadAsync(fileName);
-                wizardConfiguration = new WizardConfiguration(dto);
+                wizardConfiguration = await WizardConfigurator.LoadAsync(fileName);
             }
 
             return wizardConfiguration;
