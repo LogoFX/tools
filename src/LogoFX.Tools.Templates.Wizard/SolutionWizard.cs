@@ -137,12 +137,15 @@ namespace LogoFX.Tools.Templates.Wizard
 
         private void AddSolutionFolder(SolutionFolder parent, SolutionFolderTemplate solutionFolder, IList<Project> projects)
         {
-            if (parent == null && solutionFolder.Name == "Tests")
+            if (!_wizardViewModel.CreateTests && 
+                parent == null && 
+                solutionFolder.Name == "Tests")
             {
                 return;
             }
 
-            if (solutionFolder.Name == "Fake")
+            if (!_wizardViewModel.CreateFakes &&
+                solutionFolder.Name == "Fake")
             {
                 return;
             }
