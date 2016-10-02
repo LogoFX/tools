@@ -49,16 +49,6 @@ namespace LogoFX.Tools.Templates.Wizard
 
             projects = RemoveMultiSolution(_wizardViewModel.SelectedSolution.Model);
 
-            //if (!_wizardViewModel.CreateTests)
-            //{
-            //    RemoveTestProjects();
-            //}
-
-            //if (!_wizardViewModel.CreateFakes)
-            //{
-            //    RemoveFakesProjects(projects);
-            //}
-
             if (!_wizardViewModel.MustRemoveCondition)
             {
                 RemoveConditions(projects);
@@ -148,6 +138,11 @@ namespace LogoFX.Tools.Templates.Wizard
         private void AddSolutionFolder(SolutionFolder parent, SolutionFolderTemplate solutionFolder, IList<Project> projects)
         {
             if (parent == null && solutionFolder.Name == "Tests")
+            {
+                return;
+            }
+
+            if (solutionFolder.Name == "Fake")
             {
                 return;
             }
