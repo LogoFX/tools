@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -10,11 +9,10 @@ using LogoFX.Tools.Common;
 using LogoFX.Tools.Templates.Wizard.Model;
 using LogoFX.Tools.Templates.Wizard.ViewModel;
 using Microsoft.Build.Construction;
-using Microsoft.VisualStudio.TemplateWizard;
 
 namespace LogoFX.Tools.Templates.Wizard
 {
-    public abstract class SolutionWizard : IWizard
+    public abstract partial class SolutionWizard
     {
         #region Fields
 
@@ -42,14 +40,6 @@ namespace LogoFX.Tools.Templates.Wizard
 
         #region Private Members
 
-        private void RemoveConditions(IEnumerable<Project> projects)
-        {
-            foreach (var project in projects)
-            {
-                RemoveConditions(project);
-            }
-        }
-
         private IEnumerable<Project> ApplyWizardModifications(IEnumerable<Project> projects)
         {
             if (_wizardViewModel == null)
@@ -57,7 +47,7 @@ namespace LogoFX.Tools.Templates.Wizard
                 return projects;
             }
 
-            return RemoveMultiSolution(_wizardViewModel.SelectedSolution.Model);
+            projects = RemoveMultiSolution(_wizardViewModel.SelectedSolution.Model);
 
             //if (!_wizardViewModel.CreateTests)
             //{
@@ -69,10 +59,54 @@ namespace LogoFX.Tools.Templates.Wizard
             //    RemoveFakesProjects(projects);
             //}
 
-            //if (!_wizardViewModel.CreateTests || !_wizardViewModel.CreateFakes)
-            //{
-            //    RemoveConditions(projects);
-            //}
+            if (!_wizardViewModel.MustRemoveCondition)
+            {
+                RemoveConditions(projects);
+            }
+
+            return projects;
+        }
+
+        private void RemoveConditions(IEnumerable<Project> projects)
+        {
+            foreach (var project in projects)
+            {
+                RemoveConditions(project);
+            }
+        }
+
+        private void RemoveConditions(Project project)
+        {
+            var projectFilePath = project.FileName;
+
+            if (!string.Equals(Path.GetExtension(projectFilePath), ".csproj"))
+            {
+                return;
+            }
+
+            var buildProject = new Microsoft.Build.Evaluation.Project(projectFilePath);
+            var allGroups = buildProject.Xml.PropertyGroups;
+
+            var toRemove = new List<ProjectPropertyGroupElement>();
+
+            if (!_wizardViewModel.FakeOption)
+            {
+                toRemove.AddRange(allGroups.Where(x => x.Condition.Contains("Fake")));
+            }
+
+            if (!_wizardViewModel.TestOption)
+            {
+                toRemove.AddRange(allGroups.Where(x => x.Condition.Contains("Tests")));
+            }
+
+            if (toRemove.Count > 0)
+            {
+                foreach (var pg in toRemove.Distinct())
+                {
+                    buildProject.Xml.RemoveChild(pg);
+                }
+                buildProject.Save();
+            }
         }
 
         private IEnumerable<Project> RemoveMultiSolution(SolutionInfoDto solutionInfo)
@@ -113,6 +147,11 @@ namespace LogoFX.Tools.Templates.Wizard
 
         private void AddSolutionFolder(SolutionFolder parent, SolutionFolderTemplate solutionFolder, IList<Project> projects)
         {
+            if (parent == null && solutionFolder.Name == "Tests")
+            {
+                return;
+            }
+
             var addedProject = parent == null
                 ? _solution.AddSolutionFolder(solutionFolder.Name)
                 : parent.AddSolutionFolder(solutionFolder.Name);
@@ -177,68 +216,6 @@ namespace LogoFX.Tools.Templates.Wizard
             }
         }
 
-        /// <summary>
-        /// Deletes the directory.
-        /// </summary>
-        /// <param name="directory">The directory.</param>
-        /// <param name="inUseRetryCount">The in use retry count.</param>
-        private static void DeleteDirectory(string directory, int inUseRetryCount = 3)
-        {
-            var counter = 0;
-            while (counter < inUseRetryCount)
-            {
-                try
-                {
-                    if (!Directory.Exists(directory))
-                    {
-                        return;
-                    }
-
-                    var files = Directory.GetFiles(directory);
-                    foreach (var file in files)
-                    {
-                        File.Delete(file);
-                    }
-
-                    var folders = Directory.GetDirectories(directory);
-                    foreach (var folder in folders)
-                    {
-                        var name = Path.GetFileName(folder);
-                        if (name == null) continue;
-
-                        DeleteDirectory(folder);
-                    }
-
-                    Directory.Delete(directory);
-                    break;
-                }
-                catch (Exception)
-                {
-                    System.Threading.Thread.Sleep(2000);
-                    counter++;
-                }
-            }
-        }
-
-        private void RemoveTestProjects()
-        {
-            var testSolutionFolder = _solution.Projects
-                .OfType<Project>()
-                .FirstOrDefault(p => p.Name == "Tests");
-            if (testSolutionFolder != null)
-            {
-                _solution.Remove(testSolutionFolder);
-            }
-        }
-
-        private void RemoveFakesProjects(IEnumerable<Project> projects)
-        {
-            foreach (var p in projects.Where(p => p.Name.Contains(".Fake.")))
-            {
-                _solution.Remove(p);
-            }
-        }
-
         private void SetStartupProject(IEnumerable<Project> projects)
         {
             var startupProject = projects.FirstOrDefault(x => x.Name.EndsWith("Launcher"));
@@ -254,40 +231,6 @@ namespace LogoFX.Tools.Templates.Wizard
             if (!string.IsNullOrEmpty(startupProject.Name))
             {
                 _solution.Properties.Item("StartupProject").Value = startupProject.Name;
-            }
-        }
-
-        private void RemoveConditions(Project project)
-        {
-            var projectFilePath = project.FileName;
-
-            if (!string.Equals(Path.GetExtension(projectFilePath), ".csproj"))
-            {
-                return;
-            }
-
-            var buildProject = new Microsoft.Build.Evaluation.Project(projectFilePath);
-            var allGroups = buildProject.Xml.PropertyGroups;
-
-            var toRemove = new List<ProjectPropertyGroupElement>();
-
-            if (!_wizardViewModel.FakeOption)
-            {
-                toRemove.AddRange(allGroups.Where(x => x.Condition.Contains("Fake")));
-            }
-
-            if (!_wizardViewModel.TestOption)
-            {
-                toRemove.AddRange(allGroups.Where(x => x.Condition.Contains("Tests")));
-            }
-
-            if (toRemove.Count > 0)
-            {
-                foreach (var pg in toRemove.Distinct())
-                {
-                    buildProject.Xml.RemoveChild(pg);
-                }
-                buildProject.Save();
             }
         }
 
@@ -331,84 +274,6 @@ namespace LogoFX.Tools.Templates.Wizard
                     projectList.Add(rootProject);
                 }
             }
-        }
-
-        #endregion
-
-        #region IWizard
-
-        public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
-        {
-            if (runKind != WizardRunKind.AsMultiProject)
-            {
-                return;
-            }
-
-            DTE2 dtE2 = automationObject as DTE2;
-            // ReSharper disable SuspiciousTypeConversion.Global
-            var solution4 = dtE2.Solution as Solution4;
-            if (solution4 != null)
-            {
-                _solution = (Solution4)dtE2.Solution;
-            }
-            // ReSharper restore SuspiciousTypeConversion.Global
-
-            _wizardViewModel = null;
-
-            var wizardConfiguration = GetWizardConfiguration();
-            if (wizardConfiguration == null ||
-                !wizardConfiguration.ShowWizardWindow())
-            {
-                return;
-            }
-
-            var projectName = replacementsDictionary["$projectname$"];
-
-            _wizardViewModel = new WizardViewModel(wizardConfiguration)
-            {
-                Title = $"{Title} - {projectName}"
-            };
-
-            var window = WpfServices.CreateWindow<Views.WizardWindow>(_wizardViewModel);
-            WpfServices.SetWindowOwner(window, dtE2.MainWindow);
-            var retVal = window.ShowDialog() ?? false;
-            if (!retVal)
-            {
-                throw new WizardCancelledException();
-            }
-        }
-
-        public bool ShouldAddProjectItem(string filePath)
-        {
-            return true;
-        }
-
-        public void RunFinished()
-        {
-            //Get all projects in solution
-            IEnumerable<Project> projects = GetProjects().ToList();
-            if (projects == null || !projects.Any())
-            {
-                throw new Exception("No projects found.");
-            }
-
-            projects = ApplyWizardModifications(projects);
-            SetStartupProject(projects);
-        }
-
-        public void BeforeOpeningFile(ProjectItem projectItem)
-        {
-
-        }
-
-        public void ProjectItemFinishedGenerating(ProjectItem projectItem)
-        {
-
-        }
-
-        public void ProjectFinishedGenerating(Project project)
-        {
-
         }
 
         #endregion

@@ -73,6 +73,11 @@ namespace LogoFX.Tools.Templates.Wizard.ViewModel
             }
         }
 
+        public bool MustRemoveCondition
+        {
+            get { return !CreateFakes || !CreateTests; }
+        }
+
         public IEnumerable<SolutionInfoViewModel> Solutions
         {
             get { return _solutions ?? (_solutions = CreateSolutions()); }
