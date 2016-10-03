@@ -123,12 +123,11 @@
     <Compile Include="Model\SolutionItemCollectionTemplate.cs" />
     <Compile Include="Model\SolutionItemTemplate.cs" />
     <Compile Include="Model\SolutionTemplate.cs" />
+    <Compile Include="PostSolutionWizard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolutionInfo.cs" />
     <Compile Include="SolutionWizard.cs" />
-    <Compile Include="SolutionWizard.IWizard.cs">
-      <DependentUpon>SolutionWizard.cs</DependentUpon>
-    </Compile>
+    <Compile Include="SolutionWizardBase.cs" />
     <Compile Include="UniversalSolutionWizard.cs" />
     <Compile Include="ViewModel\ObjectViewModel.cs" />
     <Compile Include="ViewModel\SolutionInfoViewModel.cs" />

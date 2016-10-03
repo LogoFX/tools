@@ -40,7 +40,10 @@ namespace LogoFX.Tools.TemplateGenerator
                         $"LogoFX.Tools.Templates.Wizard.{Path.GetFileNameWithoutExtension(wizardConfiguration.CodeFileName)}"),
                     MakeWizardExtension(
                         "TemplateBuilder, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null",
-                        "TemplateBuilder.SolutionWizard")
+                        "TemplateBuilder.SolutionWizard"),
+                    MakeWizardExtension(
+                        "LogoFX.Tools.Templates.Wizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                        $"LogoFX.Tools.Templates.Wizard.PostSolutionWizard")
                     ));
 
             XmlWriterSettings settings = new XmlWriterSettings

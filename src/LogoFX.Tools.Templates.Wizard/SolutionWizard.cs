@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -8,18 +9,15 @@ using EnvDTE80;
 using LogoFX.Tools.Templates.Wizard.Model;
 using LogoFX.Tools.Templates.Wizard.ViewModel;
 using Microsoft.Build.Construction;
+using Microsoft.VisualStudio.TemplateWizard;
 
 namespace LogoFX.Tools.Templates.Wizard
 {
-    public abstract partial class SolutionWizard
+    public abstract partial class SolutionWizard : SolutionWizardBase
     {
         #region Fields
 
-        private const string SolutionFolderKind = "{66A26720-8FB5-11D2-AA7E-00C04F688DDE}";
-
         private WizardViewModel _wizardViewModel;
-
-        private Solution4 _solution;
 
         #endregion
 
@@ -101,14 +99,14 @@ namespace LogoFX.Tools.Templates.Wizard
         private IEnumerable<Project> RemoveMultiSolution(SolutionInfo solutionInfo)
         {
             SolutionFolderTemplate selected = null;
-            foreach (var p in _solution.Projects.OfType<Project>().ToList())
+            foreach (var p in GetSolution().Projects.OfType<Project>().ToList())
             {
                 if (p.Name == solutionInfo.Name)
                 {
                     selected = new SolutionFolderTemplate(p);
                 }
 
-                _solution.Remove(p);
+                GetSolution().Remove(p);
             }
 
             List<Project> projects = new List<Project>();
@@ -150,7 +148,7 @@ namespace LogoFX.Tools.Templates.Wizard
             }
 
             var addedProject = parent == null
-                ? _solution.AddSolutionFolder(solutionFolder.Name)
+                ? GetSolution().AddSolutionFolder(solutionFolder.Name)
                 : parent.AddSolutionFolder(solutionFolder.Name);
 
             foreach (var item in solutionFolder.Items)
@@ -174,7 +172,7 @@ namespace LogoFX.Tools.Templates.Wizard
             //DeleteDirectory(projectDirectory);
 
             var addedProject = parent == null
-                ? _solution.AddFromFile(newProjectFullName)
+                ? GetSolution().AddFromFile(newProjectFullName)
                 : parent.AddFromFile(newProjectFullName);
 
             projects.Add(addedProject);
@@ -213,64 +211,47 @@ namespace LogoFX.Tools.Templates.Wizard
             }
         }
 
-        private void SetStartupProject(IEnumerable<Project> projects)
+        #endregion
+
+        #region Overrides
+
+        protected override void RunStartedOverride(Solution4 solution, Dictionary<string, string> replacementsDictionary, object[] customParams)
         {
-            var startupProject = projects.FirstOrDefault(x => x.Name.EndsWith("Launcher"));
-            if (startupProject == null)
-            {
-                startupProject = projects.FirstOrDefault(x => x.Name.EndsWith("Shell"));
-            }
-            if (startupProject == null)
+            _wizardViewModel = null;
+
+            var wizardConfiguration = GetWizardConfiguration();
+            if (wizardConfiguration == null ||
+                !wizardConfiguration.ShowWizardWindow())
             {
                 return;
             }
 
-            if (!string.IsNullOrEmpty(startupProject.Name))
+            var projectName = replacementsDictionary["$projectname$"];
+
+            _wizardViewModel = new WizardViewModel(wizardConfiguration)
             {
-                _solution.Properties.Item("StartupProject").Value = startupProject.Name;
+                Title = $"{Title} - {projectName}"
+            };
+
+            var window = WpfServices.CreateWindow<Views.WizardWindow>(_wizardViewModel);
+            WpfServices.SetWindowOwner(window, solution.DTE.MainWindow);
+            var retVal = window.ShowDialog() ?? false;
+            if (!retVal)
+            {
+                throw new WizardCancelledException();
             }
         }
 
-        private IList<Project> GetProjects(bool allowSolutionFolders = false)
+        protected override void RunFinishedOverride()
         {
-            Projects projects = _solution.Projects;
-            List<Project> projectList = new List<Project>();
-            foreach (object obj in projects)
+            //Get all projects in solution
+            IEnumerable<Project> projects = GetProjects().ToList();
+            if (projects == null || !projects.Any())
             {
-                Project solutionFolder = obj as Project;
-                AddProjectsToList(solutionFolder, projectList, allowSolutionFolders);
+                throw new Exception("No projects found.");
             }
-            return projectList;
-        }
 
-        private IEnumerable<Project> GetSolutionFolderProjects(Project solutionFolder, bool allowSolutionFolders)
-        {
-            List<Project> projectList = new List<Project>();
-            for (int index = 1; index <= solutionFolder.ProjectItems.Count; ++index)
-            {
-                Project subProject = solutionFolder.ProjectItems.Item(index).SubProject;
-                AddProjectsToList(subProject, projectList, allowSolutionFolders);
-            }
-            return projectList;
-        }
-
-        private void AddProjectsToList(Project rootProject, List<Project> projectList, bool allowSolutionFolders)
-        {
-            if (rootProject != null)
-            {
-                if (rootProject.Kind == SolutionFolderKind)
-                {
-                    projectList.AddRange(GetSolutionFolderProjects(rootProject, allowSolutionFolders));
-                    if (allowSolutionFolders)
-                    {
-                        projectList.Add(rootProject);
-                    }
-                }
-                else
-                {
-                    projectList.Add(rootProject);
-                }
-            }
+            ApplyWizardModifications(projects);
         }
 
         #endregion
