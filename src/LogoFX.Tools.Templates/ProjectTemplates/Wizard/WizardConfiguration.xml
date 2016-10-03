@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WizardConfigurationDto xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<WizardConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <TestOption>true</TestOption>
   <FakeOption>true</FakeOption>
   <Name>LogoFX Application</Name>
@@ -7,15 +7,17 @@
   <DefaultName>LogoFX</DefaultName>
   <CodeFileName>C:\Projects\LogoUI\LogoFX\tools\src\LogoFX.Tools.Templates.Wizard\WizardSolutionWizard.cs</CodeFileName>
   <Solutions>
-    <SolutionInfoDto>
+    <SolutionInfo>
       <FileName>C:\Projects\LogoUI\LogoFX\Samples.Specifications\Specifications.sln</FileName>
       <Name>Specifications</Name>
-      <Caption>Specifications</Caption>
-    </SolutionInfoDto>
-    <SolutionInfoDto>
+      <Caption>LogoFX Desktop Application</Caption>
+    </SolutionInfo>
+    <SolutionInfo>
       <FileName>C:\Projects\LogoUI\LogoFX\Samples.Universal\Samples.Universal.sln</FileName>
       <Name>Samples.Universal</Name>
-      <Caption>Samples.Universal</Caption>
-    </SolutionInfoDto>
+      <Caption>LogoFX UWP Application</Caption>
+    </SolutionInfo>
   </Solutions>
-</WizardConfigurationDto>
+  <ProjectType>CSharp</ProjectType>
+  <SortOrder>5000</SortOrder>
+</WizardConfiguration>

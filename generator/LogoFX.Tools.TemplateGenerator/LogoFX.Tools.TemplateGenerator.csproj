@@ -43,9 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\common\WizardConfiguration.cs">
-      <Link>Common\WizardConfiguration.cs</Link>
-    </Compile>
     <Compile Include="CSFileGenerator.cs" />
     <Compile Include="DefinitionsGenerator.cs" />
     <Compile Include="GeneratorBase.cs" />
@@ -73,6 +70,9 @@
       <Project>{EA8D96DD-5289-4B7D-8C93-E6AD7DC090FC}</Project>
       <Name>LogoFX.Tools.TemplateGenerator.Contracts</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

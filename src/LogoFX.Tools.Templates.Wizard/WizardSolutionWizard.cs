@@ -20,13 +20,13 @@ namespace LogoFX.Tools.Templates.Wizard
                     new SolutionInfo
                     {
                         Name = "Specifications",
-                        Caption = "Specifications",
+                        Caption = "LogoFX Desktop Application",
                         IconName = "",
                     },
                     new SolutionInfo
                     {
                         Name = "Samples.Universal",
-                        Caption = "Samples.Universal",
+                        Caption = "LogoFX UWP Application",
                         IconName = "",
                     },
                 },
