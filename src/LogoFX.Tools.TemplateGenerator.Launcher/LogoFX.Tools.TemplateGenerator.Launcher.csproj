@@ -47,10 +47,6 @@
       <HintPath>..\packages\Caliburn.Micro.3.0.1\lib\net45\Caliburn.Micro.Platform.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JetBrains.Annotations, Version=10.1.5.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\packages\JetBrains.Annotations.10.1.5\lib\net\JetBrains.Annotations.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="LogoFX.Bootstrapping, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LogoFX.Bootstrapping.1.6.0\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Bootstrapping.dll</HintPath>
       <Private>True</Private>
@@ -75,14 +71,6 @@
       <HintPath>..\packages\LogoFX.Client.Bootstrapping.1.6.4\lib\net45\LogoFX.Client.Bootstrapping.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Core, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Core.Core.1.0.7\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch\LogoFX.Client.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LogoFX.Client.Core.Platform, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Core.1.0.8\lib\net45\LogoFX.Client.Core.Platform.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="LogoFX.Client.Mvvm.ViewModel, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Core.1.0.5\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Mvvm.ViewModel.dll</HintPath>
       <Private>True</Private>
@@ -93,10 +81,6 @@
     </Reference>
     <Reference Include="LogoFX.Client.Mvvm.ViewModel.Platform, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.1.0.5\lib\net45\LogoFX.Client.Mvvm.ViewModel.Platform.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LogoFX.Core, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Core.1.0.7\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch\LogoFX.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Practices.IoC, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
@@ -201,17 +185,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Contracts\LogoFX.Tools.TemplateGenerator.Contracts.csproj">
-      <Project>{EA8D96DD-5289-4B7D-8C93-E6AD7DC090FC}</Project>
-      <Name>LogoFX.Tools.TemplateGenerator.Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Shell\LogoFX.Tools.TemplateGenerator.Shell.csproj">
       <Project>{F4EAE3F0-643B-48AD-8C01-C40C781836D7}</Project>
       <Name>LogoFX.Tools.TemplateGenerator.Shell</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator\LogoFX.Tools.TemplateGenerator.csproj">
-      <Project>{6588154F-33F5-458E-8445-433228326999}</Project>
-      <Name>LogoFX.Tools.TemplateGenerator</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,7 @@
+﻿namespace LogoFX.Tools.Common.Model
+{
+    public class ProjectData : SolutionItemData
+    {
+        public string FileName { get; set; }
+    }
+}
