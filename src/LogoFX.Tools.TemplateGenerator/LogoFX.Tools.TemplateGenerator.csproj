@@ -61,6 +61,7 @@
     <Compile Include="Utils.cs" />
     <Compile Include="WizardConfiguration.cs" />
     <Compile Include="WizardConfigurator.cs" />
+    <Compile Include="WizardDataGenerator.cs" />
     <Compile Include="XamlFileGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
