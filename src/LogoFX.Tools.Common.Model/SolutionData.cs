@@ -6,6 +6,8 @@
 
         public string Caption { get; set; }
 
+        public string IconFileName { get; set; }
+
         public SolutionItemData[] Items { get; set; }
     }
 }

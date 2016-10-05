@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance viewModels:WizardConfigurationViewModel}"
              d:DesignHeight="300" 
@@ -58,28 +57,6 @@
                      Grid.Column="2"
                      VerticalAlignment="Center"
                      Text="{Binding Path=DefaultName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-            <TextBlock Grid.Row="3"
-                   Grid.Column="0"
-                   VerticalAlignment="Center"
-                   Text="Solution Wizard File:" />
-            <TextBox Grid.Row="3"
-                 Grid.Column="2"
-                 VerticalAlignment="Center"
-                 IsReadOnly="True"
-                 Text="{Binding Path=CodeFileName, Mode=OneWay}" />
-            <Button Grid.Row="3"
-                    Grid.Column="4"
-                    Content="..."
-                    ToolTip="Browse for solution wizard code file."
-                    Width="20"
-                    VerticalAlignment="Center">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Click">
-                        <i:InvokeCommandAction Command="{Binding Path=BrowseCodeFileCommand, Mode=OneTime}" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </Button>
         </Grid>
 
         <Grid Grid.Row="1">

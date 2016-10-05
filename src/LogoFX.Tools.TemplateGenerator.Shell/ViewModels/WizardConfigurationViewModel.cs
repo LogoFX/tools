@@ -16,19 +16,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         {
         }
 
-        private ICommand _browseCodeFileCommand;
-
-        public ICommand BrowseCodeFileCommand
-        {
-            get
-            {
-                return _browseCodeFileCommand ??
-                       (_browseCodeFileCommand = ActionCommand
-                           .When(() => true)
-                           .Do(BrowseCodeFile));
-            }
-        }
-
         private ICommand _addSolutionCommand;
 
         public ICommand AddSolutionCommand
@@ -122,22 +109,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             }
         }
 
-        public string CodeFileName
-        {
-            get { return Model.CodeFileName; }
-            private set
-            {
-                if (Model.CodeFileName == value)
-                {
-                    return;
-                }
-
-                Model.CodeFileName = value;
-                NotifyOfPropertyChange();
-                OnCanGenerateUpdated();
-            }
-        }
-
         public WrappingCollection Solutions
         {
             get { return _solutions ?? (_solutions = CreateSolutions()); }
@@ -151,30 +122,10 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             return solutions;
         }
 
-        private void BrowseCodeFile()
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.CheckPathExists = true;
-            saveFileDialog.DefaultExt = ".cs";
-            saveFileDialog.FileName = CodeFileName;
-            saveFileDialog.Filter = "C# Code File (*.cs)|*.cs";
-            saveFileDialog.Title = "Select Solution Wizard File Name";
-
-            var retVal = saveFileDialog.ShowDialog(Application.Current.MainWindow) ?? false;
-
-            if (!retVal)
-            {
-                return;
-            }
-
-            CodeFileName = saveFileDialog.FileName;
-        }
-
         protected override bool GetCanGenerate()
         {
             return !string.IsNullOrEmpty(Name) &&
                    !string.IsNullOrEmpty(DefaultName) &&
-                   !string.IsNullOrEmpty(CodeFileName) &&
                    Model.Solutions.Count > 0;
         }
     }

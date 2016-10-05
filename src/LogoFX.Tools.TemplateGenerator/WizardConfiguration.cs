@@ -21,8 +21,6 @@ namespace LogoFX.Tools.TemplateGenerator
 
         public string DefaultName { get; set; }
 
-        public string CodeFileName { get; set; }
-
         public string IconName { get; set; }
 
         public ObservableCollection<SolutionInfo> Solutions { get; }

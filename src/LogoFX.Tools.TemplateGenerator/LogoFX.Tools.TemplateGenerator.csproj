@@ -64,6 +64,10 @@
     <Compile Include="XamlFileGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Tools.Common.Model\LogoFX.Tools.Common.Model.csproj">
+      <Project>{134a21a4-30a3-47dc-8b2f-14fad5670477}</Project>
+      <Name>LogoFX.Tools.Common.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Contracts\LogoFX.Tools.TemplateGenerator.Contracts.csproj">
       <Project>{EA8D96DD-5289-4B7D-8C93-E6AD7DC090FC}</Project>
       <Name>LogoFX.Tools.TemplateGenerator.Contracts</Name>

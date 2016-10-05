@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
@@ -47,80 +44,9 @@ namespace LogoFX.Tools.TemplateGenerator
             }
         }
 
-        private string BoolToString(bool value)
-        {
-            return value ? "true" : "false";
-        }
-
-        private void Generate_WizardConfiguration_Solutions(StringBuilder sb, IEnumerable<SolutionInfo> solutions)
-        {
-            sb.AppendLine("                Solutions = new List<SolutionInfo>");
-            sb.AppendLine("                {");
-            foreach (var solution in solutions)
-            {
-                sb.AppendLine("                    new SolutionInfo");
-                sb.AppendLine("                    {");
-                sb.AppendLine($"                        Name = \"{solution.Name}\",");
-                sb.AppendLine($"                        Caption = \"{solution.Caption}\",");
-                sb.AppendLine($"                        IconName = \"{solution.IconName}\",");
-                sb.AppendLine("                    },");
-            }
-            sb.AppendLine("                },");
-        }
-
-        private void Generate_WizardConfigurtion(StringBuilder sb, WizardConfiguration wizardConfiguration)
-        {
-            sb.AppendLine("            return new WizardConfiguration");
-            sb.AppendLine("            {");
-            sb.AppendLine($"                FakeOption={BoolToString(wizardConfiguration.FakeOption)},");
-            sb.AppendLine($"                TestOption={BoolToString(wizardConfiguration.TestOption)},");
-            if (wizardConfiguration.Solutions.Count > 0)
-            {
-                Generate_WizardConfiguration_Solutions(sb, wizardConfiguration.Solutions);
-            }
-            sb.AppendLine("            };");
-        }
-
-        private void Generate_GetWizardConfiguration(StringBuilder sb, WizardConfiguration wizardConfiguration)
-        {
-            sb.AppendLine("        protected override WizardConfiguration GetWizardConfiguration()");
-            sb.AppendLine("        {");
-            if (wizardConfiguration.Solutions.Count > 1)
-            {
-                Generate_WizardConfigurtion(sb, wizardConfiguration);
-            }
-            else
-            {
-                sb.AppendLine("            return null;");
-            }
-            sb.AppendLine("        }");
-        }
-
         private void CreateWizardSolutionFile(WizardConfiguration wizardConfiguration)
         {
-            var fileName = wizardConfiguration.CodeFileName;
-            var name = Path.GetFileNameWithoutExtension(fileName);
-
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("using System.Collections.Generic;");
-            sb.AppendLine();
-            sb.AppendLine("namespace LogoFX.Tools.Templates.Wizard");
-            sb.AppendLine("{");
-            sb.AppendLine($"    public sealed class {name} : SolutionWizard");
-            sb.AppendLine("    {");
-
-            sb.AppendLine("        protected override string GetTitle()");
-            sb.AppendLine("        {");
-            sb.AppendLine($"            return \"New {wizardConfiguration.Name}\";");
-            sb.AppendLine("        }");
-            sb.AppendLine();
-
-            Generate_GetWizardConfiguration(sb, wizardConfiguration);
-
-            sb.AppendLine("    }");
-            sb.AppendLine("}");
-
-            File.WriteAllText(fileName, sb.ToString());
+            //TODO: Add code here
         }
 
         private void CreatePrepropcess(string destinationFolder)
