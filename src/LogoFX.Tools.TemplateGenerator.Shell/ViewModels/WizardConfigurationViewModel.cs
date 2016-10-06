@@ -9,11 +9,13 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {
     public sealed class WizardConfigurationViewModel : CanGenerateViewModel<WizardConfiguration>
     {
+        private readonly string _destinationFolder;
         private WrappingCollection _solutions;
 
-        public WizardConfigurationViewModel(WizardConfiguration model) 
+        public WizardConfigurationViewModel(WizardConfiguration model, string destinationFolder) 
             : base(model)
         {
+            _destinationFolder = destinationFolder;
         }
 
         private ICommand _addSolutionCommand;
@@ -117,7 +119,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         private WrappingCollection CreateSolutions()
         {
             var solutions = new WrappingCollection();
-            solutions.FactoryMethod = o => new SolutionViewModel((SolutionInfo) o);
+            solutions.FactoryMethod = o => new SolutionViewModel((SolutionInfo) o, IsMultisolution, _destinationFolder);
             solutions.AddSource(Model.Solutions);
             return solutions;
         }

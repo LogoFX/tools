@@ -5,5 +5,7 @@
         string NameWithoutRoot { get; }
 
         string FileName { get; }
+
+        string DestinationFileName { get; }
     }
 }

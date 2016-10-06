@@ -1,6 +1,6 @@
 ﻿namespace LogoFX.Tools.Common.Model
 {
-    public class SolutionFolder : SolutionItemData
+    public class SolutionFolderData : SolutionItemData
     {
         public SolutionItemData[] Items { get; set; }
     }

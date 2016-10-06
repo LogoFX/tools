@@ -6,9 +6,14 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {
     public sealed class SolutionViewModel : ObjectViewModel<SolutionInfo>, ICanBeBusy
     {
-        public SolutionViewModel(SolutionInfo model)
+        private readonly bool _multisolution;
+        private readonly string _destinationFolder;
+
+        public SolutionViewModel(SolutionInfo model, bool multisolution, string destinationFolder)
             : base(model)
         {
+            _multisolution = multisolution;
+            _destinationFolder = destinationFolder;
             CreateSolutionTemplateInfo();
         }
 
@@ -33,7 +38,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
             try
             {
-                SolutionTemplateInfoGenerator generator = new SolutionTemplateInfoGenerator();
+                SolutionTemplateInfoGenerator generator = new SolutionTemplateInfoGenerator(_multisolution, _destinationFolder);
                 SolutionTemplateInfo = await generator.GenerateTemplateInfoAsync(Model.FileName);
             }
             finally

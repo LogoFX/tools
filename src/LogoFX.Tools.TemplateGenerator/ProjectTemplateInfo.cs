@@ -17,5 +17,9 @@ namespace LogoFX.Tools.TemplateGenerator
         string IProjectTemplateInfo.FileName => FileName;
 
         public string FileName { get; set; }
+
+        string IProjectTemplateInfo.DestinationFileName => DestinationFileName;
+
+        public string DestinationFileName { get; set; }
     }
 }

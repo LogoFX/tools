@@ -20,9 +20,9 @@ namespace LogoFX.Tools.TemplateGenerator
             _solutionTemplateInfo = solutionTemplateInfo;
         }
 
-        public async Task GenerateAsync(string destinationFolder)
+        public async Task GenerateAsync()
         {
-            var projectFolder = Path.Combine(destinationFolder, _projectTemplateInfo.Name);
+            var projectFolder = Path.GetDirectoryName(_projectTemplateInfo.DestinationFileName);
             Directory.CreateDirectory(projectFolder);
 
             var newProjectFileName = await CopyProjectToTemplateAsync(projectFolder);
@@ -33,17 +33,9 @@ namespace LogoFX.Tools.TemplateGenerator
         {
             var from = Path.GetDirectoryName(_projectTemplateInfo.FileName);
 
-            var newProjectName = Path.GetFileName(_projectTemplateInfo.FileName);
-            Debug.Assert(newProjectName != null, "newProjectName != null");
-            if (newProjectName.Length > 12)
-            {
-                newProjectName = "MyProject.csproj";
-            }
+            File.Copy(_projectTemplateInfo.FileName, _projectTemplateInfo.DestinationFileName);
 
-            var newAbsolutePath = Path.Combine(projectFolder, newProjectName);
-            File.Copy(_projectTemplateInfo.FileName, newAbsolutePath);
-
-            Project project = new Project(newAbsolutePath);
+            Project project = new Project(_projectTemplateInfo.DestinationFileName);
 
             var x = project.GetProperty("ProjectGuid");
             x.UnevaluatedValue = "{$guid1$}";
@@ -103,7 +95,7 @@ namespace LogoFX.Tools.TemplateGenerator
 
             project.Save();
 
-            return newProjectName;
+            return _projectTemplateInfo.DestinationFileName;
         }
 
         private string CopyProjectItem(ProjectItem item, string from, string to)

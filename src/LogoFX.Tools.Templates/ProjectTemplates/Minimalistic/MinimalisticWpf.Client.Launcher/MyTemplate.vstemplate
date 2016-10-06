@@ -14,7 +14,9 @@
     <Icon></Icon>
   </TemplateData>
   <TemplateContent>
-    <Project TargetFileName="$saferootprojectname$.Client.Launcher.csproj" File="MyProject.csproj" ReplaceParameters="true" />
+    <Project TargetFileName="$saferootprojectname$.Client.Launcher.csproj" File="MyProject.csproj" ReplaceParameters="true">
+      <ProjectItem ItemType=""
+    </Project>
   </TemplateContent>
   <WizardExtension>
     <Assembly>TemplateBuilder, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null</Assembly>

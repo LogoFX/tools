@@ -1,31 +1,43 @@
 ﻿using System.IO;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace LogoFX.Tools.Common.Model
 {
     public static class WizardDataLoader
     {
-        public static WizardData Load(string fileName)
+        public static string WizardDataFielName
         {
-            if (!File.Exists(fileName))
-            {
-                return null;
-            }
-
-            var serializer = new XmlSerializer(typeof(WizardData));
-            using (var fs = File.OpenRead(fileName))
-            {
-                return (WizardData) serializer.Deserialize(fs);
-            }
+            get { return "WizardData.xml"; }
         }
 
-        public static void Save(string fileName, WizardData data)
+        public static Task<WizardData> LoadAsync(string fileName)
         {
-            var serializer = new XmlSerializer(typeof(WizardData));
-            using (var fs = File.Create(fileName))
+            return Task.Run(() =>
             {
-                serializer.Serialize(fs, data);
-            }
+                if (!File.Exists(fileName))
+                {
+                    return null;
+                }
+
+                var serializer = new XmlSerializer(typeof(WizardData));
+                using (var fs = File.OpenRead(fileName))
+                {
+                    return (WizardData)serializer.Deserialize(fs);
+                }
+            });
+        }
+
+        public static Task SaveAsync(string fileName, WizardData data)
+        {
+            return Task.Run(() =>
+            {
+                var serializer = new XmlSerializer(typeof(WizardData));
+                using (var fs = File.Create(fileName))
+                {
+                    serializer.Serialize(fs, data);
+                }
+            });
         }
     }
 }

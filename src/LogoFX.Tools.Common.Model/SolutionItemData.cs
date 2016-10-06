@@ -2,7 +2,7 @@
 
 namespace LogoFX.Tools.Common.Model
 {
-    [XmlInclude(typeof(SolutionFolder))]
+    [XmlInclude(typeof(SolutionFolderData))]
     [XmlInclude(typeof(ProjectData))]
     public abstract class SolutionItemData
     {

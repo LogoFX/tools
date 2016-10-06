@@ -15,38 +15,24 @@ namespace LogoFX.Tools.TemplateGenerator
             CleanDestination(destinationFolder);
             definitionsGenerator.CreateDefinitions(wizardConfiguration);
 
-            CreateWizardSolutionFile(wizardConfiguration);
+            await CreateWizardSolutionFileAsync(destinationFolder, wizardConfiguration);
             CreatePrepropcess(destinationFolder);
-
-            var multiSolution = wizardConfiguration.Solutions.Count > 1;
 
             foreach (var solution in wizardConfiguration.Solutions)
             {
-                string solutionFolder;
-                if (multiSolution)
-                {
-                    solutionFolder = Path.Combine(destinationFolder, solution.Name);
-                    if (!Directory.Exists(solutionFolder))
-                    {
-                        Directory.CreateDirectory(destinationFolder);
-                    }
-                }
-                else
-                {
-                    solutionFolder = destinationFolder;
-                }
-
                 foreach (var projectTemplateInfo in solution.SolutionTemplateInfo.GetProjectsPlain())
                 {
                     var projectGenerator = new ProjectTemplateGenerator(projectTemplateInfo, solution.SolutionTemplateInfo);
-                    await projectGenerator.GenerateAsync(solutionFolder);
+                    await projectGenerator.GenerateAsync();
                 }
             }
         }
 
-        private void CreateWizardSolutionFile(WizardConfiguration wizardConfiguration)
+        private async Task CreateWizardSolutionFileAsync(string destinationFolder, WizardConfiguration wizardConfiguration)
         {
             //TODO: Add code here
+            var wizardDataGenrator = new WizardDataGenerator(wizardConfiguration);
+            await wizardDataGenrator.GenerateAndSaveAsync(destinationFolder);
         }
 
         private void CreatePrepropcess(string destinationFolder)
