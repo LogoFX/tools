@@ -63,7 +63,11 @@ namespace LogoFX.Tools.TemplateGenerator
                 return;
             }
 
-            Directory.Delete(destinationFolder, true);
+            var dirInfo = new DirectoryInfo(destinationFolder);
+            foreach (var subDir in dirInfo.EnumerateDirectories())
+            {
+                subDir.Delete(true);
+            }
         }
     }
 }

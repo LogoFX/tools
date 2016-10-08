@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WizardConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <TestOption>false</TestOption>
-  <FakeOption>false</FakeOption>
-  <Solutions />
-  <ProjectType>CSharp</ProjectType>
-  <SortOrder>5000</SortOrder>
+  <TestOption>true</TestOption>
+  <FakeOption>true</FakeOption>
+  <Name>LogoFX Application</Name>
+  <Description>Creates new LogoFX Application</Description>
+  <DefaultName>LogoFX</DefaultName>
+  <CodeFileName>C:\Projects\LogoUI\LogoFX\tools\src\LogoFX.Tools.Templates.Wizard\WizardSolutionWizard.cs</CodeFileName>
+  <Solutions>
+    <SolutionInfo>
+      <FileName>C:\Projects\LogoUI\LogoFX\Samples.Specifications\Specifications.sln</FileName>
+      <Name>Specifications</Name>
+      <Caption>Specifications</Caption>
+    </SolutionInfo>
+    <SolutionInfo>
+      <FileName>C:\Projects\LogoUI\LogoFX\Samples.Universal\Samples.Universal.sln</FileName>
+      <Name>Samples.Universal</Name>
+      <Caption>Samples.Universal</Caption>
+    </SolutionInfo>
+  </Solutions>
 </WizardConfiguration>

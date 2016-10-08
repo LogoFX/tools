@@ -33,6 +33,11 @@ namespace LogoFX.Tools.TemplateGenerator
         {
             var from = Path.GetDirectoryName(_projectTemplateInfo.FileName);
 
+            if (File.Exists(_projectTemplateInfo.DestinationFileName))
+            {
+                Debugger.Break();
+            }
+
             File.Copy(_projectTemplateInfo.FileName, _projectTemplateInfo.DestinationFileName);
 
             Project project = new Project(_projectTemplateInfo.DestinationFileName);
