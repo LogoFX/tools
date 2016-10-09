@@ -187,8 +187,8 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
             try
             {
-                var solutionTemplateGenerator = new SolutionTemplateGenerator();
-                await solutionTemplateGenerator.GenerateAsync(DestinationPath, WizardConfiguration.Model);
+                var solutionTemplateGenerator = new SolutionTemplateGenerator(WizardConfiguration.Model);
+                await solutionTemplateGenerator.GenerateAsync(DestinationPath);
 
                 await SaveAsync();
 

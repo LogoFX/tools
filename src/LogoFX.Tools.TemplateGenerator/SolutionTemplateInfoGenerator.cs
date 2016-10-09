@@ -72,7 +72,6 @@ namespace LogoFX.Tools.TemplateGenerator
                     {
                         NameWithoutRoot = proj.ProjectName.Substring(rootName.Length + 1),
                         FileName = proj.AbsolutePath,
-                        DestinationFileName = CreateNewFileName(proj.ProjectName, solutionTemplateInfo.Name)
                     };
                     break;
                 case SolutionProjectType.SolutionFolder:
@@ -88,25 +87,6 @@ namespace LogoFX.Tools.TemplateGenerator
             }
 
             folder.Items.Add(result);
-
-            return result;
-        }
-
-        private string CreateNewFileName(string projectName, string solutionName)
-        {
-            var solutionFolder = _multisolution
-                ? Path.Combine(_destinationFolder, solutionName)
-                : _destinationFolder;
-
-            var newProjectName = projectName;
-            Debug.Assert(newProjectName != null, "newProjectName != null");
-            if (newProjectName.Length > 12)
-            {
-                newProjectName = "MyProject.csproj";
-            }
-
-            var result = Path.Combine(solutionFolder, projectName);
-            result = Path.Combine(result, newProjectName);
 
             return result;
         }

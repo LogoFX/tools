@@ -19,7 +19,12 @@ namespace LogoFX.Tools.TemplateGenerator
         public string FileName { get; set; }
 
         string IProjectTemplateInfo.DestinationFileName => DestinationFileName;
+        public string DestinationFileName { get; private set; }
 
-        public string DestinationFileName { get; set; }
+        public void SetDestinationFileName(string destinationFileName)
+        {
+            DestinationFileName = destinationFileName;
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
@@ -8,24 +9,51 @@ namespace LogoFX.Tools.TemplateGenerator
 {
     public sealed class SolutionTemplateGenerator : GeneratorBase
     {
-        public async Task GenerateAsync(string destinationFolder, WizardConfiguration wizardConfiguration)
+        private readonly WizardConfiguration _wizardConfiguration;
+
+        public SolutionTemplateGenerator(WizardConfiguration wizardConfiguration)
+        {
+            _wizardConfiguration = wizardConfiguration;
+        }
+
+        public async Task GenerateAsync(string destinationFolder)
         {
             var definitionsGenerator = new DefinitionsGenerator(destinationFolder);
 
             CleanDestination(destinationFolder);
-            definitionsGenerator.CreateDefinitions(wizardConfiguration);
+            definitionsGenerator.CreateDefinitions(_wizardConfiguration);
 
-            await CreateWizardSolutionFileAsync(destinationFolder, wizardConfiguration);
+            await CreateWizardSolutionFileAsync(destinationFolder, _wizardConfiguration);
             CreatePrepropcess(destinationFolder);
 
-            foreach (var solution in wizardConfiguration.Solutions)
+            foreach (var solution in _wizardConfiguration.Solutions)
             {
                 foreach (var projectTemplateInfo in solution.SolutionTemplateInfo.GetProjectsPlain())
                 {
+                    projectTemplateInfo.SetDestinationFileName(CreateNewFileName(projectTemplateInfo.Name, solution.Name, destinationFolder));
                     var projectGenerator = new ProjectTemplateGenerator(projectTemplateInfo, solution.SolutionTemplateInfo);
                     await projectGenerator.GenerateAsync();
                 }
             }
+        }
+
+        private string CreateNewFileName(string projectName, string solutionName, string destinationFolder)
+        {
+            var solutionFolder = _wizardConfiguration.Solutions.Count > 1
+                ? Path.Combine(destinationFolder, solutionName)
+                : destinationFolder;
+
+            var newProjectName = projectName;
+            Debug.Assert(newProjectName != null, "newProjectName != null");
+            if (newProjectName.Length > 12)
+            {
+                newProjectName = "MyProject.csproj";
+            }
+
+            var result = Path.Combine(solutionFolder, projectName);
+            result = Path.Combine(result, newProjectName);
+
+            return result;
         }
 
         private async Task CreateWizardSolutionFileAsync(string destinationFolder, WizardConfiguration wizardConfiguration)
