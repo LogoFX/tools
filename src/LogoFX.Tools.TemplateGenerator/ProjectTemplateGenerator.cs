@@ -26,7 +26,7 @@ namespace LogoFX.Tools.TemplateGenerator
             Directory.CreateDirectory(projectFolder);
 
             var newProjectFileName = await CopyProjectToTemplateAsync(projectFolder);
-            CreateDefinitions(projectFolder, newProjectFileName);
+            //CreateDefinitions(projectFolder, newProjectFileName);
         }
 
         private async Task<string> CopyProjectToTemplateAsync(string projectFolder)

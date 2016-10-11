@@ -57,22 +57,18 @@ namespace LogoFX.Tools.TemplateGenerator
             if (solutionFolderInfo != null)
             {
                 solutionItemData = CreateSolutionFolderData(solutionFolderInfo, destinationFolder);
+                solutionItemData.Name = solutionItemInfo.Name;
+                return solutionItemData;
             }
 
             var projectInfo = solutionItemInfo as IProjectTemplateInfo;
             if (projectInfo != null)
             {
                 solutionItemData = CreateProjectData(projectInfo, destinationFolder);
+                return solutionItemData;
             }
 
-            if (solutionItemData == null)
-            {
-                throw new ArgumentException("Unknown solution item type.", nameof(solutionItemInfo));
-            }
-
-            solutionItemData.Name = solutionItemInfo.Name;
-
-            return solutionItemData;
+            throw new ArgumentException("Unknown solution item type.", nameof(solutionItemInfo));
         }
 
         private SolutionFolderData CreateSolutionFolderData(ISolutionFolderTemplateInfo solutionFolderInfo, string destinationFolder)
@@ -88,9 +84,13 @@ namespace LogoFX.Tools.TemplateGenerator
 
         private ProjectData CreateProjectData(IProjectTemplateInfo projectInfo, string destinationFolder)
         {
-            ProjectData projectData = new ProjectData();
-            projectData.IsStartupProject = projectInfo.Name.EndsWith(".Launcher");
-            projectData.FileName = Utils.GetRelativePath(projectInfo.DestinationFileName, destinationFolder);
+            ProjectData projectData = new ProjectData
+            {
+                Name = projectInfo.NameWithoutRoot,
+                IsStartupProject = projectInfo.Name.EndsWith(".Launcher"),
+                FileName = Utils.GetRelativePath(projectInfo.DestinationFileName, destinationFolder)
+            };
+
 
             return projectData;
         }
