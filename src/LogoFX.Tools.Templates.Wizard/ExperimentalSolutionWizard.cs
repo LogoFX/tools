@@ -19,6 +19,7 @@ namespace LogoFX.Tools.Templates.Wizard
         private WizardData _wizardData;
         private string _tmpFolder;
         private string _solutionFolder;
+        private Dictionary<string, string> _replacementsDictionary;
 
         protected override string GetTitle()
         {
@@ -50,9 +51,12 @@ namespace LogoFX.Tools.Templates.Wizard
 
         protected override void RunStartedOverride(Solution4 solution, Dictionary<string, string> replacementsDictionary, object[] customParams)
         {
+            _replacementsDictionary = replacementsDictionary;
+
             var vstemplateName = (string) customParams[0];
             _tmpFolder = Path.GetDirectoryName(vstemplateName);
             _solutionFolder =  replacementsDictionary["$solutiondirectory$"];
+            replacementsDictionary["$saferootprojectname$"] = replacementsDictionary["$safeprojectname$"];
 
             var wizardDataFileName = Path.Combine(_tmpFolder, WizardDataLoader.WizardDataFielName);
             _wizardData = WizardDataLoader.LoadAsync(wizardDataFileName).Result;
@@ -242,8 +246,18 @@ namespace LogoFX.Tools.Templates.Wizard
                     continue;
                 }
 
-                File.Copy(info.FullName, destFileName);
+                ReplaceText(info.FullName, destFileName);
             }
+        }
+
+        private void ReplaceText(string oldFileName, string newFileName)
+        {
+            var str = File.ReadAllText(oldFileName);
+            foreach (var sp in _replacementsDictionary)
+            {
+                str = str.Replace(sp.Key, sp.Value);
+            }
+            File.WriteAllText(newFileName, str);
         }
     }
 }
