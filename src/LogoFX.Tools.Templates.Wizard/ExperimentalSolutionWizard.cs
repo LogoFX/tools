@@ -17,6 +17,8 @@ namespace LogoFX.Tools.Templates.Wizard
     public class ExperimentalSolutionWizard : SolutionWizard
     {
         private WizardData _wizardData;
+        private string _tmpFolder;
+        private string _solutionFolder;
 
         protected override string GetTitle()
         {
@@ -49,9 +51,10 @@ namespace LogoFX.Tools.Templates.Wizard
         protected override void RunStartedOverride(Solution4 solution, Dictionary<string, string> replacementsDictionary, object[] customParams)
         {
             var vstemplateName = (string) customParams[0];
-            var tmpFolder = Path.GetDirectoryName(vstemplateName);
-            
-            var wizardDataFileName = Path.Combine(tmpFolder, WizardDataLoader.WizardDataFielName);
+            _tmpFolder = Path.GetDirectoryName(vstemplateName);
+            _solutionFolder =  replacementsDictionary["$solutiondirectory$"];
+
+            var wizardDataFileName = Path.Combine(_tmpFolder, WizardDataLoader.WizardDataFielName);
             _wizardData = WizardDataLoader.LoadAsync(wizardDataFileName).Result;
 
             base.RunStartedOverride(solution, replacementsDictionary, customParams);
@@ -97,6 +100,7 @@ namespace LogoFX.Tools.Templates.Wizard
                 }
             });
             var retVal = window.ShowDialog() ?? false;
+
             if (!retVal)
             {
                 throw new WizardCancelledException();
@@ -123,7 +127,11 @@ namespace LogoFX.Tools.Templates.Wizard
             var projectData = solutionItemData as ProjectData;
             if (projectData != null)
             {
-                CreateProject(projectData, progressAction);
+                CreateProject(
+                    solutionFolder, 
+                    projectData, 
+                    progressAction,
+                    ct);
                 return;
             }
 
@@ -164,9 +172,78 @@ namespace LogoFX.Tools.Templates.Wizard
             }
         }
 
-        private void CreateProject(ProjectData projectData, Action<double> progressAction)
+        private void CreateProject(
+            SolutionFolder solutionFolder, 
+            ProjectData projectData, 
+            Action<double> progressAction,
+            CancellationToken ct)
         {
-            
+            var sourceFileName = Path.Combine(_tmpFolder, projectData.FileName);
+            var sourceDir = Path.GetDirectoryName(sourceFileName);
+            var destDir = Path.Combine(_solutionFolder, projectData.Name);
+
+            CopyDirectory(sourceDir, destDir, progressAction, ct);
+
+            var oldFileName = Path.GetFileName(sourceFileName);
+            var ext = Path.GetExtension(oldFileName);
+            var newFileName = projectData.Name + ext;
+            newFileName = Path.Combine(destDir, newFileName);
+
+            File.Move(Path.Combine(destDir, oldFileName), newFileName);
+
+            var addedProject = solutionFolder == null
+                ? GetSolution().AddFromFile(newFileName)
+                : solutionFolder.AddFromFile(newFileName);
+
+            progressAction(1.0);
+        }
+
+        private void CopyDirectory(
+            string sourceDir, 
+            string destDir, 
+            Action<double> progressAction,
+            CancellationToken ct)
+        {
+            if (!Directory.Exists(destDir))
+            {
+                Directory.CreateDirectory(destDir);
+            }
+
+            var infos = new DirectoryInfo(sourceDir).GetFileSystemInfos();
+            if (infos.Length == 0)
+            {
+                return;
+            }
+
+            var k = 0.8 / infos.Length;
+
+            for (int i = 0; i < infos.Length; ++i)
+            {
+                ct.ThrowIfCancellationRequested();
+
+                var pr = k * i;
+                progressAction(pr);
+                int j = i;
+
+                var info = infos[i];
+
+                var destFileName = Path.Combine(destDir, info.Name);
+                if (info is DirectoryInfo)
+                {
+                    CopyDirectory(
+                        info.FullName,
+                        destFileName,
+                        progress =>
+                        {
+                            pr = k*j + progress*k;
+                            progressAction(pr);
+                        },
+                        ct);
+                    continue;
+                }
+
+                File.Copy(info.FullName, destFileName);
+            }
         }
     }
 }
