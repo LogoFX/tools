@@ -23,7 +23,6 @@ namespace LogoFX.Tools.TemplateGenerator
             CleanDestination(destinationFolder);
             definitionsGenerator.CreateDefinitions(_wizardConfiguration);
 
-            await CreateWizardSolutionFileAsync(destinationFolder, _wizardConfiguration);
             CreatePrepropcess(destinationFolder);
 
             foreach (var solution in _wizardConfiguration.Solutions)
@@ -35,6 +34,8 @@ namespace LogoFX.Tools.TemplateGenerator
                     await projectGenerator.GenerateAsync();
                 }
             }
+
+            await CreateWizardSolutionFileAsync(destinationFolder, _wizardConfiguration);
         }
 
         private string CreateNewFileName(string projectName, string solutionName, string destinationFolder)

@@ -16,12 +16,12 @@
                   <Items>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Samples.Specifications.Client.Presentation.Shared</Name>
-                      <FileName>Samples.Specifications.Client.Presentation.Shared\MyProject.csproj</FileName>
+                      <FileName>Specifications\Samples.Specifications.Client.Presentation.Shared\MyProject.csproj</FileName>
                       <IsStartupProject>false</IsStartupProject>
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Samples.Specifications.Client.Presentation.Shell</Name>
-                      <FileName>Samples.Specifications.Client.Presentation.Shell\MyProject.csproj</FileName>
+                      <FileName>Specifications\Samples.Specifications.Client.Presentation.Shell\MyProject.csproj</FileName>
                       <IsStartupProject>false</IsStartupProject>
                     </SolutionItemData>
                   </Items>
@@ -31,17 +31,17 @@
                   <Items>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Samples.Client.Model.Contracts</Name>
-                      <FileName>Samples.Client.Model.Contracts\MyProject.csproj</FileName>
+                      <FileName>Specifications\Samples.Client.Model.Contracts\MyProject.csproj</FileName>
                       <IsStartupProject>false</IsStartupProject>
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Samples.Client.Model.Shared</Name>
-                      <FileName>Samples.Client.Model.Shared\MyProject.csproj</FileName>
+                      <FileName>Specifications\Samples.Client.Model.Shared\MyProject.csproj</FileName>
                       <IsStartupProject>false</IsStartupProject>
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Samples.Client.Model</Name>
-                      <FileName>Samples.Client.Model\MyProject.csproj</FileName>
+                      <FileName>Specifications\Samples.Client.Model\MyProject.csproj</FileName>
                       <IsStartupProject>false</IsStartupProject>
                     </SolutionItemData>
                   </Items>
@@ -54,12 +54,12 @@
                       <Items>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Samples.Client.Data.Contracts.Dto</Name>
-                          <FileName>Samples.Client.Data.Contracts.Dto\MyProject.csproj</FileName>
+                          <FileName>Specifications\Samples.Client.Data.Contracts.Dto\MyProject.csproj</FileName>
                           <IsStartupProject>false</IsStartupProject>
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Samples.Client.Data.Contracts.Providers</Name>
-                          <FileName>Samples.Client.Data.Contracts.Providers\MyProject.csproj</FileName>
+                          <FileName>Specifications\Samples.Client.Data.Contracts.Providers\MyProject.csproj</FileName>
                           <IsStartupProject>false</IsStartupProject>
                         </SolutionItemData>
                       </Items>
@@ -69,22 +69,22 @@
                       <Items>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Samples.Specifications.Client.Data.Fake.Containers</Name>
-                          <FileName>Samples.Specifications.Client.Data.Fake.Containers\MyProject.csproj</FileName>
+                          <FileName>Specifications\Samples.Specifications.Client.Data.Fake.Containers\MyProject.csproj</FileName>
                           <IsStartupProject>false</IsStartupProject>
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Samples.Specifications.Client.Data.Fake.ProviderBuilders</Name>
-                          <FileName>Samples.Specifications.Client.Data.Fake.ProviderBuilders\MyProject.csproj</FileName>
+                          <FileName>Specifications\Samples.Specifications.Client.Data.Fake.ProviderBuilders\MyProject.csproj</FileName>
                           <IsStartupProject>false</IsStartupProject>
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Samples.Specifications.Client.Data.Fake.Providers</Name>
-                          <FileName>Samples.Specifications.Client.Data.Fake.Providers\MyProject.csproj</FileName>
+                          <FileName>Specifications\Samples.Specifications.Client.Data.Fake.Providers\MyProject.csproj</FileName>
                           <IsStartupProject>false</IsStartupProject>
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Samples.Specifications.Client.Data.Fake.ProviderBuilders.Setup</Name>
-                          <FileName>Samples.Specifications.Client.Data.Fake.ProviderBuilders.Setup\MyProject.csproj</FileName>
+                          <FileName>Specifications\Samples.Specifications.Client.Data.Fake.ProviderBuilders.Setup\MyProject.csproj</FileName>
                           <IsStartupProject>false</IsStartupProject>
                         </SolutionItemData>
                       </Items>
@@ -94,7 +94,7 @@
                       <Items>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Samples.Specifications.Client.Data.Real.Providers</Name>
-                          <FileName>Samples.Specifications.Client.Data.Real.Providers\MyProject.csproj</FileName>
+                          <FileName>Specifications\Samples.Specifications.Client.Data.Real.Providers\MyProject.csproj</FileName>
                           <IsStartupProject>false</IsStartupProject>
                         </SolutionItemData>
                       </Items>
@@ -103,12 +103,12 @@
                 </SolutionItemData>
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Samples.Specifications.Client.Launcher</Name>
-                  <FileName>Samples.Specifications.Client.Launcher\MyProject.csproj</FileName>
+                  <FileName>Specifications\Samples.Specifications.Client.Launcher\MyProject.csproj</FileName>
                   <IsStartupProject>true</IsStartupProject>
                 </SolutionItemData>
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Samples.Specifications.Client.Launcher.Shared</Name>
-                  <FileName>Samples.Specifications.Client.Launcher.Shared\MyProject.csproj</FileName>
+                  <FileName>Specifications\Samples.Specifications.Client.Launcher.Shared\MyProject.csproj</FileName>
                   <IsStartupProject>false</IsStartupProject>
                 </SolutionItemData>
               </Items>
@@ -123,12 +123,12 @@
               <Items>
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Samples.Specifications.Tests.Acceptance.Steps.Adapters</Name>
-                  <FileName>Samples.Specifications.Tests.Acceptance.Steps.Adapters\MyProject.csproj</FileName>
+                  <FileName>Specifications\Samples.Specifications.Tests.Acceptance.Steps.Adapters\MyProject.csproj</FileName>
                   <IsStartupProject>false</IsStartupProject>
                 </SolutionItemData>
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Samples.Specifications.Tests.Acceptance.Specs</Name>
-                  <FileName>Samples.Specifications.Tests.Acceptance.Specs\MyProject.csproj</FileName>
+                  <FileName>Specifications\Samples.Specifications.Tests.Acceptance.Specs\MyProject.csproj</FileName>
                   <IsStartupProject>false</IsStartupProject>
                 </SolutionItemData>
               </Items>
@@ -141,29 +141,29 @@
                   <Items>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Samples.Specifications.Tests.EndToEnd.Infra.Fake</Name>
-                      <FileName>Samples.Specifications.Tests.EndToEnd.Infra.Fake\MyProject.csproj</FileName>
+                      <FileName>Specifications\Samples.Specifications.Tests.EndToEnd.Infra.Fake\MyProject.csproj</FileName>
                       <IsStartupProject>false</IsStartupProject>
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Samples.Specifications.Tests.EndToEnd.Infra.Launcher</Name>
-                      <FileName>Samples.Specifications.Tests.EndToEnd.Infra.Launcher\MyProject.csproj</FileName>
+                      <FileName>Specifications\Samples.Specifications.Tests.EndToEnd.Infra.Launcher\MyProject.csproj</FileName>
                       <IsStartupProject>true</IsStartupProject>
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Samples.Specifications.Tests.EndToEnd.Infra.Providers</Name>
-                      <FileName>Samples.Specifications.Tests.EndToEnd.Infra.Providers\MyProject.csproj</FileName>
+                      <FileName>Specifications\Samples.Specifications.Tests.EndToEnd.Infra.Providers\MyProject.csproj</FileName>
                       <IsStartupProject>false</IsStartupProject>
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Samples.Specifications.Tests.EndToEnd.Infra.Real</Name>
-                      <FileName>Samples.Specifications.Tests.EndToEnd.Infra.Real\MyProject.csproj</FileName>
+                      <FileName>Specifications\Samples.Specifications.Tests.EndToEnd.Infra.Real\MyProject.csproj</FileName>
                       <IsStartupProject>false</IsStartupProject>
                     </SolutionItemData>
                   </Items>
                 </SolutionItemData>
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Samples.Specifications.Tests.EndToEnd.Domain</Name>
-                  <FileName>Samples.Specifications.Tests.EndToEnd.Domain\MyProject.csproj</FileName>
+                  <FileName>Specifications\Samples.Specifications.Tests.EndToEnd.Domain\MyProject.csproj</FileName>
                   <IsStartupProject>false</IsStartupProject>
                 </SolutionItemData>
               </Items>
@@ -176,29 +176,29 @@
                   <Items>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Samples.Specifications.Client.Tests.Integration.Infra.Core</Name>
-                      <FileName>Samples.Specifications.Client.Tests.Integration.Infra.Core\MyProject.csproj</FileName>
+                      <FileName>Specifications\Samples.Specifications.Client.Tests.Integration.Infra.Core\MyProject.csproj</FileName>
                       <IsStartupProject>false</IsStartupProject>
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Samples.Specifications.Client.Tests.Integration.Infra.Shared</Name>
-                      <FileName>Samples.Specifications.Client.Tests.Integration.Infra.Shared\MyProject.csproj</FileName>
+                      <FileName>Specifications\Samples.Specifications.Client.Tests.Integration.Infra.Shared\MyProject.csproj</FileName>
                       <IsStartupProject>false</IsStartupProject>
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Samples.Specifications.Client.Tests.Integration.Infra</Name>
-                      <FileName>Samples.Specifications.Client.Tests.Integration.Infra\MyProject.csproj</FileName>
+                      <FileName>Specifications\Samples.Specifications.Client.Tests.Integration.Infra\MyProject.csproj</FileName>
                       <IsStartupProject>false</IsStartupProject>
                     </SolutionItemData>
                   </Items>
                 </SolutionItemData>
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Samples.Specifications.Client.Tests.Integration.Domain</Name>
-                  <FileName>Samples.Specifications.Client.Tests.Integration.Domain\MyProject.csproj</FileName>
+                  <FileName>Specifications\Samples.Specifications.Client.Tests.Integration.Domain\MyProject.csproj</FileName>
                   <IsStartupProject>false</IsStartupProject>
                 </SolutionItemData>
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Samples.Specifications.Client.Tests.Integration</Name>
-                  <FileName>Samples.Specifications.Client.Tests.Integration\MyProject.csproj</FileName>
+                  <FileName>Specifications\Samples.Specifications.Client.Tests.Integration\MyProject.csproj</FileName>
                   <IsStartupProject>false</IsStartupProject>
                 </SolutionItemData>
               </Items>
@@ -208,7 +208,7 @@
               <Items>
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Samples.Specifications.Tests.Domain</Name>
-                  <FileName>Samples.Specifications.Tests.Domain\MyProject.csproj</FileName>
+                  <FileName>Specifications\Samples.Specifications.Tests.Domain\MyProject.csproj</FileName>
                   <IsStartupProject>false</IsStartupProject>
                 </SolutionItemData>
               </Items>
@@ -218,7 +218,7 @@
               <Items>
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Samples.Specifications.Tests.Data</Name>
-                  <FileName>Samples.Specifications.Tests.Data\MyProject.csproj</FileName>
+                  <FileName>Specifications\Samples.Specifications.Tests.Data\MyProject.csproj</FileName>
                   <IsStartupProject>false</IsStartupProject>
                 </SolutionItemData>
               </Items>
@@ -228,7 +228,7 @@
               <Items>
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Samples.Specifications.Tests.Steps</Name>
-                  <FileName>Samples.Specifications.Tests.Steps\MyProject.csproj</FileName>
+                  <FileName>Specifications\Samples.Specifications.Tests.Steps\MyProject.csproj</FileName>
                   <IsStartupProject>false</IsStartupProject>
                 </SolutionItemData>
               </Items>
@@ -252,12 +252,12 @@
                   <Items>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Samples.Client.Data.Contracts.Dto</Name>
-                      <FileName>Samples.Client.Data.Contracts.Dto\MyProject.csproj</FileName>
+                      <FileName>Samples.Universal\Samples.Client.Data.Contracts.Dto\MyProject.csproj</FileName>
                       <IsStartupProject>false</IsStartupProject>
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Samples.Client.Data.Contracts.Providers</Name>
-                      <FileName>Samples.Client.Data.Contracts.Providers\MyProject.csproj</FileName>
+                      <FileName>Samples.Universal\Samples.Client.Data.Contracts.Providers\MyProject.csproj</FileName>
                       <IsStartupProject>false</IsStartupProject>
                     </SolutionItemData>
                   </Items>
@@ -267,17 +267,17 @@
                   <Items>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Samples.Client.Data.Fake.Containers</Name>
-                      <FileName>Samples.Client.Data.Fake.Containers\MyProject.csproj</FileName>
+                      <FileName>Samples.Universal\Samples.Client.Data.Fake.Containers\MyProject.csproj</FileName>
                       <IsStartupProject>false</IsStartupProject>
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Samples.Client.Data.Fake.ProviderBuilders</Name>
-                      <FileName>Samples.Client.Data.Fake.ProviderBuilders\MyProject.csproj</FileName>
+                      <FileName>Samples.Universal\Samples.Client.Data.Fake.ProviderBuilders\MyProject.csproj</FileName>
                       <IsStartupProject>false</IsStartupProject>
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Samples.Client.Data.Fake.Providers</Name>
-                      <FileName>Samples.Client.Data.Fake.Providers\MyProject.csproj</FileName>
+                      <FileName>Samples.Universal\Samples.Client.Data.Fake.Providers\MyProject.csproj</FileName>
                       <IsStartupProject>false</IsStartupProject>
                     </SolutionItemData>
                   </Items>
@@ -287,7 +287,7 @@
                   <Items>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Samples.Client.Data.Real.Providers</Name>
-                      <FileName>Samples.Client.Data.Real.Providers\MyProject.csproj</FileName>
+                      <FileName>Samples.Universal\Samples.Client.Data.Real.Providers\MyProject.csproj</FileName>
                       <IsStartupProject>false</IsStartupProject>
                     </SolutionItemData>
                   </Items>
@@ -299,17 +299,17 @@
               <Items>
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Samples.Client.Model.Contracts</Name>
-                  <FileName>Samples.Client.Model.Contracts\MyProject.csproj</FileName>
+                  <FileName>Samples.Universal\Samples.Client.Model.Contracts\MyProject.csproj</FileName>
                   <IsStartupProject>false</IsStartupProject>
                 </SolutionItemData>
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Samples.Client.Model.Shared</Name>
-                  <FileName>Samples.Client.Model.Shared\MyProject.csproj</FileName>
+                  <FileName>Samples.Universal\Samples.Client.Model.Shared\MyProject.csproj</FileName>
                   <IsStartupProject>false</IsStartupProject>
                 </SolutionItemData>
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Samples.Client.Model</Name>
-                  <FileName>Samples.Client.Model\MyProject.csproj</FileName>
+                  <FileName>Samples.Universal\Samples.Client.Model\MyProject.csproj</FileName>
                   <IsStartupProject>false</IsStartupProject>
                 </SolutionItemData>
               </Items>
@@ -319,14 +319,14 @@
               <Items>
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Samples.Universal.Client.Presentation.Shell</Name>
-                  <FileName>Samples.Universal.Client.Presentation.Shell\MyProject.csproj</FileName>
+                  <FileName>Samples.Universal\Samples.Universal.Client.Presentation.Shell\MyProject.csproj</FileName>
                   <IsStartupProject>false</IsStartupProject>
                 </SolutionItemData>
               </Items>
             </SolutionItemData>
             <SolutionItemData xsi:type="ProjectData">
               <Name>Samples.Universal.Client.Launcher</Name>
-              <FileName>Samples.Universal.Client.Launcher\MyProject.csproj</FileName>
+              <FileName>Samples.Universal\Samples.Universal.Client.Launcher\MyProject.csproj</FileName>
               <IsStartupProject>true</IsStartupProject>
             </SolutionItemData>
           </Items>
@@ -339,7 +339,7 @@
               <Items>
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Samples.Client.Tests.Contracts</Name>
-                  <FileName>Samples.Client.Tests.Contracts\MyProject.csproj</FileName>
+                  <FileName>Samples.Universal\Samples.Client.Tests.Contracts\MyProject.csproj</FileName>
                   <IsStartupProject>false</IsStartupProject>
                 </SolutionItemData>
               </Items>
@@ -349,12 +349,12 @@
               <Items>
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Samples.Client.Tests.Steps</Name>
-                  <FileName>Samples.Client.Tests.Steps\MyProject.csproj</FileName>
+                  <FileName>Samples.Universal\Samples.Client.Tests.Steps\MyProject.csproj</FileName>
                   <IsStartupProject>false</IsStartupProject>
                 </SolutionItemData>
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Samples.Client.Tests.Steps.Adapters</Name>
-                  <FileName>Samples.Client.Tests.Steps.Adapters\MyProject.csproj</FileName>
+                  <FileName>Samples.Universal\Samples.Client.Tests.Steps.Adapters\MyProject.csproj</FileName>
                   <IsStartupProject>false</IsStartupProject>
                 </SolutionItemData>
               </Items>
@@ -364,7 +364,7 @@
               <Items>
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Samples.Client.Tests.Specs</Name>
-                  <FileName>Samples.Client.Tests.Specs\MyProject.csproj</FileName>
+                  <FileName>Samples.Universal\Samples.Client.Tests.Specs\MyProject.csproj</FileName>
                   <IsStartupProject>false</IsStartupProject>
                 </SolutionItemData>
               </Items>
@@ -377,31 +377,31 @@
                   <Items>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Samples.Universal.Client.Tests.Integration.Infra.Core</Name>
-                      <FileName>Samples.Universal.Client.Tests.Integration.Infra.Core\MyProject.csproj</FileName>
+                      <FileName>Samples.Universal\Samples.Universal.Client.Tests.Integration.Infra.Core\MyProject.csproj</FileName>
                       <IsStartupProject>false</IsStartupProject>
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Samples.Universal.Client.Tests.Integration.Infra.Shared</Name>
-                      <FileName>Samples.Universal.Client.Tests.Integration.Infra.Shared\MyProject.csproj</FileName>
+                      <FileName>Samples.Universal\Samples.Universal.Client.Tests.Integration.Infra.Shared\MyProject.csproj</FileName>
                       <IsStartupProject>false</IsStartupProject>
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Samples.Universal.Client.Tests.Integration.Infra</Name>
-                      <FileName>Samples.Universal.Client.Tests.Integration.Infra\MyProject.csproj</FileName>
+                      <FileName>Samples.Universal\Samples.Universal.Client.Tests.Integration.Infra\MyProject.csproj</FileName>
                       <IsStartupProject>false</IsStartupProject>
                     </SolutionItemData>
                   </Items>
                 </SolutionItemData>
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Samples.Universal.Client.Tests.Integration</Name>
-                  <FileName>Samples.Universal.Client.Tests.Integration\MyProject.csproj</FileName>
+                  <FileName>Samples.Universal\Samples.Universal.Client.Tests.Integration\MyProject.csproj</FileName>
                   <IsStartupProject>false</IsStartupProject>
                 </SolutionItemData>
               </Items>
             </SolutionItemData>
             <SolutionItemData xsi:type="ProjectData">
               <Name>Samples.Universal.Client.Tests</Name>
-              <FileName>Samples.Universal.Client.Tests\MyProject.csproj</FileName>
+              <FileName>Samples.Universal\Samples.Universal.Client.Tests\MyProject.csproj</FileName>
               <IsStartupProject>false</IsStartupProject>
             </SolutionItemData>
           </Items>

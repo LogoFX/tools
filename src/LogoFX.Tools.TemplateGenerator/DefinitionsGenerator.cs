@@ -21,7 +21,7 @@ namespace LogoFX.Tools.TemplateGenerator
         public void CreateDefinitions(WizardConfiguration wizardConfiguration)
         {
             var projectCollection = new XElement(Ns + "ProjectCollection");
-            CreateItems(projectCollection, wizardConfiguration);
+            //CreateItems(projectCollection, wizardConfiguration);
 
             var doc = new XDocument(
                 new XElement(Ns + "VSTemplate",
@@ -37,7 +37,7 @@ namespace LogoFX.Tools.TemplateGenerator
                     new XElement(Ns + "TemplateContent", projectCollection),
                     MakeWizardExtension(
                         "LogoFX.Tools.Templates.Wizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-                        $"LogoFX.Tools.Templates.Wizard.SolutionWizard")
+                        $"LogoFX.Tools.Templates.Wizard.ExperimentalSolutionWizard")
                     ));
 
             XmlWriterSettings settings = new XmlWriterSettings

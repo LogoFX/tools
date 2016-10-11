@@ -13,7 +13,7 @@ using Microsoft.VisualStudio.TemplateWizard;
 
 namespace LogoFX.Tools.Templates.Wizard
 {
-    public abstract partial class SolutionWizard : SolutionWizardBase
+    public abstract class SolutionWizard : SolutionWizardBase
     {
         #region Fields
 
@@ -32,6 +32,11 @@ namespace LogoFX.Tools.Templates.Wizard
         protected abstract string GetTitle();
 
         protected abstract WizardConfiguration GetWizardConfiguration();
+
+        protected SolutionInfo GetSelectedSolutionInfo()
+        {
+            return _wizardViewModel?.SelectedSolution.Model;
+        }
 
         #endregion
 

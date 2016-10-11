@@ -1,0 +1,56 @@
+﻿<Window x:Class="LogoFX.Tools.Templates.Wizard.Views.WaitView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:viewModel="clr-namespace:LogoFX.Tools.Templates.Wizard.ViewModel"
+        mc:Ignorable="d"
+        Width="600"
+        Height="80"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ShowInTaskbar="False"
+        Topmost="True"
+        Background="LightGray"
+        d:DesignHeight="300" 
+        d:DesignWidth="300"
+        d:DataContext="{d:DesignInstance viewModel:WaitViewModel}">
+
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0"
+                   VerticalAlignment="Center"
+                   Text="{Binding Path=Caption, Mode=OneWay}" />
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            
+            <ProgressBar Grid.Column="0"
+                         Height="21"
+                         VerticalAlignment="Center"
+                         Minimum="0"
+                         Maximum="100"
+                         Value="{Binding Path=Progress, Mode=OneWay}" />
+            
+            <TextBlock Grid.Column="1"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Text="{Binding Path=Progress, StringFormat='{}{0}%'}" />
+            
+            <Button Grid.Column="2"
+                    VerticalAlignment="Center"
+                    Height="21"
+                    Content="Cancel"
+                    Command="{Binding Path=CancelCommand, Mode=OneTime}">
+            </Button>
+        </Grid>
+    </Grid>
+</Window>
