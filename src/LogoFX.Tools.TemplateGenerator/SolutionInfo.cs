@@ -9,6 +9,7 @@ namespace LogoFX.Tools.TemplateGenerator
         public string Name { get; set; }
         public string Caption { get; set; }
         public string IconName { get; set; }
+        public string PostCreateUrl { get; set; }
 
         [XmlIgnore]
         public ISolutionTemplateInfo SolutionTemplateInfo { get; set; }

@@ -14,6 +14,7 @@
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -64,13 +65,23 @@
             </i:Interaction.Triggers>
         </Button>
         
-        <!--Root Namespaces-->
+        <!--Icon-->
         <TextBlock Grid.Row="3"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Text="Post Create URL:"/>
+        <TextBox Grid.Row="3"
+                 Grid.Column="2"
+                 Text="{Binding Path=Model.PostCreateUrl, Mode=TwoWay}"
+                 VerticalAlignment="Center" />
+        
+        <!--Root Namespaces-->
+        <TextBlock Grid.Row="4"
                    Grid.Column="0"
                    VerticalAlignment="Center"
                    FontWeight="Bold"
                    Text="Root Namespaces"/>
-        <ItemsControl Grid.Row="4"
+        <ItemsControl Grid.Row="5"
                       Grid.Column="0"
                       Grid.ColumnSpan="3"
                       ItemsSource="{Binding Path=SolutionTemplateInfo.RootNamespaces}">
@@ -86,8 +97,8 @@
         </ItemsControl>
     
         <controls:BusyIndicator Grid.Row="0"
+                                Grid.RowSpan="6"
                                 Grid.Column="0"
-                                Grid.RowSpan="5"
                                 Grid.ColumnSpan="4"
                                 IsBusy="{Binding Path=IsBusy, Mode=OneWay}"/>
     </Grid>

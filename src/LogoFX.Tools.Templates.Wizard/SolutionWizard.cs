@@ -3,68 +3,46 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using EnvDTE;
 using EnvDTE100;
 using EnvDTE80;
+using LogoFX.Tools.Common.Model;
 using LogoFX.Tools.Templates.Wizard.Model;
 using LogoFX.Tools.Templates.Wizard.ViewModel;
+using LogoFX.Tools.Templates.Wizard.Views;
 using Microsoft.Build.Construction;
+using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TemplateWizard;
+using Thread = System.Threading.Thread;
 
 namespace LogoFX.Tools.Templates.Wizard
 {
-    public abstract class SolutionWizard : SolutionWizardBase
+    public sealed class SolutionWizard : SolutionWizardBase
     {
         #region Fields
 
-        private WizardViewModel _wizardViewModel;
-
-        #endregion
-
-        #region Public Propeties
-
-        public string Title => GetTitle();
-
-        #endregion
-
-        #region Protected
-
-        protected abstract string GetTitle();
-
-        protected abstract WizardConfiguration GetWizardConfiguration();
-
-        protected SolutionInfo GetSelectedSolutionInfo()
-        {
-            return _wizardViewModel?.SelectedSolution.Model;
-        }
+        private Dictionary<string, string> _replacementsDictionary;
+        private WizardDataViewModel _wizardDataViewModel;
+        private string _tmpFolder;
 
         #endregion
 
         #region Private Members
 
-        private IEnumerable<Project> ApplyWizardModifications(IEnumerable<Project> projects)
+        private SolutionData GetSelectedSolutionInfo()
         {
-            if (_wizardViewModel == null)
-            {
-                return projects;
-            }
-
-            projects = RemoveMultiSolution(_wizardViewModel.SelectedSolution.Model);
-
-            if (!_wizardViewModel.MustRemoveCondition)
-            {
-                RemoveConditions(projects);
-            }
-
-            return projects;
+            return _wizardDataViewModel?.SelectedSolution.Model;
         }
 
-        private void RemoveConditions(IEnumerable<Project> projects)
+        private Project[] RemoveConditions(Project[] projects)
         {
             foreach (var project in projects)
             {
                 RemoveConditions(project);
             }
+
+            return projects;
         }
 
         private void RemoveConditions(Project project)
@@ -81,12 +59,12 @@ namespace LogoFX.Tools.Templates.Wizard
 
             var toRemove = new List<ProjectPropertyGroupElement>();
 
-            if (!_wizardViewModel.FakeOption)
+            if (!_wizardDataViewModel.CreateFakes)
             {
                 toRemove.AddRange(allGroups.Where(x => x.Condition.Contains("Fake")));
             }
 
-            if (!_wizardViewModel.TestOption)
+            if (!_wizardDataViewModel.CreateFakes)
             {
                 toRemove.AddRange(allGroups.Where(x => x.Condition.Contains("Tests")));
             }
@@ -99,30 +77,6 @@ namespace LogoFX.Tools.Templates.Wizard
                 }
                 buildProject.Save();
             }
-        }
-
-        private IEnumerable<Project> RemoveMultiSolution(SolutionInfo solutionInfo)
-        {
-            SolutionFolderTemplate selected = null;
-            foreach (var p in GetSolution().Projects.OfType<Project>().ToList())
-            {
-                if (p.Name == solutionInfo.Name)
-                {
-                    selected = new SolutionFolderTemplate(p);
-                }
-
-                GetSolution().Remove(p);
-            }
-
-            List<Project> projects = new List<Project>();
-
-            Debug.Assert(selected != null, "selected != null");
-            foreach (var p in selected.Items)
-            {
-                AddProjectToSolution(null, p, projects);
-            }
-
-            return projects;
         }
 
         private void AddProjectToSolution(SolutionFolder parent, SolutionItemTemplate project, IList<Project> projects)
@@ -139,14 +93,14 @@ namespace LogoFX.Tools.Templates.Wizard
 
         private void AddSolutionFolder(SolutionFolder parent, SolutionFolderTemplate solutionFolder, IList<Project> projects)
         {
-            if (!_wizardViewModel.CreateTests && 
+            if (!_wizardDataViewModel.CreateTests && 
                 parent == null && 
                 solutionFolder.Name == "Tests")
             {
                 return;
             }
 
-            if (!_wizardViewModel.CreateFakes &&
+            if (!_wizardDataViewModel.CreateFakes &&
                 solutionFolder.Name == "Fake")
             {
                 return;
@@ -174,13 +128,22 @@ namespace LogoFX.Tools.Templates.Wizard
             var newProjectFullName = Path.Combine(newProjectDirectory, projectFileName);
 
             CopyDirectory(projectDirectory, newProjectDirectory);
-            //DeleteDirectory(projectDirectory);
 
             var addedProject = parent == null
                 ? GetSolution().AddFromFile(newProjectFullName)
                 : parent.AddFromFile(newProjectFullName);
 
             projects.Add(addedProject);
+        }
+
+        public bool CreateTests
+        {
+            get { return _wizardDataViewModel.CreateTests; }
+        }
+
+        public bool CreateFakes
+        {
+            get { return _wizardDataViewModel.CreateFakes; }
         }
 
         /// <summary>
@@ -216,29 +179,317 @@ namespace LogoFX.Tools.Templates.Wizard
             }
         }
 
+        private void CreateSolution(SolutionData solutionData)
+        {
+            var solution = GetSolution();
+
+            var waitViewModel = new WaitViewModel();
+            var window = WpfServices.CreateWindow<WaitView>(waitViewModel);
+            WpfServices.SetWindowOwner(window, solution.DTE.MainWindow);
+            waitViewModel.Completed += async (s, a) =>
+            {
+                await window.Dispatcher.InvokeAsync(() =>
+                {
+                    window.DialogResult = !a.Cancelled && a.Error == null;
+                });
+            };
+            waitViewModel.Caption = "Creating solution...";
+            waitViewModel.Run((p, ct) =>
+            {
+                int count = solutionData.Items.Length;
+                double k = 1.0 / count;
+                for (int i = 0; i < count; ++i)
+                {
+                    var pr = k * i;
+                    p.Report(pr);
+                    int j = i;
+                    CreateSolutionItem(
+                        null,
+                        solutionData.Items[i], progress =>
+                        {
+                            pr = k * j + progress * k;
+                            p.Report(pr);
+                        },
+                        ct);
+                    ct.ThrowIfCancellationRequested();
+                }
+            });
+            var retVal = window.ShowDialog() ?? false;
+
+            if (!retVal)
+            {
+                throw new WizardCancelledException();
+            }
+
+            if (!string.IsNullOrWhiteSpace(solutionData.PostCreateUrl))
+            {
+                solution.DTE.ItemOperations.Navigate(solutionData.PostCreateUrl);
+            }
+        }
+
+
+        private void CreateSolutionItem(
+            SolutionFolder solutionFolder,
+            SolutionItemData solutionItemData,
+            Action<double> progressAction,
+            CancellationToken ct)
+        {
+            var solutionFolderData = solutionItemData as SolutionFolderData;
+            if (solutionFolderData != null)
+            {
+                CreateSolutionFolder(
+                    solutionFolder,
+                    solutionFolderData,
+                    progressAction,
+                    ct);
+                return;
+            }
+
+            var projectData = solutionItemData as ProjectData;
+            if (projectData != null)
+            {
+                CreateProject(
+                    solutionFolder,
+                    projectData,
+                    progressAction,
+                    ct);
+                return;
+            }
+
+            throw new ArgumentException("Unknown solution item type");
+        }
+
+        private void CreateSolutionFolder(
+            SolutionFolder solutionFolder,
+            SolutionFolderData solutionFolderData,
+            Action<double> progressAction,
+            CancellationToken ct)
+        {
+            if (!CreateTests &&
+                solutionFolder == null &&
+                solutionFolderData.Name == "Tests")
+            {
+                return;
+            }
+
+            if (!CreateFakes &&
+                solutionFolderData.Name == "Fake")
+            {
+                return;
+            }
+
+            var addedProject = solutionFolder == null
+                ? GetSolution().AddSolutionFolder(solutionFolderData.Name)
+                : solutionFolder.AddSolutionFolder(solutionFolderData.Name);
+
+            if (solutionFolderData.Items.Length == 0)
+            {
+                return;
+            }
+
+            SolutionFolder subFolder = addedProject.Object as SolutionFolder;
+            var k = 1.0 / solutionFolderData.Items.Length;
+            for (int i = 0; i < solutionFolderData.Items.Length; ++i)
+            {
+                var pr = k * i;
+                progressAction(pr);
+                int j = i;
+                CreateSolutionItem(
+                    subFolder,
+                    solutionFolderData.Items[i], progress =>
+                    {
+                        pr = k * j + progress * k;
+                        progressAction(pr);
+                    },
+                    ct);
+                ct.ThrowIfCancellationRequested();
+            }
+        }
+
+        private void CreateProject(
+            SolutionFolder solutionFolder,
+            ProjectData projectData,
+            Action<double> progressAction,
+            CancellationToken ct)
+        {
+            var projectName = $"{_replacementsDictionary["$safeprojectname$"]}.{projectData.Name}";
+
+            var sourceFileName = Path.Combine(_tmpFolder, projectData.FileName);
+            var sourceDir = Path.GetDirectoryName(sourceFileName);
+            var solutionDir = _replacementsDictionary["$solutiondirectory$"];
+            var destDir = Path.Combine(solutionDir, projectName);
+
+            var replacementDictionary = CreateProjectReplacementDictionary(projectName);
+            CopyDirectory(replacementDictionary, sourceDir, destDir, progressAction, ct);
+
+            var oldFileName = Path.GetFileName(sourceFileName);
+            var ext = Path.GetExtension(oldFileName);
+            var newFileName = projectName + ext;
+            var newFullFileName = Path.Combine(destDir, newFileName);
+
+            File.Move(Path.Combine(destDir, oldFileName), newFullFileName);
+
+            var addedProject = solutionFolder == null
+                ? GetSolution().AddFromFile(newFullFileName)
+                : solutionFolder.AddFromFile(newFullFileName);
+
+            foreach (SolutionConfiguration solutionConfiguration in GetSolution().SolutionBuild.SolutionConfigurations)
+            {
+                var solutionContext = solutionConfiguration.SolutionContexts
+                    .OfType<SolutionContext>()
+                    .Single(x => x.ProjectName.EndsWith(newFileName));
+
+                Debug.WriteLine("Project Name: " + projectName);
+
+                var configurationName = solutionContext.ConfigurationName;
+                var platformName = solutionContext.PlatformName;
+                var name = $"{configurationName}|{platformName}";
+
+                var projectConfiguration = projectData.ProjectConfigurations.SingleOrDefault(x => x.Name == name);
+                solutionContext.ShouldBuild = projectConfiguration != null && projectConfiguration.IncludeInBuild;
+            }
+
+            if (projectData.IsStartupProject)
+            {
+                GetSolution().Properties.Item("StartupProject").Value = addedProject.Name;
+            }
+
+            //ProjectHelper.ReloadProject(addedProject);
+
+            progressAction(1.0);
+        }
+
+        private Dictionary<string, string> CreateProjectReplacementDictionary(string projectName)
+        {
+            Dictionary<string, string> result = new Dictionary<string, string>();
+            foreach (var key in _replacementsDictionary.Keys)
+            {
+                result[key] = _replacementsDictionary[key];
+            }
+
+            result["$safeprojectname$"] = projectName;
+            result["$projectname$"] = projectName;
+
+            return result;
+        }
+
+        private void CopyDirectory(
+            Dictionary<string, string> replacementsDictionary,
+            string sourceDir,
+            string destDir,
+            Action<double> progressAction,
+            CancellationToken ct)
+        {
+            if (!Directory.Exists(destDir))
+            {
+                Directory.CreateDirectory(destDir);
+            }
+
+            var infos = new DirectoryInfo(sourceDir).GetFileSystemInfos();
+            if (infos.Length == 0)
+            {
+                return;
+            }
+
+            var k = 0.8 / infos.Length;
+
+            for (int i = 0; i < infos.Length; ++i)
+            {
+                ct.ThrowIfCancellationRequested();
+
+                var pr = k * i;
+                progressAction(pr);
+                int j = i;
+
+                var info = infos[i];
+
+                var destFileName = Path.Combine(destDir, info.Name);
+                if (info is DirectoryInfo)
+                {
+                    CopyDirectory(
+                        replacementsDictionary,
+                        info.FullName,
+                        destFileName,
+                        progress =>
+                        {
+                            pr = k * j + progress * k;
+                            progressAction(pr);
+                        },
+                        ct);
+                    continue;
+                }
+
+                CopyProject(replacementsDictionary, info.FullName, destFileName);
+            }
+        }
+
+        private void CopyProject(
+            Dictionary<string, string> replacementsDictionary,
+            string oldFileName,
+            string newFileName)
+        {
+            ReplaceText(replacementsDictionary, oldFileName, newFileName);
+        }
+
+        private void ReplaceText(
+            Dictionary<string, string> replacementsDictionary,
+            string oldFileName,
+            string newFileName)
+        {
+            var str = File.ReadAllText(oldFileName);
+            foreach (var sp in replacementsDictionary)
+            {
+                str = str.Replace(sp.Key, sp.Value);
+            }
+            File.WriteAllText(newFileName, str);
+        }
+
+        private Project[] ApplyWizardModifications(Project[] projects)
+        {
+            if (_wizardDataViewModel == null)
+            {
+                return projects;
+            }
+
+            if (_wizardDataViewModel.MustRemoveConditions)
+            {
+                projects = RemoveConditions(projects);
+            }
+
+            return projects;
+        }
+
         #endregion
 
         #region Overrides
 
         protected override void RunStartedOverride(Solution4 solution, Dictionary<string, string> replacementsDictionary, object[] customParams)
         {
-            _wizardViewModel = null;
+            _replacementsDictionary = replacementsDictionary;
 
-            var wizardConfiguration = GetWizardConfiguration();
-            if (wizardConfiguration == null ||
-                !wizardConfiguration.ShowWizardWindow())
+            var vstemplateName = (string)customParams[0];
+            _tmpFolder = Path.GetDirectoryName(vstemplateName);
+            replacementsDictionary["$saferootprojectname$"] = replacementsDictionary["$safeprojectname$"];
+
+            var wizardDataFileName = Path.Combine(_tmpFolder, WizardDataLoader.WizardDataFielName);
+            var wizardData = WizardDataLoader.LoadAsync(wizardDataFileName).Result;
+
+            _wizardDataViewModel = null;
+
+            if (wizardData == null ||
+                !wizardData.ShowWizardWindow())
             {
                 return;
             }
 
             var projectName = replacementsDictionary["$projectname$"];
 
-            _wizardViewModel = new WizardViewModel(wizardConfiguration)
+            _wizardDataViewModel = new WizardDataViewModel(wizardData)
             {
-                Title = $"{Title} - {projectName}"
+                Title = $"{wizardData.Title} - {projectName}"
             };
 
-            var window = WpfServices.CreateWindow<Views.WizardWindow>(_wizardViewModel);
+            var window = WpfServices.CreateWindow<WizardWindow>(_wizardDataViewModel);
             WpfServices.SetWindowOwner(window, solution.DTE.MainWindow);
             var retVal = window.ShowDialog() ?? false;
             if (!retVal)
@@ -249,8 +500,13 @@ namespace LogoFX.Tools.Templates.Wizard
 
         protected override void RunFinishedOverride()
         {
+            var solutionInfo = GetSelectedSolutionInfo();
+            var solutionData = _wizardDataViewModel.Model.Solutions.Single(x => x.Name == solutionInfo.Name);
+
+            CreateSolution(solutionData);
+
             //Get all projects in solution
-            IEnumerable<Project> projects = GetProjects().ToList();
+            var projects = GetProjects().ToArray();
             if (projects == null || !projects.Any())
             {
                 throw new Exception("No projects found.");
@@ -260,5 +516,27 @@ namespace LogoFX.Tools.Templates.Wizard
         }
 
         #endregion
+    }
+
+    internal static class ProjectHelper
+    {
+        public static void ReloadProject(Project currentProject)
+        {
+            var dte2 = (DTE2)Package.GetGlobalService(typeof(DTE));
+
+            dte2.ExecuteCommand("File.SaveAll");
+
+            string solutionName = Path.GetFileNameWithoutExtension(dte2.Solution.FullName);
+            string projectName = currentProject.Name;
+
+            dte2.Windows.Item(Constants.vsWindowKindSolutionExplorer).Activate();
+            dte2.ToolWindows.SolutionExplorer
+                .GetItem(solutionName + @"\" + projectName)
+                .Select(vsUISelectionType.vsUISelectionTypeSelect);
+
+            dte2.ExecuteCommand("Project.UnloadProject");
+            Thread.Sleep(500);
+            dte2.ExecuteCommand("Project.ReloadProject");
+        }
     }
 }

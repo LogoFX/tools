@@ -12,6 +12,6 @@
   </TemplateContent>
   <WizardExtension>
     <Assembly>LogoFX.Tools.Templates.Wizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
-    <FullClassName>LogoFX.Tools.Templates.Wizard.ExperimentalSolutionWizard</FullClassName>
+    <FullClassName>LogoFX.Tools.Templates.Wizard.SolutionWizard</FullClassName>
   </WizardExtension>
 </VSTemplate>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using LogoFX.Tools.TemplateGenerator.Contracts;
 
 namespace LogoFX.Tools.TemplateGenerator
@@ -8,6 +9,7 @@ namespace LogoFX.Tools.TemplateGenerator
         public ProjectTemplateInfo(Guid id, string name) 
             : base(id, name)
         {
+            ProjectConfigurations = new ProjectConfiguration[0];
         }
 
         string IProjectTemplateInfo.NameWithoutRoot => NameWithoutRoot;
@@ -26,5 +28,11 @@ namespace LogoFX.Tools.TemplateGenerator
             DestinationFileName = destinationFileName;
         }
 
+        IEnumerable<IProjectConfiguration> IProjectTemplateInfo.ProjectConfigurations
+        {
+            get { return ProjectConfigurations; }
+        }
+
+        public ProjectConfiguration[] ProjectConfigurations { get; set; }
     }
 }

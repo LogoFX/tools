@@ -1,4 +1,6 @@
-﻿namespace LogoFX.Tools.TemplateGenerator.Contracts
+﻿using System.Collections.Generic;
+
+namespace LogoFX.Tools.TemplateGenerator.Contracts
 {
     public interface IProjectTemplateInfo : ISolutionItemTemplateInfo
     {
@@ -9,5 +11,7 @@
         string DestinationFileName { get; }
 
         void SetDestinationFileName(string destinationFileName);
+
+        IEnumerable<IProjectConfiguration> ProjectConfigurations { get; }
     }
 }

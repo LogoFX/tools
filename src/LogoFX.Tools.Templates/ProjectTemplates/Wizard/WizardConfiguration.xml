@@ -9,12 +9,14 @@
     <SolutionInfo>
       <FileName>C:\Projects\LogoUI\LogoFX\Samples.Specifications\Specifications.sln</FileName>
       <Name>Specifications</Name>
-      <Caption>Specifications</Caption>
+      <Caption>LogoFX Desktop Application</Caption>
+      <PostCreateUrl>http://www.logoui.co.il/en</PostCreateUrl>
     </SolutionInfo>
     <SolutionInfo>
       <FileName>C:\Projects\LogoUI\LogoFX\Samples.Universal\Samples.Universal.sln</FileName>
       <Name>Samples.Universal</Name>
-      <Caption>Samples.Universal</Caption>
+      <Caption>LogoFX UWP Application</Caption>
+      <PostCreateUrl>http://www.logoui.co.il/en</PostCreateUrl>
     </SolutionInfo>
   </Solutions>
   <ProjectType>CSharp</ProjectType>

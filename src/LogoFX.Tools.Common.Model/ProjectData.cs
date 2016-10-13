@@ -1,4 +1,6 @@
-﻿namespace LogoFX.Tools.Common.Model
+﻿using System.Collections.Generic;
+
+namespace LogoFX.Tools.Common.Model
 {
     public class ProjectData : SolutionItemData
     {
@@ -6,6 +8,6 @@
 
         public bool IsStartupProject { get; set; }
 
-        public string OpenInBrowserItem { get; set; }
+        public ProjectConfigurationData[] ProjectConfigurations { get; set; }
     }
 }

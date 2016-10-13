@@ -8,6 +8,8 @@
 
         public string IconFileName { get; set; }
 
+        public string PostCreateUrl { get; set; }
+
         public SolutionItemData[] Items { get; set; }
     }
 }

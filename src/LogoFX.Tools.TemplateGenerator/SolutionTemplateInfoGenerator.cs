@@ -23,9 +23,19 @@ namespace LogoFX.Tools.TemplateGenerator
 
         public async Task<ISolutionTemplateInfo> GenerateTemplateInfoAsync(string solutionFileName)
         {
-            SolutionFile solution = SolutionFile.Parse(solutionFileName);
             SolutionTemplateInfo solutionTemplateInfo = new SolutionTemplateInfo();
 
+            SolutionFile solution = SolutionFile.Parse(solutionFileName);
+
+            await CreateProjectsAsync(solution, solutionTemplateInfo);
+
+            ProjectCollection.GlobalProjectCollection.UnloadAllProjects();
+
+            return solutionTemplateInfo;
+        }
+
+        private async Task CreateProjectsAsync(SolutionFile solution, SolutionTemplateInfo solutionTemplateInfo)
+        {
             var folders = new Dictionary<Guid, SolutionFolderTemplateInfo>();
             folders.Add(Guid.Empty, solutionTemplateInfo);
 
@@ -33,10 +43,6 @@ namespace LogoFX.Tools.TemplateGenerator
             {
                 await CreateSolutionItemTemplateInfoAsync(solution, solutionTemplateInfo, proj, folders);
             }
-
-            ProjectCollection.GlobalProjectCollection.UnloadAllProjects();
-
-            return solutionTemplateInfo;
         }
 
         private async Task<SolutionItemTemplateInfo> CreateSolutionItemTemplateInfoAsync(
@@ -72,6 +78,7 @@ namespace LogoFX.Tools.TemplateGenerator
                     {
                         NameWithoutRoot = proj.ProjectName.Substring(rootName.Length + 1),
                         FileName = proj.AbsolutePath,
+                        ProjectConfigurations = GetProjectConfigurations(proj.ProjectConfigurations)
                     };
                     break;
                 case SolutionProjectType.SolutionFolder:
@@ -89,6 +96,24 @@ namespace LogoFX.Tools.TemplateGenerator
             folder.Items.Add(result);
 
             return result;
+        }
+
+        private ProjectConfiguration[] GetProjectConfigurations(IEnumerable<KeyValuePair<string,  ProjectConfigurationInSolution>> projectConfigurations)
+        {
+            var result = new List<ProjectConfiguration>();
+
+            foreach (var pair in projectConfigurations)
+            {
+                result.Add(new ProjectConfiguration
+                {
+                    Name = pair.Key,
+                    ConfigurationName = pair.Value.ConfigurationName,
+                    PlatformName = pair.Value.PlatformName,
+                    IncludeInBuild = pair.Value.IncludeInBuild
+                });
+            }
+
+            return result.ToArray();
         }
 
         private string AddRootName(string projectName, SolutionTemplateInfo solutionTemplateInfo)

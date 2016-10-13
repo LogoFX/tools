@@ -6,7 +6,6 @@ using Avalon.Windows.Dialogs;
 using Caliburn.Micro;
 using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.Commanding;
-using LogoFX.Tools.TemplateGenerator.Contracts;
 using LogoFX.Tools.TemplateGenerator.Shell.Properties;
 
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels

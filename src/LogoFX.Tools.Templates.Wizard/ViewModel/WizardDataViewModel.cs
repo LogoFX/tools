@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using LogoFX.Tools.Common.Model;
 
 namespace LogoFX.Tools.Templates.Wizard.ViewModel
 {
-    public sealed class WizardViewModel : ObjectViewModel<WizardConfiguration>
+    public sealed class WizardDataViewModel : ObjectViewModel<WizardData>
     {
-        private IEnumerable<SolutionInfoViewModel> _solutions;
+        private IEnumerable<SolutionDataViewModel> _solutions;
 
-        public WizardViewModel(WizardConfiguration model)
+        public WizardDataViewModel(WizardData model)
             : base(model)
         {
         }
@@ -28,11 +29,6 @@ namespace LogoFX.Tools.Templates.Wizard.ViewModel
             }
         }
 
-        public bool FakeOption
-        {
-            get { return Model.FakeOption; }
-        }
-
         private bool _createFakes;
 
         public bool CreateFakes
@@ -48,11 +44,6 @@ namespace LogoFX.Tools.Templates.Wizard.ViewModel
                 _createFakes = value;
                 NotifyOfPropertyChange();
             }
-        }
-
-        public bool TestOption
-        {
-            get { return Model.TestOption; }
         }
 
         private bool _createTests;
@@ -72,19 +63,19 @@ namespace LogoFX.Tools.Templates.Wizard.ViewModel
             }
         }
 
-        public bool MustRemoveCondition
+        public bool MustRemoveConditions
         {
             get { return !CreateFakes || !CreateTests; }
         }
 
-        public IEnumerable<SolutionInfoViewModel> Solutions
+        public IEnumerable<SolutionDataViewModel> Solutions
         {
             get { return _solutions ?? (_solutions = CreateSolutions()); }
         }
 
-        private SolutionInfoViewModel _selectedSolution;
+        private SolutionDataViewModel _selectedSolution;
 
-        public SolutionInfoViewModel SelectedSolution
+        public SolutionDataViewModel SelectedSolution
         {
             get { return _selectedSolution; }
             set
@@ -105,9 +96,9 @@ namespace LogoFX.Tools.Templates.Wizard.ViewModel
             get { return SelectedSolution != null; }
         }
 
-        private IEnumerable<SolutionInfoViewModel> CreateSolutions()
+        private IEnumerable<SolutionDataViewModel> CreateSolutions()
         {
-            return Model.Solutions.Select(x => new SolutionInfoViewModel(x)).ToList();
+            return Model.Solutions.Select(x => new SolutionDataViewModel(x)).ToList();
         }
     }
 }

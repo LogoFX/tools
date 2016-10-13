@@ -41,6 +41,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IProjectConfiguration.cs" />
     <Compile Include="IProjectTemplateInfo.cs" />
     <Compile Include="ISolutionFolderTemplateInfo.cs" />
     <Compile Include="ISolutionFolderTemplateInfoExtensions.cs" />

@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using LogoFX.Tools.Common.Model;
 using LogoFX.Tools.TemplateGenerator.Contracts;
+using Task = System.Threading.Tasks.Task;
 
 namespace LogoFX.Tools.TemplateGenerator
 {
@@ -27,6 +28,7 @@ namespace LogoFX.Tools.TemplateGenerator
         {
             WizardData wizardData = new WizardData
             {
+                Title = $"New {_wizardConfiguration.Description}",
                 Solutions = _wizardConfiguration.Solutions
                     .Select(info => CreateSolutionData(info, destinationFolder))
                     .ToArray()
@@ -40,6 +42,7 @@ namespace LogoFX.Tools.TemplateGenerator
             {
                 Caption = solutionInfo.Caption,
                 IconFileName = solutionInfo.IconName,
+                PostCreateUrl = solutionInfo.PostCreateUrl,
                 Name = solutionInfo.Name,
                 Items = solutionInfo.SolutionTemplateInfo.Items
                     .Select(info => CreateSolutionItemData(info, destinationFolder))
@@ -51,7 +54,7 @@ namespace LogoFX.Tools.TemplateGenerator
 
         private SolutionItemData CreateSolutionItemData(ISolutionItemTemplateInfo solutionItemInfo, string destinationFolder)
         {
-            SolutionItemData solutionItemData = null;
+            SolutionItemData solutionItemData;
 
             var solutionFolderInfo = solutionItemInfo as ISolutionFolderTemplateInfo;
             if (solutionFolderInfo != null)
@@ -88,11 +91,28 @@ namespace LogoFX.Tools.TemplateGenerator
             {
                 Name = projectInfo.NameWithoutRoot,
                 IsStartupProject = projectInfo.Name.EndsWith(".Launcher"),
-                FileName = Utils.GetRelativePath(projectInfo.DestinationFileName, destinationFolder)
+                FileName = Utils.GetRelativePath(projectInfo.DestinationFileName, destinationFolder),
+                ProjectConfigurations = CreateProjectConfigurations(projectInfo.ProjectConfigurations)
             };
 
 
             return projectData;
+        }
+
+        private ProjectConfigurationData[] CreateProjectConfigurations(IEnumerable<IProjectConfiguration> projectConfigurations)
+        {
+            var result = new List<ProjectConfigurationData>();
+            foreach (var projectConfiguration in projectConfigurations)
+            {
+                result.Add(new ProjectConfigurationData
+                {
+                    ConfigurationName = projectConfiguration.ConfigurationName,
+                    Name = projectConfiguration.Name,
+                    IncludeInBuild = projectConfiguration.IncludeInBuild,
+                    PlatformName = projectConfiguration.PlatformName
+                });
+            }
+            return result.ToArray();
         }
     }
 }
