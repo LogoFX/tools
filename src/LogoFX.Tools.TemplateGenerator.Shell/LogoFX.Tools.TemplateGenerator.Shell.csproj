@@ -145,6 +145,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ViewModels\CanGenerateViewModel.cs" />
+    <Compile Include="ViewModels\ProjectViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.SolutionConfiguration.cs">
       <DependentUpon>ShellViewModel.cs</DependentUpon>
