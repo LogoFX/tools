@@ -343,8 +343,9 @@ namespace LogoFX.Tools.Templates.Wizard
                 Debug.WriteLine("Project Name: " + projectName);
 
                 var name = solutionConfiguration.Name;
+                name = $"{name}|{solutionContext.PlatformName}";
 
-                var projectConfiguration = projectData.ProjectConfigurations.SingleOrDefault(x => x.Name.StartsWith(name));
+                var projectConfiguration = projectData.ProjectConfigurations.SingleOrDefault(x => x.Name == name);
 
                 if (projectConfiguration == null)
                 {
@@ -354,15 +355,15 @@ namespace LogoFX.Tools.Templates.Wizard
 
                 solutionContext.ShouldBuild = projectConfiguration.IncludeInBuild;
 
-                if (Debugger.IsAttached)
-                {
-                    var n1 = solutionContext.ConfigurationName;
-                    var n2 = projectConfiguration.ConfigurationName;
-                    if (n1 != n2)
-                    {
-                        Debugger.Break();
-                    }
-                }
+                //if (Debugger.IsAttached)
+                //{
+                //    var n1 = solutionContext.ConfigurationName;
+                //    var n2 = projectConfiguration.ConfigurationName;
+                //    if (n1 != n2)
+                //    {
+                //        Debugger.Break();
+                //    }
+                //}
 
                 solutionContext.ConfigurationName = projectConfiguration.ConfigurationName;
             }
