@@ -12,10 +12,7 @@ using LogoFX.Tools.Templates.Wizard.Model;
 using LogoFX.Tools.Templates.Wizard.ViewModel;
 using LogoFX.Tools.Templates.Wizard.Views;
 using Microsoft.Build.Construction;
-using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TemplateWizard;
-using Debugger = System.Diagnostics.Debugger;
-using Thread = System.Threading.Thread;
 
 namespace LogoFX.Tools.Templates.Wizard
 {
@@ -122,10 +119,18 @@ namespace LogoFX.Tools.Templates.Wizard
             var projectFullName = project.FileName;
             var projectFileName = Path.GetFileName(projectFullName);
             var projectDirectory = Path.GetDirectoryName(projectFullName);
-            var newProjectDirectory = Path.Combine(
-                Path.GetDirectoryName(
-                    Path.GetDirectoryName(projectDirectory)),
-                Path.GetFileName(projectDirectory));
+
+            Debug.Assert(projectDirectory != null, "projectDirectory != null");
+
+            var directoryName = Path.GetDirectoryName(projectDirectory);
+            var path1 = Path.GetDirectoryName(directoryName);
+
+            Debug.Assert(path1 != null, "path1 != null");
+
+            var newProjectDirectory = Path.Combine(path1, Path.GetFileName(projectDirectory));
+
+            Debug.Assert(projectFileName != null, "projectFileName != null");
+
             var newProjectFullName = Path.Combine(newProjectDirectory, projectFileName);
 
             CopyDirectory(projectDirectory, newProjectDirectory);
@@ -347,33 +352,16 @@ namespace LogoFX.Tools.Templates.Wizard
 
                 var projectConfiguration = projectData.ProjectConfigurations.SingleOrDefault(x => x.Name == name);
 
-                if (projectConfiguration == null)
-                {
-                    Debugger.Break();
-                    continue;
-                }
-
-                solutionContext.ShouldBuild = projectConfiguration.IncludeInBuild;
-
-                //if (Debugger.IsAttached)
-                //{
-                //    var n1 = solutionContext.ConfigurationName;
-                //    var n2 = projectConfiguration.ConfigurationName;
-                //    if (n1 != n2)
-                //    {
-                //        Debugger.Break();
-                //    }
-                //}
+                Debug.Assert(projectConfiguration != null, "ProjectConfiguration not found for " + name);
 
                 solutionContext.ConfigurationName = projectConfiguration.ConfigurationName;
+                solutionContext.ShouldBuild = projectConfiguration.IncludeInBuild;
             }
 
             if (projectData.IsStartupProject)
             {
                 GetSolution().Properties.Item("StartupProject").Value = addedProject.Name;
             }
-
-            //ProjectHelper.ReloadProject(addedProject);
 
             progressAction(1.0);
         }
@@ -535,27 +523,5 @@ namespace LogoFX.Tools.Templates.Wizard
         }
 
         #endregion
-    }
-
-    internal static class ProjectHelper
-    {
-        public static void ReloadProject(Project currentProject)
-        {
-            var dte2 = (DTE2)Package.GetGlobalService(typeof(DTE));
-
-            dte2.ExecuteCommand("File.SaveAll");
-
-            string solutionName = Path.GetFileNameWithoutExtension(dte2.Solution.FullName);
-            string projectName = currentProject.Name;
-
-            dte2.Windows.Item(Constants.vsWindowKindSolutionExplorer).Activate();
-            dte2.ToolWindows.SolutionExplorer
-                .GetItem(solutionName + @"\" + projectName)
-                .Select(vsUISelectionType.vsUISelectionTypeSelect);
-
-            dte2.ExecuteCommand("Project.UnloadProject");
-            Thread.Sleep(500);
-            dte2.ExecuteCommand("Project.ReloadProject");
-        }
     }
 }
