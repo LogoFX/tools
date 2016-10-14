@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using LogoFX.Tools.TemplateGenerator.Contracts;
@@ -12,15 +11,6 @@ namespace LogoFX.Tools.TemplateGenerator
 {
     public sealed class SolutionTemplateInfoGenerator : GeneratorBase
     {
-        private readonly bool _multisolution;
-        private readonly string _destinationFolder;
-
-        public SolutionTemplateInfoGenerator(bool multisolution, string destinationFolder)
-        {
-            _multisolution = multisolution;
-            _destinationFolder = destinationFolder;
-        }
-
         public async Task<ISolutionTemplateInfo> GenerateTemplateInfoAsync(string solutionFileName)
         {
             SolutionTemplateInfo solutionTemplateInfo = new SolutionTemplateInfo();
