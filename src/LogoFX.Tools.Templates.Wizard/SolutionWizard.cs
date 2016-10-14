@@ -14,6 +14,7 @@ using LogoFX.Tools.Templates.Wizard.Views;
 using Microsoft.Build.Construction;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TemplateWizard;
+using Debugger = System.Diagnostics.Debugger;
 using Thread = System.Threading.Thread;
 
 namespace LogoFX.Tools.Templates.Wizard
@@ -341,12 +342,29 @@ namespace LogoFX.Tools.Templates.Wizard
 
                 Debug.WriteLine("Project Name: " + projectName);
 
-                var configurationName = solutionContext.ConfigurationName;
-                var platformName = solutionContext.PlatformName;
-                var name = $"{configurationName}|{platformName}";
+                var name = solutionConfiguration.Name;
 
-                var projectConfiguration = projectData.ProjectConfigurations.SingleOrDefault(x => x.Name == name);
-                solutionContext.ShouldBuild = projectConfiguration != null && projectConfiguration.IncludeInBuild;
+                var projectConfiguration = projectData.ProjectConfigurations.SingleOrDefault(x => x.Name.StartsWith(name));
+
+                if (projectConfiguration == null)
+                {
+                    Debugger.Break();
+                    continue;
+                }
+
+                solutionContext.ShouldBuild = projectConfiguration.IncludeInBuild;
+
+                if (Debugger.IsAttached)
+                {
+                    var n1 = solutionContext.ConfigurationName;
+                    var n2 = projectConfiguration.ConfigurationName;
+                    if (n1 != n2)
+                    {
+                        Debugger.Break();
+                    }
+                }
+
+                solutionContext.ConfigurationName = projectConfiguration.ConfigurationName;
             }
 
             if (projectData.IsStartupProject)
