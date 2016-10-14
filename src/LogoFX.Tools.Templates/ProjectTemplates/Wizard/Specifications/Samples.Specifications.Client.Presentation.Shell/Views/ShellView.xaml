@@ -5,13 +5,44 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:cal="http://www.caliburnproject.org"
         xmlns:viewModels="clr-namespace:$safeprojectname$.ViewModels"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
         AutomationProperties.AutomationId="Shell_Window"
         WindowState="Maximized"
         Background="{StaticResource LogoFXPaper}"
-             mc:Ignorable="d"             
-             d:DataContext="{d:DesignInstance viewModels:ShellViewModel}"
-             d:DesignHeight="300" d:DesignWidth="300">
+        mc:Ignorable="d"             
+        d:DataContext="{d:DesignInstance viewModels:ShellViewModel}"
+        d:DesignHeight="300" d:DesignWidth="300">
+
     <Grid>
-       <ContentControl cal:View.Model="{Binding ActiveItem}" />     
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ContentControl Grid.Row="0"
+                        Margin="5"
+                        cal:View.Model="{Binding ActiveItem}" />
+
+        <Grid Grid.Row="1"
+              Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Column="1"
+                    Margin="5"
+                    Width="100"
+                    Height="24"
+                    VerticalAlignment="Center"
+                    Content="Close">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <commanding:ExecuteCommandAction Command="{Binding Path=CloseCommand, Mode=OneTime}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
     </Grid>
 </Window>

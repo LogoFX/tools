@@ -8,12 +8,14 @@
              d:DataContext="{d:DesignInstance viewModels:WarehouseItemsViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <DataGrid AutomationProperties.AutomationId="WarehouseItemsDataGrid" ItemsSource="{Binding Path=WarehouseItems, Mode=OneWay}" AutoGenerateColumns="False">
+        <DataGrid AutomationProperties.AutomationId="WarehouseItemsDataGrid" 
+                  ItemsSource="{Binding Path=WarehouseItems, Mode=OneWay}"
+                  AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Kind" Binding="{Binding Model.Kind}" />
-                <DataGridTextColumn Header="Price" Binding="{Binding Model.Price}" />
-                <DataGridTextColumn Header="Quantity" Binding="{Binding Model.Quantity}" />
-                <DataGridTextColumn Header="Total cost" Binding="{Binding Model.TotalCost}" />
+                <DataGridTextColumn Header="Kind" Binding="{Binding Path=Model.Kind}" />
+                <DataGridTextColumn Header="Price" Binding="{Binding Path=Model.Price}" />
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Path=Model.Quantity}" />
+                <DataGridTextColumn Header="Total cost" Binding="{Binding Path=Model.TotalCost}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -11,6 +11,7 @@
              d:DataContext="{d:DesignInstance viewModels:LoginViewModel}"
              d:DesignHeight="300" 
              d:DesignWidth="300">
+    
     <Grid VerticalAlignment="Center"
           HorizontalAlignment="Center">
         <Grid.RowDefinitions>

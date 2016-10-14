@@ -1,9 +1,11 @@
 using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Threading;
 using Caliburn.Micro;
 using JetBrains.Annotations;
+using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.ViewModel.Services;
 using LogoFX.Core;
 using $saferootprojectname$.Client.Model.Shared;
@@ -28,6 +30,21 @@ namespace $safeprojectname$.ViewModels
             LoginViewModel.LoggedInSuccessfully += WeakDelegate.From(strongHandler);
         }
 
+        private ICommand _closeCommand;
+
+        public ICommand CloseCommand
+        {
+            get
+            {
+                return _closeCommand ??
+                       (_closeCommand = ActionCommand
+                           .Do(() =>
+                           {
+                               TryClose();
+                           }));
+            }
+        }
+        
         private bool _isBusy;
 
         public bool IsBusy
