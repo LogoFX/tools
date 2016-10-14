@@ -69,10 +69,10 @@ namespace LogoFX.Tools.TemplateGenerator
                     case "Service":
                     case "SDKReference":
                         newFileName = CopyProjectItem(item, from, projectFolder);
-                        if (string.IsNullOrEmpty(newFileName))
-                        {
-                            var success = project.RemoveItem(item);
-                        }
+                        //if (string.IsNullOrEmpty(newFileName))
+                        //{
+                        //    var success = project.RemoveItem(item);
+                        //}
                         break;
                 }
 
