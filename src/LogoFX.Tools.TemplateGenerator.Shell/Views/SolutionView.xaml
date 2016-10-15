@@ -89,9 +89,14 @@
                   Grid.Column="2" 
                   VerticalAlignment="Center"
                   ItemsSource="{Binding Path=Projects, Mode=OneTime}"
-                  SelectedValue="{Binding Path=Projects.SelectedItem, Mode=OneWay}"
-                  DisplayMemberPath="Name"
-                  />
+                  SelectedValue="{Binding Path=StartupProject, Mode=TwoWay}"
+                  DisplayMemberPath="Name">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Loaded">
+                    <commanding:ExecuteCommandAction Command="{Binding Path=ProjectsComboBoxLoaded, Mode=OneTime}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ComboBox>
         
         <!--Root Namespaces-->
         <TextBlock Grid.Row="5"

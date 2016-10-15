@@ -19,7 +19,7 @@
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Presentation.Shared</Name>
                       <FileName>Specifications\Samples.Specifications.Client.Presentation.Shared\MyProject.csproj</FileName>
-                      <IsStartupProject>false</IsStartupProject>
+                      <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
                           <Name>DebugWithFake|Any CPU</Name>
@@ -62,7 +62,7 @@
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Presentation.Shell</Name>
                       <FileName>Specifications\Samples.Specifications.Client.Presentation.Shell\MyProject.csproj</FileName>
-                      <IsStartupProject>false</IsStartupProject>
+                      <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
                           <Name>DebugWithFake|Any CPU</Name>
@@ -110,7 +110,7 @@
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Model.Contracts</Name>
                       <FileName>Specifications\Samples.Client.Model.Contracts\MyProject.csproj</FileName>
-                      <IsStartupProject>false</IsStartupProject>
+                      <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
                           <Name>DebugWithFake|Any CPU</Name>
@@ -153,7 +153,7 @@
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Model.Shared</Name>
                       <FileName>Specifications\Samples.Client.Model.Shared\MyProject.csproj</FileName>
-                      <IsStartupProject>false</IsStartupProject>
+                      <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
                           <Name>DebugWithFake|Any CPU</Name>
@@ -196,7 +196,7 @@
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Model</Name>
                       <FileName>Specifications\Samples.Client.Model\MyProject.csproj</FileName>
-                      <IsStartupProject>false</IsStartupProject>
+                      <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
                           <Name>DebugWithFake|Any CPU</Name>
@@ -247,7 +247,7 @@
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Data.Contracts.Dto</Name>
                           <FileName>Specifications\Samples.Client.Data.Contracts.Dto\MyProject.csproj</FileName>
-                          <IsStartupProject>false</IsStartupProject>
+                          <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
                               <Name>DebugWithFake|Any CPU</Name>
@@ -290,7 +290,7 @@
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Data.Contracts.Providers</Name>
                           <FileName>Specifications\Samples.Client.Data.Contracts.Providers\MyProject.csproj</FileName>
-                          <IsStartupProject>false</IsStartupProject>
+                          <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
                               <Name>DebugWithFake|Any CPU</Name>
@@ -338,7 +338,7 @@
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Data.Fake.Containers</Name>
                           <FileName>Specifications\Samples.Specifications.Client.Data.Fake.Containers\MyProject.csproj</FileName>
-                          <IsStartupProject>false</IsStartupProject>
+                          <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
                               <Name>DebugWithFake|Any CPU</Name>
@@ -381,7 +381,7 @@
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Data.Fake.ProviderBuilders</Name>
                           <FileName>Specifications\Samples.Specifications.Client.Data.Fake.ProviderBuilders\MyProject.csproj</FileName>
-                          <IsStartupProject>false</IsStartupProject>
+                          <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
                               <Name>DebugWithFake|Any CPU</Name>
@@ -424,7 +424,7 @@
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Data.Fake.Providers</Name>
                           <FileName>Specifications\Samples.Specifications.Client.Data.Fake.Providers\MyProject.csproj</FileName>
-                          <IsStartupProject>false</IsStartupProject>
+                          <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
                               <Name>DebugWithFake|Any CPU</Name>
@@ -467,7 +467,7 @@
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Data.Fake.ProviderBuilders.Setup</Name>
                           <FileName>Specifications\Samples.Specifications.Client.Data.Fake.ProviderBuilders.Setup\MyProject.csproj</FileName>
-                          <IsStartupProject>false</IsStartupProject>
+                          <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
                               <Name>DebugWithFake|Any CPU</Name>
@@ -515,7 +515,7 @@
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Data.Real.Providers</Name>
                           <FileName>Specifications\Samples.Specifications.Client.Data.Real.Providers\MyProject.csproj</FileName>
-                          <IsStartupProject>false</IsStartupProject>
+                          <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
                               <Name>DebugWithFake|Any CPU</Name>
@@ -562,7 +562,7 @@
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Client.Launcher</Name>
                   <FileName>Specifications\Samples.Specifications.Client.Launcher\MyProject.csproj</FileName>
-                  <IsStartupProject>true</IsStartupProject>
+                  <IsStartup>true</IsStartup>
                   <ProjectConfigurations>
                     <ProjectConfigurationData>
                       <Name>DebugWithFake|Any CPU</Name>
@@ -605,7 +605,7 @@
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Client.Launcher.Shared</Name>
                   <FileName>Specifications\Samples.Specifications.Client.Launcher.Shared\MyProject.csproj</FileName>
-                  <IsStartupProject>false</IsStartupProject>
+                  <IsStartup>false</IsStartup>
                   <ProjectConfigurations>
                     <ProjectConfigurationData>
                       <Name>DebugWithFake|Any CPU</Name>
@@ -658,7 +658,7 @@
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Tests.Acceptance.Steps.Adapters</Name>
                   <FileName>Specifications\Samples.Specifications.Tests.Acceptance.Steps.Adapters\MyProject.csproj</FileName>
-                  <IsStartupProject>false</IsStartupProject>
+                  <IsStartup>false</IsStartup>
                   <ProjectConfigurations>
                     <ProjectConfigurationData>
                       <Name>DebugWithFake|Any CPU</Name>
@@ -701,7 +701,7 @@
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Tests.Acceptance.Specs</Name>
                   <FileName>Specifications\Samples.Specifications.Tests.Acceptance.Specs\MyProject.csproj</FileName>
-                  <IsStartupProject>false</IsStartupProject>
+                  <IsStartup>false</IsStartup>
                   <ProjectConfigurations>
                     <ProjectConfigurationData>
                       <Name>DebugWithFake|Any CPU</Name>
@@ -752,7 +752,7 @@
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Tests.EndToEnd.Infra.Fake</Name>
                       <FileName>Specifications\Samples.Specifications.Tests.EndToEnd.Infra.Fake\MyProject.csproj</FileName>
-                      <IsStartupProject>false</IsStartupProject>
+                      <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
                           <Name>DebugWithFake|Any CPU</Name>
@@ -795,7 +795,7 @@
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Tests.EndToEnd.Infra.Launcher</Name>
                       <FileName>Specifications\Samples.Specifications.Tests.EndToEnd.Infra.Launcher\MyProject.csproj</FileName>
-                      <IsStartupProject>true</IsStartupProject>
+                      <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
                           <Name>DebugWithFake|Any CPU</Name>
@@ -838,7 +838,7 @@
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Tests.EndToEnd.Infra.Providers</Name>
                       <FileName>Specifications\Samples.Specifications.Tests.EndToEnd.Infra.Providers\MyProject.csproj</FileName>
-                      <IsStartupProject>false</IsStartupProject>
+                      <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
                           <Name>DebugWithFake|Any CPU</Name>
@@ -881,7 +881,7 @@
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Tests.EndToEnd.Infra.Real</Name>
                       <FileName>Specifications\Samples.Specifications.Tests.EndToEnd.Infra.Real\MyProject.csproj</FileName>
-                      <IsStartupProject>false</IsStartupProject>
+                      <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
                           <Name>DebugWithFake|Any CPU</Name>
@@ -926,7 +926,7 @@
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Tests.EndToEnd.Domain</Name>
                   <FileName>Specifications\Samples.Specifications.Tests.EndToEnd.Domain\MyProject.csproj</FileName>
-                  <IsStartupProject>false</IsStartupProject>
+                  <IsStartup>false</IsStartup>
                   <ProjectConfigurations>
                     <ProjectConfigurationData>
                       <Name>DebugWithFake|Any CPU</Name>
@@ -977,7 +977,7 @@
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Tests.Integration.Infra.Core</Name>
                       <FileName>Specifications\Samples.Specifications.Client.Tests.Integration.Infra.Core\MyProject.csproj</FileName>
-                      <IsStartupProject>false</IsStartupProject>
+                      <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
                           <Name>DebugWithFake|Any CPU</Name>
@@ -1020,7 +1020,7 @@
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Tests.Integration.Infra.Shared</Name>
                       <FileName>Specifications\Samples.Specifications.Client.Tests.Integration.Infra.Shared\MyProject.csproj</FileName>
-                      <IsStartupProject>false</IsStartupProject>
+                      <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
                           <Name>DebugWithFake|Any CPU</Name>
@@ -1063,7 +1063,7 @@
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Tests.Integration.Infra</Name>
                       <FileName>Specifications\Samples.Specifications.Client.Tests.Integration.Infra\MyProject.csproj</FileName>
-                      <IsStartupProject>false</IsStartupProject>
+                      <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
                           <Name>DebugWithFake|Any CPU</Name>
@@ -1108,7 +1108,7 @@
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Client.Tests.Integration.Domain</Name>
                   <FileName>Specifications\Samples.Specifications.Client.Tests.Integration.Domain\MyProject.csproj</FileName>
-                  <IsStartupProject>false</IsStartupProject>
+                  <IsStartup>false</IsStartup>
                   <ProjectConfigurations>
                     <ProjectConfigurationData>
                       <Name>DebugWithFake|Any CPU</Name>
@@ -1151,7 +1151,7 @@
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Client.Tests.Integration</Name>
                   <FileName>Specifications\Samples.Specifications.Client.Tests.Integration\MyProject.csproj</FileName>
-                  <IsStartupProject>false</IsStartupProject>
+                  <IsStartup>false</IsStartup>
                   <ProjectConfigurations>
                     <ProjectConfigurationData>
                       <Name>DebugWithFake|Any CPU</Name>
@@ -1199,7 +1199,7 @@
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Tests.Domain</Name>
                   <FileName>Specifications\Samples.Specifications.Tests.Domain\MyProject.csproj</FileName>
-                  <IsStartupProject>false</IsStartupProject>
+                  <IsStartup>false</IsStartup>
                   <ProjectConfigurations>
                     <ProjectConfigurationData>
                       <Name>DebugWithFake|Any CPU</Name>
@@ -1247,7 +1247,7 @@
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Tests.Data</Name>
                   <FileName>Specifications\Samples.Specifications.Tests.Data\MyProject.csproj</FileName>
-                  <IsStartupProject>false</IsStartupProject>
+                  <IsStartup>false</IsStartup>
                   <ProjectConfigurations>
                     <ProjectConfigurationData>
                       <Name>DebugWithFake|Any CPU</Name>
@@ -1295,7 +1295,7 @@
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Tests.Steps</Name>
                   <FileName>Specifications\Samples.Specifications.Tests.Steps\MyProject.csproj</FileName>
-                  <IsStartupProject>false</IsStartupProject>
+                  <IsStartup>false</IsStartup>
                   <ProjectConfigurations>
                     <ProjectConfigurationData>
                       <Name>DebugWithFake|Any CPU</Name>
@@ -1358,7 +1358,7 @@
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Data.Contracts.Dto</Name>
                       <FileName>Samples.Universal\Samples.Client.Data.Contracts.Dto\MyProject.csproj</FileName>
-                      <IsStartupProject>false</IsStartupProject>
+                      <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
                           <Name>Debug|Any CPU</Name>
@@ -1509,7 +1509,7 @@
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Data.Contracts.Providers</Name>
                       <FileName>Samples.Universal\Samples.Client.Data.Contracts.Providers\MyProject.csproj</FileName>
-                      <IsStartupProject>false</IsStartupProject>
+                      <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
                           <Name>Debug|Any CPU</Name>
@@ -1665,7 +1665,7 @@
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Data.Fake.Containers</Name>
                       <FileName>Samples.Universal\Samples.Client.Data.Fake.Containers\MyProject.csproj</FileName>
-                      <IsStartupProject>false</IsStartupProject>
+                      <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
                           <Name>Debug|Any CPU</Name>
@@ -1816,7 +1816,7 @@
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Data.Fake.ProviderBuilders</Name>
                       <FileName>Samples.Universal\Samples.Client.Data.Fake.ProviderBuilders\MyProject.csproj</FileName>
-                      <IsStartupProject>false</IsStartupProject>
+                      <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
                           <Name>Debug|Any CPU</Name>
@@ -1967,7 +1967,7 @@
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Data.Fake.Providers</Name>
                       <FileName>Samples.Universal\Samples.Client.Data.Fake.Providers\MyProject.csproj</FileName>
-                      <IsStartupProject>false</IsStartupProject>
+                      <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
                           <Name>Debug|Any CPU</Name>
@@ -2123,7 +2123,7 @@
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Data.Real.Providers</Name>
                       <FileName>Samples.Universal\Samples.Client.Data.Real.Providers\MyProject.csproj</FileName>
-                      <IsStartupProject>false</IsStartupProject>
+                      <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
                           <Name>Debug|Any CPU</Name>
@@ -2281,7 +2281,7 @@
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Client.Model.Contracts</Name>
                   <FileName>Samples.Universal\Samples.Client.Model.Contracts\MyProject.csproj</FileName>
-                  <IsStartupProject>false</IsStartupProject>
+                  <IsStartup>false</IsStartup>
                   <ProjectConfigurations>
                     <ProjectConfigurationData>
                       <Name>Debug|Any CPU</Name>
@@ -2432,7 +2432,7 @@
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Client.Model.Shared</Name>
                   <FileName>Samples.Universal\Samples.Client.Model.Shared\MyProject.csproj</FileName>
-                  <IsStartupProject>false</IsStartupProject>
+                  <IsStartup>false</IsStartup>
                   <ProjectConfigurations>
                     <ProjectConfigurationData>
                       <Name>Debug|Any CPU</Name>
@@ -2583,7 +2583,7 @@
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Client.Model</Name>
                   <FileName>Samples.Universal\Samples.Client.Model\MyProject.csproj</FileName>
-                  <IsStartupProject>false</IsStartupProject>
+                  <IsStartup>false</IsStartup>
                   <ProjectConfigurations>
                     <ProjectConfigurationData>
                       <Name>Debug|Any CPU</Name>
@@ -2739,7 +2739,7 @@
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Client.Presentation.Shell</Name>
                   <FileName>Samples.Universal\Samples.Universal.Client.Presentation.Shell\MyProject.csproj</FileName>
-                  <IsStartupProject>false</IsStartupProject>
+                  <IsStartup>false</IsStartup>
                   <ProjectConfigurations>
                     <ProjectConfigurationData>
                       <Name>Debug|Any CPU</Name>
@@ -2892,7 +2892,7 @@
             <SolutionItemData xsi:type="ProjectData">
               <Name>Client.Launcher</Name>
               <FileName>Samples.Universal\Samples.Universal.Client.Launcher\MyProject.csproj</FileName>
-              <IsStartupProject>true</IsStartupProject>
+              <IsStartup>true</IsStartup>
               <ProjectConfigurations>
                 <ProjectConfigurationData>
                   <Name>Debug|Any CPU</Name>
@@ -3051,7 +3051,7 @@
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Client.Tests.Contracts</Name>
                   <FileName>Samples.Universal\Samples.Client.Tests.Contracts\MyProject.csproj</FileName>
-                  <IsStartupProject>false</IsStartupProject>
+                  <IsStartup>false</IsStartup>
                   <ProjectConfigurations>
                     <ProjectConfigurationData>
                       <Name>Debug|Any CPU</Name>
@@ -3207,7 +3207,7 @@
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Client.Tests.Steps</Name>
                   <FileName>Samples.Universal\Samples.Client.Tests.Steps\MyProject.csproj</FileName>
-                  <IsStartupProject>false</IsStartupProject>
+                  <IsStartup>false</IsStartup>
                   <ProjectConfigurations>
                     <ProjectConfigurationData>
                       <Name>Debug|Any CPU</Name>
@@ -3358,7 +3358,7 @@
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Client.Tests.Steps.Adapters</Name>
                   <FileName>Samples.Universal\Samples.Client.Tests.Steps.Adapters\MyProject.csproj</FileName>
-                  <IsStartupProject>false</IsStartupProject>
+                  <IsStartup>false</IsStartup>
                   <ProjectConfigurations>
                     <ProjectConfigurationData>
                       <Name>Debug|Any CPU</Name>
@@ -3514,7 +3514,7 @@
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Client.Tests.Specs</Name>
                   <FileName>Samples.Universal\Samples.Client.Tests.Specs\MyProject.csproj</FileName>
-                  <IsStartupProject>false</IsStartupProject>
+                  <IsStartup>false</IsStartup>
                   <ProjectConfigurations>
                     <ProjectConfigurationData>
                       <Name>Debug|Any CPU</Name>
@@ -3673,7 +3673,7 @@
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Tests.Integration.Infra.Core</Name>
                       <FileName>Samples.Universal\Samples.Universal.Client.Tests.Integration.Infra.Core\MyProject.csproj</FileName>
-                      <IsStartupProject>false</IsStartupProject>
+                      <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
                           <Name>Debug|Any CPU</Name>
@@ -3824,7 +3824,7 @@
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Tests.Integration.Infra.Shared</Name>
                       <FileName>Samples.Universal\Samples.Universal.Client.Tests.Integration.Infra.Shared\MyProject.csproj</FileName>
-                      <IsStartupProject>false</IsStartupProject>
+                      <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
                           <Name>Debug|Any CPU</Name>
@@ -3975,7 +3975,7 @@
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Tests.Integration.Infra</Name>
                       <FileName>Samples.Universal\Samples.Universal.Client.Tests.Integration.Infra\MyProject.csproj</FileName>
-                      <IsStartupProject>false</IsStartupProject>
+                      <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
                           <Name>Debug|Any CPU</Name>
@@ -4128,7 +4128,7 @@
                 <SolutionItemData xsi:type="ProjectData">
                   <Name>Client.Tests.Integration</Name>
                   <FileName>Samples.Universal\Samples.Universal.Client.Tests.Integration\MyProject.csproj</FileName>
-                  <IsStartupProject>false</IsStartupProject>
+                  <IsStartup>false</IsStartup>
                   <ProjectConfigurations>
                     <ProjectConfigurationData>
                       <Name>Debug|Any CPU</Name>
@@ -4281,7 +4281,7 @@
             <SolutionItemData xsi:type="ProjectData">
               <Name>Client.Tests</Name>
               <FileName>Samples.Universal\Samples.Universal.Client.Tests\MyProject.csproj</FileName>
-              <IsStartupProject>false</IsStartupProject>
+              <IsStartup>false</IsStartup>
               <ProjectConfigurations>
                 <ProjectConfigurationData>
                   <Name>Debug|Any CPU</Name>

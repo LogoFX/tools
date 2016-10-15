@@ -358,7 +358,7 @@ namespace LogoFX.Tools.Templates.Wizard
                 solutionContext.ShouldBuild = projectConfiguration.IncludeInBuild;
             }
 
-            if (projectData.IsStartupProject)
+            if (projectData.IsStartup)
             {
                 GetSolution().Properties.Item("StartupProject").Value = addedProject.Name;
             }

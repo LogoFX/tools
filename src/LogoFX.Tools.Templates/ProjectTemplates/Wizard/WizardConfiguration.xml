@@ -11,12 +11,14 @@
       <Name>Specifications</Name>
       <Caption>LogoFX Desktop Application</Caption>
       <PostCreateUrl>http://www.logoui.co.il/en</PostCreateUrl>
+      <StartupProjectName>Client.Launcher</StartupProjectName>
     </SolutionInfo>
     <SolutionInfo>
       <FileName>C:\Projects\LogoUI\LogoFX\Samples.Universal\Samples.Universal.sln</FileName>
       <Name>Samples.Universal</Name>
       <Caption>LogoFX UWP Application</Caption>
       <PostCreateUrl>http://www.logoui.co.il/en</PostCreateUrl>
+      <StartupProjectName>Client.Launcher</StartupProjectName>
     </SolutionInfo>
   </Solutions>
   <ProjectType>CSharp</ProjectType>
