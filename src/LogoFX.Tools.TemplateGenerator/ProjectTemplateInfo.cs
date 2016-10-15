@@ -33,6 +33,8 @@ namespace LogoFX.Tools.TemplateGenerator
             get { return ProjectConfigurations; }
         }
 
+        public bool IsStartup { get; set; }
+
         public ProjectConfiguration[] ProjectConfigurations { get; set; }
     }
 }

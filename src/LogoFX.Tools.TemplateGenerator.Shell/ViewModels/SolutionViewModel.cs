@@ -1,8 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Caliburn.Micro;
 using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.ViewModel;
 using LogoFX.Client.Mvvm.ViewModel.Contracts;
@@ -12,11 +14,17 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {
     public sealed class SolutionViewModel : ObjectViewModel<SolutionInfo>, ICanBeBusy
     {
+        #region Constructors
+
         public SolutionViewModel(SolutionInfo model)
             : base(model)
         {
             CreateSolutionTemplateInfo();
         }
+
+        #endregion
+
+        #region Commands
 
         private ICommand _browseIconCommand;
 
@@ -30,6 +38,10 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                            .Do(() => { }));
             }
         }
+
+        #endregion
+
+        #region Public Properties
 
         public ISolutionTemplateInfo SolutionTemplateInfo
         {
@@ -52,11 +64,35 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             get { return _projects ?? (_projects = CreateProjects()); }
         }
 
+        #endregion
+
+        #region Private Members
+
         private WrappingCollection.WithSelection CreateProjects()
         {
-            var result = new WrappingCollection.WithSelection();
-            result.FactoryMethod = o => new ProjectViewModel((IProjectTemplateInfo) o);
-            result.AddSource(GetPlainProjects(Model.SolutionTemplateInfo.Items));
+            var result = new WrappingCollection.WithSelection
+            {
+                FactoryMethod = o => new ProjectViewModel((IProjectTemplateInfo) o)
+            };
+
+            var projects = GetPlainProjects(SolutionTemplateInfo.Items);
+            result.AddSource(projects);
+
+            Task.Run(() =>
+            {
+                Thread.Sleep(100);
+                Execute.BeginOnUIThread(() =>
+                {
+                    var startupProject = result.OfType<ProjectViewModel>().SingleOrDefault(x => x.IsStartup);
+                    if (startupProject == null)
+                    {
+                        startupProject = result.OfType<ProjectViewModel>().First();
+                        startupProject.IsStartup = true;
+                    }
+                    result.Select(startupProject);
+                });
+            });
+
             return result;
         }
 
@@ -100,5 +136,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
             return result;
         }
+
+        #endregion
     }
 }

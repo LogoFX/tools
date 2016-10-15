@@ -15,5 +15,20 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         {
             get { return Model.NameWithoutRoot; }
         }
+
+        public bool IsStartup
+        {
+            get { return Model.IsStartup; }
+            set
+            {
+                if (IsStartup == value)
+                {
+                    return;
+                }
+
+                Model.IsStartup = value;
+                NotifyOfPropertyChange();
+            }
+        }
     }
 }

@@ -90,7 +90,7 @@ namespace LogoFX.Tools.TemplateGenerator
             ProjectData projectData = new ProjectData
             {
                 Name = projectInfo.NameWithoutRoot,
-                IsStartupProject = projectInfo.Name.EndsWith(".Launcher"),
+                IsStartup = projectInfo.IsStartup,
                 FileName = Utils.GetRelativePath(projectInfo.DestinationFileName, destinationFolder),
                 ProjectConfigurations = CreateProjectConfigurations(projectInfo.ProjectConfigurations)
             };

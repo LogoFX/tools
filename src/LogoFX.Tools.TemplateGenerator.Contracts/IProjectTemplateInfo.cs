@@ -13,5 +13,7 @@ namespace LogoFX.Tools.TemplateGenerator.Contracts
         void SetDestinationFileName(string destinationFileName);
 
         IEnumerable<IProjectConfiguration> ProjectConfigurations { get; }
+
+        bool IsStartup { get; set; }
     }
 }

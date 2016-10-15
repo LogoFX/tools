@@ -89,7 +89,7 @@
                   Grid.Column="2" 
                   VerticalAlignment="Center"
                   ItemsSource="{Binding Path=Projects, Mode=OneTime}"
-                  SelectedItem="{Binding Path=Projects.SelectedItem, Mode=TwoWay}"
+                  SelectedValue="{Binding Path=Projects.SelectedItem, Mode=OneWay}"
                   DisplayMemberPath="Name"
                   />
         
