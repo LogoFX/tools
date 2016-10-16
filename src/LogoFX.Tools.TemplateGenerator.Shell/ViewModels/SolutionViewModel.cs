@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Input;
-using Caliburn.Micro;
 using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.ViewModel;
 using LogoFX.Client.Mvvm.ViewModel.Contracts;
-using LogoFX.Core;
 using LogoFX.Tools.TemplateGenerator.Contracts;
 
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
@@ -40,27 +35,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                            .Do(() => { }));
             }
         }
-
-        //private ICommand _startupProjectChangedCommand;
-
-        //public ICommand StartupProjectChangedCommand
-        //{
-        //    get
-        //    {
-        //        return _startupProjectChangedCommand ??
-        //               (_startupProjectChangedCommand = ActionCommand<SelectionChangedEventArgs>
-        //                   .When(e => true)
-        //                   .Do(e =>
-        //                   {
-        //                       var startupPorject = (ProjectViewModel) e.AddedItems.FirstOrDefault();
-        //                       if (startupPorject == null)
-        //                       {
-        //                           return;
-        //                       }
-        //                       Projects.Select(startupPorject);
-        //                   }));
-        //    }
-        //}
 
         private ICommand _projectsComboBoxLoaded;
 
@@ -100,12 +74,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             }
         }
 
-        //private WrappingCollection.WithSelection _projects;
-        //public WrappingCollection.WithSelection Projects
-        //{
-        //    get { return _projects ?? (_projects = CreateProjects()); }
-        //}
-
         private IEnumerable<ProjectViewModel> _projects;
 
         public IEnumerable<ProjectViewModel> Projects
@@ -113,7 +81,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             get { return _projects; }
             private set
             {
-                if (_projects == value)
+                if (Equals(_projects, value))
                 {
                     return;
                 }
@@ -156,48 +124,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         #endregion
 
         #region Private Members
-
-        //private WrappingCollection.WithSelection CreateProjects()
-        //{
-        //    var result = new WrappingCollection.WithSelection
-        //    {
-        //        FactoryMethod = o => new ProjectViewModel((IProjectTemplateInfo) o)
-        //    };
-
-        //    var projects = GetPlainProjects(SolutionTemplateInfo.Items).ToArray();
-        //    result.AddSource(projects);
-        //    result.SelectionHandler = (o, args) =>
-        //    {
-        //        var startupProject = (ProjectViewModel)args.Item;
-
-        //        Model.StartupProjectName = startupProject.Name;
-
-        //        if (startupProject.IsStartup)
-        //        {
-        //            return;
-        //        }
-
-        //        foreach (ProjectViewModel project in Projects)
-        //        {
-        //            project.IsStartup = false;
-        //        }
-        //        startupProject.IsStartup = true;
-        //    };
-
-        //    Task.Run(() =>
-        //    {
-        //        Thread.Sleep(100);
-        //        Execute.BeginOnUIThread(() =>
-        //        {
-        //            var startupProject = result.OfType<ProjectViewModel>().SingleOrDefault(x => x.Name == Model.StartupProjectName) ??
-        //                                 result.OfType<ProjectViewModel>().First();
-        //            startupProject.IsStartup = true;
-        //            result.Select(startupProject);
-        //        });
-        //    });
-
-        //    return result;
-        //}
 
         private async void CreateSolutionTemplateInfo()
         {
