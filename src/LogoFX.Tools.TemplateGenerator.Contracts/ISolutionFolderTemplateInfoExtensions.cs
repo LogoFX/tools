@@ -1,10 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LogoFX.Tools.TemplateGenerator.Contracts
 {
     public static class ISolutionFolderTemplateInfoExtensions
     {
+        public static IEnumerable<IProjectTemplateInfo> GetProjectsPlain(this ISolutionTemplateInfo[] solutionTemplates)
+        {
+            return solutionTemplates.SelectMany(x => x.GetProjectsPlain()).Distinct();
+        }
+
         public static IEnumerable<IProjectTemplateInfo> GetProjectsPlain(this ISolutionFolderTemplateInfo solutionFolder)
         {
             List<IProjectTemplateInfo> result = new List<IProjectTemplateInfo>();

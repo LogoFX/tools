@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,12 +13,12 @@ namespace LogoFX.Tools.TemplateGenerator
     internal sealed class ProjectTemplateGenerator : GeneratorBase
     {
         private readonly IProjectTemplateInfo _projectTemplateInfo;
-        private readonly ISolutionTemplateInfo _solutionTemplateInfo;
+        private readonly IEnumerable<IProjectTemplateInfo> _projects;
 
-        public ProjectTemplateGenerator(IProjectTemplateInfo projectTemplateInfo, ISolutionTemplateInfo solutionTemplateInfo)
+        public ProjectTemplateGenerator(IProjectTemplateInfo projectTemplateInfo, IEnumerable<IProjectTemplateInfo> projects)
         {
             _projectTemplateInfo = projectTemplateInfo;
-            _solutionTemplateInfo = solutionTemplateInfo;
+            _projects = projects;
         }
 
         public async Task GenerateAsync()
@@ -88,10 +89,10 @@ namespace LogoFX.Tools.TemplateGenerator
                 {
                     case ".cs":
                     case ".config":
-                        fileGenerator = new CSFileGenerator(newFileName, rootNamespace, _solutionTemplateInfo);
+                        fileGenerator = new CSFileGenerator(newFileName, rootNamespace, _projects);
                         break;
                     case ".xaml":
-                        fileGenerator = new XamlFileGenerator(newFileName, rootNamespace, _solutionTemplateInfo);
+                        fileGenerator = new XamlFileGenerator(newFileName, rootNamespace, _projects);
                         break;
                 }
 

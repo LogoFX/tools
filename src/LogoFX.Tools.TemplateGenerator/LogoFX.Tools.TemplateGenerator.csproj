@@ -58,6 +58,7 @@
     <Compile Include="SolutionItemTemplateInfo.cs" />
     <Compile Include="SolutionTemplateGenerator.cs" />
     <Compile Include="SolutionTemplateInfo.cs" />
+    <Compile Include="SolutionVariant.cs" />
     <Compile Include="TemplateDataInfo.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="WizardConfiguration.cs" />

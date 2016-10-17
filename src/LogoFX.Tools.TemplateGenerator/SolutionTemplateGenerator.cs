@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
@@ -27,11 +28,13 @@ namespace LogoFX.Tools.TemplateGenerator
 
             foreach (var solution in _wizardConfiguration.Solutions)
             {
-                foreach (var projectTemplateInfo in solution.SolutionTemplateInfo.GetProjectsPlain())
+                var projects = solution.SolutionTemplateInfos.GetProjectsPlain().ToList();
+
+                foreach (var projectTemplateInfo in projects)
                 {
                     var destinationFileName = CreateNewFileName(projectTemplateInfo.Name, solution.Name, destinationFolder);
                     projectTemplateInfo.SetDestinationFileName(destinationFileName);
-                    var projectGenerator = new ProjectTemplateGenerator(projectTemplateInfo, solution.SolutionTemplateInfo);
+                    var projectGenerator = new ProjectTemplateGenerator(projectTemplateInfo, projects);
                     await projectGenerator.GenerateAsync();
                 }
             }

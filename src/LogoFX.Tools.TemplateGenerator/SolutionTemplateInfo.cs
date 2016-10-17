@@ -10,10 +10,13 @@ namespace LogoFX.Tools.TemplateGenerator
         private readonly ObservableCollection<string> _rootNamespaces =
             new ObservableCollection<string>();
 
-        public SolutionTemplateInfo()
+        public SolutionTemplateInfo(string containerName)
             : base(Guid.Empty, string.Empty)
         {
+            ContainerName = containerName;
         }
+
+        public string ContainerName { get; private set; }
 
         public ICollection<string> RootNamespaces => _rootNamespaces;
     }

@@ -46,6 +46,8 @@
     <Compile Include="SolutionData.cs" />
     <Compile Include="SolutionFolderData.cs" />
     <Compile Include="SolutionItemData.cs" />
+    <Compile Include="SolutionOptionData.cs" />
+    <Compile Include="SolutionVariantData.cs" />
     <Compile Include="WizardData.cs" />
     <Compile Include="WizardDataLoader.cs" />
   </ItemGroup>

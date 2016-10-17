@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using LogoFX.Tools.TemplateGenerator.Contracts;
 
 namespace LogoFX.Tools.TemplateGenerator
@@ -5,13 +6,13 @@ namespace LogoFX.Tools.TemplateGenerator
     internal sealed class CSFileGenerator : ProjectItemTemplateGenerator
     {
         private readonly string _rootNamespace;
-        private readonly ISolutionTemplateInfo _solutionTemplateInfo;
+        private readonly IEnumerable<IProjectTemplateInfo> _projects;
 
-        public CSFileGenerator(string fileName, string rootNamespace, ISolutionTemplateInfo solutionTemplateInfo) 
+        public CSFileGenerator(string fileName, string rootNamespace, IEnumerable<IProjectTemplateInfo> projects) 
             : base(fileName)
         {
             _rootNamespace = rootNamespace;
-            _solutionTemplateInfo = solutionTemplateInfo;
+            _projects = projects;
         }
 
         protected override void ProcessInternal()
@@ -19,7 +20,7 @@ namespace LogoFX.Tools.TemplateGenerator
             var content = GetFileContent();
             content = content.Replace(_rootNamespace, "$safeprojectname$");
 
-            foreach (var project in _solutionTemplateInfo.GetProjectsPlain())
+            foreach (var project in _projects)
             {
                 if (!content.Contains(project.Name))
                 {

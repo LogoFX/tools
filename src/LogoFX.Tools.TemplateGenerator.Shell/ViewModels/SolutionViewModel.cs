@@ -59,21 +59,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
         #region Public Properties
 
-        public ISolutionTemplateInfo SolutionTemplateInfo
-        {
-            get { return Model.SolutionTemplateInfo; }
-            private set
-            {
-                if (SolutionTemplateInfo == value)
-                {
-                    return;
-                }
-
-                Model.SolutionTemplateInfo = value;
-                NotifyOfPropertyChange();
-            }
-        }
-
         private IEnumerable<ProjectViewModel> _projects;
 
         public IEnumerable<ProjectViewModel> Projects
@@ -132,12 +117,22 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             try
             {
                 SolutionTemplateInfoGenerator generator = new SolutionTemplateInfoGenerator();
-                SolutionTemplateInfo = await generator.GenerateTemplateInfoAsync(Model.FileName);
 
-                var projects = GetPlainProjects(SolutionTemplateInfo.Items)
-                    .Select(x => new ProjectViewModel(x))
-                    .ToArray();
-                Projects = projects;
+                List<ISolutionTemplateInfo> solutionTemplateInfos = new List<ISolutionTemplateInfo>();
+                foreach (var solutionVariant in Model.SolutionVariants)
+                {
+                    var solutionTemplateInfo = await generator.GenerateTemplateInfoAsync(
+                        solutionVariant.ContainerName,
+                        solutionVariant.SolutionFileName);
+                    solutionTemplateInfos.Add(solutionTemplateInfo);
+                }
+
+                Model.SolutionTemplateInfos = solutionTemplateInfos.ToArray();
+
+                //var projects = GetPlainProjects(SolutionTemplateInfo.Items)
+                //    .Select(x => new ProjectViewModel(x))
+                //    .ToArray();
+                //Projects = projects;
             }
             finally
             {

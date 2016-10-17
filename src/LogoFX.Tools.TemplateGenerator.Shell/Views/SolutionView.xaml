@@ -19,6 +19,7 @@
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -80,26 +81,57 @@
                  Text="{Binding Path=Model.PostCreateUrl, Mode=TwoWay}"
                  VerticalAlignment="Center" />
         
-        <!--Startup Project-->
+        <!--Container-->
         <TextBlock Grid.Row="4"
                    Grid.Column="0"
                    VerticalAlignment="Center"
-                   Text="Startup Project:"/>
+                   Text="Container:"/>
         <ComboBox Grid.Row="4"
+                  Grid.Column="2" 
+                  VerticalAlignment="Center"
+                  ItemsSource="{Binding Path=Containers, Mode=OneTime}"
+                  SelectedValue="{Binding Path=SelectedContainer, Mode=TwoWay}"
+                  DisplayMemberPath="Name">
+            <!--<i:Interaction.Triggers>
+                <i:EventTrigger EventName="Loaded">
+                    <commanding:ExecuteCommandAction Command="{Binding Path=ContainersComboBoxLoaded, Mode=OneTime}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>-->
+        </ComboBox>
+        <Button Grid.Row="4"
+                Grid.Column="3"
+                Content="—"
+                ToolTip="Remove selected container."
+                Width="20"
+                VerticalAlignment="Center">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <commanding:ExecuteCommandAction Command="{Binding Path=RemoveContainerCommand, Mode=OneTime}"
+                                                     ManageEnableState="True" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+        
+        <!--Startup Project-->
+        <TextBlock Grid.Row="5"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Text="Startup Project:"/>
+        <ComboBox Grid.Row="5"
                   Grid.Column="2" 
                   VerticalAlignment="Center"
                   ItemsSource="{Binding Path=Projects, Mode=OneTime}"
                   SelectedValue="{Binding Path=StartupProject, Mode=TwoWay}"
                   DisplayMemberPath="Name">
-            <i:Interaction.Triggers>
+            <!--<i:Interaction.Triggers>
                 <i:EventTrigger EventName="Loaded">
                     <commanding:ExecuteCommandAction Command="{Binding Path=ProjectsComboBoxLoaded, Mode=OneTime}" />
                 </i:EventTrigger>
-            </i:Interaction.Triggers>
+            </i:Interaction.Triggers>-->
         </ComboBox>
-        
+
         <!--Root Namespaces-->
-        <TextBlock Grid.Row="5"
+        <TextBlock Grid.Row="6"
                    Grid.Column="0"
                    VerticalAlignment="Center"
                    FontWeight="Bold"
@@ -120,7 +152,7 @@
         </ItemsControl>
     
         <controls:BusyIndicator Grid.Row="0"
-                                Grid.RowSpan="7"
+                                Grid.RowSpan="8"
                                 Grid.Column="0"
                                 Grid.ColumnSpan="4"
                                 IsBusy="{Binding Path=IsBusy, Mode=OneWay}"/>
