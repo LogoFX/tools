@@ -6,7 +6,7 @@ namespace LogoFX.Tools.TemplateGenerator.Contracts
 {
     public static class ISolutionFolderTemplateInfoExtensions
     {
-        public static IEnumerable<IProjectTemplateInfo> GetProjectsPlain(this ISolutionTemplateInfo[] solutionTemplates)
+        public static IEnumerable<IProjectTemplateInfo> GetProjectsPlain(this IEnumerable<ISolutionTemplateInfo> solutionTemplates)
         {
             return solutionTemplates.SelectMany(x => x.GetProjectsPlain()).Distinct();
         }

@@ -16,7 +16,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         public SolutionViewModel(SolutionInfo model)
             : base(model)
         {
-            CreateSolutionTemplateInfo();
+            CreateSolutionVariants();
         }
 
         #endregion
@@ -36,73 +36,24 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             }
         }
 
-        private ICommand _projectsComboBoxLoaded;
-
-        public ICommand ProjectsComboBoxLoaded
-        {
-            get
-            {
-                return _projectsComboBoxLoaded ??
-                       (_projectsComboBoxLoaded = ActionCommand
-                           .When(() => true)
-                           .Do(() =>
-                           {
-                               var startupProject = Projects.SingleOrDefault(x => x.Name == Model.StartupProjectName) ??
-                                                    Projects.First();
-                               startupProject.IsStartup = true;
-                               StartupProject = startupProject;
-                           }));
-            }
-        }
-
         #endregion
 
         #region Public Properties
 
-        private IEnumerable<ProjectViewModel> _projects;
+        private IEnumerable<SolutionVariantViewModel> _containers;
 
-        public IEnumerable<ProjectViewModel> Projects
+        public IEnumerable<SolutionVariantViewModel> Containers
         {
-            get { return _projects; }
+            get { return _containers; }
             private set
             {
-                if (Equals(_projects, value))
+                if (Equals(_containers, value))
                 {
                     return;
                 }
 
-                _projects = value;
+                _containers = value;
                 NotifyOfPropertyChange();
-            }
-        }
-
-        private ProjectViewModel _startupProject;
-
-        public ProjectViewModel StartupProject
-        {
-            get { return _startupProject; }
-            set
-            {
-                if (_startupProject == value)
-                {
-                    return;
-                }
-
-                _startupProject = value;
-                NotifyOfPropertyChange();
-
-                Model.StartupProjectName = _startupProject.Name;
-
-                if (_startupProject.IsStartup)
-                {
-                    return;
-                }
-
-                foreach (ProjectViewModel project in Projects)
-                {
-                    project.IsStartup = false;
-                }
-                _startupProject.IsStartup = true;
             }
         }
 
@@ -110,60 +61,27 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
         #region Private Members
 
-        private async void CreateSolutionTemplateInfo()
+        private async void CreateSolutionVariants()
         {
             IsBusy = true;
 
             try
             {
-                SolutionTemplateInfoGenerator generator = new SolutionTemplateInfoGenerator();
-
-                List<ISolutionTemplateInfo> solutionTemplateInfos = new List<ISolutionTemplateInfo>();
+                var solutionVariantList = new List<SolutionVariantViewModel>();
                 foreach (var solutionVariant in Model.SolutionVariants)
                 {
-                    var solutionTemplateInfo = await generator.GenerateTemplateInfoAsync(
-                        solutionVariant.ContainerName,
-                        solutionVariant.SolutionFileName);
-                    solutionTemplateInfos.Add(solutionTemplateInfo);
+                    var solutionVariantVM = new SolutionVariantViewModel(solutionVariant);
+                    await solutionVariantVM.CreateSolutionTemplateInfoAsync();
+                    solutionVariantList.Add(solutionVariantVM);
                 }
 
-                Model.SolutionTemplateInfos = solutionTemplateInfos.ToArray();
-
-                //var projects = GetPlainProjects(SolutionTemplateInfo.Items)
-                //    .Select(x => new ProjectViewModel(x))
-                //    .ToArray();
-                //Projects = projects;
+                Containers = solutionVariantList;
             }
+
             finally
             {
                 IsBusy = false;
             }
-        }
-
-        private IEnumerable<IProjectTemplateInfo> GetPlainProjects(IEnumerable<ISolutionItemTemplateInfo> items)
-        {
-            var result = new List<IProjectTemplateInfo>();
-
-            foreach (var item in items)
-            {
-                var folder = item as ISolutionFolderTemplateInfo;
-                if (folder != null)
-                {
-                    result.AddRange(GetPlainProjects(folder.Items));
-                    continue;
-                }
-
-                var project = item as IProjectTemplateInfo;
-                if (project != null)
-                {
-                    result.Add(project);
-                    continue;
-                }
-
-                throw new ArgumentException($"Unknown Solution Item type '{item.GetType().Name}'.");
-            }
-
-            return result;
         }
 
         #endregion

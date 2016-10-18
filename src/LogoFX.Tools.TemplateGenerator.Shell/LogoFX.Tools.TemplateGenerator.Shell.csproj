@@ -170,6 +170,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ViewModels\CanGenerateViewModel.cs" />
+    <Compile Include="ViewModels\SolutionVariantViewModel.cs" />
     <Compile Include="ViewModels\CreateSolutionViewModel.cs" />
     <Compile Include="ViewModels\ProjectViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />

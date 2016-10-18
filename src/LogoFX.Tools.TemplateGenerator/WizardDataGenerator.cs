@@ -43,7 +43,7 @@ namespace LogoFX.Tools.TemplateGenerator
                 Caption = solutionInfo.Caption,
                 IconFileName = solutionInfo.IconName,
                 PostCreateUrl = solutionInfo.PostCreateUrl,
-                Variants = solutionInfo.SolutionTemplateInfos
+                Variants = solutionInfo.SolutionVariants
                     .Select(x => CreateSolutionVariant(x, destinationFolder))
                     .ToArray()
             };
@@ -51,13 +51,13 @@ namespace LogoFX.Tools.TemplateGenerator
             return solutionData;
         }
 
-        private SolutionVariantData CreateSolutionVariant(ISolutionTemplateInfo solutionTemplateInfo, string destinationFolder)
+        private SolutionVariantData CreateSolutionVariant(SolutionVariant solutionVariant, string destinationFolder)
         {
             SolutionVariantData solutionVariantData = new SolutionVariantData
             {
-                Name = solutionTemplateInfo.Name,
-                ContainerName = solutionTemplateInfo.ContainerName,
-                Items = solutionTemplateInfo.Items
+                Name = solutionVariant.SolutionTemplateInfo.Name,
+                ContainerName = solutionVariant.ContainerName,
+                Items = solutionVariant.SolutionTemplateInfo.Items
                     .Select(info => CreateSolutionItemData(info, destinationFolder))
                     .ToArray()
             };

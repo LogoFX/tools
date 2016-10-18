@@ -11,9 +11,9 @@ namespace LogoFX.Tools.TemplateGenerator
 {
     public sealed class SolutionTemplateInfoGenerator : GeneratorBase
     {
-        public async Task<ISolutionTemplateInfo> GenerateTemplateInfoAsync(string containerName, string solutionFileName)
+        public async Task<ISolutionTemplateInfo> GenerateTemplateInfoAsync(string solutionFileName)
         {
-            SolutionTemplateInfo solutionTemplateInfo = new SolutionTemplateInfo(containerName);
+            SolutionTemplateInfo solutionTemplateInfo = new SolutionTemplateInfo();
 
             SolutionFile solution = SolutionFile.Parse(solutionFileName);
 

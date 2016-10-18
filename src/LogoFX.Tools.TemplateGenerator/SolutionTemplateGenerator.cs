@@ -28,7 +28,7 @@ namespace LogoFX.Tools.TemplateGenerator
 
             foreach (var solution in _wizardConfiguration.Solutions)
             {
-                var projects = solution.SolutionTemplateInfos.GetProjectsPlain().ToList();
+                var projects = solution.SolutionVariants.Select(x => x.SolutionTemplateInfo).GetProjectsPlain().ToList();
 
                 foreach (var projectTemplateInfo in projects)
                 {
