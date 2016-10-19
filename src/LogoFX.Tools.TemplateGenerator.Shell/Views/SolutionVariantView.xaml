@@ -3,7 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance viewModels:SolutionVariantViewModel}"
              d:DesignHeight="300" 
              d:DesignWidth="300">
     <Grid>
@@ -29,14 +32,9 @@
         <ComboBox Grid.Row="0"
                   Grid.Column="2" 
                   VerticalAlignment="Center"
-                  ItemsSource="{Binding Path=Projects, Mode=OneTime}"
+                  ItemsSource="{Binding Path=Projects, Mode=OneWay}"
                   SelectedValue="{Binding Path=StartupProject, Mode=TwoWay}"
                   DisplayMemberPath="Name">
-            <!--<i:Interaction.Triggers>
-                <i:EventTrigger EventName="Loaded">
-                    <commanding:ExecuteCommandAction Command="{Binding Path=ProjectsComboBoxLoaded, Mode=OneTime}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>-->
         </ComboBox>
 
         <!--Root Namespaces-->
@@ -48,11 +46,11 @@
         <ItemsControl Grid.Row="2"
                       Grid.Column="0"
                       Grid.ColumnSpan="3"
-                      ItemsSource="{Binding Path=SolutionTemplateInfo.RootNamespaces}">
+                      ItemsSource="{Binding Path=RootNamespaces, Mode=OneWay}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Grid Height="28">
-                        <TextBox Text="{Binding Mode=OneWay}"
+                        <TextBox Text="{Binding Path=Model, Mode=OneWay}"
                                  IsReadOnly="True"
                                  VerticalAlignment="Center" />
                     </Grid>

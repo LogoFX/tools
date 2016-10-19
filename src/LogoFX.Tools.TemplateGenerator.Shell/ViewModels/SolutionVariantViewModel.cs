@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -99,6 +100,38 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             }
         }
 
+        private IEnumerable<RootNamespaceViewModel> _rootNamespaces;
+
+        public IEnumerable<RootNamespaceViewModel> RootNamespaces
+        {
+            get { return _rootNamespaces; }
+            private set
+            {
+                if (Equals(_rootNamespaces, value))
+                {
+                    return;
+                }
+
+                _rootNamespaces = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private WrappingCollection CreateRootNamespaces()
+        {
+            var result = new WrappingCollection
+            {
+                FactoryMethod = o => new RootNamespaceViewModel((string) o)
+            };
+
+            if (Model.SolutionTemplateInfo != null)
+            {
+                result.AddSource(Model.SolutionTemplateInfo.RootNamespaces);
+            }
+
+            return result;
+        }
+
         #endregion
 
         #region Public Methods
@@ -106,12 +139,19 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         public async Task CreateSolutionTemplateInfoAsync()
         {
             var generator = new SolutionTemplateInfoGenerator();
-            var solutionTemplateInfo = await generator.GenerateTemplateInfoAsync(Model.SolutionFileName);
+            Model.SolutionTemplateInfo = await generator.GenerateTemplateInfoAsync(Model.SolutionFileName);
 
-            var projects = GetPlainProjects(solutionTemplateInfo.Items)
+            var projects = GetPlainProjects(Model.SolutionTemplateInfo.Items)
                 .Select(x => new ProjectViewModel(x))
                 .ToArray();
             Projects = projects;
+
+            var startupProject = Projects.SingleOrDefault(x => x.Name == Model.StartupProjectName) ??
+                                 Projects.First();
+            startupProject.IsStartup = true;
+            StartupProject = startupProject;
+
+            RootNamespaces = Model.SolutionTemplateInfo.RootNamespaces.Select(x => new RootNamespaceViewModel(x));
         }
 
         #endregion

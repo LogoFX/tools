@@ -1,3 +1,5 @@
+#define Unity
+
 using LogoFX.Client.Bootstrapping;
 using LogoFX.Client.Bootstrapping.Adapters.Unity;
 using $saferootprojectname$.Client.Presentation.Shell.ViewModels;

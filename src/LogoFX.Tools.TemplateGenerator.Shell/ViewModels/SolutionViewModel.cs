@@ -52,7 +52,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                 return _addSolutionVariantCommand ??
                        (_addSolutionVariantCommand = ActionCommand
                            .When(() => true)
-                           .Do(() =>
+                           .Do(async () =>
                            {
                                var addSolutionVariantVm = new AddSolutionVariantViewModel();
                                var retVal = _windowManager.ShowDialog(addSolutionVariantVm) ?? false;
@@ -68,6 +68,18 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                                };
                                var solutionVariantVm = new SolutionVariantViewModel(solutionVariant);
                                _solutionVariants.Add(solutionVariantVm);
+
+                               IsBusy = true;
+
+                               try
+                               {
+                                   await solutionVariantVm.CreateSolutionTemplateInfoAsync();
+                               }
+                               finally
+                               {
+                                   IsBusy = false;
+                               }
+
                                SelectedSolutionVariant = solutionVariantVm;
                            }));
             }

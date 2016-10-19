@@ -26,17 +26,17 @@ namespace LogoFX.Tools.TemplateGenerator
             var projectFolder = Path.GetDirectoryName(_projectTemplateInfo.DestinationFileName);
             Directory.CreateDirectory(projectFolder);
 
-            var newProjectFileName = await CopyProjectToTemplateAsync(projectFolder);
-            //CreateDefinitions(projectFolder, newProjectFileName);
+            await CopyProjectToTemplateAsync(projectFolder);
         }
 
-        private async Task<string> CopyProjectToTemplateAsync(string projectFolder)
+        private async Task CopyProjectToTemplateAsync(string projectFolder)
         {
             var from = Path.GetDirectoryName(_projectTemplateInfo.FileName);
 
             if (File.Exists(_projectTemplateInfo.DestinationFileName))
             {
-                Debugger.Break();
+                //Debugger.Break();
+                return;
             }
 
             File.Copy(_projectTemplateInfo.FileName, _projectTemplateInfo.DestinationFileName);
@@ -100,8 +100,6 @@ namespace LogoFX.Tools.TemplateGenerator
             }
 
             project.Save();
-
-            return _projectTemplateInfo.DestinationFileName;
         }
 
         private string CopyProjectItem(ProjectItem item, string from, string to)
