@@ -10,7 +10,7 @@ namespace LogoFX.Tools.Templates.Wizard.ViewModel
         public SolutionDataViewModel(SolutionData model) 
             : base(model)
         {
-            Variants = model.Variants.Select(x => new SolutionVariantViewModel(x));
+            Variants = Model.Variants.Select(x => new SolutionVariantViewModel(x)).ToList();
         }
 
         public IEnumerable<SolutionVariantViewModel> Variants { get; private set; }

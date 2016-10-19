@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using LogoFX.Tools.Templates.Wizard.ViewModel;
 
 namespace LogoFX.Tools.Templates.Wizard.Views
 {
@@ -13,17 +14,9 @@ namespace LogoFX.Tools.Templates.Wizard.Views
             InitializeComponent();
         }
 
-        private void FrameworkElement_OnLoaded(object sender, RoutedEventArgs e)
-        {
-        }
-
         private void SolutionDataView_OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (ComboBox.SelectedItem == null &&
-                ComboBox.Items.Count > 0)
-            {
-                ComboBox.SelectedIndex = 0;
-            }
+            ((SolutionDataViewModel) DataContext).OnViewLoaded();
         }
     }
 }

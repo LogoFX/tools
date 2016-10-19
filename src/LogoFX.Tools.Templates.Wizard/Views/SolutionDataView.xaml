@@ -57,11 +57,11 @@
                            VerticalAlignment="Center"
                            Text="Containers:" />
 
-                <ComboBox x:Name="ComboBox"
-                          Grid.Row="1"
+                <ComboBox Grid.Row="1"
                           VerticalAlignment="Center" 
                           ItemsSource="{Binding Path=Variants, Mode=OneWay}"
-                          SelectedItem="{Binding Path=SelectedVariant, Mode=TwoWay}"
+                          SelectedItem="{Binding Path=SelectedVariant, Mode=OneWayToSource}"
+                          SelectedIndex="0"
                           DisplayMemberPath="ContainerName" />
             </Grid>
         </Border>
