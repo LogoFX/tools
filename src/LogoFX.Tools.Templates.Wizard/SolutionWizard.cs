@@ -28,11 +28,6 @@ namespace LogoFX.Tools.Templates.Wizard
 
         #region Private Members
 
-        private SolutionData GetSelectedSolutionInfo()
-        {
-            return _wizardDataViewModel?.SelectedSolution.Model;
-        }
-
         private Project[] RemoveConditions(Project[] projects)
         {
             foreach (var project in projects)
@@ -502,13 +497,10 @@ namespace LogoFX.Tools.Templates.Wizard
 
         protected override void RunFinishedOverride()
         {
-            var solutionInfo = GetSelectedSolutionInfo();
-            var solutionData = _wizardDataViewModel.Model
-                .Solutions
-                .Single(x => x.Name == solutionInfo.Name);
+            var solutionData = _wizardDataViewModel.SelectedSolution.Model;
+            var solutionVariant = _wizardDataViewModel.SelectedSolution.SelectedVariant.Model;
 
-            //TODO: Change variant selection here
-            CreateSolution(solutionData.Variants[0]);
+            CreateSolution(solutionVariant);
 
             if (!string.IsNullOrWhiteSpace(solutionData.PostCreateUrl))
             {

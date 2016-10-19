@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using LogoFX.Tools.Common.Model;
 
 namespace LogoFX.Tools.Templates.Wizard.ViewModel
@@ -12,6 +12,8 @@ namespace LogoFX.Tools.Templates.Wizard.ViewModel
         {
             Variants = Model.Variants.Select(x => new SolutionVariantViewModel(x)).ToList();
         }
+
+        public EventHandler SelectedVariantChanged = delegate { };
 
         public IEnumerable<SolutionVariantViewModel> Variants { get; private set; }
 
@@ -29,6 +31,8 @@ namespace LogoFX.Tools.Templates.Wizard.ViewModel
 
                 _selectedVariant = value;
                 NotifyOfPropertyChange();
+
+                SelectedVariantChanged(this, EventArgs.Empty);
             }
         }
     }

@@ -105,12 +105,20 @@ namespace LogoFX.Tools.Templates.Wizard.ViewModel
 
         public bool OkEnabled
         {
-            get { return SelectedSolution != null; }
+            get { return SelectedSolution?.SelectedVariant != null; }
         }
 
         private IEnumerable<SolutionDataViewModel> CreateSolutions()
         {
-            return Model.Solutions.Select(x => new SolutionDataViewModel(x)).ToList();
+            return Model.Solutions.Select(x =>
+            {
+                var solutionDataViewModel = new SolutionDataViewModel(x);
+                solutionDataViewModel.SelectedVariantChanged += (sender, args) =>
+                {
+                    NotifyOfPropertyChange(() => OkEnabled);
+                };
+                return solutionDataViewModel;
+            }).ToList();
         }
     }
 }

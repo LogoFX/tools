@@ -63,7 +63,6 @@ namespace LogoFX.Tools.TemplateGenerator
 
         private async Task CreateWizardSolutionFileAsync(string destinationFolder, WizardConfiguration wizardConfiguration)
         {
-            //TODO: Add code here
             var wizardDataGenrator = new WizardDataGenerator(wizardConfiguration);
             await wizardDataGenrator.GenerateAndSaveAsync(destinationFolder);
         }
