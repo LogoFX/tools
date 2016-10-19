@@ -82,11 +82,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Build" />
-    <Reference Include="Microsoft.VisualStudio.OLE.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-    <Reference Include="Microsoft.VisualStudio.Shell.14.0, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.VisualStudio.Shell.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-    <Reference Include="Microsoft.VisualStudio.Shell.Interop.8.0, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-    <Reference Include="Microsoft.VisualStudio.Shell.Interop.9.0, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.VisualStudio.TemplateWizardInterface, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -129,7 +124,11 @@
     <Compile Include="SolutionWizardBase.cs" />
     <Compile Include="ViewModel\ObjectViewModel.cs" />
     <Compile Include="ViewModel\SolutionDataViewModel.cs" />
+    <Compile Include="ViewModel\SolutionVariantViewModel.cs" />
     <Compile Include="ViewModel\WaitViewModel.cs" />
+    <Compile Include="Views\SolutionDataView.xaml.cs">
+      <DependentUpon>SolutionDataView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WaitView.xaml.cs">
       <DependentUpon>WaitView.xaml</DependentUpon>
     </Compile>
@@ -145,6 +144,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\SolutionDataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\WaitView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

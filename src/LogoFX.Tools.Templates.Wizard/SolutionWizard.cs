@@ -185,7 +185,7 @@ namespace LogoFX.Tools.Templates.Wizard
             }
         }
 
-        private void CreateSolution(SolutionData solutionData)
+        private void CreateSolution(SolutionVariantData solutionVariantData)
         {
             var solution = GetSolution();
 
@@ -202,7 +202,7 @@ namespace LogoFX.Tools.Templates.Wizard
             waitViewModel.Caption = "Creating solution...";
             waitViewModel.Run((p, ct) =>
             {
-                int count = solutionData.Items.Length;
+                int count = solutionVariantData.Items.Length;
                 double k = 1.0 / count;
                 for (int i = 0; i < count; ++i)
                 {
@@ -211,7 +211,7 @@ namespace LogoFX.Tools.Templates.Wizard
                     int j = i;
                     CreateSolutionItem(
                         null,
-                        solutionData.Items[i], progress =>
+                        solutionVariantData.Items[i], progress =>
                         {
                             pr = k * j + progress * k;
                             p.Report(pr);
@@ -225,11 +225,6 @@ namespace LogoFX.Tools.Templates.Wizard
             if (!retVal)
             {
                 throw new WizardCancelledException();
-            }
-
-            if (!string.IsNullOrWhiteSpace(solutionData.PostCreateUrl))
-            {
-                solution.DTE.ItemOperations.Navigate(solutionData.PostCreateUrl);
             }
         }
 
@@ -508,9 +503,17 @@ namespace LogoFX.Tools.Templates.Wizard
         protected override void RunFinishedOverride()
         {
             var solutionInfo = GetSelectedSolutionInfo();
-            var solutionData = _wizardDataViewModel.Model.Solutions.Single(x => x.Name == solutionInfo.Name);
+            var solutionData = _wizardDataViewModel.Model
+                .Solutions
+                .Single(x => x.Name == solutionInfo.Name);
 
-            CreateSolution(solutionData);
+            //TODO: Change variant selection here
+            CreateSolution(solutionData.Variants[0]);
+
+            if (!string.IsNullOrWhiteSpace(solutionData.PostCreateUrl))
+            {
+                GetSolution().DTE.ItemOperations.Navigate(solutionData.PostCreateUrl);
+            }
 
             //Get all projects in solution
             var projects = GetProjects().ToArray();

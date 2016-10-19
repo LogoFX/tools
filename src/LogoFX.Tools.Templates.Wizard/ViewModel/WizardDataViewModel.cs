@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using LogoFX.Tools.Common.Model;
 
 namespace LogoFX.Tools.Templates.Wizard.ViewModel
@@ -85,10 +86,21 @@ namespace LogoFX.Tools.Templates.Wizard.ViewModel
                     return;
                 }
 
-                _selectedSolution = value;
-                NotifyOfPropertyChange();
-                NotifyOfPropertyChange(() => OkEnabled);
+                SetSelectedSolutionAsync(value);
             }
+        }
+
+        private async void SetSelectedSolutionAsync(SolutionDataViewModel value)
+        {
+            if (value != null)
+            {
+                SelectedSolution = null;
+                await Task.Delay(10);
+            }
+
+            _selectedSolution = value;
+            NotifyOfPropertyChange(() => SelectedSolution);
+            NotifyOfPropertyChange(() => OkEnabled);
         }
 
         public bool OkEnabled

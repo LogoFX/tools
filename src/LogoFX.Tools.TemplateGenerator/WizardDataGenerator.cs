@@ -40,6 +40,7 @@ namespace LogoFX.Tools.TemplateGenerator
         {
             SolutionData solutionData = new SolutionData
             {
+                Name = solutionInfo.Name,
                 Caption = solutionInfo.Caption,
                 IconFileName = solutionInfo.IconName,
                 PostCreateUrl = solutionInfo.PostCreateUrl,
@@ -55,7 +56,6 @@ namespace LogoFX.Tools.TemplateGenerator
         {
             SolutionVariantData solutionVariantData = new SolutionVariantData
             {
-                Name = solutionVariant.SolutionTemplateInfo.Name,
                 ContainerName = solutionVariant.ContainerName,
                 Items = solutionVariant.SolutionTemplateInfo.Items
                     .Select(info => CreateSolutionItemData(info, destinationFolder))

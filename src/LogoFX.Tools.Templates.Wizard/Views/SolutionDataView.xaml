@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="LogoFX.Tools.Templates.Wizard.Views.SolutionDataView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModel="clr-namespace:LogoFX.Tools.Templates.Wizard.ViewModel"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance viewModel:SolutionDataViewModel}"
+             d:DesignHeight="300" 
+             d:DesignWidth="300"
+             Loaded="SolutionDataView_OnLoaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24" />
+            <RowDefinition Height="24" />
+            <RowDefinition Height="24" />
+            <RowDefinition Height="24" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <CheckBox Grid.Row="0"
+                  Content="Create Tests"
+                  IsEnabled="{Binding Path=TestOption, Mode=OneWay}"
+                  IsChecked="{Binding Path=CreateTests, Mode=TwoWay}"
+                  VerticalAlignment="Center" />
+
+        <CheckBox Grid.Row="1"
+                  Content="Create Fakes"
+                  IsEnabled="{Binding Path=FakeOption, Mode=OneWay}"
+                  IsChecked="{Binding Path=CreateFakes, Mode=TwoWay}"
+                  VerticalAlignment="Center" />
+
+        <CheckBox Grid.Row="2"
+                  IsEnabled="False"
+                  Content="With Sample"
+                  VerticalAlignment="Center" />
+
+        <CheckBox Grid.Row="3"
+                  IsEnabled="False"
+                  Content="Support Navigation"
+                  VerticalAlignment="Center" />
+
+        <Border Grid.Row="4"
+                BorderBrush="Black"
+                Margin="0,6,0,0"
+                Padding="16"
+                BorderThickness="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="24" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           VerticalAlignment="Center"
+                           Text="Containers:" />
+
+                <ComboBox x:Name="ComboBox"
+                          Grid.Row="1"
+                          VerticalAlignment="Center" 
+                          ItemsSource="{Binding Path=Variants, Mode=OneWay}"
+                          SelectedItem="{Binding Path=SelectedVariant, Mode=TwoWay}"
+                          DisplayMemberPath="ContainerName" />
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:viewModel="clr-namespace:LogoFX.Tools.Templates.Wizard.ViewModel"
+        xmlns:views="clr-namespace:LogoFX.Tools.Templates.Wizard.Views"
         mc:Ignorable="d"
         Width="800"
         Height="600"
@@ -14,6 +15,13 @@
         d:DesignHeight="300" 
         d:DesignWidth="300"
         d:DataContext="{d:DesignInstance viewModel:WizardDataViewModel}">
+    
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModel:SolutionDataViewModel}"
+                      x:Shared="False">
+            <views:SolutionDataView />
+        </DataTemplate>
+    </Window.Resources>
     
     <Grid Margin="24">
         <Grid.RowDefinitions>
@@ -67,60 +75,15 @@
             
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="24" />
-                    <RowDefinition Height="24" />
-                    <RowDefinition Height="24" />
-                    <RowDefinition Height="24" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="24" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <CheckBox Grid.Row="0"
-                          Content="Create Tests"
-                          IsEnabled="{Binding Path=TestOption, Mode=OneWay}"
-                          IsChecked="{Binding Path=CreateTests, Mode=TwoWay}"
-                          VerticalAlignment="Center" />
+                <ContentControl Grid.Row="0"
+                                Content="{Binding Path=SelectedSolution, Mode=OneWay}" />
 
-                <CheckBox Grid.Row="1"
-                          Content="Create Fakes"
-                          IsEnabled="{Binding Path=FakeOption, Mode=OneWay}"
-                          IsChecked="{Binding Path=CreateFakes, Mode=TwoWay}"
-                          VerticalAlignment="Center" />
-
-                <CheckBox Grid.Row="2"
-                          IsEnabled="False"
-                          Content="With Sample"
-                          VerticalAlignment="Center" />
-
-                <CheckBox Grid.Row="3"
-                          IsEnabled="False"
-                          Content="Support Navigation"
-                          VerticalAlignment="Center" />
-                
-                <Border Grid.Row="4"
-                        BorderBrush="Black"
-                        Margin="0,6,0,0"
-                        Padding="16"
-                        BorderThickness="1">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="24" />
-                            <RowDefinition Height="40" />
-                            <RowDefinition Height="24" />
-                        </Grid.RowDefinitions>
-                        
-                        <TextBlock Grid.Row="0"
-                                   VerticalAlignment="Center"
-                                   Text="Containers:" />
-                        
-                        <ComboBox Grid.Row="1"
-                                  VerticalAlignment="Center"
-                                  />
-                    </Grid>
-                </Border>
-
-                <Grid Grid.Row="6">
+                <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
