@@ -10,7 +10,17 @@
       <Name>Specifications</Name>
       <Caption>LogoFX Desktop Application</Caption>
       <PostCreateUrl>http://www.logoui.co.il/en</PostCreateUrl>
-      <SolutionVariants />
+      <SolutionVariants>
+        <SolutionVariant>
+          <ContainerName>Unity Container</ContainerName>
+          <SolutionFileName>C:\Projects\LogoUI\LogoFX\Samples.Specifications\Specifications.sln</SolutionFileName>
+          <StartupProjectName>Client.Launcher</StartupProjectName>
+        </SolutionVariant>
+        <SolutionVariant>
+          <ContainerName>Simple Container</ContainerName>
+          <SolutionFileName>C:\Projects\LogoUI\LogoFX\Samples.Specifications\Specifications.SimpleContainer.sln</SolutionFileName>
+        </SolutionVariant>
+      </SolutionVariants>
     </SolutionInfo>
     <SolutionInfo>
       <Name>Samples.Universal</Name>

@@ -94,12 +94,7 @@
                   VerticalAlignment="Center"
                   ItemsSource="{Binding Path=SolutionVariants, Mode=OneWay}"
                   SelectedValue="{Binding Path=SelectedSolutionVariant, Mode=TwoWay}"
-                  DisplayMemberPath="Name">
-            <!--<i:Interaction.Triggers>
-                <i:EventTrigger EventName="Loaded">
-                    <commanding:ExecuteCommandAction Command="{Binding Path=ContainersComboBoxLoaded, Mode=OneTime}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>-->
+                  DisplayMemberPath="DisplayName">
         </ComboBox>
         <Grid Grid.Row="4"
               Grid.Column="2">

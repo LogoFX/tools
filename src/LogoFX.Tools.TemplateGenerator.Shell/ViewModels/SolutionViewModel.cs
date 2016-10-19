@@ -95,8 +95,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
         #region Public Properties
 
-        private readonly ObservableCollection<SolutionVariantViewModel> _solutionVariants =
-            new ObservableCollection<SolutionVariantViewModel>();
+        private ObservableCollection<SolutionVariantViewModel> _solutionVariants;
 
         public IEnumerable<SolutionVariantViewModel> SolutionVariants
         {
@@ -130,7 +129,13 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
             try
             {
-                _solutionVariants.Clear();
+                _solutionVariants = new ObservableCollection<SolutionVariantViewModel>();
+                _solutionVariants.CollectionChanged += (sender, args) =>
+                {
+                    Model.SolutionVariants = _solutionVariants
+                        .Select(x => x.Model)
+                        .ToArray();
+                };
                 foreach (var solutionVariant in Model.SolutionVariants)
                 {
                     var solutionVariantVm = new SolutionVariantViewModel(solutionVariant);
