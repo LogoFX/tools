@@ -7,6 +7,7 @@
              xmlns:controls="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.Controls"
              xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
              xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
+             xmlns:cal="http://www.caliburnproject.org"
              d:DataContext="{d:DesignInstance viewModels:SolutionViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="300" 
@@ -18,14 +19,11 @@
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
-            <RowDefinition Height="32" />
-            <RowDefinition Height="32" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" SharedSizeGroup="ColumnKey" />
-            <ColumnDefinition Width="5" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
@@ -44,7 +42,8 @@
                    VerticalAlignment="Center"
                    Text="Solution Caption in Wizard:"/>
         <TextBox Grid.Row="1"
-                 Grid.Column="2"
+                 Grid.Column="1"
+                 Margin="5,0,0,0"
                  Text="{Binding Path=Model.Caption, Mode=TwoWay}"
                  VerticalAlignment="Center" />
 
@@ -54,14 +53,16 @@
                    VerticalAlignment="Center"
                    Text="Solution Icon in Wizard:"/>
         <TextBox Grid.Row="2"
-                 Grid.Column="2"
+                 Grid.Column="1"
+                 Margin="5,0,0,0"
                  Text="{Binding Path=Model.IconName, Mode=TwoWay}"
                  VerticalAlignment="Center" />
         <Button Grid.Row="2"
-                Grid.Column="3"
-                Content="..."
+                Grid.Column="2"
+                Margin="5,0,0,0"
+                Content="Browse…"
                 ToolTip="Browse for solution icon."
-                Width="20"
+                Width="80"
                 VerticalAlignment="Center">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="Click">
@@ -77,7 +78,8 @@
                    VerticalAlignment="Center"
                    Text="Post Create URL:"/>
         <TextBox Grid.Row="3"
-                 Grid.Column="2"
+                 Grid.Column="1"
+                 Margin="5,0,0,0"
                  Text="{Binding Path=Model.PostCreateUrl, Mode=TwoWay}"
                  VerticalAlignment="Center" />
         
@@ -87,10 +89,11 @@
                    VerticalAlignment="Center"
                    Text="Container:"/>
         <ComboBox Grid.Row="4"
-                  Grid.Column="2" 
+                  Grid.Column="1" 
+                  Margin="5,0,0,0"
                   VerticalAlignment="Center"
-                  ItemsSource="{Binding Path=Containers, Mode=OneTime}"
-                  SelectedValue="{Binding Path=SelectedContainer, Mode=TwoWay}"
+                  ItemsSource="{Binding Path=SolutionVariants, Mode=OneWay}"
+                  SelectedValue="{Binding Path=SelectedSolutionVariant, Mode=TwoWay}"
                   DisplayMemberPath="Name">
             <!--<i:Interaction.Triggers>
                 <i:EventTrigger EventName="Loaded">
@@ -98,63 +101,47 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>-->
         </ComboBox>
-        <Button Grid.Row="4"
-                Grid.Column="3"
-                Content="—"
-                ToolTip="Remove selected container."
-                Width="20"
-                VerticalAlignment="Center">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="Click">
-                    <commanding:ExecuteCommandAction Command="{Binding Path=RemoveContainerCommand, Mode=OneTime}"
-                                                     ManageEnableState="True" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </Button>
-        
-        <!--Startup Project-->
-        <TextBlock Grid.Row="5"
-                   Grid.Column="0"
-                   VerticalAlignment="Center"
-                   Text="Startup Project:"/>
-        <ComboBox Grid.Row="5"
-                  Grid.Column="2" 
-                  VerticalAlignment="Center"
-                  ItemsSource="{Binding Path=Projects, Mode=OneTime}"
-                  SelectedValue="{Binding Path=StartupProject, Mode=TwoWay}"
-                  DisplayMemberPath="Name">
-            <!--<i:Interaction.Triggers>
-                <i:EventTrigger EventName="Loaded">
-                    <commanding:ExecuteCommandAction Command="{Binding Path=ProjectsComboBoxLoaded, Mode=OneTime}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>-->
-        </ComboBox>
+        <Grid Grid.Row="4"
+              Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        <!--Root Namespaces-->
-        <TextBlock Grid.Row="6"
-                   Grid.Column="0"
-                   VerticalAlignment="Center"
-                   FontWeight="Bold"
-                   Text="Root Namespaces"/>
-        <ItemsControl Grid.Row="6"
-                      Grid.Column="0"
-                      Grid.ColumnSpan="3"
-                      ItemsSource="{Binding Path=SolutionTemplateInfo.RootNamespaces}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid Height="28">
-                        <TextBox Text="{Binding Mode=OneWay}"
-                                 IsReadOnly="True"
-                                 VerticalAlignment="Center" />
-                    </Grid>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    
+            <Button Grid.Column="0"
+                    Content="+"
+                    ToolTip="Add new solution variant."
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <commanding:ExecuteCommandAction Command="{Binding Path=AddSolutionVariantCommand, Mode=OneTime}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+
+            <Button Grid.Column="1"
+                    Content="-"
+                    ToolTip="Remove selected solution variant."
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <commanding:ExecuteCommandAction Command="{Binding Path=RemoveSolutionVariantCommand, Mode=OneTime}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+
+        <ContentControl Grid.Row="5"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        cal:View.Model="{Binding Path=SelectedSolutionVariant, Mode=OneWay}" />
+        
         <controls:BusyIndicator Grid.Row="0"
-                                Grid.RowSpan="8"
+                                Grid.RowSpan="6"
                                 Grid.Column="0"
-                                Grid.ColumnSpan="4"
+                                Grid.ColumnSpan="3"
                                 IsBusy="{Binding Path=IsBusy, Mode=OneWay}"/>
     </Grid>
 </UserControl>

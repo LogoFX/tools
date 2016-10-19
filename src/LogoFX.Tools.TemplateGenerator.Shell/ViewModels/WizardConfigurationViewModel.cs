@@ -1,14 +1,17 @@
-﻿using LogoFX.Client.Mvvm.ViewModel;
+﻿using Caliburn.Micro;
+using LogoFX.Client.Mvvm.ViewModel;
 
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {
     public sealed class WizardConfigurationViewModel : CanGenerateViewModel<WizardConfiguration>
     {
+        private readonly IWindowManager _windowManager;
         private WrappingCollection _solutions;
 
-        public WizardConfigurationViewModel(WizardConfiguration model) 
+        public WizardConfigurationViewModel(WizardConfiguration model, IWindowManager windowManager) 
             : base(model)
         {
+            _windowManager = windowManager;
         }
 
         //private ICommand _addSolutionCommand;
@@ -113,7 +116,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         {
             var solutions = new WrappingCollection
             {
-                FactoryMethod = o => new SolutionViewModel((SolutionInfo) o)
+                FactoryMethod = o => new SolutionViewModel((SolutionInfo) o, _windowManager)
             };
             solutions.AddSource(Model.Solutions);
             return solutions;

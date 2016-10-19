@@ -54,7 +54,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             try
             {
                 var wizardConfiguration = await UpdateWizardConfigurationAsync();
-                WizardConfiguration = new WizardConfigurationViewModel(wizardConfiguration);
+                WizardConfiguration = new WizardConfigurationViewModel(wizardConfiguration, _windowManager);
             }
 
             finally

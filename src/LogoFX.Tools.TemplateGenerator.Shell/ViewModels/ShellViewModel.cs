@@ -15,12 +15,15 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
     {
         #region Fields
 
+        private readonly IWindowManager _windowManager;
+
         #endregion
 
         #region Constructors
 
-        public ShellViewModel()
+        public ShellViewModel(IWindowManager windowManager)
         {
+            _windowManager = windowManager;
             DestinationPath = Settings.Default.DestinationPath;
         }
 

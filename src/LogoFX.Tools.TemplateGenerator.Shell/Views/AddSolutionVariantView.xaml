@@ -1,0 +1,103 @@
+﻿<Window x:Class="LogoFX.Tools.TemplateGenerator.Shell.Views.AddSolutionVariantView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance viewModels:AddSolutionVariantViewModel}"
+        WindowStartupLocation="CenterOwner"
+        Height="240" 
+        Width="360">
+
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="32" />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <!--Container Name-->
+        <TextBlock Grid.Row="0"
+                 Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Text="Container Name" />
+        <TextBox Grid.Row="0"
+                 Grid.Column="1"
+                 Margin="5,0,0,0"
+                 VerticalAlignment="Center"
+                 Text="{Binding Path=ContainerName, Mode=TwoWay}" />
+
+        <!--Solution File-->
+        <TextBlock Grid.Row="1"
+                 Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Text="Solution File" />
+        <TextBox Grid.Row="1"
+                 Grid.Column="1"
+                 Margin="5,0,0,0"
+                 VerticalAlignment="Center"
+                 IsReadOnly="True"
+                 Text="{Binding Path=SolutionFileName, Mode=OneWay}" />
+        <Button Grid.Row="1"
+                Grid.Column="2"
+                Margin="5,0,0,0"
+                VerticalAlignment="Center"
+                Width="80"
+                Content="Browse…">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <commanding:ExecuteCommandAction Command="{Binding Path=BrowseSolutionFileCommand, Mode=OneTime}"
+                                                     ManageEnableState="True" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+        
+        <!--Buttons-->
+        <Grid Grid.Row="3"
+              Grid.Column="0"
+              Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="1"
+                    VerticalAlignment="Center"
+                    Width="80"
+                    IsDefault="True"
+                    Content="Ok">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <commanding:ExecuteCommandAction Command="{Binding Path=OkCommand, Mode=OneTime}"
+                                                         ManageEnableState="True" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+
+            <Button Grid.Column="2"
+                    VerticalAlignment="Center"
+                    Width="80"
+                    Margin="5,0,0,0"
+                    IsCancel="True"
+                    Content="Cancel">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <commanding:ExecuteCommandAction Command="{Binding Path=CancelCommand, Mode=OneTime}"
+                                                         ManageEnableState="True" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>
