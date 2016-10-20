@@ -3,19 +3,29 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
+        xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
         mc:Ignorable="d"
-        Title="CreateSolutionView" 
+        d:DataContext="{d:DesignInstance viewModels:CreateSolutionViewModel}"
+        WindowStartupLocation="CenterOwner"
         Height="400" 
         Width="600">
 
     <Grid Margin="5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="32" />
             <RowDefinition Height="*" />
             <RowDefinition Height="32" />
         </Grid.RowDefinitions>
         
         <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32" />
+                <RowDefinition Height="32" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="32" />
+            </Grid.RowDefinitions>
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
@@ -27,11 +37,22 @@
                        Text="Solution Name:" />
             <TextBox Grid.Row="0"
                      Grid.Column="1"
+                     Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Margin="5,0,5,0"
+                     VerticalAlignment="Center" />
+
+            <TextBlock Grid.Row="1"
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
+                       Text="Solution Caption:" />
+            <TextBox Grid.Row="1"
+                     Grid.Column="1"
+                     Text="{Binding Path=Caption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Margin="5,0,5,0"
                      VerticalAlignment="Center" />
         </Grid>
         
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
@@ -40,14 +61,32 @@
 
             <Button Grid.Column="1"
                     Width="100"
+                    Height="24"
                     Margin="5,0,0,0"
-                    Content="Apply">
+                    VerticalAlignment="Center"
+                    IsDefault="True"
+                    Content="Ok">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <commanding:ExecuteCommandAction Command="{Binding Path=OkCommand, Mode=OneTime}"
+                                                         ManageEnableState="True" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </Button>
 
             <Button Grid.Column="2"
                     Width="100"
+                    Height="24"
                     Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    IsCancel="True"
                     Content="Cancel">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <commanding:ExecuteCommandAction Command="{Binding Path=CancelCommand, Mode=OneTime}"
+                                                         ManageEnableState="True" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </Button>
         </Grid>
     </Grid>

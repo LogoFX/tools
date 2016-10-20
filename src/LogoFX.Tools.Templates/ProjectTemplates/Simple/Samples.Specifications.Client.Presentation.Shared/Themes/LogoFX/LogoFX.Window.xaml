@@ -1,0 +1,14 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Style x:Key="WindowStyle" TargetType="Window" BasedOn="{StaticResource {x:Type Window}}">
+
+        <Setter Property="TextElement.Foreground" Value="{StaticResource LogoFXBody}"/>
+        <Setter Property="TextElement.FontWeight" Value="Regular"/>
+        <Setter Property="TextElement.FontSize" Value="13"/>
+        <Setter Property="TextOptions.TextFormattingMode" Value="Ideal"/>
+        <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
+
+    </Style>
+    
+</ResourceDictionary>

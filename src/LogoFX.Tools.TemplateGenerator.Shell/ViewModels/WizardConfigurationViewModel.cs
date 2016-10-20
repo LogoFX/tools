@@ -1,4 +1,6 @@
-﻿using Caliburn.Micro;
+﻿using System.Windows.Input;
+using Caliburn.Micro;
+using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.ViewModel;
 
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
@@ -12,6 +14,35 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             : base(model)
         {
             _windowManager = windowManager;
+        }
+
+
+        private ICommand _addSolutionCommand;
+
+        public ICommand AddSolutionCommand
+        {
+            get
+            {
+                return _addSolutionCommand ??
+                       (_addSolutionCommand = ActionCommand
+                           .When(() => true)
+                           .Do(() =>
+                           {
+                               var createSolutionViewModel = new CreateSolutionViewModel();
+                               var retVal = _windowManager.ShowDialog(createSolutionViewModel) ?? false;
+
+                               if (!retVal)
+                               {
+                                   return;
+                               }
+
+                               var solutionInfo = new SolutionInfo
+                               {
+                                   Name = createSolutionViewModel.Name
+                               };
+                               Model.Solutions.Add(solutionInfo);
+                           }));
+            }
         }
 
         public bool IsMultisolution => Model.Solutions.Count > 1;

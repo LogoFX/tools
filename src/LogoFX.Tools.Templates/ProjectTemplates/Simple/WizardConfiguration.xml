@@ -3,7 +3,18 @@
   <Name>LogoFX Simple Application</Name>
   <Description>Creates new LogoFX Simple Application</Description>
   <DefaultName>Simple</DefaultName>
-  <Solutions />
+  <Solutions>
+    <SolutionInfo>
+      <Name>Simple</Name>
+      <SolutionVariants>
+        <SolutionVariant>
+          <ContainerName>Simple</ContainerName>
+          <SolutionFileName>C:\Projects\LogoUI\LogoFX\Samples.Specifications\Specifications.SimpleContainer.sln</SolutionFileName>
+          <StartupProjectName>Client.SimpleContainer.Launcher</StartupProjectName>
+        </SolutionVariant>
+      </SolutionVariants>
+    </SolutionInfo>
+  </Solutions>
   <ProjectType>CSharp</ProjectType>
   <SortOrder>5000</SortOrder>
 </WizardConfiguration>
