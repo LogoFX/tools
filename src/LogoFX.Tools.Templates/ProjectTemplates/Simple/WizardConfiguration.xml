@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WizardConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>LogoFX Simple Application</Name>
+  <Description>Creates new LogoFX Simple Application</Description>
+  <DefaultName>Simple</DefaultName>
+  <Solutions />
+  <ProjectType>CSharp</ProjectType>
+  <SortOrder>5000</SortOrder>
+</WizardConfiguration>

@@ -11,10 +11,6 @@ namespace LogoFX.Tools.TemplateGenerator
             Solutions = new ObservableCollection<SolutionInfo>();
         }
 
-        public bool TestOption { get; set; }
-
-        public bool FakeOption { get; set; }
-
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -23,7 +19,7 @@ namespace LogoFX.Tools.TemplateGenerator
 
         public string IconName { get; set; }
 
-        public ObservableCollection<SolutionInfo> Solutions { get; }
+        public ObservableCollection<SolutionInfo> Solutions { get; private set; }
 
         public string ProjectType { get; set; }
 
