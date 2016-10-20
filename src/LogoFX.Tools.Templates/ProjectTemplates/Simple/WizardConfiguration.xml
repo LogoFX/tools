@@ -6,6 +6,17 @@
   <Solutions>
     <SolutionInfo>
       <Name>Simple</Name>
+      <Options>
+        <CanCreateTests>false</CanCreateTests>
+        <DefaultCreateTests>false</DefaultCreateTests>
+        <CanCreateFakes>false</CanCreateFakes>
+        <DefaultCreateFakes>false</DefaultCreateFakes>
+        <CanCreateSamples>false</CanCreateSamples>
+        <DefaultCreateSamples>false</DefaultCreateSamples>
+        <CanSupportNavigation>false</CanSupportNavigation>
+        <DefaultSupportNavigation>false</DefaultSupportNavigation>
+        <UseOnlyDefautValues>false</UseOnlyDefautValues>
+      </Options>
       <SolutionVariants>
         <SolutionVariant>
           <ContainerName>Simple</ContainerName>

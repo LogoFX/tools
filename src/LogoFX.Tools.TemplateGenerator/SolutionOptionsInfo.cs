@@ -1,7 +1,15 @@
-﻿namespace LogoFX.Tools.Common.Model
+﻿namespace LogoFX.Tools.TemplateGenerator
 {
-    public class SolutionOptionData
+    public sealed class SolutionOptionsInfo
     {
+        public SolutionOptionsInfo()
+        {
+            CanCreateTests = true;
+            CanCreateFakes = true;
+            CanCreateSamples = true;
+            CanSupportNavigation = true;
+        }
+
         public bool CanCreateTests { get; set; }
         public bool DefaultCreateTests { get; set; }
         public bool CanCreateFakes { get; set; }

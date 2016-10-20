@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
-             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance viewModels:SolutionVariantViewModel}"
              d:DesignHeight="300" 

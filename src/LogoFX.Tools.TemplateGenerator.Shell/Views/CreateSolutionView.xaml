@@ -6,14 +6,18 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
         xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
+        xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModels:CreateSolutionViewModel}"
         WindowStartupLocation="CenterOwner"
+        WindowStyle="ToolWindow"
+        ShowInTaskbar="False"
         Height="400" 
         Width="600">
 
     <Grid Margin="5">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="32" />
         </Grid.RowDefinitions>
@@ -21,8 +25,6 @@
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="32" />
-                <RowDefinition Height="32" />
-                <RowDefinition Height="*" />
                 <RowDefinition Height="32" />
             </Grid.RowDefinitions>
 
@@ -52,7 +54,10 @@
                      VerticalAlignment="Center" />
         </Grid>
         
-        <Grid Grid.Row="1">
+        <ContentControl Grid.Row="1"
+                        cal:View.Model="{Binding Path=ActiveItem, Mode=OneWay}" />
+
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />

@@ -12,6 +12,6 @@
 
         public SolutionVariantData[] Variants { get; set; }
 
-        public SolutionOptionData Options { get; set; }
+        public SolutionOptionsData Options { get; set; }
     }
 }

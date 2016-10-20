@@ -172,6 +172,7 @@
     <Compile Include="ViewModels\AddSolutionVariantViewModel.cs" />
     <Compile Include="ViewModels\CanGenerateViewModel.cs" />
     <Compile Include="ViewModels\RootNamespaceViewModel.cs" />
+    <Compile Include="ViewModels\SolutionOptionsViewModel.cs" />
     <Compile Include="ViewModels\SolutionVariantViewModel.cs" />
     <Compile Include="ViewModels\CreateSolutionViewModel.cs" />
     <Compile Include="ViewModels\ProjectViewModel.cs" />
@@ -209,6 +210,10 @@
     <Page Include="Views\ShellView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SolutionOptionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SolutionVariantView.xaml">
       <SubType>Designer</SubType>

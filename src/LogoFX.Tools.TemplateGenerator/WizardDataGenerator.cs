@@ -44,12 +44,29 @@ namespace LogoFX.Tools.TemplateGenerator
                 Caption = solutionInfo.Caption,
                 IconFileName = solutionInfo.IconName,
                 PostCreateUrl = solutionInfo.PostCreateUrl,
+                Options = CopyOptions(solutionInfo.Options),
                 Variants = solutionInfo.SolutionVariants
                     .Select(x => CreateSolutionVariant(x, destinationFolder))
                     .ToArray()
             };
 
             return solutionData;
+        }
+
+        private SolutionOptionsData CopyOptions(SolutionOptionsInfo info)
+        {
+            return new SolutionOptionsData
+            {
+                CanCreateTests = info.CanCreateTests,
+                DefaultCreateTests = info.DefaultCreateTests,
+                CanCreateFakes = info.CanCreateFakes,
+                DefaultCreateFakes = info.DefaultCreateFakes,
+                CanCreateSamples = info.CanCreateSamples,
+                DefaultCreateSamples = info.DefaultCreateSamples,
+                CanSupportNavigation = info.CanSupportNavigation,
+                DefaultSupportNavigation = info.DefaultSupportNavigation,
+                UseOnlyDefautValues = info.UseOnlyDefautValues,
+            };
         }
 
         private SolutionVariantData CreateSolutionVariant(SolutionVariant solutionVariant, string destinationFolder)

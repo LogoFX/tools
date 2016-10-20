@@ -1,0 +1,115 @@
+﻿<UserControl x:Class="LogoFX.Tools.TemplateGenerator.Shell.Views.SolutionOptionsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance viewModels:SolutionOptionsViewModel}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <GroupBox Grid.Column="0" Header="Tests">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="32" />
+                        <RowDefinition Height="32" />
+                    </Grid.RowDefinitions>
+                    
+                    <CheckBox Grid.Row="0"
+                              VerticalAlignment="Center"
+                              Content="Can Create"
+                              IsChecked="{Binding Path=Model.CanCreateTests, Mode=TwoWay}" />
+
+                    <CheckBox Grid.Row="1"
+                              VerticalAlignment="Center"
+                              Content="Default Value"
+                              IsChecked="{Binding Path=Model.DefaultCreateTests, Mode=TwoWay}" />
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Grid.Column="1" Header="Fakes">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="32" />
+                        <RowDefinition Height="32" />
+                    </Grid.RowDefinitions>
+                    
+                    <CheckBox Grid.Row="0"
+                              VerticalAlignment="Center"
+                              Content="Can Create"
+                              IsChecked="{Binding Path=Model.CanCreateFakes, Mode=TwoWay}" />
+
+                    <CheckBox Grid.Row="1"
+                              VerticalAlignment="Center"
+                              Content="Default Value"
+                              IsChecked="{Binding Path=Model.DefaultCreateFakes, Mode=TwoWay}" />
+                </Grid>
+            </GroupBox>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <GroupBox Grid.Column="0" Header="Samples">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="32" />
+                        <RowDefinition Height="32" />
+                    </Grid.RowDefinitions>
+                    
+                    <CheckBox Grid.Row="0"
+                              VerticalAlignment="Center"
+                              Content="Can Create"
+                              IsChecked="{Binding Path=Model.CanCreateSamples, Mode=TwoWay}" />
+
+                    <CheckBox Grid.Row="1"
+                              VerticalAlignment="Center"
+                              Content="Default Value"
+                              IsChecked="{Binding Path=Model.DefaultCreateSamples, Mode=TwoWay}" />
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Grid.Column="1" Header="Navigation">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="32" />
+                        <RowDefinition Height="32" />
+                    </Grid.RowDefinitions>
+                    
+                    <CheckBox Grid.Row="0"
+                              VerticalAlignment="Center"
+                              Content="Can Support"
+                              IsChecked="{Binding Path=Model.CanSupportNavigation, Mode=TwoWay}" />
+
+                    <CheckBox Grid.Row="1"
+                              VerticalAlignment="Center"
+                              Content="Default Value"
+                              IsChecked="{Binding Path=Model.DefaultSupportNavigation, Mode=TwoWay}" />
+                </Grid>
+            </GroupBox>
+        </Grid>
+        
+        <CheckBox Grid.Row="2"
+                  VerticalAlignment="Center"
+                  Content="Use Only Default Values"
+                  IsChecked="{Binding Path=Model.UseOnlyDefautValues, Mode=TwoWay}" />
+    </Grid>
+</UserControl>

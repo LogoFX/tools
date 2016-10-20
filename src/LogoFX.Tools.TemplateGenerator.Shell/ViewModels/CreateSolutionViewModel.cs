@@ -1,12 +1,10 @@
 ﻿using System.Windows.Input;
 using Caliburn.Micro;
 using LogoFX.Client.Mvvm.Commanding;
-using LogoFX.Client.Mvvm.ViewModel.Extensions;
-using LogoFX.Tools.TemplateGenerator.Contracts;
 
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {
-    public sealed class CreateSolutionViewModel : Screen
+    public sealed class CreateSolutionViewModel : Conductor<SolutionOptionsViewModel>
     {
         public CreateSolutionViewModel()
         {
@@ -90,6 +88,14 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                 _caption = value;
                 NotifyOfPropertyChange();
             }
+        }
+
+        protected override void OnActivate()
+        {
+            base.OnActivate();
+
+            var optionsViewModel = new SolutionOptionsViewModel(new SolutionOptionsInfo());
+            ActivateItem(optionsViewModel);
         }
     }
 }
