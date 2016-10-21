@@ -6,9 +6,11 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {
     public sealed class CreateSolutionViewModel : Conductor<SolutionOptionsViewModel>
     {
-        public CreateSolutionViewModel()
-        {
+        private readonly SolutionInfo _solution;
 
+        public CreateSolutionViewModel(SolutionInfo solution)
+        {
+            _solution = solution;
         }
 
         private ICommand _okCommand;
@@ -94,7 +96,21 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         {
             base.OnActivate();
 
-            var optionsViewModel = new SolutionOptionsViewModel(new SolutionOptionsInfo());
+            SolutionOptionsInfo options;
+            if (_solution == null)
+            {
+                DisplayName = "Add new solution";
+                options = new SolutionOptionsInfo();
+            }
+            else
+            {
+                DisplayName = "Edit solution " + _solution.Name;
+                options = _solution.Options;
+                Name = _solution.Name;
+                Caption = _solution.Caption;
+            }
+
+            var optionsViewModel = new SolutionOptionsViewModel(options);
             ActivateItem(optionsViewModel);
         }
     }

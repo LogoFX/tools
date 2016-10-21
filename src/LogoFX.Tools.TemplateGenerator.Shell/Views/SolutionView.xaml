@@ -29,12 +29,34 @@
         </Grid.ColumnDefinitions>
 
         <!--Name-->
-        <TextBlock Grid.Row="0"
-                   Grid.Column="0"
-                   Grid.ColumnSpan="3" 
-                   FontSize="16"
-                   VerticalAlignment="Center"
-                   Text="{Binding Path=Model.Name, Mode=OneWay}"/>
+        <Grid Grid.Row="0"
+              Grid.Column="0"
+              Grid.ColumnSpan="3">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Grid.Column="0"
+                       FontSize="16"
+                       VerticalAlignment="Center"
+                       Text="{Binding Path=Model.Name, Mode=OneWay}"/>
+
+            <Button Grid.Column="1"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    Width="80"
+                    Content="Edit…">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <commanding:ExecuteCommandAction Command="{Binding Path=EditSolutionCommand, Mode=OneTime}"
+                                                         ManageEnableState="True" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
 
         <!--Caption-->
         <TextBlock Grid.Row="1"

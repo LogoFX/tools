@@ -3,11 +3,11 @@
   <Title>New Creates new LogoFX Application</Title>
   <Solutions>
     <SolutionData>
+      <Name>Specifications</Name>
       <Caption>LogoFX Desktop Application</Caption>
       <PostCreateUrl>http://www.logoui.co.il/en</PostCreateUrl>
       <Variants>
         <SolutionVariantData>
-          <Name />
           <ContainerName>Unity Container</ContainerName>
           <Items>
             <SolutionItemData xsi:type="SolutionFolderData">
@@ -1345,7 +1345,6 @@
           </Items>
         </SolutionVariantData>
         <SolutionVariantData>
-          <Name />
           <ContainerName>Simple Container</ContainerName>
           <Items>
             <SolutionItemData xsi:type="SolutionFolderData">
@@ -2683,13 +2682,24 @@
           </Items>
         </SolutionVariantData>
       </Variants>
+      <Options>
+        <CanCreateTests>true</CanCreateTests>
+        <DefaultCreateTests>true</DefaultCreateTests>
+        <CanCreateFakes>true</CanCreateFakes>
+        <DefaultCreateFakes>true</DefaultCreateFakes>
+        <CanCreateSamples>false</CanCreateSamples>
+        <DefaultCreateSamples>false</DefaultCreateSamples>
+        <CanSupportNavigation>false</CanSupportNavigation>
+        <DefaultSupportNavigation>false</DefaultSupportNavigation>
+        <UseOnlyDefautValues>false</UseOnlyDefautValues>
+      </Options>
     </SolutionData>
     <SolutionData>
+      <Name>Samples.Universal</Name>
       <Caption>LogoFX UWP Application</Caption>
       <PostCreateUrl>http://www.logoui.co.il/en</PostCreateUrl>
       <Variants>
         <SolutionVariantData>
-          <Name />
           <ContainerName>Default</ContainerName>
           <Items>
             <SolutionItemData xsi:type="SolutionFolderData">
@@ -5780,6 +5790,17 @@
           </Items>
         </SolutionVariantData>
       </Variants>
+      <Options>
+        <CanCreateTests>true</CanCreateTests>
+        <DefaultCreateTests>true</DefaultCreateTests>
+        <CanCreateFakes>true</CanCreateFakes>
+        <DefaultCreateFakes>true</DefaultCreateFakes>
+        <CanCreateSamples>false</CanCreateSamples>
+        <DefaultCreateSamples>false</DefaultCreateSamples>
+        <CanSupportNavigation>false</CanSupportNavigation>
+        <DefaultSupportNavigation>true</DefaultSupportNavigation>
+        <UseOnlyDefautValues>false</UseOnlyDefautValues>
+      </Options>
     </SolutionData>
   </Solutions>
 </WizardData>

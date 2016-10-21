@@ -5,6 +5,7 @@
   <DefaultName>Simple</DefaultName>
   <Solutions>
     <SolutionInfo>
+      <IsNotifying>true</IsNotifying>
       <Name>Simple</Name>
       <PostCreateUrl>http://logoui.co.il/en</PostCreateUrl>
       <Options>

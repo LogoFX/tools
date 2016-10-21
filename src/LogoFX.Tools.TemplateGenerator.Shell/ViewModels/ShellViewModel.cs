@@ -71,7 +71,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                            {
                                FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog
                                {
-                                   RootSpecialFolder = Environment.SpecialFolder.MyComputer,
                                    SelectedPath = DestinationPath,
                                    Title = "Destination Path"
                                };

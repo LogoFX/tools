@@ -30,6 +30,31 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
         #region Commands
 
+        private ICommand _editSolutionCommand;
+
+        public ICommand EditSolutionCommand
+        {
+            get
+            {
+                return _editSolutionCommand ??
+                       (_editSolutionCommand = ActionCommand
+                           .When(() => true)
+                           .Do(() =>
+                           {
+                               var createSolutionViewModel = new CreateSolutionViewModel(Model);
+                               var retVal = _windowManager.ShowDialog(createSolutionViewModel) ?? false;
+
+                               if (!retVal)
+                               {
+                                   return;
+                               }
+
+                               Model.Name = createSolutionViewModel.Name;
+                               Model.Caption = createSolutionViewModel.Caption;
+                           }));
+            }
+        }
+
         private ICommand _browseIconCommand;
 
         public ICommand BrowseIconCommand

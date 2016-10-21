@@ -28,7 +28,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                            .When(() => true)
                            .Do(() =>
                            {
-                               var createSolutionViewModel = new CreateSolutionViewModel();
+                               var createSolutionViewModel = new CreateSolutionViewModel(null);
                                var retVal = _windowManager.ShowDialog(createSolutionViewModel) ?? false;
 
                                if (!retVal)
