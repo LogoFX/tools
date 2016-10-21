@@ -4,6 +4,7 @@
   <Solutions>
     <SolutionData>
       <Name>Simple</Name>
+      <PostCreateUrl>http://logoui.co.il/en</PostCreateUrl>
       <Variants>
         <SolutionVariantData>
           <ContainerName>Simple</ContainerName>
@@ -1343,6 +1344,17 @@
           </Items>
         </SolutionVariantData>
       </Variants>
+      <Options>
+        <CanCreateTests>false</CanCreateTests>
+        <DefaultCreateTests>false</DefaultCreateTests>
+        <CanCreateFakes>false</CanCreateFakes>
+        <DefaultCreateFakes>false</DefaultCreateFakes>
+        <CanCreateSamples>false</CanCreateSamples>
+        <DefaultCreateSamples>false</DefaultCreateSamples>
+        <CanSupportNavigation>false</CanSupportNavigation>
+        <DefaultSupportNavigation>false</DefaultSupportNavigation>
+        <UseOnlyDefautValues>true</UseOnlyDefautValues>
+      </Options>
     </SolutionData>
   </Solutions>
 </WizardData>

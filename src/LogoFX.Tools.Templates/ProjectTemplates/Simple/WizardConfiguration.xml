@@ -6,6 +6,7 @@
   <Solutions>
     <SolutionInfo>
       <Name>Simple</Name>
+      <PostCreateUrl>http://logoui.co.il/en</PostCreateUrl>
       <Options>
         <CanCreateTests>false</CanCreateTests>
         <DefaultCreateTests>false</DefaultCreateTests>
@@ -15,7 +16,7 @@
         <DefaultCreateSamples>false</DefaultCreateSamples>
         <CanSupportNavigation>false</CanSupportNavigation>
         <DefaultSupportNavigation>false</DefaultSupportNavigation>
-        <UseOnlyDefautValues>false</UseOnlyDefautValues>
+        <UseOnlyDefautValues>true</UseOnlyDefautValues>
       </Options>
       <SolutionVariants>
         <SolutionVariant>

@@ -28,17 +28,17 @@ namespace LogoFX.Tools.Templates.Wizard
 
         #region Private Members
 
-        private Project[] RemoveConditions(Project[] projects)
+        private Project[] RemoveConditions(Project[] projects, SolutionDataViewModel solutionData)
         {
             foreach (var project in projects)
             {
-                RemoveConditions(project);
+                RemoveConditions(project, solutionData);
             }
 
             return projects;
         }
 
-        private void RemoveConditions(Project project)
+        private void RemoveConditions(Project project, SolutionDataViewModel solutionData)
         {
             var projectFilePath = project.FileName;
 
@@ -52,12 +52,12 @@ namespace LogoFX.Tools.Templates.Wizard
 
             var toRemove = new List<ProjectPropertyGroupElement>();
 
-            if (!_wizardDataViewModel.CreateFakes)
+            if (!solutionData.CreateFakes)
             {
                 toRemove.AddRange(allGroups.Where(x => x.Condition.Contains("Fake")));
             }
 
-            if (!_wizardDataViewModel.CreateFakes)
+            if (!solutionData.CreateFakes)
             {
                 toRemove.AddRange(allGroups.Where(x => x.Condition.Contains("Tests")));
             }
@@ -72,11 +72,11 @@ namespace LogoFX.Tools.Templates.Wizard
             }
         }
 
-        private void AddProjectToSolution(SolutionFolder parent, SolutionItemTemplate project, IList<Project> projects)
+        private void AddProjectToSolution(SolutionFolder parent, SolutionItemTemplate project, IList<Project> projects, SolutionDataViewModel solutionData)
         {
             if (project is SolutionFolderTemplate)
             {
-                AddSolutionFolder(parent, (SolutionFolderTemplate)project, projects);
+                AddSolutionFolder(parent, (SolutionFolderTemplate)project, projects, solutionData);
             }
             else
             {
@@ -84,16 +84,16 @@ namespace LogoFX.Tools.Templates.Wizard
             }
         }
 
-        private void AddSolutionFolder(SolutionFolder parent, SolutionFolderTemplate solutionFolder, IList<Project> projects)
+        private void AddSolutionFolder(SolutionFolder parent, SolutionFolderTemplate solutionFolder, IList<Project> projects, SolutionDataViewModel solutionData)
         {
-            if (!_wizardDataViewModel.CreateTests && 
+            if (!solutionData.CreateTests && 
                 parent == null && 
                 solutionFolder.Name == "Tests")
             {
                 return;
             }
 
-            if (!_wizardDataViewModel.CreateFakes &&
+            if (!solutionData.CreateFakes &&
                 solutionFolder.Name == "Fake")
             {
                 return;
@@ -105,7 +105,7 @@ namespace LogoFX.Tools.Templates.Wizard
 
             foreach (var item in solutionFolder.Items)
             {
-                AddProjectToSolution(addedProject.Object as SolutionFolder, item, projects);
+                AddProjectToSolution(addedProject.Object as SolutionFolder, item, projects, solutionData);
             }
         }
 
@@ -135,16 +135,6 @@ namespace LogoFX.Tools.Templates.Wizard
                 : parent.AddFromFile(newProjectFullName);
 
             projects.Add(addedProject);
-        }
-
-        public bool CreateTests
-        {
-            get { return _wizardDataViewModel.CreateTests; }
-        }
-
-        public bool CreateFakes
-        {
-            get { return _wizardDataViewModel.CreateFakes; }
         }
 
         /// <summary>
@@ -180,7 +170,7 @@ namespace LogoFX.Tools.Templates.Wizard
             }
         }
 
-        private void CreateSolution(SolutionVariantData solutionVariantData)
+        private void CreateSolution(SolutionVariantData solutionVariantData, SolutionDataViewModel solutionData)
         {
             var solution = GetSolution();
 
@@ -211,6 +201,7 @@ namespace LogoFX.Tools.Templates.Wizard
                             pr = k * j + progress * k;
                             p.Report(pr);
                         },
+                        solutionData,
                         ct);
                     ct.ThrowIfCancellationRequested();
                 }
@@ -228,6 +219,7 @@ namespace LogoFX.Tools.Templates.Wizard
             SolutionFolder solutionFolder,
             SolutionItemData solutionItemData,
             Action<double> progressAction,
+            SolutionDataViewModel solutionData,
             CancellationToken ct)
         {
             var solutionFolderData = solutionItemData as SolutionFolderData;
@@ -237,6 +229,7 @@ namespace LogoFX.Tools.Templates.Wizard
                     solutionFolder,
                     solutionFolderData,
                     progressAction,
+                    solutionData,
                     ct);
                 return;
             }
@@ -259,16 +252,17 @@ namespace LogoFX.Tools.Templates.Wizard
             SolutionFolder solutionFolder,
             SolutionFolderData solutionFolderData,
             Action<double> progressAction,
+            SolutionDataViewModel solutionData,
             CancellationToken ct)
         {
-            if (!CreateTests &&
+            if (!solutionData.CreateTests &&
                 solutionFolder == null &&
                 solutionFolderData.Name == "Tests")
             {
                 return;
             }
 
-            if (!CreateFakes &&
+            if (!solutionData.CreateFakes &&
                 solutionFolderData.Name == "Fake")
             {
                 return;
@@ -297,6 +291,7 @@ namespace LogoFX.Tools.Templates.Wizard
                         pr = k * j + progress * k;
                         progressAction(pr);
                     },
+                    solutionData,
                     ct);
                 ct.ThrowIfCancellationRequested();
             }
@@ -441,16 +436,16 @@ namespace LogoFX.Tools.Templates.Wizard
             File.WriteAllText(newFileName, str);
         }
 
-        private Project[] ApplyWizardModifications(Project[] projects)
+        private Project[] ApplyWizardModifications(Project[] projects, SolutionDataViewModel solutionData)
         {
             if (_wizardDataViewModel == null)
             {
                 return projects;
             }
 
-            if (_wizardDataViewModel.MustRemoveConditions)
+            if (_wizardDataViewModel.SelectedSolution.MustRemoveConditions)
             {
-                projects = RemoveConditions(projects);
+                projects = RemoveConditions(projects, solutionData);
             }
 
             return projects;
@@ -473,8 +468,7 @@ namespace LogoFX.Tools.Templates.Wizard
 
             _wizardDataViewModel = null;
 
-            if (wizardData == null ||
-                !wizardData.ShowWizardWindow())
+            if (wizardData == null)
             {
                 return;
             }
@@ -485,6 +479,13 @@ namespace LogoFX.Tools.Templates.Wizard
             {
                 Title = $"{wizardData.Title} - {projectName}"
             };
+
+            if (_wizardDataViewModel.Solutions.Count() == 1 &&
+                _wizardDataViewModel.Solutions.Single().UseOnlyDefautValues)
+            {
+                _wizardDataViewModel.SelectedSolution = _wizardDataViewModel.Solutions.Single();
+                return;
+            }
 
             var window = WpfServices.CreateWindow<WizardWindow>(_wizardDataViewModel);
             WpfServices.SetWindowOwner(window, solution.DTE.MainWindow);
@@ -497,14 +498,14 @@ namespace LogoFX.Tools.Templates.Wizard
 
         protected override void RunFinishedOverride()
         {
-            var solutionData = _wizardDataViewModel.SelectedSolution.Model;
-            var solutionVariant = _wizardDataViewModel.SelectedSolution.SelectedVariant.Model;
+            var solutionData = _wizardDataViewModel.SelectedSolution;
+            var solutionVariant = _wizardDataViewModel.SelectedSolution.SelectedVariant;
 
-            CreateSolution(solutionVariant);
+            CreateSolution(solutionVariant.Model, solutionData);
 
-            if (!string.IsNullOrWhiteSpace(solutionData.PostCreateUrl))
+            if (!string.IsNullOrWhiteSpace(solutionData.Model.PostCreateUrl))
             {
-                GetSolution().DTE.ItemOperations.Navigate(solutionData.PostCreateUrl);
+                GetSolution().DTE.ItemOperations.Navigate(solutionData.Model.PostCreateUrl);
             }
 
             //Get all projects in solution
@@ -514,7 +515,7 @@ namespace LogoFX.Tools.Templates.Wizard
                 throw new Exception("No projects found.");
             }
 
-            ApplyWizardModifications(projects);
+            ApplyWizardModifications(projects, solutionData);
         }
 
         #endregion

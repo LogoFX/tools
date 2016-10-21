@@ -20,24 +20,26 @@
 
         <CheckBox Grid.Row="0"
                   Content="Create Tests"
-                  IsEnabled="{Binding Path=TestOption, Mode=OneWay}"
+                  IsEnabled="{Binding Path=CanCreateTests, Mode=OneWay}"
                   IsChecked="{Binding Path=CreateTests, Mode=TwoWay}"
                   VerticalAlignment="Center" />
 
         <CheckBox Grid.Row="1"
                   Content="Create Fakes"
-                  IsEnabled="{Binding Path=FakeOption, Mode=OneWay}"
+                  IsEnabled="{Binding Path=CanCreateFakes, Mode=OneWay}"
                   IsChecked="{Binding Path=CreateFakes, Mode=TwoWay}"
                   VerticalAlignment="Center" />
 
         <CheckBox Grid.Row="2"
-                  IsEnabled="False"
                   Content="With Sample"
+                  IsEnabled="{Binding Path=CanCreateSamples, Mode=OneWay}"
+                  IsChecked="{Binding Path=CreateSamples, Mode=TwoWay}"
                   VerticalAlignment="Center" />
 
         <CheckBox Grid.Row="3"
-                  IsEnabled="False"
                   Content="Support Navigation"
+                  IsEnabled="{Binding Path=CanSupportNavigation, Mode=OneWay}"
+                  IsChecked="{Binding Path=SupportNavigation, Mode=TwoWay}"
                   VerticalAlignment="Center" />
 
         <Border Grid.Row="4"

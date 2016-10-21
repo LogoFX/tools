@@ -118,7 +118,6 @@
     <Compile Include="Model\SolutionItemCollectionTemplate.cs" />
     <Compile Include="Model\SolutionItemTemplate.cs" />
     <Compile Include="Model\SolutionTemplate.cs" />
-    <Compile Include="PostSolutionWizard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolutionWizard.cs" />
     <Compile Include="SolutionWizardBase.cs" />
@@ -136,7 +135,6 @@
       <DependentUpon>WizardWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\WizardDataViewModel.cs" />
-    <Compile Include="WizardDataExtensions.cs" />
     <Compile Include="WpfServices.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
