@@ -1,5 +1,3 @@
-using System.Collections;
-using System.ComponentModel;
 using Caliburn.Micro;
 using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.ViewModel;
@@ -22,23 +20,20 @@ namespace $safeprojectname$.ViewModels
             _viewModelCreatorService = viewModelCreatorService;
         }
 
-        private ICollectionView _warehouseItems;
-        public IEnumerable WarehouseItems
+        private WrappingCollection.WithSelection _warehouseItems;
+        public WrappingCollection.WithSelection WarehouseItems
         {
             get { return _warehouseItems ?? (_warehouseItems = CreateWarehouseItems()); }
         }
 
-        private ICollectionView CreateWarehouseItems()
+        private WrappingCollection.WithSelection CreateWarehouseItems()
         {
-            var wc = new WrappingCollection
+            var wc = new WrappingCollection.WithSelection
             {
-                FactoryMethod =
-                    o =>
-                        _viewModelCreatorService.CreateViewModel<IWarehouseItem, WarehouseItemViewModel>(
-                            (IWarehouseItem) o)
+                FactoryMethod = o => _viewModelCreatorService.CreateViewModel<IWarehouseItem, WarehouseItemViewModel>((IWarehouseItem) o)
             }.WithSource(_dataService.WarehouseItems);
 
-            return wc.AsView();
+            return wc;
         }
     }
 }

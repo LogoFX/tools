@@ -8,5 +8,7 @@ namespace $safeprojectname$
         IEnumerable<IWarehouseItem> WarehouseItems { get; }
 
         Task GetWarehouseItemsAsync();
+
+        Task<IWarehouseItem> NewWarehouseItemAsync();
     }
 }

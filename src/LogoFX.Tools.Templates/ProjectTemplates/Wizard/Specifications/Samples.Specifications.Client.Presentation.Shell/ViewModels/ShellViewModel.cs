@@ -9,6 +9,7 @@ using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.ViewModel.Services;
 using LogoFX.Core;
 using $saferootprojectname$.Client.Model.Shared;
+using $safeprojectname$.Properties;
 using Solid.Practices.Scheduling;
 
 namespace $safeprojectname$.ViewModels
@@ -111,6 +112,16 @@ namespace $safeprojectname$.ViewModels
             {
                 await Close();
             }
+        }
+
+        protected override void OnDeactivate(bool close)
+        {
+            if (close)
+            {
+                Settings.Default.Save();
+            }
+
+            base.OnDeactivate(close);
         }
 
         private void OnLoggedInSuccessfully(object sender, EventArgs eventArgs)

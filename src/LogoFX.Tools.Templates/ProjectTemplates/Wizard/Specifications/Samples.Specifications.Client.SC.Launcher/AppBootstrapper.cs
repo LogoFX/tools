@@ -4,11 +4,12 @@ using $saferootprojectname$.Client.Presentation.Shell.ViewModels;
 
 namespace $safeprojectname$
 {
-    public class AppBootstrapper : BootstrapperContainerBase<SimpleContainerAdapter>.WithRootObject<ShellViewModel>
+    public class AppBootstrapper : BootstrapperContainerBase<ExtendedSimpleContainerAdapter>
+        .WithRootObject<ShellViewModel>
     {
-        public AppBootstrapper(SimpleContainerAdapter containerAdapter) 
+        public AppBootstrapper(ExtendedSimpleContainerAdapter containerAdapter) 
             : base(containerAdapter)
         {
-        }              
+        }       
     }
 }

@@ -29,7 +29,7 @@
         <SolutionVariant>
           <ContainerName>Simple Container</ContainerName>
           <SolutionFileName>C:\Projects\LogoUI\LogoFX\Samples.Specifications\Specifications.SimpleContainer.sln</SolutionFileName>
-          <StartupProjectName>Client.SimpleContainer.Launcher</StartupProjectName>
+          <StartupProjectName>Client.Presentation.Shared</StartupProjectName>
         </SolutionVariant>
       </SolutionVariants>
     </SolutionInfo>

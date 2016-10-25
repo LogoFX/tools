@@ -10,7 +10,7 @@ using $safeprojectname$.Mappers;
 namespace $safeprojectname$
 {
     [UsedImplicitly]
-    class DataService : IDataService
+    internal sealed class DataService : IDataService
     {
         private readonly IWarehouseProvider _warehouseProvider;        
 
@@ -28,6 +28,12 @@ namespace $safeprojectname$
         public async Task GetWarehouseItemsAsync()
         {
             await ServiceRunner.RunAsync(GetWarehouseItemsInternal);
+        }
+
+        public async Task<IWarehouseItem> NewWarehouseItemAsync()
+        {
+            await Task.Delay(1000);
+            return new WarehouseItem("", 0d, 1);
         }
 
         private async Task GetWarehouseItemsInternal()

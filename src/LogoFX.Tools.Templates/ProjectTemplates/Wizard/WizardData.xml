@@ -1359,7 +1359,7 @@
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Presentation.Shared</Name>
                           <FileName>Specifications\Samples.Specifications.Client.Presentation.Shared\MyProject.csproj</FileName>
-                          <IsStartup>false</IsStartup>
+                          <IsStartup>true</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
                               <Name>DebugWithFake|Any CPU</Name>
@@ -1899,93 +1899,93 @@
                         </SolutionItemData>
                       </Items>
                     </SolutionItemData>
-                    <SolutionItemData xsi:type="ProjectData">
-                      <Name>Client.Launcher.Shared</Name>
-                      <FileName>Specifications\Samples.Specifications.Client.Launcher.Shared\MyProject.csproj</FileName>
-                      <IsStartup>false</IsStartup>
-                      <ProjectConfigurations>
-                        <ProjectConfigurationData>
-                          <Name>DebugWithFake|Any CPU</Name>
-                          <ConfigurationName>DebugWithFake</ConfigurationName>
-                          <PlatformName>AnyCPU</PlatformName>
-                          <IncludeInBuild>true</IncludeInBuild>
-                        </ProjectConfigurationData>
-                        <ProjectConfigurationData>
-                          <Name>DebugWithReal|Any CPU</Name>
-                          <ConfigurationName>DebugWithFake</ConfigurationName>
-                          <PlatformName>AnyCPU</PlatformName>
-                          <IncludeInBuild>true</IncludeInBuild>
-                        </ProjectConfigurationData>
-                        <ProjectConfigurationData>
-                          <Name>IntegrationWithFake|Any CPU</Name>
-                          <ConfigurationName>Release</ConfigurationName>
-                          <PlatformName>AnyCPU</PlatformName>
-                          <IncludeInBuild>true</IncludeInBuild>
-                        </ProjectConfigurationData>
-                        <ProjectConfigurationData>
-                          <Name>Release|Any CPU</Name>
-                          <ConfigurationName>Release</ConfigurationName>
-                          <PlatformName>AnyCPU</PlatformName>
-                          <IncludeInBuild>true</IncludeInBuild>
-                        </ProjectConfigurationData>
-                        <ProjectConfigurationData>
-                          <Name>TestsWithFake|Any CPU</Name>
-                          <ConfigurationName>Release</ConfigurationName>
-                          <PlatformName>AnyCPU</PlatformName>
-                          <IncludeInBuild>true</IncludeInBuild>
-                        </ProjectConfigurationData>
-                        <ProjectConfigurationData>
-                          <Name>TestsWithReal|Any CPU</Name>
-                          <ConfigurationName>Release</ConfigurationName>
-                          <PlatformName>AnyCPU</PlatformName>
-                          <IncludeInBuild>true</IncludeInBuild>
-                        </ProjectConfigurationData>
-                      </ProjectConfigurations>
-                    </SolutionItemData>
-                    <SolutionItemData xsi:type="ProjectData">
-                      <Name>Client.SimpleContainer.Launcher</Name>
-                      <FileName>Specifications\Samples.Specifications.Client.SimpleContainer.Launcher\MyProject.csproj</FileName>
-                      <IsStartup>true</IsStartup>
-                      <ProjectConfigurations>
-                        <ProjectConfigurationData>
-                          <Name>DebugWithFake|Any CPU</Name>
-                          <ConfigurationName>DebugWithFake</ConfigurationName>
-                          <PlatformName>AnyCPU</PlatformName>
-                          <IncludeInBuild>true</IncludeInBuild>
-                        </ProjectConfigurationData>
-                        <ProjectConfigurationData>
-                          <Name>DebugWithReal|Any CPU</Name>
-                          <ConfigurationName>DebugWithReal</ConfigurationName>
-                          <PlatformName>AnyCPU</PlatformName>
-                          <IncludeInBuild>true</IncludeInBuild>
-                        </ProjectConfigurationData>
-                        <ProjectConfigurationData>
-                          <Name>IntegrationWithFake|Any CPU</Name>
-                          <ConfigurationName>TestsWithReal</ConfigurationName>
-                          <PlatformName>AnyCPU</PlatformName>
-                          <IncludeInBuild>true</IncludeInBuild>
-                        </ProjectConfigurationData>
-                        <ProjectConfigurationData>
-                          <Name>Release|Any CPU</Name>
-                          <ConfigurationName>Release</ConfigurationName>
-                          <PlatformName>AnyCPU</PlatformName>
-                          <IncludeInBuild>true</IncludeInBuild>
-                        </ProjectConfigurationData>
-                        <ProjectConfigurationData>
-                          <Name>TestsWithFake|Any CPU</Name>
-                          <ConfigurationName>TestsWithFake</ConfigurationName>
-                          <PlatformName>AnyCPU</PlatformName>
-                          <IncludeInBuild>true</IncludeInBuild>
-                        </ProjectConfigurationData>
-                        <ProjectConfigurationData>
-                          <Name>TestsWithReal|Any CPU</Name>
-                          <ConfigurationName>TestsWithReal</ConfigurationName>
-                          <PlatformName>AnyCPU</PlatformName>
-                          <IncludeInBuild>true</IncludeInBuild>
-                        </ProjectConfigurationData>
-                      </ProjectConfigurations>
-                    </SolutionItemData>
                   </Items>
+                </SolutionItemData>
+                <SolutionItemData xsi:type="ProjectData">
+                  <Name>Client.SC.Launcher</Name>
+                  <FileName>Specifications\Samples.Specifications.Client.SC.Launcher\MyProject.csproj</FileName>
+                  <IsStartup>false</IsStartup>
+                  <ProjectConfigurations>
+                    <ProjectConfigurationData>
+                      <Name>DebugWithFake|Any CPU</Name>
+                      <ConfigurationName>DebugWithFake</ConfigurationName>
+                      <PlatformName>AnyCPU</PlatformName>
+                      <IncludeInBuild>true</IncludeInBuild>
+                    </ProjectConfigurationData>
+                    <ProjectConfigurationData>
+                      <Name>DebugWithReal|Any CPU</Name>
+                      <ConfigurationName>DebugWithReal</ConfigurationName>
+                      <PlatformName>AnyCPU</PlatformName>
+                      <IncludeInBuild>true</IncludeInBuild>
+                    </ProjectConfigurationData>
+                    <ProjectConfigurationData>
+                      <Name>IntegrationWithFake|Any CPU</Name>
+                      <ConfigurationName>TestsWithReal</ConfigurationName>
+                      <PlatformName>AnyCPU</PlatformName>
+                      <IncludeInBuild>true</IncludeInBuild>
+                    </ProjectConfigurationData>
+                    <ProjectConfigurationData>
+                      <Name>Release|Any CPU</Name>
+                      <ConfigurationName>Release</ConfigurationName>
+                      <PlatformName>AnyCPU</PlatformName>
+                      <IncludeInBuild>true</IncludeInBuild>
+                    </ProjectConfigurationData>
+                    <ProjectConfigurationData>
+                      <Name>TestsWithFake|Any CPU</Name>
+                      <ConfigurationName>TestsWithFake</ConfigurationName>
+                      <PlatformName>AnyCPU</PlatformName>
+                      <IncludeInBuild>true</IncludeInBuild>
+                    </ProjectConfigurationData>
+                    <ProjectConfigurationData>
+                      <Name>TestsWithReal|Any CPU</Name>
+                      <ConfigurationName>TestsWithReal</ConfigurationName>
+                      <PlatformName>AnyCPU</PlatformName>
+                      <IncludeInBuild>true</IncludeInBuild>
+                    </ProjectConfigurationData>
+                  </ProjectConfigurations>
+                </SolutionItemData>
+                <SolutionItemData xsi:type="ProjectData">
+                  <Name>Client.SC.Launcher.Shared</Name>
+                  <FileName>Specifications\Samples.Specifications.Client.SC.Launcher.Shared\MyProject.csproj</FileName>
+                  <IsStartup>false</IsStartup>
+                  <ProjectConfigurations>
+                    <ProjectConfigurationData>
+                      <Name>DebugWithFake|Any CPU</Name>
+                      <ConfigurationName>DebugWithFake</ConfigurationName>
+                      <PlatformName>AnyCPU</PlatformName>
+                      <IncludeInBuild>true</IncludeInBuild>
+                    </ProjectConfigurationData>
+                    <ProjectConfigurationData>
+                      <Name>DebugWithReal|Any CPU</Name>
+                      <ConfigurationName>DebugWithFake</ConfigurationName>
+                      <PlatformName>AnyCPU</PlatformName>
+                      <IncludeInBuild>true</IncludeInBuild>
+                    </ProjectConfigurationData>
+                    <ProjectConfigurationData>
+                      <Name>IntegrationWithFake|Any CPU</Name>
+                      <ConfigurationName>DebugWithFake</ConfigurationName>
+                      <PlatformName>AnyCPU</PlatformName>
+                      <IncludeInBuild>true</IncludeInBuild>
+                    </ProjectConfigurationData>
+                    <ProjectConfigurationData>
+                      <Name>Release|Any CPU</Name>
+                      <ConfigurationName>Release</ConfigurationName>
+                      <PlatformName>AnyCPU</PlatformName>
+                      <IncludeInBuild>true</IncludeInBuild>
+                    </ProjectConfigurationData>
+                    <ProjectConfigurationData>
+                      <Name>TestsWithFake|Any CPU</Name>
+                      <ConfigurationName>DebugWithFake</ConfigurationName>
+                      <PlatformName>AnyCPU</PlatformName>
+                      <IncludeInBuild>true</IncludeInBuild>
+                    </ProjectConfigurationData>
+                    <ProjectConfigurationData>
+                      <Name>TestsWithReal|Any CPU</Name>
+                      <ConfigurationName>DebugWithFake</ConfigurationName>
+                      <PlatformName>AnyCPU</PlatformName>
+                      <IncludeInBuild>true</IncludeInBuild>
+                    </ProjectConfigurationData>
+                  </ProjectConfigurations>
                 </SolutionItemData>
               </Items>
             </SolutionItemData>
@@ -2358,8 +2358,8 @@
                           </ProjectConfigurations>
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
-                          <Name>Client.Tests.Integration.Infra.Shared</Name>
-                          <FileName>Specifications\Samples.Specifications.Client.Tests.Integration.Infra.Shared\MyProject.csproj</FileName>
+                          <Name>Client.Tests.Integration.Infra</Name>
+                          <FileName>Specifications\Samples.Specifications.Client.Tests.Integration.Infra\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -2401,8 +2401,8 @@
                           </ProjectConfigurations>
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
-                          <Name>Client.Tests.Integration.Infra</Name>
-                          <FileName>Specifications\Samples.Specifications.Client.Tests.Integration.Infra\MyProject.csproj</FileName>
+                          <Name>Client.Tests.Integration.Infra.SC.Shared</Name>
+                          <FileName>Specifications\Samples.Specifications.Client.Tests.Integration.Infra.SC.Shared\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -2431,13 +2431,13 @@
                             </ProjectConfigurationData>
                             <ProjectConfigurationData>
                               <Name>TestsWithFake|Any CPU</Name>
-                              <ConfigurationName>Release</ConfigurationName>
+                              <ConfigurationName>DebugWithFake</ConfigurationName>
                               <PlatformName>AnyCPU</PlatformName>
-                              <IncludeInBuild>false</IncludeInBuild>
+                              <IncludeInBuild>true</IncludeInBuild>
                             </ProjectConfigurationData>
                             <ProjectConfigurationData>
                               <Name>TestsWithReal|Any CPU</Name>
-                              <ConfigurationName>Release</ConfigurationName>
+                              <ConfigurationName>DebugWithFake</ConfigurationName>
                               <PlatformName>AnyCPU</PlatformName>
                               <IncludeInBuild>true</IncludeInBuild>
                             </ProjectConfigurationData>
