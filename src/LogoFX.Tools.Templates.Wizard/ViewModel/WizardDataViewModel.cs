@@ -64,6 +64,11 @@ namespace LogoFX.Tools.Templates.Wizard.ViewModel
             NotifyOfPropertyChange(() => OkEnabled);
         }
 
+        public void SetSelectedSolution(SolutionDataViewModel selectedSolution)
+        {
+            _selectedSolution = selectedSolution;
+        }
+
         public bool OkEnabled
         {
             get { return SelectedSolution?.SelectedVariant != null; }

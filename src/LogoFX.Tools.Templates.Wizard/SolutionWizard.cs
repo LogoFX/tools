@@ -68,6 +68,8 @@ namespace LogoFX.Tools.Templates.Wizard
                 {
                     buildProject.Xml.RemoveChild(pg);
                 }
+
+                System.Threading.Thread.Sleep(500);
                 buildProject.Save();
             }
         }
@@ -480,11 +482,17 @@ namespace LogoFX.Tools.Templates.Wizard
                 Title = $"{wizardData.Title} - {projectName}"
             };
 
-            if (_wizardDataViewModel.Solutions.Count() == 1 &&
-                _wizardDataViewModel.Solutions.Single().UseOnlyDefautValues)
+            var solutions = _wizardDataViewModel.Solutions.ToArray();
+
+            if (solutions.Length == 1)
             {
-                _wizardDataViewModel.SelectedSolution = _wizardDataViewModel.Solutions.Single();
-                return;
+                var solutionDataViewModel = solutions[0];
+                if (solutionDataViewModel.UseOnlyDefautValues)
+                {
+                    solutionDataViewModel.SelectedVariant = solutionDataViewModel.Variants.First();
+                    _wizardDataViewModel.SetSelectedSolution(solutionDataViewModel);
+                    return;
+                }
             }
 
             var window = WpfServices.CreateWindow<WizardWindow>(_wizardDataViewModel);
