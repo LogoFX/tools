@@ -49,6 +49,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IEventsProvider.cs" />
     <Compile Include="ILoginProvider.cs" />
     <Compile Include="IWarehouseProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

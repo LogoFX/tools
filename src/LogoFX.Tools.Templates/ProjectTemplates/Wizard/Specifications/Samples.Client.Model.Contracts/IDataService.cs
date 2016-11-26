@@ -10,5 +10,15 @@ namespace $safeprojectname$
         Task GetWarehouseItemsAsync();
 
         Task<IWarehouseItem> NewWarehouseItemAsync();
+
+        void StartEventMonitoring();
+
+        void StopEventMonitoring();
+
+        Task ClearEventsAsync();
+
+        IEnumerable<IEvent> Events { get; }
+
+        bool EventMonitoringStarted { get; }
     }
 }

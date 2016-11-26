@@ -22,5 +22,41 @@ namespace $safeprojectname$.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SavedPassword {
+            get {
+                return ((string)(this["SavedPassword"]));
+            }
+            set {
+                this["SavedPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SavedUsername {
+            get {
+                return ((string)(this["SavedUsername"]));
+            }
+            set {
+                this["SavedUsername"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SavePassword {
+            get {
+                return ((bool)(this["SavePassword"]));
+            }
+            set {
+                this["SavePassword"] = value;
+            }
+        }
     }
 }

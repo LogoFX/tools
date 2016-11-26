@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Windows.Input;
 using Caliburn.Micro;
@@ -175,6 +176,11 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                 };
                 foreach (var solutionVariant in Model.SolutionVariants)
                 {
+                    if (!File.Exists(solutionVariant.SolutionFileName))
+                    {
+                        continue;
+                    }
+
                     var solutionVariantVm = new SolutionVariantViewModel(solutionVariant);
                     await solutionVariantVm.CreateSolutionTemplateInfoAsync();
                     _solutionVariants.Add(solutionVariantVm);

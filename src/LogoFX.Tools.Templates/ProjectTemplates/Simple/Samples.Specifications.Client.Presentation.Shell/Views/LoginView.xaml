@@ -12,15 +12,20 @@
         d:DataContext="{d:DesignInstance viewModels:LoginViewModel}"
         Title="LoginView" 
         WindowStartupLocation="CenterOwner"
-        Height="300" 
+        ShowInTaskbar="False"
+        WindowStyle="ToolWindow"
+        ResizeMode="NoResize"
+        Height="240" 
         Width="300">
     
-    <Grid VerticalAlignment="Center"
+    <Grid VerticalAlignment="Stretch"
           HorizontalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition Height="40" />
-            <RowDefinition Height="40" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
         
@@ -50,14 +55,21 @@
                      behaviors:PasswordHelper.BindPassword="True"
                      behaviors:PasswordHelper.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <TextBlock Grid.Row="2"
+        <CheckBox Grid.Row="2"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2"
+                  Content="Save Password"
+                  VerticalAlignment="Center"
+                  IsChecked="{Binding Path=SavePassword, Mode=TwoWay}" />
+        
+        <TextBlock Grid.Row="3"
                    Grid.Column="0"
                    Grid.ColumnSpan="2"
                    VerticalAlignment="Center"
                    Foreground="Red"
                    Text="{Binding Path=LoginFailureCause, Mode=OneWay}" />
         
-        <Grid Grid.Row="3" 
+        <Grid Grid.Row="5" 
               Grid.Column="0" 
               Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>

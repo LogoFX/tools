@@ -52,6 +52,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="EventDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WarehouseItemDto.cs" />
   </ItemGroup>

@@ -1,6 +1,6 @@
 using LogoFX.Bootstrapping;
 using LogoFX.Client.Mvvm.ViewModel.Services;
-using LogoFX.Client.Mvvm.ViewModelFactory.Unity;
+using LogoFX.Client.Mvvm.ViewModelFactory.SimpleContainer;
 using Solid.Practices.IoC;
 
 namespace $safeprojectname$

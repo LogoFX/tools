@@ -5,10 +5,93 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:viewModels="clr-namespace:$safeprojectname$.ViewModels"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-      <ContentControl cal:View.Model="{Binding WarehouseItems, Mode=OneTime}"></ContentControl>     
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="4" />
+            <ColumnDefinition Width="200" MinWidth="20" MaxWidth="400" />
+        </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Column="0"
+              Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="32" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <ContentControl Grid.Row="0"
+                            IsEnabled="{Binding Path=ActiveWarehouseItem.IsEnabled}"
+                            cal:View.Model="{Binding Path=ActiveWarehouseItem, Mode=OneWay}"                            
+                            cal:View.Context="Edit" />
+            
+            <Grid Grid.Row="1" IsEnabled="{Binding Path=ActiveWarehouseItem.IsEnabled}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                
+                <Button Grid.Column="0"
+                        Content="New"
+                        Width="100"
+                        Height="24"
+                        VerticalAlignment="Center">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <commanding:ExecuteCommandAction Command="{Binding Path=NewCommand, Mode=OneTime}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+
+                <Button Grid.Column="2"
+                        Content="Apply"
+                        Width="100"
+                        Height="24"
+                        VerticalAlignment="Center">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <commanding:ExecuteCommandAction Command="{Binding Path=ApplyCommand, Mode=OneTime}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+
+                <Button Grid.Column="3"
+                        Margin="5,0,0,0"
+                        Content="Discard"
+                        Width="100"
+                        Height="24"
+                        VerticalAlignment="Center">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <commanding:ExecuteCommandAction Command="{Binding Path=DiscardCommand, Mode=OneTime}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </Grid>
+            
+            <ContentControl Grid.Row="2"
+                            cal:View.Model="{Binding WarehouseItems, Mode=OneTime}" />     
+        </Grid>
+
+        <GridSplitter Grid.Column="1"
+                      VerticalAlignment="Stretch"
+                      HorizontalAlignment="Stretch"
+                      ResizeDirection="Columns" />
+        
+        <Grid Grid.Column="2">
+            <ContentControl cal:View.Model="{Binding Path=Events, Mode=OneWay}" />
+        </Grid>
+        
+        <xctk:BusyIndicator Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            IsBusy="{Binding Path=IsBusy, Mode=OneWay}" />
     </Grid>
 </UserControl>

@@ -22,14 +22,14 @@
       </Options>
       <SolutionVariants>
         <SolutionVariant>
-          <ContainerName>Unity Container</ContainerName>
-          <SolutionFileName>C:\Projects\LogoUI\LogoFX\Samples.Specifications\Specifications.sln</SolutionFileName>
-          <StartupProjectName>Client.Launcher</StartupProjectName>
-        </SolutionVariant>
-        <SolutionVariant>
           <ContainerName>Simple Container</ContainerName>
           <SolutionFileName>C:\Projects\LogoUI\LogoFX\Samples.Specifications\Specifications.SimpleContainer.sln</SolutionFileName>
-          <StartupProjectName>Client.Presentation.Shared</StartupProjectName>
+          <StartupProjectName>Client.SC.Launcher</StartupProjectName>
+        </SolutionVariant>
+        <SolutionVariant>
+          <ContainerName>Unity Container</ContainerName>
+          <SolutionFileName>C:\Projects\LogoUI\LogoFX\Samples.Specifications\Specifications.Unity.sln</SolutionFileName>
+          <StartupProjectName>Client.Launcher</StartupProjectName>
         </SolutionVariant>
       </SolutionVariants>
     </SolutionInfo>

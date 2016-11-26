@@ -62,6 +62,7 @@ namespace $safeprojectname$
         {
             iocContainer.RegisterSingleton<IWarehouseProvider, FakeWarehouseProvider>();
             iocContainer.RegisterSingleton<ILoginProvider, FakeLoginProvider>();
+            iocContainer.RegisterSingleton<IEventsProvider, FakeEventsProvider>();
         }
     }
 }

@@ -10,7 +10,16 @@
     <Grid>
         <DataGrid AutomationProperties.AutomationId="WarehouseItemsDataGrid" 
                   ItemsSource="{Binding Path=WarehouseItems, Mode=OneWay}"
+                  IsReadOnly="True"
                   AutoGenerateColumns="False">
+            <DataGrid.RowStyle>
+                <Style BasedOn="{StaticResource {x:Type DataGridRow}}"
+                       TargetType="{x:Type DataGridRow}">
+                    <Setter Property="IsSelected"
+                            Value="{Binding Path=IsSelected, Mode=TwoWay}" />
+                </Style>
+            </DataGrid.RowStyle>
+
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Kind" Binding="{Binding Path=Model.Kind}" />
                 <DataGridTextColumn Header="Price" Binding="{Binding Path=Model.Price}" />

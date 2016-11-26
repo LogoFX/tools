@@ -86,6 +86,10 @@
                       HorizontalAlignment="Stretch"
                       ResizeDirection="Columns" />
         
+        <Grid Grid.Column="2">
+            <ContentControl cal:View.Model="{Binding Path=Events, Mode=OneWay}" />
+        </Grid>
+        
         <xctk:BusyIndicator Grid.Column="0"
                             Grid.ColumnSpan="3"
                             IsBusy="{Binding Path=IsBusy, Mode=OneWay}" />

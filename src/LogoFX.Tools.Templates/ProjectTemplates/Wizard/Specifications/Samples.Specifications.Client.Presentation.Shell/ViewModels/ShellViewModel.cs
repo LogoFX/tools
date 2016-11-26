@@ -15,7 +15,7 @@ using Solid.Practices.Scheduling;
 namespace $safeprojectname$.ViewModels
 {
     [UsedImplicitly]
-    public class ShellViewModel : Conductor<INotifyPropertyChanged>.Collection.OneActive     
+    public class ShellViewModel : Conductor<INotifyPropertyChanged>.Collection.OneActive
     {
         private readonly IWindowManager _windowManager;
         private readonly IViewModelCreatorService _viewModelCreatorService;                        
@@ -124,7 +124,7 @@ namespace $safeprojectname$.ViewModels
             base.OnDeactivate(close);
         }
 
-        private void OnLoggedInSuccessfully(object sender, EventArgs eventArgs)
+        protected virtual void OnLoggedInSuccessfully(object sender, EventArgs eventArgs)
         {
             ActivateItem(MainViewModel);
         }

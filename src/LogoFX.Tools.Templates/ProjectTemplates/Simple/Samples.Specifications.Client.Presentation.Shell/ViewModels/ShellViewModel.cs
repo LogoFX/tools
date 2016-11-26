@@ -9,12 +9,13 @@ using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.ViewModel.Services;
 using LogoFX.Core;
 using $saferootprojectname$.Client.Model.Shared;
+using $safeprojectname$.Properties;
 using Solid.Practices.Scheduling;
 
 namespace $safeprojectname$.ViewModels
 {
     [UsedImplicitly]
-    public class ShellViewModel : Conductor<INotifyPropertyChanged>.Collection.OneActive     
+    public class ShellViewModel : Conductor<INotifyPropertyChanged>.Collection.OneActive
     {
         private readonly IWindowManager _windowManager;
         private readonly IViewModelCreatorService _viewModelCreatorService;                        
@@ -113,7 +114,17 @@ namespace $safeprojectname$.ViewModels
             }
         }
 
-        private void OnLoggedInSuccessfully(object sender, EventArgs eventArgs)
+        protected override void OnDeactivate(bool close)
+        {
+            if (close)
+            {
+                Settings.Default.Save();
+            }
+
+            base.OnDeactivate(close);
+        }
+
+        protected virtual void OnLoggedInSuccessfully(object sender, EventArgs eventArgs)
         {
             ActivateItem(MainViewModel);
         }

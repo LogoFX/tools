@@ -73,7 +73,9 @@
   <ItemGroup>
     <Compile Include="AppModel.cs" />
     <Compile Include="DataService.cs" />
+    <Compile Include="Event.cs" />
     <Compile Include="LoginService.cs" />
+    <Compile Include="Mappers\EventMapper.cs" />
     <Compile Include="Mappers\MappingProfile.cs" />
     <Compile Include="Mappers\WarehouseMapper.cs" />
     <Compile Include="MappingModule.cs" />
@@ -85,12 +87,16 @@
     <Compile Include="WarehouseItem.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.4.2.1\lib\portable-net45+win+wpa81+MonoAndroid10+Xamarin.iOS10+MonoTouch10\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.1.1\lib\portable-net45+win8+wpa81\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JetBrains.Annotations.PCL328, Version=10.1.5.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\packages\JetBrains.Annotations.10.1.5\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\JetBrains.Annotations.PCL328.dll</HintPath>
+    <Reference Include="Caliburn.Micro, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.Core.3.0.1\lib\portable-net45+win8+wp8+wpa81+MonoAndroid10+Xamarin.iOS10+MonoTouch10+uap10.0\Caliburn.Micro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JetBrains.Annotations.PCL328, Version=10.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.10.2.1\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\JetBrains.Annotations.PCL328.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Core, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
@@ -128,6 +134,9 @@
     <Reference Include="Solid.Practices.Scheduling, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Solid.Practices.Scheduling.1.0.7\lib\portable-net45+wpa8+win8\Solid.Practices.Scheduling.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\WindowsBase.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

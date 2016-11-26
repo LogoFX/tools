@@ -1,9 +1,10 @@
+using System;
 using LogoFX.Client.Mvvm.Model;
 using $safeprojectname$.Contracts;
 
 namespace $safeprojectname$
 {
-    class AppModel : Model<int>, IAppModel
+    internal abstract class AppModel : EditableModel<Guid>, IAppModel
     {
     }
 }

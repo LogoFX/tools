@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:$safeprojectname$.ViewModels"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance viewModels:WarehouseItemsViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -25,6 +27,27 @@
                 <DataGridTextColumn Header="Price" Binding="{Binding Path=Model.Price}" />
                 <DataGridTextColumn Header="Quantity" Binding="{Binding Path=Model.Quantity}" />
                 <DataGridTextColumn Header="Total cost" Binding="{Binding Path=Model.TotalCost}" />
+                <DataGridTemplateColumn CanUserResize="False"
+                                        Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Button Width="100"
+                                        Height="24"
+                                        Margin="5,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        Content="Edit…">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <commanding:ExecuteNamedCommandAction CommandName="EditItemCommand"
+                                                                                  Parameter="{Binding}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

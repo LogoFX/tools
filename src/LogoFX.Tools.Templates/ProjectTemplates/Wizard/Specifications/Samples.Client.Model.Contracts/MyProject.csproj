@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="IAppModel.cs" />
     <Compile Include="IDataService.cs" />
+    <Compile Include="IEvent.cs" />
     <Compile Include="ILoginService.cs" />
     <Compile Include="IUser.cs" />
     <Compile Include="IWarehouseItem.cs" />

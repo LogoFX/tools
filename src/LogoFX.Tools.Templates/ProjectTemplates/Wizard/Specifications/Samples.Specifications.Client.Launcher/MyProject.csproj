@@ -142,6 +142,10 @@
       <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Core.1.0.5\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Mvvm.ViewModel.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Shared, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Shared.1.0.4\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Mvvm.ViewModel.Shared.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="LogoFX.Core, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LogoFX.Core.1.0.7\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch\LogoFX.Core.dll</HintPath>
       <Private>True</Private>
@@ -164,8 +168,8 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Shim, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c55ec16d10c4b366, processorArchitecture=MSIL">
-      <HintPath>..\packages\shim.2.0.0\lib\net40\Shim.dll</HintPath>
+    <Reference Include="Shim, Version=2.0.1.0, Culture=neutral, PublicKeyToken=c55ec16d10c4b366, processorArchitecture=MSIL">
+      <HintPath>..\packages\shim.2.0.1\lib\net40\Shim.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Solid.Bootstrapping, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -210,6 +214,18 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.3.0.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -243,6 +259,10 @@
     <ProjectReference Include="..\$saferootprojectname$.Client.Launcher.Shared\$saferootprojectname$.Client.Launcher.Shared.csproj">
       <Project>{99D98150-0E31-4394-817D-047D4637636F}</Project>
       <Name>$saferootprojectname$.Client.Launcher.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\$saferootprojectname$.Client.Presentation.Shared\$saferootprojectname$.Client.Presentation.Shared.csproj">
+      <Project>{a4245326-bb01-4b7a-b4de-6ebca9c8094e}</Project>
+      <Name>$saferootprojectname$.Client.Presentation.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\$saferootprojectname$.Client.Presentation.Shell\$saferootprojectname$.Client.Presentation.Shell.csproj">
       <Project>{5270f84d-8ff4-4756-83b0-78dd9777643d}</Project>

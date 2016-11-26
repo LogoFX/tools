@@ -129,6 +129,10 @@
       <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.10\lib\net45\LogoFX.Client.Mvvm.Model.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="LogoFX.Client.Mvvm.Navigation, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\LogoFX.Client.Mvvm.Navigation.dll</HintPath>
+    </Reference>
     <Reference Include="LogoFX.Client.Mvvm.View, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LogoFX.Client.Mvvm.View.Core.1.0.5\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Mvvm.View.dll</HintPath>
       <Private>True</Private>
@@ -261,6 +265,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ViewModels\EventsViewModel.cs" />
+    <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -292,6 +298,14 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\EventView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EventsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -322,6 +336,11 @@
       <Project>{49724A56-9FA9-44C4-B731-1E414EE598BC}</Project>
       <Name>$saferootprojectname$.Client.Model.Shared</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\clear-icon-9197.png" />
+    <Resource Include="Resources\pause-icon-29627.png" />
+    <Resource Include="Resources\play-button-icon-png-18906.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

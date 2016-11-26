@@ -10,11 +10,17 @@ namespace $safeprojectname$.Mappers
         protected override void Configure()
         {
             CreateWarehouseMaps();
+            CreateEventMaps();
         }
 
         private void CreateWarehouseMaps()
         {
             CreateDomainObjectMap<WarehouseItemDto, IWarehouseItem, WarehouseItem>();
+        }
+
+        private void CreateEventMaps()
+        {
+            CreateDomainObjectMap<EventDto, IEvent, Event>();
         }
 
         //TODO: put this piece of functionality into 

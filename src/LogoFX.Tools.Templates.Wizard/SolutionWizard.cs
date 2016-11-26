@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 using EnvDTE;
 using EnvDTE100;
@@ -12,7 +13,9 @@ using LogoFX.Tools.Templates.Wizard.Model;
 using LogoFX.Tools.Templates.Wizard.ViewModel;
 using LogoFX.Tools.Templates.Wizard.Views;
 using Microsoft.Build.Construction;
+using Microsoft.Build.Evaluation;
 using Microsoft.VisualStudio.TemplateWizard;
+using Project = EnvDTE.Project;
 
 namespace LogoFX.Tools.Templates.Wizard
 {
@@ -28,19 +31,12 @@ namespace LogoFX.Tools.Templates.Wizard
 
         #region Private Members
 
-        private Project[] RemoveConditions(Project[] projects, SolutionDataViewModel solutionData)
+        private void RemoveConditions(string projectFilePath, SolutionDataViewModel solutionData)
         {
-            foreach (var project in projects)
+            if (!solutionData.MustRemoveConditions)
             {
-                RemoveConditions(project, solutionData);
+                return;
             }
-
-            return projects;
-        }
-
-        private void RemoveConditions(Project project, SolutionDataViewModel solutionData)
-        {
-            var projectFilePath = project.FileName;
 
             if (!string.Equals(Path.GetExtension(projectFilePath), ".csproj"))
             {
@@ -69,27 +65,31 @@ namespace LogoFX.Tools.Templates.Wizard
                     buildProject.Xml.RemoveChild(pg);
                 }
 
-                System.Threading.Thread.Sleep(500);
                 buildProject.Save();
             }
+
+            ProjectCollection.GlobalProjectCollection.UnloadProject(buildProject);
+            System.Threading.Thread.Sleep(500);
         }
 
-        private void AddProjectToSolution(SolutionFolder parent, SolutionItemTemplate project, IList<Project> projects, SolutionDataViewModel solutionData)
+        private void AddProjectToSolution(SolutionFolder parent, SolutionItemTemplate project, IList<Project> projects,
+            SolutionDataViewModel solutionData)
         {
             if (project is SolutionFolderTemplate)
             {
-                AddSolutionFolder(parent, (SolutionFolderTemplate)project, projects, solutionData);
+                AddSolutionFolder(parent, (SolutionFolderTemplate) project, projects, solutionData);
             }
             else
             {
-                AddProject(parent, (ProjectTemplate)project, projects);
+                AddProject(parent, (ProjectTemplate) project, projects);
             }
         }
 
-        private void AddSolutionFolder(SolutionFolder parent, SolutionFolderTemplate solutionFolder, IList<Project> projects, SolutionDataViewModel solutionData)
+        private void AddSolutionFolder(SolutionFolder parent, SolutionFolderTemplate solutionFolder,
+            IList<Project> projects, SolutionDataViewModel solutionData)
         {
-            if (!solutionData.CreateTests && 
-                parent == null && 
+            if (!solutionData.CreateTests &&
+                parent == null &&
                 solutionFolder.Name == "Tests")
             {
                 return;
@@ -190,17 +190,17 @@ namespace LogoFX.Tools.Templates.Wizard
             waitViewModel.Run((p, ct) =>
             {
                 int count = solutionVariantData.Items.Length;
-                double k = 1.0 / count;
+                double k = 1.0/count;
                 for (int i = 0; i < count; ++i)
                 {
-                    var pr = k * i;
+                    var pr = k*i;
                     p.Report(pr);
                     int j = i;
                     CreateSolutionItem(
                         null,
                         solutionVariantData.Items[i], progress =>
                         {
-                            pr = k * j + progress * k;
+                            pr = k*j + progress*k;
                             p.Report(pr);
                         },
                         solutionData,
@@ -280,17 +280,17 @@ namespace LogoFX.Tools.Templates.Wizard
             }
 
             SolutionFolder subFolder = addedProject.Object as SolutionFolder;
-            var k = 1.0 / solutionFolderData.Items.Length;
+            var k = 1.0/solutionFolderData.Items.Length;
             for (int i = 0; i < solutionFolderData.Items.Length; ++i)
             {
-                var pr = k * i;
+                var pr = k*i;
                 progressAction(pr);
                 int j = i;
                 CreateSolutionItem(
                     subFolder,
                     solutionFolderData.Items[i], progress =>
                     {
-                        pr = k * j + progress * k;
+                        pr = k*j + progress*k;
                         progressAction(pr);
                     },
                     solutionData,
@@ -322,6 +322,9 @@ namespace LogoFX.Tools.Templates.Wizard
 
             File.Move(Path.Combine(destDir, oldFileName), newFullFileName);
 
+            var solutionData = _wizardDataViewModel.SelectedSolution;
+            RemoveConditions(newFullFileName, solutionData);
+
             var addedProject = solutionFolder == null
                 ? GetSolution().AddFromFile(newFullFileName)
                 : solutionFolder.AddFromFile(newFullFileName);
@@ -341,8 +344,14 @@ namespace LogoFX.Tools.Templates.Wizard
 
                 Debug.Assert(projectConfiguration != null, "ProjectConfiguration not found for " + name);
 
-                solutionContext.ConfigurationName = projectConfiguration.ConfigurationName;
-                solutionContext.ShouldBuild = projectConfiguration.IncludeInBuild;
+                try
+                {
+                    solutionContext.ConfigurationName = projectConfiguration.ConfigurationName;
+                    solutionContext.ShouldBuild = projectConfiguration.IncludeInBuild;
+                }
+                catch (COMException)
+                {
+                }
             }
 
             if (projectData.IsStartup)
@@ -438,21 +447,6 @@ namespace LogoFX.Tools.Templates.Wizard
             File.WriteAllText(newFileName, str);
         }
 
-        private Project[] ApplyWizardModifications(Project[] projects, SolutionDataViewModel solutionData)
-        {
-            if (_wizardDataViewModel == null)
-            {
-                return projects;
-            }
-
-            if (_wizardDataViewModel.SelectedSolution.MustRemoveConditions)
-            {
-                projects = RemoveConditions(projects, solutionData);
-            }
-
-            return projects;
-        }
-
         #endregion
 
         #region Overrides
@@ -522,8 +516,6 @@ namespace LogoFX.Tools.Templates.Wizard
             {
                 throw new Exception("No projects found.");
             }
-
-            ApplyWizardModifications(projects, solutionData);
         }
 
         #endregion

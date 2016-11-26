@@ -7,6 +7,7 @@
     <SolutionInfo>
       <IsNotifying>true</IsNotifying>
       <Name>Simple</Name>
+      <Caption>Simple</Caption>
       <PostCreateUrl>http://logoui.co.il/en</PostCreateUrl>
       <Options>
         <CanCreateTests>false</CanCreateTests>
@@ -23,7 +24,7 @@
         <SolutionVariant>
           <ContainerName>Simple</ContainerName>
           <SolutionFileName>C:\Projects\LogoUI\LogoFX\Samples.Specifications\Specifications.SimpleContainer.sln</SolutionFileName>
-          <StartupProjectName>Client.SimpleContainer.Launcher</StartupProjectName>
+          <StartupProjectName>Client.SC.Launcher</StartupProjectName>
         </SolutionVariant>
       </SolutionVariants>
     </SolutionInfo>
