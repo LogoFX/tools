@@ -63,10 +63,11 @@ namespace LogoFX.Tools.TemplateGenerator
                 case SolutionProjectType.KnownToBeMSBuildFormat:
                     Project project = new Project(proj.AbsolutePath);
                     var rootNamespace = project.Properties.Single(x => x.Name == "RootNamespace").EvaluatedValue;
+                    var targetName = project.Properties.Single(x => x.Name == "TargetName").EvaluatedValue;
                     var rootName = AddRootName(rootNamespace, solutionTemplateInfo);
                     result = new ProjectTemplateInfo(id, proj.ProjectName)
                     {
-                        NameWithoutRoot = proj.ProjectName.Substring(rootName.Length + 1),
+                        NameWithoutRoot = targetName.Substring(rootName.Length + 1),
                         FileName = proj.AbsolutePath,
                         ProjectConfigurations = GetProjectConfigurations(proj.ProjectConfigurations)
                     };

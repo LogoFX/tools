@@ -3,8 +3,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Xml;
-using System.Xml.Linq;
 using LogoFX.Tools.TemplateGenerator.Contracts;
 using Microsoft.Build.Evaluation;
 
@@ -109,6 +107,12 @@ namespace LogoFX.Tools.TemplateGenerator
             }
 
             var newFileName = Path.Combine(to, item.EvaluatedInclude);
+
+            if (File.Exists(newFileName))
+            {
+                return newFileName;
+            }
+
             var newFolder = Path.GetDirectoryName(newFileName);
             if (!Directory.Exists(newFolder))
             {
@@ -122,56 +126,16 @@ namespace LogoFX.Tools.TemplateGenerator
         private void FixReference(ProjectItem reference)
         {
             var include = reference.EvaluatedInclude;
+            var fileName = Path.GetFileName(include);
+            var dir = Path.GetFileNameWithoutExtension(fileName);
+            var ddir = Path.GetDirectoryName(Path.GetDirectoryName(include));
+            include = Path.Combine(ddir, Path.Combine(dir, fileName));
             var rootName = GetRootName(include);
             reference.UnevaluatedInclude = include.Replace(rootName, "$saferootprojectname$");
             var name = reference.Metadata.SingleOrDefault(x => x.Name == "Name");
             if (name != null)
             {
                 name.UnevaluatedValue = name.EvaluatedValue.Replace(rootName, "$saferootprojectname$");
-            }
-        }
-
-        private void CreateDefinitions(string projectFolder, string newProjectFileName)
-        {
-            var projectCollection = new XElement(Ns + "Project",
-                new XAttribute("TargetFileName", SafeRootProjectName(_projectTemplateInfo) + ".csproj"),
-                new XAttribute("File", newProjectFileName),
-                new XAttribute("ReplaceParameters", true));
-
-            var doc = new XDocument(
-                new XElement(Ns + "VSTemplate",
-                    new XAttribute("Version", "3.0.0"),
-                    new XAttribute("Type", "Project"),
-                    new XElement(Ns + "TemplateData",
-                        new XElement(Ns + "Name", _projectTemplateInfo.NameWithoutRoot),
-                        new XElement(Ns + "Description", ""),
-                        new XElement(Ns + "DefaultName", SafeRootProjectName(_projectTemplateInfo)),
-                        new XElement(Ns + "ProjectType", "CSharp"),
-                        new XElement(Ns + "ProjectSubType", ""),
-                        new XElement(Ns + "SortOrder", 1000),
-                        new XElement(Ns + "CreateNewFolder", true),
-                        new XElement(Ns + "ProvideDefaultName", true),
-                        new XElement(Ns + "LocationField", "Enabled"),
-                        new XElement(Ns + "EnableLocationBrowseButton", true),
-                        new XElement(Ns + "NumberOfParentCategoriesToRollUp", 1),
-                        new XElement(Ns + "Icon", "")),
-                    new XElement(Ns + "TemplateContent", projectCollection),
-                    MakeWizardExtension(
-                        "TemplateBuilder, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null",
-                        "TemplateBuilder.ChildWizard")
-                    ));
-
-            XmlWriterSettings settings = new XmlWriterSettings
-            {
-                OmitXmlDeclaration = true,
-                Indent = true
-            };
-
-            var templateFile = Path.Combine(projectFolder, "MyTemplate.vstemplate");
-
-            using (XmlWriter xw = XmlWriter.Create(templateFile, settings))
-            {
-                doc.Save(xw);
             }
         }
     }

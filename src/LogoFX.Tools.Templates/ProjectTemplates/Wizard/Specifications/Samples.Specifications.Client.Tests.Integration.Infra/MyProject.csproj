@@ -188,9 +188,9 @@
       <Project>{5270F84D-8FF4-4756-83B0-78DD9777643D}</Project>
       <Name>$saferootprojectname$.Client.Presentation.Shell</Name>
     </ProjectReference>
-    <ProjectReference Include="..\$saferootprojectname$.Client.Tests.Integration.Infra.SC.Shared\$saferootprojectname$.Client.Tests.Integration.Infra.SC.Shared.csproj">
+    <ProjectReference Include="..\$saferootprojectname$.Client.Tests.Integration.Infra.Shared\$saferootprojectname$.Client.Tests.Integration.Infra.Shared.csproj">
       <Project>{91C8CBDF-1EE7-497C-964F-14AD1AD1D9D5}</Project>
-      <Name>$saferootprojectname$.Client.Tests.Integration.Infra.SC.Shared</Name>
+      <Name>$saferootprojectname$.Client.Tests.Integration.Infra.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

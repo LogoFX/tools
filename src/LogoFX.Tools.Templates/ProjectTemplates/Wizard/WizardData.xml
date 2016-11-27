@@ -565,8 +565,8 @@
                   </Items>
                 </SolutionItemData>
                 <SolutionItemData xsi:type="ProjectData">
-                  <Name>Client.SC.Launcher</Name>
-                  <FileName>Specifications\Samples.Specifications.Client.SC.Launcher\MyProject.csproj</FileName>
+                  <Name>Client.Launcher</Name>
+                  <FileName>Specifications\Samples.Specifications.Client.Launcher\MyProject.csproj</FileName>
                   <IsStartup>true</IsStartup>
                   <ProjectConfigurations>
                     <ProjectConfigurationData>
@@ -608,8 +608,8 @@
                   </ProjectConfigurations>
                 </SolutionItemData>
                 <SolutionItemData xsi:type="ProjectData">
-                  <Name>Client.SC.Launcher.Shared</Name>
-                  <FileName>Specifications\Samples.Specifications.Client.SC.Launcher.Shared\MyProject.csproj</FileName>
+                  <Name>Client.Launcher.Shared</Name>
+                  <FileName>Specifications\Samples.Specifications.Client.Launcher.Shared\MyProject.csproj</FileName>
                   <IsStartup>false</IsStartup>
                   <ProjectConfigurations>
                     <ProjectConfigurationData>
@@ -1064,8 +1064,8 @@
                           </ProjectConfigurations>
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
-                          <Name>Client.Tests.Integration.Infra.SC.Shared</Name>
-                          <FileName>Specifications\Samples.Specifications.Client.Tests.Integration.Infra.SC.Shared\MyProject.csproj</FileName>
+                          <Name>Client.Tests.Integration.Infra.Shared</Name>
+                          <FileName>Specifications\Samples.Specifications.Client.Tests.Integration.Infra.Shared\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
