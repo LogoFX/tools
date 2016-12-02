@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
 using EnvDTE;
 using EnvDTE100;
@@ -16,6 +17,7 @@ using Microsoft.Build.Construction;
 using Microsoft.Build.Evaluation;
 using Microsoft.VisualStudio.TemplateWizard;
 using Project = EnvDTE.Project;
+using ProjectItem = Microsoft.Build.Evaluation.ProjectItem;
 
 namespace LogoFX.Tools.Templates.Wizard
 {
@@ -31,19 +33,8 @@ namespace LogoFX.Tools.Templates.Wizard
 
         #region Private Members
 
-        private void RemoveConditions(string projectFilePath, SolutionDataViewModel solutionData)
+        private void RemoveCondition(Microsoft.Build.Evaluation.Project buildProject, SolutionDataViewModel solutionData)
         {
-            if (!solutionData.MustRemoveConditions)
-            {
-                return;
-            }
-
-            if (!string.Equals(Path.GetExtension(projectFilePath), ".csproj"))
-            {
-                return;
-            }
-
-            var buildProject = new Microsoft.Build.Evaluation.Project(projectFilePath);
             var allGroups = buildProject.Xml.PropertyGroups;
 
             var toRemove = new List<ProjectPropertyGroupElement>();
@@ -67,9 +58,90 @@ namespace LogoFX.Tools.Templates.Wizard
 
                 buildProject.Save();
             }
+        }
+
+        private void ModifyProject(string projectFilePath, SolutionDataViewModel solutionData)
+        {
+            if (!string.Equals(Path.GetExtension(projectFilePath), ".csproj"))
+            {
+                return;
+            }
+
+            var buildProject = new Microsoft.Build.Evaluation.Project(projectFilePath);
+
+            if (solutionData.MustRemoveConditions)
+            {
+                RemoveCondition(buildProject, solutionData);
+            }
+
+            if (!solutionData.CreateSamples && Path.GetFileNameWithoutExtension(projectFilePath).EndsWith("Shell"))
+            {
+                RemoveSamples(buildProject, solutionData);
+            }
 
             ProjectCollection.GlobalProjectCollection.UnloadProject(buildProject);
-            System.Threading.Thread.Sleep(500);
+            //System.Threading.Thread.Sleep(500);
+        }
+
+        private void RemoveSamples(Microsoft.Build.Evaluation.Project buildProject, SolutionDataViewModel solutionData)
+        {
+            var items = buildProject.Items.ToArray();
+            var toRemove = new List<ProjectItem>();
+            foreach (var item in items)
+            {
+                var name = item.EvaluatedInclude;
+                var index = name.IndexOf(Path.DirectorySeparatorChar);
+                if (index < 0)
+                {
+                    continue;
+                }
+                var folder = name.Substring(0, index);
+
+                switch (folder)
+                {
+                    case "Views":
+                    case "ViewModels":
+                    case "Resources":
+                        var itemName = Path.GetFileNameWithoutExtension(name);
+                        if (itemName == "ShellViewModel")
+                        {
+                            var body = CreateEmptyShell(buildProject);
+                            var itemFileName = Path.GetDirectoryName(item.Xml.IncludeLocation.File);
+                            itemFileName = Path.Combine(itemFileName, name);
+                            File.WriteAllText(itemFileName, body);
+                            continue;
+                        }
+                        toRemove.Add(item);
+                        break;
+                }
+            }
+
+            if (toRemove.Count > 0)
+            {
+                buildProject.RemoveItems(toRemove);
+                buildProject.Save();
+            }
+        }
+
+        private string CreateEmptyShell(Microsoft.Build.Evaluation.Project buildProject)
+        {
+            var rootNamespace = buildProject.Properties.Single(x => x.Name == "RootNamespace").EvaluatedValue;
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine("using Caliburn.Micro;");
+            sb.AppendLine("using JetBrains.Annotations;");
+            sb.AppendLine();
+            sb.AppendLine("namespace " + rootNamespace + ".ViewModels");
+            sb.AppendLine("{");
+            sb.AppendLine("    [UsedImplicitly]");
+            sb.AppendLine("    public class ShellViewModel : PropertyChangedBase");
+            sb.AppendLine("    {");
+            sb.AppendLine();
+            sb.AppendLine("    }");
+            sb.AppendLine("}");
+
+            return sb.ToString();
         }
 
         private void AddProjectToSolution(SolutionFolder parent, SolutionItemTemplate project, IList<Project> projects,
@@ -323,7 +395,7 @@ namespace LogoFX.Tools.Templates.Wizard
             File.Move(Path.Combine(destDir, oldFileName), newFullFileName);
 
             var solutionData = _wizardDataViewModel.SelectedSolution;
-            RemoveConditions(newFullFileName, solutionData);
+            ModifyProject(newFullFileName, solutionData);
 
             var addedProject = solutionFolder == null
                 ? GetSolution().AddFromFile(newFullFileName)

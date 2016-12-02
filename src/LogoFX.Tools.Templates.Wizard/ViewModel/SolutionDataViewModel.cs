@@ -45,7 +45,10 @@ namespace LogoFX.Tools.Templates.Wizard.ViewModel
             get { return !CreateFakes || !CreateTests; }
         }
 
-        public bool CanCreateTests => Model.Options.CanCreateTests;
+        public bool CanCreateTests
+        {
+            get { return CreateSamples && Model.Options.CanCreateTests; }
+        }
 
         private bool _createTests;
 
@@ -99,6 +102,12 @@ namespace LogoFX.Tools.Templates.Wizard.ViewModel
 
                 _createSamples = value;
                 NotifyOfPropertyChange();
+                NotifyOfPropertyChange(() => CanCreateTests);
+
+                if (!CreateSamples)
+                {
+                    CreateTests = false;                   
+                }
             }
         }
 

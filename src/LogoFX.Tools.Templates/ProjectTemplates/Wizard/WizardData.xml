@@ -2687,8 +2687,8 @@
         <DefaultCreateTests>true</DefaultCreateTests>
         <CanCreateFakes>true</CanCreateFakes>
         <DefaultCreateFakes>true</DefaultCreateFakes>
-        <CanCreateSamples>false</CanCreateSamples>
-        <DefaultCreateSamples>false</DefaultCreateSamples>
+        <CanCreateSamples>true</CanCreateSamples>
+        <DefaultCreateSamples>true</DefaultCreateSamples>
         <CanSupportNavigation>false</CanSupportNavigation>
         <DefaultSupportNavigation>false</DefaultSupportNavigation>
         <UseOnlyDefautValues>false</UseOnlyDefautValues>
@@ -5795,8 +5795,8 @@
         <DefaultCreateTests>true</DefaultCreateTests>
         <CanCreateFakes>true</CanCreateFakes>
         <DefaultCreateFakes>true</DefaultCreateFakes>
-        <CanCreateSamples>false</CanCreateSamples>
-        <DefaultCreateSamples>false</DefaultCreateSamples>
+        <CanCreateSamples>true</CanCreateSamples>
+        <DefaultCreateSamples>true</DefaultCreateSamples>
         <CanSupportNavigation>false</CanSupportNavigation>
         <DefaultSupportNavigation>true</DefaultSupportNavigation>
         <UseOnlyDefautValues>false</UseOnlyDefautValues>
