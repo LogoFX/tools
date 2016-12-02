@@ -35,15 +35,15 @@
         </Grid.ColumnDefinitions>
         
         <TextBlock Grid.Row="0"
-                   Grid.Column="0"
+                   Grid.Column="0"                   
                    VerticalAlignment="Center"
                    Text="User Name:" />
         <TextBox Grid.Row="0"
                  Grid.Column="1"
                  Margin="5,0,0,0" 
                  VerticalAlignment="Center"
+                 AutomationProperties.AutomationId="Login_UserName"
                  Text="{Binding Path=UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
         <TextBlock Grid.Row="1"
                    Grid.Column="0"
                    VerticalAlignment="Center"
@@ -52,6 +52,7 @@
                      Grid.Column="1"
                      Margin="5,0,0,0" 
                      VerticalAlignment="Center"
+                     AutomationProperties.AutomationId="Login_Password"
                      behaviors:PasswordHelper.BindPassword="True"
                      behaviors:PasswordHelper.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
@@ -81,6 +82,7 @@
             <Button Grid.Column="0"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Stretch"
+                    AutomationProperties.AutomationId="Login_SignIn"
                     Content="Login">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
