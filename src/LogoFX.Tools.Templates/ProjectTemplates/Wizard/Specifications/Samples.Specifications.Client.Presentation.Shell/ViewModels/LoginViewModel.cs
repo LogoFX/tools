@@ -1,4 +1,6 @@
 using System;
+using System.Diagnostics;
+using System.Windows;
 using System.Windows.Input;
 using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.Commanding;
@@ -55,7 +57,7 @@ namespace $safeprojectname$.ViewModels
 
                                catch (Exception ex)
                                {
-                                   LoginFailureCause = "Failed to log in";
+                                   LoginFailureCause = "Failed to log in: " + ex.Message;
                                }
 
                                finally

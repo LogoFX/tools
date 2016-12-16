@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using $saferootprojectname$.Tests.Data;
 using $saferootprojectname$.Tests.Domain.ScreenObjects;
-using TestStack.White.InputDevices;
 using TestStack.White.UIItems;
 using TestStack.White.UIItems.Finders;
-using TestStack.White.WindowsAPI;
 
 namespace $safeprojectname$.ScreenObjects
 {
@@ -53,21 +53,62 @@ namespace $safeprojectname$.ScreenObjects
             var match = GetRowByKind(kind);
             try
             {
-                var cell = match.Cells[fieldName];
-                cell.Click();
-                cell.Enter(fieldValue);                
-                Keyboard.Instance.PressSpecialKey(KeyboardInput.SpecialKeys.RETURN);                              
+                match.Focus();
+                Task.Delay(1000).Wait();
+                match.Cells[0].Click();
             }
-            catch (Exception)
-            {                
-                throw new InvalidOperationException($"Column {fieldName} cannot be found");
-            }                        
+            catch (Exception err)
+            {
+                throw new InvalidOperationException($"Item {kind} cannot be found", err);
+            }
+
+            var shell = StructureHelper.GetShell();
+            var priceTextBox = shell.Get<TextBox>(SearchCriteria.ByAutomationId("WarehouseItemPriceTextBox"));
+            priceTextBox.Enter(fieldValue);
         }
 
         public bool IsActive()
         {
             //for nows
             return true;
+        }
+
+        public void DeleteWarehouseItem(string kind)
+        {
+            var match = GetRowByKind(kind);
+            try
+            {
+                match.Focus();
+                Task.Delay(1000).Wait();
+                match.Cells[0].Click();
+            }
+            catch (Exception err)
+            {
+                throw new InvalidOperationException($"Item {kind} cannot be found", err);
+            }
+
+            var shell = StructureHelper.GetShell();
+            var deleteButton = shell.Get<Button>(SearchCriteria.ByAutomationId("WarehouseItemDeleteButton"));
+            deleteButton.Click();
+        }
+
+        public void AddWarehouseItem(WarehouseItemAssertionTestData warehouseItemData)
+        {
+            var shell = StructureHelper.GetShell();
+
+            var deleteButton = shell.Get<Button>(SearchCriteria.ByAutomationId("WarehouseItemNewButton"));
+            deleteButton.Click();
+
+            var kindTextBox = shell.Get<TextBox>(SearchCriteria.ByAutomationId("WarehouseItemKindTextBox"));
+            var priceTextBox = shell.Get<TextBox>(SearchCriteria.ByAutomationId("WarehouseItemPriceTextBox"));
+            var quantityTextBox = shell.Get<TextBox>(SearchCriteria.ByAutomationId("WarehouseItemQuantityTextBox"));
+
+            kindTextBox.Enter(warehouseItemData.Kind);
+            priceTextBox.BulkText = warehouseItemData.Price.ToString(CultureInfo.CurrentCulture);
+            quantityTextBox.BulkText = warehouseItemData.Quantity.ToString(CultureInfo.CurrentCulture);
+
+            var applyButton = shell.Get<Button>(SearchCriteria.ByAutomationId("WarehouseItemApplyButton"));
+            applyButton.Click();
         }
     }
 }

@@ -34,5 +34,18 @@ namespace $safeprojectname$
         {
             MainSteps.ThenTotalCostOfItemIs(kind, expectedTotalCost);
         }
+
+        [When(@"I delete ""(.*)"" item")]
+        public void WhenIDeleteItem(string kind)
+        {
+            MainSteps.WhenIDeleteItem(kind);
+        }
+
+        [When(@"I create a new warehouse item with the following data:")]
+        public void WhenICreateANewWarehouseItemWithTheFollowingData(Table table)
+        {
+            var warehouseItems = table.CreateSet<WarehouseItemAssertionTestData>();
+            MainSteps.WhenICreateANewWarehouseItemWithTheFollowingData(warehouseItems.ToArray());
+        }
     }
 }

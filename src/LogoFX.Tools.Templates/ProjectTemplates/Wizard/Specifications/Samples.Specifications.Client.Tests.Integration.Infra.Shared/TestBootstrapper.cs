@@ -1,15 +1,15 @@
 using LogoFX.Client.Bootstrapping;
-using LogoFX.Client.Bootstrapping.Adapters.SimpleContainer;
+using LogoFX.Client.Bootstrapping.Adapters.Unity;
 using $saferootprojectname$.Client.Launcher.Shared;
 using $saferootprojectname$.Client.Presentation.Shell.ViewModels;
 
 namespace $safeprojectname$
 {
-    public class TestBootstrapper : TestBootstrapperContainerBase<ExtendedSimpleContainerAdapter>
+    public class TestBootstrapper : TestBootstrapperContainerBase<UnityContainerAdapter>
         .WithRootObject<ShellViewModel>
     {
         public TestBootstrapper() :
-            base(new ExtendedSimpleContainerAdapter(), new BootstrapperCreationOptions
+            base(new UnityContainerAdapter(), new BootstrapperCreationOptions
             {
                 UseApplication = false,
                 ReuseCompositionInformation = true

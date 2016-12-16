@@ -12,6 +12,7 @@ namespace $safeprojectname$
         {
             iocContainer.RegisterSingleton<ILoginProvider, LoginProvider>();
             iocContainer.RegisterSingleton<IWarehouseProvider, WarehouseProvider>();
+            iocContainer.RegisterSingleton<IEventsProvider, EventsProvider>();
         }
     }
 }

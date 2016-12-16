@@ -1,5 +1,5 @@
 using LogoFX.Client.Bootstrapping;
-using LogoFX.Client.Bootstrapping.Adapters.SimpleContainer;
+using LogoFX.Client.Bootstrapping.Adapters.Unity;
 using $safeprojectname$.Shared;
 
 namespace $safeprojectname$
@@ -8,7 +8,7 @@ namespace $safeprojectname$
     {
         public App()
         {            
-            var bootstrapper = new AppBootstrapper(new ExtendedSimpleContainerAdapter());
+            var bootstrapper = new AppBootstrapper(new UnityContainerAdapter());
             bootstrapper.UseResolver().UseShared().Initialize();            
         }
     }

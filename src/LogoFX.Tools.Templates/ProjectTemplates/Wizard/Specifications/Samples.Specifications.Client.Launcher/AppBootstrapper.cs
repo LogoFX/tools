@@ -1,15 +1,14 @@
 using LogoFX.Client.Bootstrapping;
-using LogoFX.Client.Bootstrapping.Adapters.SimpleContainer;
+using LogoFX.Client.Bootstrapping.Adapters.Unity;
 using $saferootprojectname$.Client.Presentation.Shell.ViewModels;
 
 namespace $safeprojectname$
 {
-    public class AppBootstrapper : BootstrapperContainerBase<ExtendedSimpleContainerAdapter>
-        .WithRootObject<ShellViewModel>
+    public class AppBootstrapper : BootstrapperContainerBase<UnityContainerAdapter>.WithRootObject<ShellViewModel>
     {
-        public AppBootstrapper(ExtendedSimpleContainerAdapter containerAdapter) 
+        public AppBootstrapper(UnityContainerAdapter containerAdapter) 
             : base(containerAdapter)
         {
-        }       
+        }              
     }
 }

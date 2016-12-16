@@ -22,6 +22,16 @@ namespace $safeprojectname$.ScreenObjects
             return main.IsActive;
         }
 
+        public void AddWarehouseItem(WarehouseItemAssertionTestData warehouseItemData)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void DeleteWarehouseItem(string kind)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public IEnumerable<WarehouseItemAssertionTestData> GetWarehouseItems()
         {
             var main = StructureHelper.GetMain();

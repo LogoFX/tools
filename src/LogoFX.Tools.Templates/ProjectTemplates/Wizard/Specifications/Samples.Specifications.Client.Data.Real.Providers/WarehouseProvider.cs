@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using $saferootprojectname$.Client.Data.Contracts.Dto;
@@ -40,6 +41,16 @@ namespace $safeprojectname$
                     Quantity = 10
                 },
             });           
+        }
+
+        public Task<bool> DeleteWarehouseItem(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SaveWarehouseItem(WarehouseItemDto dto)
+        {
+            throw new NotImplementedException();
         }
     }
 }

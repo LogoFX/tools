@@ -28,10 +28,25 @@ namespace $safeprojectname$
 
         async Task<IEnumerable<WarehouseItemDto>> IWarehouseProvider.GetWarehouseItems()
         {
-            await TaskRunner.RunAsync(() => Thread.Sleep(_random.Next(2000)));
+            await Task.Delay(_random.Next(2000));
             var service = GetService(() => _warehouseProviderBuilder, b => b);
             var warehouseItems = await service.GetWarehouseItems();
             return warehouseItems;
+        }
+
+        async Task<bool> IWarehouseProvider.DeleteWarehouseItem(Guid id)
+        {
+            await Task.Delay(_random.Next(2000));
+            var service = GetService(() => _warehouseProviderBuilder, b => b);
+            var retVal = await service.DeleteWarehouseItem(id);
+            return retVal;
+        }
+
+        async Task IWarehouseProvider.SaveWarehouseItem(WarehouseItemDto dto)
+        {
+            await Task.Delay(_random.Next(2000));
+            var service = GetService(() => _warehouseProviderBuilder, b => b);
+            await service.SaveWarehouseItem(dto);
         }
     }
 }

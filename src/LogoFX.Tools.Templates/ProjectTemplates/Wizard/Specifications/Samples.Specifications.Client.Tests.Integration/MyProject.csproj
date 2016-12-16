@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props')" />
+  <Import Project="..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -41,6 +41,12 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestsWithFake|AnyCPU'">
+    <OutputPath>bin\TestsWithFake\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugWithReal|AnyCPU'">
+    <OutputPath>bin\DebugWithReal\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Attest.Fake.Builders, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Attest.Fake.Builders.1.1.2\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\Attest.Fake.Builders.dll</HintPath>
@@ -80,6 +86,10 @@
     </Reference>
     <Reference Include="LogoFX.Client.Testing.Shared.Platform, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LogoFX.Client.Tests.Shared.1.0.7\lib\net45\LogoFX.Client.Testing.Shared.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Shim, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c55ec16d10c4b366, processorArchitecture=MSIL">
+      <HintPath>..\packages\shim.2.0.0\lib\net40\Shim.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Solid.Bootstrapping, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -123,27 +133,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\$saferootprojectname$.Client.Presentation.Shared\$saferootprojectname$.Client.Presentation.Shared.csproj">
-      <Project>{a4245326-bb01-4b7a-b4de-6ebca9c8094e}</Project>
-      <Name>$saferootprojectname$.Client.Presentation.Shared</Name>
-    </ProjectReference>
     <ProjectReference Include="..\$saferootprojectname$.Client.Presentation.Shell\$saferootprojectname$.Client.Presentation.Shell.csproj">
       <Project>{5270f84d-8ff4-4756-83b0-78dd9777643d}</Project>
       <Name>$saferootprojectname$.Client.Presentation.Shell</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\$saferootprojectname$.Client.Tests.Integration.Infra.Shared\$saferootprojectname$.Client.Tests.Integration.Infra.Shared.csproj">
-      <Project>{91c8cbdf-1ee7-497c-964f-14ad1ad1d9d5}</Project>
-      <Name>$saferootprojectname$.Client.Tests.Integration.Infra.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\$saferootprojectname$.Client.Tests.Integration.Infra\$saferootprojectname$.Client.Tests.Integration.Infra.csproj">
       <Project>{CBF93BCE-066F-4A39-A4D2-408524F49490}</Project>
       <Name>$saferootprojectname$.Client.Tests.Integration.Infra</Name>
     </ProjectReference>
     <ProjectReference Include="..\$saferootprojectname$.Tests.Steps\$saferootprojectname$.Tests.Steps.csproj">
-      <Project>{DE972164-E8D0-4601-B3BE-B36AD22D7581}</Project>
+      <Project>{0B8DF28B-E521-4178-9AF5-49EEB2CDEDF7}</Project>
       <Name>$saferootprojectname$.Tests.Steps</Name>
     </ProjectReference>
   </ItemGroup>
@@ -152,7 +155,7 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props'))" />
+    <Error Condition="!Exists('..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

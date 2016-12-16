@@ -45,5 +45,20 @@ namespace $safeprojectname$
             var isActive = _mainScreenObject.IsActive();
             isActive.Should().BeTrue();
         }
+
+        public void WhenIDeleteItem(string kind)
+        {
+            _mainScreenObject.DeleteWarehouseItem(kind);
+        }
+
+        public void WhenICreateANewWarehouseItemWithTheFollowingData(WarehouseItemAssertionTestData[] warehouseItems)
+        {
+            warehouseItems.Should().HaveCount(1);
+
+            foreach (var warehouseItem in warehouseItems)
+            {
+                _mainScreenObject.AddWarehouseItem(warehouseItem);
+            }
+        }
     }
 }

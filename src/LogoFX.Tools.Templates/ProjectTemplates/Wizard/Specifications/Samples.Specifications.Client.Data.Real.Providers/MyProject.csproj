@@ -41,7 +41,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugWithFake|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\Bin\DebugWithFake\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -84,23 +84,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventsProvider.cs" />
     <Compile Include="LoginProvider.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WarehouseProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\$saferootprojectname$.Client.Data.Contracts.Dto\$saferootprojectname$.Client.Data.Contracts.Dto.csproj">
-      <Project>{8A567338-89FB-49AA-80FE-B47AE861D6A7}</Project>
+      <Project>{CD0CE0AC-568C-4C78-A70C-0865D38D84F7}</Project>
       <Name>$saferootprojectname$.Client.Data.Contracts.Dto</Name>
     </ProjectReference>
     <ProjectReference Include="..\$saferootprojectname$.Client.Data.Contracts.Providers\$saferootprojectname$.Client.Data.Contracts.Providers.csproj">
-      <Project>{D2432BC9-C269-47CA-85AC-7B1F79BDD2B7}</Project>
+      <Project>{4ADC03FA-37C2-4DBD-B0C2-A645116C3130}</Project>
       <Name>$saferootprojectname$.Client.Data.Contracts.Providers</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

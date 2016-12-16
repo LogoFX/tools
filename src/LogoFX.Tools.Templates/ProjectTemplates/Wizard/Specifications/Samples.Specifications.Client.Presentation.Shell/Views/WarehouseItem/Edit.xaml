@@ -26,7 +26,8 @@
                    Grid.Column="0"
                    VerticalAlignment="Center"
                    Text="Kind" />
-        <TextBox Grid.Row="0"
+        <TextBox AutomationProperties.AutomationId="WarehouseItemKindTextBox"
+                 Grid.Row="0"
                  Grid.Column="1"
                  Margin="5,0,0,0"
                  VerticalAlignment="Center"
@@ -37,7 +38,8 @@
                    Grid.Column="0"
                    VerticalAlignment="Center"
                    Text="Price" />
-        <TextBox Grid.Row="1"
+        <TextBox AutomationProperties.AutomationId="WarehouseItemPriceTextBox"
+                 Grid.Row="1"
                  Grid.Column="1"
                  Margin="5,0,0,0"
                  VerticalAlignment="Center"
@@ -48,7 +50,8 @@
                    Grid.Column="0"
                    VerticalAlignment="Center"
                    Text="Quantity" />
-        <TextBox Grid.Row="2"
+        <TextBox AutomationProperties.AutomationId="WarehouseItemQuantityTextBox"
+                 Grid.Row="2"
                  Grid.Column="1"
                  Margin="5,0,0,0"
                  VerticalAlignment="Center"

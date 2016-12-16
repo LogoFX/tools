@@ -17,6 +17,7 @@ namespace $safeprojectname$
     {
         private readonly IWarehouseProvider _warehouseProvider;
         private readonly IEventsProvider _eventsProvider;
+        private readonly RangeObservableCollection<IWarehouseItem> _warehouseItems = new RangeObservableCollection<IWarehouseItem>();
 
         private readonly DispatcherTimer _timer;
         private DateTime _lastEvenTime;
@@ -53,44 +54,62 @@ namespace $safeprojectname$
             _events.AddRange(events);
         }
 
-        private readonly RangeObservableCollection<IWarehouseItem> _warehouseItems = new RangeObservableCollection<IWarehouseItem>();
+        private async Task GetWarehouseItemsInternal()
+        {
+            var warehouseItems = (await _warehouseProvider.GetWarehouseItems()).Select(WarehouseMapper.MapToWarehouseItem);
+            _warehouseItems.Clear();
+            _warehouseItems.AddRange(warehouseItems);
+        }
+
         IEnumerable<IWarehouseItem> IDataService.WarehouseItems
         {
             get { return _warehouseItems; }
         }
 
-        public async Task GetWarehouseItemsAsync()
+        async Task IDataService.GetWarehouseItemsAsync()
         {
             await ServiceRunner.RunAsync(GetWarehouseItemsInternal);
         }
 
-        public async Task<IWarehouseItem> NewWarehouseItemAsync()
+        async Task<IWarehouseItem> IDataService.NewWarehouseItemAsync()
         {
             await Task.Delay(1000);
             return new WarehouseItem("", 0d, 1);
         }
 
-        public void StartEventMonitoring()
+        async Task IDataService.SaveWarehouseItemAsync(IWarehouseItem item)
+        {
+            var dto = WarehouseMapper.MapToWarehouseDto(item);
+            await _warehouseProvider.SaveWarehouseItem(dto);
+        }
+
+        async Task IDataService.DeleteWarehouseItemAsync(IWarehouseItem item)
+        {
+            await _warehouseProvider.DeleteWarehouseItem(item.Id);
+            _warehouseItems.Remove(item);
+        }
+
+        void IDataService.StartEventMonitoring()
         {
             _lastEvenTime = DateTime.Now;
             _timer.Start();
             NotifyOfPropertyChange(() => EventMonitoringStarted);
         }
 
-        public void StopEventMonitoring()
+        void IDataService.StopEventMonitoring()
         {
             _timer.Stop();
             NotifyOfPropertyChange(() => EventMonitoringStarted);
         }
 
-        public async Task ClearEventsAsync()
+        async Task IDataService.ClearEventsAsync()
         {
             await Task.Delay(400);
             _events.Clear();
             await Task.Delay(300);
         }
 
-        public IEnumerable<IEvent> Events
+        IEnumerable<IEvent> IDataService.Events
         {
             get { return _events; }
         }
@@ -98,13 +117,6 @@ namespace $safeprojectname$
         public bool EventMonitoringStarted
         {
             get { return _timer.IsEnabled; }
-        }
-
-        private async Task GetWarehouseItemsInternal()
-        {
-            var warehouseItems = (await _warehouseProvider.GetWarehouseItems()).Select(WarehouseMapper.MapToWarehouseItem);
-            _warehouseItems.Clear();
-            _warehouseItems.AddRange(warehouseItems);
         }
     }
 }

@@ -38,6 +38,9 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugWithReal|AnyCPU'">
+    <OutputPath>bin\DebugWithReal\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Attest.Fake.Builders, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Attest.Fake.Builders.1.1.2\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\Attest.Fake.Builders.dll</HintPath>
@@ -124,12 +127,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\$saferootprojectname$.Client.Data.Fake.ProviderBuilders\$saferootprojectname$.Client.Data.Fake.ProviderBuilders.csproj">
-      <Project>{af68283b-5283-4def-8da0-6fb6ca85c1bd}</Project>
+      <Project>{B69DF3AB-45B8-4C86-9AC5-A5ED1A61E341}</Project>
       <Name>$saferootprojectname$.Client.Data.Fake.ProviderBuilders</Name>
     </ProjectReference>
   </ItemGroup>

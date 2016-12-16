@@ -414,6 +414,11 @@ namespace LogoFX.Tools.Templates.Wizard
 
                 var projectConfiguration = projectData.ProjectConfigurations.SingleOrDefault(x => x.Name == name);
 
+                if (projectConfiguration == null && System.Diagnostics.Debugger.IsAttached)
+                {
+                    System.Diagnostics.Debugger.Break();
+                }
+
                 Debug.Assert(projectConfiguration != null, "ProjectConfiguration not found for " + name);
 
                 try

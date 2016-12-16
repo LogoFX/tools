@@ -35,8 +35,8 @@ namespace $safeprojectname$
                            _isLoginAttemptSuccessfulCollection.ContainsKey(login)
                                ? _isLoginAttemptSuccessfulCollection[login]
                                    ? r.Complete()
-                                   : r.Throw(new Exception("unable to login"))
-                               : r.Throw(new Exception("unable to login")));
+                                   : r.Throw(new Exception("Unable to login"))
+                               : r.Throw(new Exception("Login not found.")));
             return setup;
         }
 

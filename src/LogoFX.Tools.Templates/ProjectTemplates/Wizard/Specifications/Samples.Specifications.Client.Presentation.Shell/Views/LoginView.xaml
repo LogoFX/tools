@@ -10,7 +10,6 @@
         mc:Ignorable="d"
         MaxWidth="600"
         d:DataContext="{d:DesignInstance viewModels:LoginViewModel}"
-        Title="LoginView" 
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False"
         WindowStyle="ToolWindow"

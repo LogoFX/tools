@@ -14,21 +14,16 @@
         <DefaultCreateTests>true</DefaultCreateTests>
         <CanCreateFakes>true</CanCreateFakes>
         <DefaultCreateFakes>true</DefaultCreateFakes>
-        <CanCreateSamples>false</CanCreateSamples>
-        <DefaultCreateSamples>false</DefaultCreateSamples>
+        <CanCreateSamples>true</CanCreateSamples>
+        <DefaultCreateSamples>true</DefaultCreateSamples>
         <CanSupportNavigation>false</CanSupportNavigation>
         <DefaultSupportNavigation>false</DefaultSupportNavigation>
         <UseOnlyDefautValues>false</UseOnlyDefautValues>
       </Options>
       <SolutionVariants>
         <SolutionVariant>
-          <ContainerName>Simple Container</ContainerName>
-          <SolutionFileName>C:\Projects\LogoUI\LogoFX\Samples.Specifications\Specifications.SimpleContainer.sln</SolutionFileName>
-          <StartupProjectName>Client.Launcher</StartupProjectName>
-        </SolutionVariant>
-        <SolutionVariant>
-          <ContainerName>Unity Container</ContainerName>
-          <SolutionFileName>C:\Projects\LogoUI\LogoFX\Samples.Specifications\Specifications.Unity.sln</SolutionFileName>
+          <ContainerName>Unity</ContainerName>
+          <SolutionFileName>C:\Projects\LogoUI\Wizard\Samples.Specifications\Specifications.Unity.sln</SolutionFileName>
           <StartupProjectName>Client.Launcher</StartupProjectName>
         </SolutionVariant>
       </SolutionVariants>
