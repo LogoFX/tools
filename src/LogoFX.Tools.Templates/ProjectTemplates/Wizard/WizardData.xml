@@ -564,7 +564,7 @@
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Launcher</Name>
-                      <FileName>Specifications\Samples.Specifications.Client.Launcher\MyProject.csproj</FileName>
+                      <FileName>Specifications\Samples.Specifications.Client.Launcher.U\MyProject.csproj</FileName>
                       <IsStartup>true</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -607,7 +607,7 @@
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Launcher.Shared</Name>
-                      <FileName>Specifications\Samples.Specifications.Client.Launcher.Shared\MyProject.csproj</FileName>
+                      <FileName>Specifications\Samples.Specifications.Client.Launcher.Shared.U\MyProject.csproj</FileName>
                       <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -1065,7 +1065,7 @@
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Tests.Integration.Infra.Shared</Name>
-                          <FileName>Specifications\Samples.Specifications.Client.Tests.Integration.Infra.Shared\MyProject.csproj</FileName>
+                          <FileName>Specifications\Samples.Specifications.Client.Tests.Integration.Infra.Shared.U\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -1901,7 +1901,7 @@
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Launcher</Name>
-                      <FileName>Specifications\Samples.Specifications.Client.Launcher\MyProject.csproj</FileName>
+                      <FileName>Specifications\Samples.Specifications.Client.Launcher.S\MyProject.csproj</FileName>
                       <IsStartup>true</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -1944,7 +1944,7 @@
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Launcher.Shared</Name>
-                      <FileName>Specifications\Samples.Specifications.Client.Launcher.Shared\MyProject.csproj</FileName>
+                      <FileName>Specifications\Samples.Specifications.Client.Launcher.Shared.S\MyProject.csproj</FileName>
                       <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -2402,7 +2402,7 @@
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Tests.Integration.Infra.Shared</Name>
-                          <FileName>Specifications\Samples.Specifications.Client.Tests.Integration.Infra.Shared\MyProject.csproj</FileName>
+                          <FileName>Specifications\Samples.Specifications.Client.Tests.Integration.Infra.Shared.S\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>

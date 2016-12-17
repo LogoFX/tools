@@ -22,6 +22,7 @@ namespace LogoFX.Tools.TemplateGenerator
         public async Task GenerateAsync()
         {
             var projectFolder = Path.GetDirectoryName(_projectTemplateInfo.DestinationFileName);
+            Debug.Assert(projectFolder != null, "projectFolder != null");
             Directory.CreateDirectory(projectFolder);
 
             await CopyProjectToTemplateAsync(projectFolder);

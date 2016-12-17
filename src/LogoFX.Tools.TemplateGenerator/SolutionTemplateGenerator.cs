@@ -32,7 +32,9 @@ namespace LogoFX.Tools.TemplateGenerator
 
                 foreach (var projectTemplateInfo in projects)
                 {
-                    var destinationFileName = CreateNewFileName(projectTemplateInfo.Name, solution.Name, destinationFolder);
+                    var folderName = Path.GetDirectoryName(projectTemplateInfo.FileName);
+                    folderName = Path.GetFileName(folderName);
+                    var destinationFileName = CreateNewFileName(folderName, solution.Name, destinationFolder);
                     projectTemplateInfo.SetDestinationFileName(destinationFileName);
                     var projectGenerator = new ProjectTemplateGenerator(projectTemplateInfo, projects);
                     await projectGenerator.GenerateAsync();
