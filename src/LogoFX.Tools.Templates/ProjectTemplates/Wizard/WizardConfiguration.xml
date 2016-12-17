@@ -26,6 +26,11 @@
           <SolutionFileName>C:\Projects\LogoUI\Wizard\Samples.Specifications\Specifications.Unity.sln</SolutionFileName>
           <StartupProjectName>Client.Launcher</StartupProjectName>
         </SolutionVariant>
+        <SolutionVariant>
+          <ContainerName>Simple Container</ContainerName>
+          <SolutionFileName>C:\Projects\LogoUI\Wizard\Samples.Specifications\Specifications.SimpleContainer.sln</SolutionFileName>
+          <StartupProjectName>Client.Launcher</StartupProjectName>
+        </SolutionVariant>
       </SolutionVariants>
     </SolutionInfo>
     <SolutionInfo>

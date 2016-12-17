@@ -68,7 +68,7 @@ namespace LogoFX.Tools.TemplateGenerator
                     case "Service":
                     case "SDKReference":
                     case "Resource":
-                        newFileName = CopyProjectItem(item, from, projectFolder);
+                        newFileName = await CopyProjectItem(item, from, projectFolder);
                         break;
                 }
 
@@ -97,7 +97,7 @@ namespace LogoFX.Tools.TemplateGenerator
             project.Save();
         }
 
-        private string CopyProjectItem(ProjectItem item, string from, string to)
+        private async Task<string> CopyProjectItem(ProjectItem item, string from, string to)
         {
             var oldFileName = Path.Combine(from, item.EvaluatedInclude);
 
@@ -114,11 +114,13 @@ namespace LogoFX.Tools.TemplateGenerator
             }
 
             var newFolder = Path.GetDirectoryName(newFileName);
+            Debug.Assert(newFolder != null, "newFolder != null");
             if (!Directory.Exists(newFolder))
             {
                 Directory.CreateDirectory(newFolder);
             }
-            File.Copy(oldFileName, newFileName);
+
+            await Task.Run(() => { File.Copy(oldFileName, newFileName); });
 
             return newFileName;
         }
