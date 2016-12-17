@@ -1961,7 +1961,7 @@
                         </ProjectConfigurationData>
                         <ProjectConfigurationData>
                           <Name>IntegrationWithFake|Any CPU</Name>
-                          <ConfigurationName>Debug</ConfigurationName>
+                          <ConfigurationName>TestsWithFake</ConfigurationName>
                           <PlatformName>AnyCPU</PlatformName>
                           <IncludeInBuild>true</IncludeInBuild>
                         </ProjectConfigurationData>
@@ -1973,13 +1973,13 @@
                         </ProjectConfigurationData>
                         <ProjectConfigurationData>
                           <Name>TestsWithFake|Any CPU</Name>
-                          <ConfigurationName>Debug</ConfigurationName>
+                          <ConfigurationName>TestsWithFake</ConfigurationName>
                           <PlatformName>AnyCPU</PlatformName>
                           <IncludeInBuild>true</IncludeInBuild>
                         </ProjectConfigurationData>
                         <ProjectConfigurationData>
                           <Name>TestsWithReal|Any CPU</Name>
-                          <ConfigurationName>Debug</ConfigurationName>
+                          <ConfigurationName>TestsWithFake</ConfigurationName>
                           <PlatformName>AnyCPU</PlatformName>
                           <IncludeInBuild>true</IncludeInBuild>
                         </ProjectConfigurationData>
@@ -2431,7 +2431,7 @@
                             </ProjectConfigurationData>
                             <ProjectConfigurationData>
                               <Name>TestsWithFake|Any CPU</Name>
-                              <ConfigurationName>Release</ConfigurationName>
+                              <ConfigurationName>TestsWithFake</ConfigurationName>
                               <PlatformName>AnyCPU</PlatformName>
                               <IncludeInBuild>true</IncludeInBuild>
                             </ProjectConfigurationData>
