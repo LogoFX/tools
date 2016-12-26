@@ -1,6 +1,7 @@
 using LogoFX.Client.Bootstrapping;
 using LogoFX.Client.Bootstrapping.Adapters.Unity;
-using $saferootprojectname$.Client.Launcher.Shared;
+using LogoFX.Client.Mvvm.ViewModel.Services;
+using LogoFX.Client.Mvvm.ViewModelFactory.Unity;
 using $saferootprojectname$.Client.Presentation.Shell.ViewModels;
 
 namespace $safeprojectname$
@@ -14,8 +15,8 @@ namespace $safeprojectname$
                 UseApplication = false,
                 ReuseCompositionInformation = true
             })
-        {			
-            this.UseResolver().UseShared();                               
+        {
+            this.UseResolver().UseViewModelCreatorService().UseViewModelFactory();
         }
 
         public override string[] Prefixes

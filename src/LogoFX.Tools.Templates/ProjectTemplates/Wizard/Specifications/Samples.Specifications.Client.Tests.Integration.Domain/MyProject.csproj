@@ -44,6 +44,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugWithReal|AnyCPU'">
     <OutputPath>bin\DebugWithReal\</OutputPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestsWithReal|AnyCPU'">
+    <OutputPath>bin\TestsWithReal\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Attest.Fake.Builders, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Attest.Fake.Builders.1.1.2\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\Attest.Fake.Builders.dll</HintPath>
@@ -121,10 +124,6 @@
       <HintPath>..\packages\LogoFX.Core.1.0.7\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch\LogoFX.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Shim, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c55ec16d10c4b366, processorArchitecture=MSIL">
-      <HintPath>..\packages\shim.2.0.0\lib\net40\Shim.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Solid.Patterns.Memento, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Solid.Patterns.Memento.1.0.5\lib\portable-net45+wpa8+win8\Solid.Patterns.Memento.dll</HintPath>
       <Private>True</Private>
@@ -190,11 +189,11 @@
       <Name>$saferootprojectname$.Client.Tests.Integration.Infra.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\$saferootprojectname$.Tests.Data\$saferootprojectname$.Tests.Data.csproj">
-      <Project>{27BBAC7D-16A9-44AD-B35E-42F73D0CE4F5}</Project>
+      <Project>{B10551FD-6D71-43EE-BD1C-D6C2C26D66BA}</Project>
       <Name>$saferootprojectname$.Tests.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\$saferootprojectname$.Tests.Domain\$saferootprojectname$.Tests.Domain.csproj">
-      <Project>{E08E7AE2-C849-47AD-99F2-B8A05307B06A}</Project>
+      <Project>{34318E61-A027-4C23-93F8-D825DC08D914}</Project>
       <Name>$saferootprojectname$.Tests.Domain</Name>
     </ProjectReference>
   </ItemGroup>

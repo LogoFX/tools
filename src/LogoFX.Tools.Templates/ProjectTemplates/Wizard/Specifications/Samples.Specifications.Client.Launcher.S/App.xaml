@@ -6,7 +6,6 @@
         <xaml:SharedResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <xaml:SharedResourceDictionary Source="pack://application:,,,/$saferootprojectname$.Client.Presentation.Shared;component/Themes/LogoFX/LogoFX.Dark.xaml" />
-                <xaml:SharedResourceDictionary Source="pack://application:,,,/$saferootprojectname$.Client.Presentation.Shared;component/Themes/LogoFX/LogoFX.Default.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </xaml:SharedResourceDictionary>
     </Application.Resources>

@@ -1,6 +1,7 @@
 using LogoFX.Client.Bootstrapping;
 using LogoFX.Client.Bootstrapping.Adapters.SimpleContainer;
-using $safeprojectname$.Shared;
+using LogoFX.Client.Mvvm.ViewModel.Services;
+using LogoFX.Client.Mvvm.ViewModelFactory.SimpleContainer;
 
 namespace $safeprojectname$
 {
@@ -9,7 +10,11 @@ namespace $safeprojectname$
         public App()
         {            
             var bootstrapper = new AppBootstrapper(new ExtendedSimpleContainerAdapter());
-            bootstrapper.UseResolver().UseShared().Initialize();            
+            bootstrapper
+                .UseResolver()
+                .UseViewModelCreatorService()
+                .UseViewModelFactory()
+                .Initialize();
         }
     }
 }

@@ -83,7 +83,7 @@
       <Name>$saferootprojectname$.Client.Data.Contracts.Dto</Name>
     </ProjectReference>
     <ProjectReference Include="..\$saferootprojectname$.Tests.Data\$saferootprojectname$.Tests.Data.csproj">
-      <Project>{27BBAC7D-16A9-44AD-B35E-42F73D0CE4F5}</Project>
+      <Project>{B10551FD-6D71-43EE-BD1C-D6C2C26D66BA}</Project>
       <Name>$saferootprojectname$.Tests.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\$saferootprojectname$.Tests.Steps\$saferootprojectname$.Tests.Steps.csproj">
