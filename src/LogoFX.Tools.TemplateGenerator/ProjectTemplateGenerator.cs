@@ -11,11 +11,13 @@ namespace LogoFX.Tools.TemplateGenerator
     internal sealed class ProjectTemplateGenerator : GeneratorBase
     {
         private readonly IProjectTemplateInfo _projectTemplateInfo;
+        private readonly IEnumerable<string> _rootNamespaces;
         private readonly IEnumerable<IProjectTemplateInfo> _projects;
 
-        public ProjectTemplateGenerator(IProjectTemplateInfo projectTemplateInfo, IEnumerable<IProjectTemplateInfo> projects)
+        public ProjectTemplateGenerator(IProjectTemplateInfo projectTemplateInfo, IEnumerable<string> rootNamespaces, IEnumerable<IProjectTemplateInfo> projects)
         {
             _projectTemplateInfo = projectTemplateInfo;
+            _rootNamespaces = rootNamespaces;
             _projects = projects;
         }
 
@@ -85,7 +87,7 @@ namespace LogoFX.Tools.TemplateGenerator
                 {
                     case ".cs":
                     case ".config":
-                        fileGenerator = new CSFileGenerator(newFileName, rootNamespace, _projects);
+                        fileGenerator = new CSFileGenerator(newFileName, rootNamespace, _rootNamespaces, _projects);
                         break;
                     case ".xaml":
                         fileGenerator = new XamlFileGenerator(newFileName, rootNamespace, _projects);

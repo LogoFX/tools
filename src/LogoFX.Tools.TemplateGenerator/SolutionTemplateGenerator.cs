@@ -28,16 +28,35 @@ namespace LogoFX.Tools.TemplateGenerator
 
             foreach (var solution in _wizardConfiguration.Solutions)
             {
-                var projects = solution.SolutionVariants.Select(x => x.SolutionTemplateInfo).GetProjectsPlain().ToList();
+                //var projects = solution.SolutionVariants.Select(x => x.SolutionTemplateInfo).GetProjectsPlain().ToList();
 
-                foreach (var projectTemplateInfo in projects)
+                //foreach (var projectTemplateInfo in projects)
+                //{
+                //    var folderName = Path.GetDirectoryName(projectTemplateInfo.FileName);
+                //    folderName = Path.GetFileName(folderName);
+                //    var destinationFileName = CreateNewFileName(folderName, solution.Name, destinationFolder);
+                //    projectTemplateInfo.SetDestinationFileName(destinationFileName);
+                //    var projectGenerator = new ProjectTemplateGenerator(projectTemplateInfo, projects);
+                //    await projectGenerator.GenerateAsync();
+                //}
+
+                foreach (var variant in solution.SolutionVariants)
                 {
-                    var folderName = Path.GetDirectoryName(projectTemplateInfo.FileName);
-                    folderName = Path.GetFileName(folderName);
-                    var destinationFileName = CreateNewFileName(folderName, solution.Name, destinationFolder);
-                    projectTemplateInfo.SetDestinationFileName(destinationFileName);
-                    var projectGenerator = new ProjectTemplateGenerator(projectTemplateInfo, projects);
-                    await projectGenerator.GenerateAsync();
+                    var projects = variant.SolutionTemplateInfo.GetProjectsPlain().ToList();
+
+                    foreach (var projectTemplateInfo in projects)
+                    {
+                        var folderName = Path.GetDirectoryName(projectTemplateInfo.FileName);
+                        folderName = Path.GetFileName(folderName);
+                        var destinationFileName = CreateNewFileName(folderName, solution.Name, destinationFolder);
+                        projectTemplateInfo.SetDestinationFileName(destinationFileName);
+                        if (File.Exists(destinationFileName))
+                        {
+                            continue;
+                        }
+                        var projectGenerator = new ProjectTemplateGenerator(projectTemplateInfo, variant.SolutionTemplateInfo.RootNamespaces, projects);
+                        await projectGenerator.GenerateAsync();
+                    }
                 }
             }
 

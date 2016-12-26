@@ -21,7 +21,7 @@ namespace $safeprojectname$
         {
             get
             {
-                return new[] { "Samples.Universal.Client.Presentation", "$saferootprojectname$.Client.Model", "Samples.Client.Data", "$saferootprojectname$.Client.Tests", "Samples.Client.Tests" };
+                return new[] { "$saferootprojectname$.Client.Presentation", "$saferootprojectname$.Client.Model", "$saferootprojectname$.Client.Data", "$saferootprojectname$.Client.Tests", "$saferootprojectname$.Client.Tests" };
             }
         }
     }

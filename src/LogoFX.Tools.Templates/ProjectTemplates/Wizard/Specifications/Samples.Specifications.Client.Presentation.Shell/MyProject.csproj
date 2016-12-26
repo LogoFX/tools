@@ -308,6 +308,10 @@
       <Project>{49724A56-9FA9-44C4-B731-1E414EE598BC}</Project>
       <Name>$saferootprojectname$.Client.Model.Shared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\$saferootprojectname$.Client.Presentation.Shared\$saferootprojectname$.Client.Presentation.Shared.csproj">
+      <Project>{a4245326-bb01-4b7a-b4de-6ebca9c8094e}</Project>
+      <Name>$saferootprojectname$.Client.Presentation.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\clear-icon-9197.png" />

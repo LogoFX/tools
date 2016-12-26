@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace LogoFX.Tools.TemplateGenerator
@@ -17,6 +18,11 @@ namespace LogoFX.Tools.TemplateGenerator
 
         public static string GetRelativePath(string filespec, string folder)
         {
+            if (filespec == null)
+            {
+                Debugger.Break();
+            }
+
             Uri pathUri = new Uri(filespec);
             // Folders must end in a slash
             if (!folder.EndsWith(Path.DirectorySeparatorChar.ToString()))
