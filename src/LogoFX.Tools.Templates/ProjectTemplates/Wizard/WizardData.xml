@@ -129,7 +129,7 @@
                             </ProjectConfigurationData>
                             <ProjectConfigurationData>
                               <Name>IntegrationWithFake|Any CPU</Name>
-                              <ConfigurationName>DebugWithReal</ConfigurationName>
+                              <ConfigurationName>IntegrationWithFake</ConfigurationName>
                               <PlatformName>AnyCPU</PlatformName>
                               <IncludeInBuild>true</IncludeInBuild>
                             </ProjectConfigurationData>
@@ -172,7 +172,7 @@
                             </ProjectConfigurationData>
                             <ProjectConfigurationData>
                               <Name>IntegrationWithFake|Any CPU</Name>
-                              <ConfigurationName>DebugWithReal</ConfigurationName>
+                              <ConfigurationName>IntegrationWithFake</ConfigurationName>
                               <PlatformName>AnyCPU</PlatformName>
                               <IncludeInBuild>true</IncludeInBuild>
                             </ProjectConfigurationData>
@@ -215,7 +215,7 @@
                             </ProjectConfigurationData>
                             <ProjectConfigurationData>
                               <Name>IntegrationWithFake|Any CPU</Name>
-                              <ConfigurationName>DebugWithReal</ConfigurationName>
+                              <ConfigurationName>IntegrationWithFake</ConfigurationName>
                               <PlatformName>AnyCPU</PlatformName>
                               <IncludeInBuild>true</IncludeInBuild>
                             </ProjectConfigurationData>
@@ -266,7 +266,7 @@
                                 </ProjectConfigurationData>
                                 <ProjectConfigurationData>
                                   <Name>IntegrationWithFake|Any CPU</Name>
-                                  <ConfigurationName>Release</ConfigurationName>
+                                  <ConfigurationName>IntegrationWithFake</ConfigurationName>
                                   <PlatformName>AnyCPU</PlatformName>
                                   <IncludeInBuild>true</IncludeInBuild>
                                 </ProjectConfigurationData>
@@ -309,7 +309,7 @@
                                 </ProjectConfigurationData>
                                 <ProjectConfigurationData>
                                   <Name>IntegrationWithFake|Any CPU</Name>
-                                  <ConfigurationName>Release</ConfigurationName>
+                                  <ConfigurationName>IntegrationWithFake</ConfigurationName>
                                   <PlatformName>AnyCPU</PlatformName>
                                   <IncludeInBuild>true</IncludeInBuild>
                                 </ProjectConfigurationData>
@@ -357,9 +357,9 @@
                                 </ProjectConfigurationData>
                                 <ProjectConfigurationData>
                                   <Name>IntegrationWithFake|Any CPU</Name>
-                                  <ConfigurationName>TestsWithReal</ConfigurationName>
+                                  <ConfigurationName>IntegrationWithFake</ConfigurationName>
                                   <PlatformName>AnyCPU</PlatformName>
-                                  <IncludeInBuild>false</IncludeInBuild>
+                                  <IncludeInBuild>true</IncludeInBuild>
                                 </ProjectConfigurationData>
                                 <ProjectConfigurationData>
                                   <Name>Release|Any CPU</Name>
@@ -443,7 +443,7 @@
                                 </ProjectConfigurationData>
                                 <ProjectConfigurationData>
                                   <Name>IntegrationWithFake|Any CPU</Name>
-                                  <ConfigurationName>Release</ConfigurationName>
+                                  <ConfigurationName>IntegrationWithFake</ConfigurationName>
                                   <PlatformName>AnyCPU</PlatformName>
                                   <IncludeInBuild>true</IncludeInBuild>
                                 </ProjectConfigurationData>
@@ -486,7 +486,7 @@
                                 </ProjectConfigurationData>
                                 <ProjectConfigurationData>
                                   <Name>IntegrationWithFake|Any CPU</Name>
-                                  <ConfigurationName>Release</ConfigurationName>
+                                  <ConfigurationName>IntegrationWithFake</ConfigurationName>
                                   <PlatformName>AnyCPU</PlatformName>
                                   <IncludeInBuild>true</IncludeInBuild>
                                 </ProjectConfigurationData>
@@ -534,7 +534,7 @@
                                 </ProjectConfigurationData>
                                 <ProjectConfigurationData>
                                   <Name>IntegrationWithFake|Any CPU</Name>
-                                  <ConfigurationName>TestsWithReal</ConfigurationName>
+                                  <ConfigurationName>IntegrationWithFake</ConfigurationName>
                                   <PlatformName>AnyCPU</PlatformName>
                                   <IncludeInBuild>false</IncludeInBuild>
                                 </ProjectConfigurationData>
@@ -581,7 +581,7 @@
                         </ProjectConfigurationData>
                         <ProjectConfigurationData>
                           <Name>IntegrationWithFake|Any CPU</Name>
-                          <ConfigurationName>TestsWithReal</ConfigurationName>
+                          <ConfigurationName>IntegrationWithFake</ConfigurationName>
                           <PlatformName>AnyCPU</PlatformName>
                           <IncludeInBuild>true</IncludeInBuild>
                         </ProjectConfigurationData>
@@ -728,7 +728,7 @@
                             </ProjectConfigurationData>
                             <ProjectConfigurationData>
                               <Name>IntegrationWithFake|Any CPU</Name>
-                              <ConfigurationName>TestsWithFake</ConfigurationName>
+                              <ConfigurationName>IntegrationWithFake</ConfigurationName>
                               <PlatformName>AnyCPU</PlatformName>
                               <IncludeInBuild>false</IncludeInBuild>
                             </ProjectConfigurationData>
@@ -771,7 +771,7 @@
                             </ProjectConfigurationData>
                             <ProjectConfigurationData>
                               <Name>IntegrationWithFake|Any CPU</Name>
-                              <ConfigurationName>TestsWithFake</ConfigurationName>
+                              <ConfigurationName>IntegrationWithFake</ConfigurationName>
                               <PlatformName>AnyCPU</PlatformName>
                               <IncludeInBuild>false</IncludeInBuild>
                             </ProjectConfigurationData>
@@ -857,7 +857,7 @@
                             </ProjectConfigurationData>
                             <ProjectConfigurationData>
                               <Name>IntegrationWithFake|Any CPU</Name>
-                              <ConfigurationName>Release</ConfigurationName>
+                              <ConfigurationName>IntegrationWithFake</ConfigurationName>
                               <PlatformName>AnyCPU</PlatformName>
                               <IncludeInBuild>true</IncludeInBuild>
                             </ProjectConfigurationData>
@@ -902,7 +902,7 @@
                         </ProjectConfigurationData>
                         <ProjectConfigurationData>
                           <Name>IntegrationWithFake|Any CPU</Name>
-                          <ConfigurationName>DebugWithFake</ConfigurationName>
+                          <ConfigurationName>IntegrationWithFake</ConfigurationName>
                           <PlatformName>AnyCPU</PlatformName>
                           <IncludeInBuild>false</IncludeInBuild>
                         </ProjectConfigurationData>
@@ -1175,7 +1175,7 @@
                         </ProjectConfigurationData>
                         <ProjectConfigurationData>
                           <Name>IntegrationWithFake|Any CPU</Name>
-                          <ConfigurationName>Release</ConfigurationName>
+                          <ConfigurationName>IntegrationWithFake</ConfigurationName>
                           <PlatformName>AnyCPU</PlatformName>
                           <IncludeInBuild>true</IncludeInBuild>
                         </ProjectConfigurationData>
@@ -1223,7 +1223,7 @@
                         </ProjectConfigurationData>
                         <ProjectConfigurationData>
                           <Name>IntegrationWithFake|Any CPU</Name>
-                          <ConfigurationName>Release</ConfigurationName>
+                          <ConfigurationName>IntegrationWithFake</ConfigurationName>
                           <PlatformName>AnyCPU</PlatformName>
                           <IncludeInBuild>true</IncludeInBuild>
                         </ProjectConfigurationData>
@@ -1271,7 +1271,7 @@
                         </ProjectConfigurationData>
                         <ProjectConfigurationData>
                           <Name>IntegrationWithFake|Any CPU</Name>
-                          <ConfigurationName>Release</ConfigurationName>
+                          <ConfigurationName>IntegrationWithFake</ConfigurationName>
                           <PlatformName>AnyCPU</PlatformName>
                           <IncludeInBuild>true</IncludeInBuild>
                         </ProjectConfigurationData>
