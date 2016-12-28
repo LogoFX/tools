@@ -72,6 +72,10 @@
       <HintPath>..\packages\Attest.Tests.Core.1.3.1\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\Attest.Testing.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Attest.Testing.xUnit, Version=1.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Attest.Tests.xUnit.1.3.1\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\Attest.Testing.xUnit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Caliburn.Micro, Version=3.0.2.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.Core.3.0.2\lib\net45\Caliburn.Micro.dll</HintPath>
       <Private>True</Private>
@@ -120,18 +124,6 @@
       <HintPath>..\packages\LogoFX.Client.Data.Fake.ProviderBuilders.1.0.5\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Data.Fake.ProviderBuilders.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.Commanding, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Commanding.Core.1.0.6\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Mvvm.Commanding.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.Commanding.Platform, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Commanding.1.0.6\lib\net45\LogoFX.Client.Mvvm.Commanding.Platform.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.Core.Platform, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Core.1.0.6\lib\net45\LogoFX.Client.Mvvm.Core.Platform.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="LogoFX.Client.Mvvm.Model, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.10\lib\net45\LogoFX.Client.Mvvm.Model.dll</HintPath>
       <Private>True</Private>
@@ -148,24 +140,13 @@
       <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Core.1.0.5\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Mvvm.ViewModel.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Extensions, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Extensions.Core.1.0.7\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Mvvm.ViewModel.Extensions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Extensions.Platform, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Extensions.1.0.7\lib\net45\LogoFX.Client.Mvvm.ViewModel.Extensions.Platform.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Platform, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.1.0.5\lib\net45\LogoFX.Client.Mvvm.ViewModel.Platform.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="LogoFX.Client.Mvvm.ViewModel.Services, Version=1.1.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Services.Core.1.1.4\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Mvvm.ViewModel.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Services.Middleware">
+    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Services.Middleware, Version=1.1.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Services.Core.1.1.4\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Mvvm.ViewModel.Services.Middleware.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Mvvm.ViewModelFactory, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModelFactory.1.1.0\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Mvvm.ViewModelFactory.dll</HintPath>
@@ -179,8 +160,24 @@
       <HintPath>..\packages\LogoFX.Client.Tests.Contracts.1.0.5\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Testing.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="LogoFX.Client.Testing.Infra.Platform, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Tests.Shared.1.0.7\lib\net45\LogoFX.Client.Testing.Infra.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="LogoFX.Client.Testing.Integration, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LogoFX.Client.Tests.Integration.1.0.5\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Testing.Integration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LogoFX.Client.Testing.Integration.xUnit, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Testing.Integration.xUnit.Core.1.2.1\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Testing.Integration.xUnit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LogoFX.Client.Testing.Integration.xUnit.Platform, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Testing.Integration.xUnit.1.2.1\lib\net45\LogoFX.Client.Testing.Integration.xUnit.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LogoFX.Client.Testing.Shared.Platform, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Tests.Shared.1.0.7\lib\net45\LogoFX.Client.Testing.Shared.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Core, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
@@ -257,22 +254,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.3.0.2\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -284,6 +265,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IntegrationTestsBaseWithActivation.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartApplicationService.cs" />
@@ -291,8 +273,12 @@
     <Compile Include="TestHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\$saferootprojectname$.Client.Data.Contracts.Providers\$saferootprojectname$.Client.Data.Contracts.Providers.csproj">
-      <Project>{4ADC03FA-37C2-4DBD-B0C2-A645116C3130}</Project>
+      <Project>{d2432bc9-c269-47ca-85ac-7b1f79bdd2b7}</Project>
       <Name>$saferootprojectname$.Client.Data.Contracts.Providers</Name>
     </ProjectReference>
     <ProjectReference Include="..\$saferootprojectname$.Client.Model.Contracts\$saferootprojectname$.Client.Model.Contracts.csproj">
@@ -304,7 +290,7 @@
       <Name>$saferootprojectname$.Client.Model.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\$saferootprojectname$.Client.Data.Fake.ProviderBuilders\$saferootprojectname$.Client.Data.Fake.ProviderBuilders.csproj">
-      <Project>{B69DF3AB-45B8-4C86-9AC5-A5ED1A61E341}</Project>
+      <Project>{AF68283B-5283-4DEF-8DA0-6FB6CA85C1BD}</Project>
       <Name>$saferootprojectname$.Client.Data.Fake.ProviderBuilders</Name>
     </ProjectReference>
     <ProjectReference Include="..\$saferootprojectname$.Client.Presentation.Shell\$saferootprojectname$.Client.Presentation.Shell.csproj">
@@ -315,10 +301,6 @@
       <Project>{207D3FBC-1EEC-43EA-BAED-E3C14F793119}</Project>
       <Name>$saferootprojectname$.Client.Tests.Integration.Infra.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

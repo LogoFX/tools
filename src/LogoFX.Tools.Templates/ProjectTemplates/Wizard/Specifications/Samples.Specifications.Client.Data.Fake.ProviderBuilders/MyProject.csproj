@@ -74,10 +74,6 @@
       <HintPath>..\packages\LogoFX.Client.Data.Fake.ProviderBuilders.1.0.5\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Data.Fake.ProviderBuilders.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Moq, Version=4.5.28.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\packages\Moq.4.5.28\lib\net45\Moq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Solid.Patterns.Visitor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Solid.Patterns.Visitor.1.0.5\lib\portable-net45+wpa8+win8\Solid.Patterns.Visitor.dll</HintPath>
       <Private>True</Private>

@@ -1,7 +1,7 @@
 using Caliburn.Micro;
 using LogoFX.Client.Testing.Integration.xUnit;
+using LogoFX.Client.Testing.Shared;
 using $saferootprojectname$.Client.Presentation.Shell.ViewModels;
-using $safeprojectname$.Shared;
 
 namespace $safeprojectname$
 {

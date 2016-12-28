@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Attest.Fake.Setup.Contracts;
 using LogoFX.Client.Data.Fake.ProviderBuilders;
 using $saferootprojectname$.Client.Data.Contracts.Providers;
-using It = Moq.It;
+using Attest.Fake.Core;
 
 namespace $safeprojectname$
 {    

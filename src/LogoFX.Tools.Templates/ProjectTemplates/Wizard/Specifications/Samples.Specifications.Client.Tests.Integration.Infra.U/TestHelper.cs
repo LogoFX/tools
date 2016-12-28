@@ -1,3 +1,4 @@
+using Caliburn.Micro;
 using $saferootprojectname$.Client.Model.Shared;
 
 namespace $safeprojectname$
@@ -12,7 +13,7 @@ namespace $safeprojectname$
         public static void AfterTeardown()
         {
             UserContext.Current = null;                        
-            LogoFX.Client.Testing.Shared.Caliburn.Micro.TestHelper.Teardown();
+            AssemblySource.Instance.Clear();            
         }
     }
 }
