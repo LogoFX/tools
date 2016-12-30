@@ -508,7 +508,20 @@ namespace LogoFX.Tools.Templates.Wizard
             string oldFileName,
             string newFileName)
         {
-            ReplaceText(replacementsDictionary, oldFileName, newFileName);
+            var ext = Path.GetExtension(newFileName).ToLower();
+
+            switch (ext)
+            {
+                case ".cs":
+                case ".xaml":
+                case ".config":
+                case ".csproj":
+                    ReplaceText(replacementsDictionary, oldFileName, newFileName);
+                    break;
+                default:
+                    File.Copy(oldFileName, newFileName);
+                    break;
+            }
         }
 
         private void ReplaceText(
