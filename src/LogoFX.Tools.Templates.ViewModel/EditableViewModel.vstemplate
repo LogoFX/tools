@@ -16,7 +16,6 @@
         <Assembly>System</Assembly>
       </Reference>
     </References>
-    <ProjectItem TargetFileName="$fileinputname$.cs" ReplaceParameters="true">ViewModel.cs</ProjectItem>
-    <ProjectItem TargetFileName="$fileinputname$.cs\$fileinputname$.resources.cs" ReplaceParameters="true">ViewModel.resources.cs</ProjectItem>
+    <ProjectItem TargetFileName="$fileinputname$.cs" ReplaceParameters="true">EditableViewModel.cs</ProjectItem>
   </TemplateContent>
 </VSTemplate>
