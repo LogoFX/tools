@@ -30,13 +30,41 @@ namespace $safeprojectname$
         private static IWarehouseContainer InitializeWarehouseContainer()
         {
             var warehouseContainer = new WarehouseContainer();
-            warehouseContainer.UpdateWarehouseItems(new []
+            warehouseContainer.UpdateWarehouseItems(new[]
             {
                 new WarehouseItemDto
                 {
                     Kind = "PC",
                     Price = 25.43,
                     Quantity = 8
+                },
+
+                new WarehouseItemDto
+                {
+                    Kind = "Acme",
+                    Price = 10,
+                    Quantity = 10
+                },
+
+                new WarehouseItemDto
+                {
+                    Kind = "Bacme",
+                    Price = 20,
+                    Quantity = 3
+                },
+
+                new WarehouseItemDto
+                {
+                    Kind = "Exceed",
+                    Price = 0.4,
+                    Quantity = 100
+                },
+
+                new WarehouseItemDto
+                {
+                    Kind = "Acme2",
+                    Price = 1,
+                    Quantity = 10
                 }
             });
             return warehouseContainer;
@@ -54,15 +82,16 @@ namespace $safeprojectname$
 
         private static void RegisterBuilders(IIocContainerRegistrator iocContainer)
         {
-            iocContainer.RegisterInstance(WarehouseProviderBuilder.CreateBuilder()); 
-            iocContainer.RegisterInstance(LoginProviderBuilder.CreateBuilder());           
+            iocContainer.RegisterInstance(WarehouseProviderBuilder.CreateBuilder());
+            iocContainer.RegisterInstance(EventsProviderBuilder.CreateBuilder());
+            iocContainer.RegisterInstance(LoginProviderBuilder.CreateBuilder());
         }
 
         private static void RegisterProviders(IIocContainerRegistrator iocContainer)
         {
             iocContainer.RegisterSingleton<IWarehouseProvider, FakeWarehouseProvider>();
-            iocContainer.RegisterSingleton<ILoginProvider, FakeLoginProvider>();
             iocContainer.RegisterSingleton<IEventsProvider, FakeEventsProvider>();
+            iocContainer.RegisterSingleton<ILoginProvider, FakeLoginProvider>();
         }
     }
 }

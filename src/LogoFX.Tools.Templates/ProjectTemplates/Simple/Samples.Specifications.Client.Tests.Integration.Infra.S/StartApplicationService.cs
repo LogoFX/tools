@@ -3,7 +3,7 @@ using LogoFX.Client.Testing.Contracts;
 using LogoFX.Client.Testing.Integration;
 using $saferootprojectname$.Client.Data.Fake.ProviderBuilders;
 using $saferootprojectname$.Client.Presentation.Shell.ViewModels;
-using $saferootprojectname$.Client.Tests.Integration.Infra.Core;
+using $safeprojectname$.Core;
 
 namespace $safeprojectname$
 {
@@ -38,8 +38,7 @@ namespace $safeprojectname$
         {
             var shell = (ShellViewModel)rootObject;
             StructureHelper.SetRootObject(shell);
-            ScreenExtensions.TryActivate(shell);
-            ScreenExtensions.TryActivate(StructureHelper.GetLogin());
+            ScreenExtensions.TryActivate(shell);            
         }
     }
 }

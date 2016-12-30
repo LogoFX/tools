@@ -38,6 +38,15 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugWithReal|AnyCPU'">
+    <OutputPath>bin\DebugWithReal\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestsWithReal|AnyCPU'">
+    <OutputPath>bin\TestsWithReal\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'IntegrationWithFake|AnyCPU'">
+    <OutputPath>bin\IntegrationWithFake\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Attest.Fake.Builders, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Attest.Fake.Builders.1.1.2\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\Attest.Fake.Builders.dll</HintPath>
@@ -71,8 +80,8 @@
       <HintPath>..\packages\LogoFX.Client.Tests.Contracts.1.0.5\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Testing.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Testing.EndToEnd, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Tests.EndToEnd.1.1.1\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Testing.EndToEnd.dll</HintPath>
+    <Reference Include="LogoFX.Client.Testing.EndToEnd, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Tests.EndToEnd.1.1.2\lib\portable-net45+wpa8+win8+uap10.0\LogoFX.Client.Testing.EndToEnd.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Testing.EndToEnd.White, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
@@ -83,12 +92,20 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Shim, Version=2.0.1.0, Culture=neutral, PublicKeyToken=c55ec16d10c4b366, processorArchitecture=MSIL">
-      <HintPath>..\packages\shim.2.0.1\lib\net40\Shim.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Solid.Patterns.Visitor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Solid.Patterns.Visitor.1.0.5\lib\portable-net45+wpa8+win8\Solid.Patterns.Visitor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Solid.Practices.Composition, Version=1.1.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Composition.Core.1.1.7\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\Solid.Practices.Composition.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Solid.Practices.Composition.Container, Version=1.1.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Composition.Core.1.1.7\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\Solid.Practices.Composition.Container.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Solid.Practices.Composition.Contracts, Version=1.1.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Composition.Core.1.1.7\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\Solid.Practices.Composition.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Solid.Practices.IoC, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -129,7 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\$saferootprojectname$.Client.Data.Fake.ProviderBuilders\$saferootprojectname$.Client.Data.Fake.ProviderBuilders.csproj">
-      <Project>{af68283b-5283-4def-8da0-6fb6ca85c1bd}</Project>
+      <Project>{B69DF3AB-45B8-4C86-9AC5-A5ED1A61E341}</Project>
       <Name>$saferootprojectname$.Client.Data.Fake.ProviderBuilders</Name>
     </ProjectReference>
   </ItemGroup>

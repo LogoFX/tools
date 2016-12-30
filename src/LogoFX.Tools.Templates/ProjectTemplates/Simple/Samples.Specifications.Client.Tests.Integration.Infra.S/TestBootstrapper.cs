@@ -1,7 +1,8 @@
 using LogoFX.Client.Bootstrapping;
 using LogoFX.Client.Bootstrapping.Adapters.SimpleContainer;
-using Samples.Specifications.Client.Launcher.Shared;
 using $saferootprojectname$.Client.Presentation.Shell.ViewModels;
+using LogoFX.Client.Mvvm.ViewModel.Services;
+using LogoFX.Client.Mvvm.ViewModelFactory.SimpleContainer;
 
 namespace $safeprojectname$
 {
@@ -15,14 +16,14 @@ namespace $safeprojectname$
                 ReuseCompositionInformation = true
             })
         {			
-            this.UseResolver().UseShared();                               
+            this.UseResolver().UseViewModelCreatorService().UseViewModelFactory();
         }
 
         public override string[] Prefixes
         {
             get
             {
-                return new[] { "Samples.Specifications.Client.Presentation", "$saferootprojectname$.Client.Model", "Samples.Specifications.Client.Data", "Samples.Specifications.Client.Tests", "Samples.Client.Tests" };
+                return new[] { "$saferootprojectname$.Client.Presentation", "$saferootprojectname$.Client.Model", "$saferootprojectname$.Client.Data", "$saferootprojectname$.Client.Tests", "$saferootprojectname$.Client.Tests", "$saferootprojectname$.Tests.Steps" };
             }
         }
     }

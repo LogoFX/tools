@@ -11,6 +11,11 @@
              d:DataContext="{d:DesignInstance viewModels:EventsViewModel}"
              d:DesignHeight="300" 
              d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
@@ -77,9 +82,14 @@
         <ListBox Grid.Row="1"
                  Margin="5"
                  x:Name="Events" />
-        
-        <xctk:BusyIndicator Grid.Row="0"
-                            Grid.RowSpan="2"
-                            IsBusy="{Binding Path=IsBusy, Mode=OneWay}" />
+
+        <Grid Grid.Row="0"
+              Grid.RowSpan="2"
+              Visibility="{Binding Path=IsBusy, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <ProgressBar Height="24" 
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Center" 
+                         IsIndeterminate="True"/>
+        </Grid>
     </Grid>
 </UserControl>

@@ -33,10 +33,21 @@ namespace $safeprojectname$.ViewModels
                 return _newCommand ??
                        (_newCommand = ActionCommand
                            .When(() => true)
-                           .Do(async () =>
-                           {
-                               await NewwarehouseItem();
-                           }));
+                           .Do(NewWarehouseItem));
+            }
+        }
+
+        private ICommand _deleteCommand;
+
+        public ICommand DeleteCommand
+        {
+            get
+            {
+                return _deleteCommand ??
+                       (_deleteCommand = ActionCommand
+                           .When(() => ActiveWarehouseItem != null && !ActiveWarehouseItem.IsNew)
+                           .Do(DeleteSelectedItem)
+                           .RequeryOnPropertyChanged(this, () => ActiveWarehouseItem));
             }
         }
 
@@ -48,8 +59,9 @@ namespace $safeprojectname$.ViewModels
             {
                 return _applyCommand ??
                        (_applyCommand = ActionCommand
-                           .When(() => true)
-                           .Do(() => { }));
+                           .When(() => ActiveWarehouseItem != null && ActiveWarehouseItem.IsNew)
+                           .Do(Apply)
+                           .RequeryOnPropertyChanged(this, () => ActiveWarehouseItem));
             }
         }
 
@@ -112,7 +124,7 @@ namespace $safeprojectname$.ViewModels
             return _viewModelCreatorService.CreateViewModel<EventsViewModel>();
         }
 
-        private async Task NewwarehouseItem()
+        private async void NewWarehouseItem()
         {
             Debug.Assert(!IsBusy);
 
@@ -121,7 +133,44 @@ namespace $safeprojectname$.ViewModels
             try
             {
                 var warehouseItem = await _dataService.NewWarehouseItemAsync();
-                ActiveWarehouseItem = new WarehouseItemViewModel(warehouseItem);                
+                var newItem = _viewModelCreatorService.CreateViewModel<IWarehouseItem, WarehouseItemViewModel>(warehouseItem);
+                newItem.IsNew = true;
+                ActiveWarehouseItem = newItem;
+            }
+
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private async void DeleteSelectedItem()
+        {
+            Debug.Assert(!IsBusy);
+
+            IsBusy = true;
+
+            try
+            {
+                await _dataService.DeleteWarehouseItemAsync(ActiveWarehouseItem.Model);
+            }
+
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private async void Apply()
+        {
+            Debug.Assert(!IsBusy);
+
+            IsBusy = true;
+
+            try
+            {
+                await _dataService.SaveWarehouseItemAsync(ActiveWarehouseItem.Model);
+                await _dataService.GetWarehouseItemsAsync();
             }
 
             finally
@@ -135,7 +184,6 @@ namespace $safeprojectname$.ViewModels
             base.OnInitialize();
 
             await _dataService.GetWarehouseItemsAsync();
-            await NewwarehouseItem();
         }
     }
 }

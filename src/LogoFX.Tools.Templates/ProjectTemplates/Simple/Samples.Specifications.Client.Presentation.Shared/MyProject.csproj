@@ -51,7 +51,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugWithFake|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\DebugWithFake\</OutputPath>
+    <OutputPath>..\bin\DebugWithFake\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -88,10 +88,6 @@
       <HintPath>..\packages\LogoFX.Client.Mvvm.View.1.0.5\lib\net45\LogoFX.Client.Mvvm.View.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Core, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Core.1.0.7\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch\LogoFX.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -108,24 +104,9 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Themes\LogoFX\Accent\" />
-    <Folder Include="Themes\LogoFX\Primary\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="Themes\LogoFX\LogoFX.Dark.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\LogoFX\LogoFX.Default.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\LogoFX\LogoFX.normalcolor.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\LogoFX\LogoFX.Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -15,6 +15,7 @@ namespace $safeprojectname$
             iocContainer.RegisterInstance<IBuilderRegistrationService>(new BuilderRegistrationService());
             iocContainer.RegisterInstance(LoginProviderBuilder.CreateBuilder());
             iocContainer.RegisterInstance(WarehouseProviderBuilder.CreateBuilder());
+            iocContainer.RegisterInstance(EventsProviderBuilder.CreateBuilder());
         }
     }
 }

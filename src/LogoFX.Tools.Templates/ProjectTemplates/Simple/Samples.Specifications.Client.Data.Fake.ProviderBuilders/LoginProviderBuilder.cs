@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Attest.Fake.Core;
 using Attest.Fake.Setup.Contracts;
 using LogoFX.Client.Data.Fake.ProviderBuilders;
 using $saferootprojectname$.Client.Data.Contracts.Providers;
+using Attest.Fake.Core;
 
 namespace $safeprojectname$
 {    
@@ -35,8 +35,8 @@ namespace $safeprojectname$
                            _isLoginAttemptSuccessfulCollection.ContainsKey(login)
                                ? _isLoginAttemptSuccessfulCollection[login]
                                    ? r.Complete()
-                                   : r.Throw(new Exception("unable to login"))
-                               : r.Throw(new Exception("unable to login")));
+                                   : r.Throw(new Exception("Unable to login"))
+                               : r.Throw(new Exception("Login not found.")));
             return setup;
         }
 

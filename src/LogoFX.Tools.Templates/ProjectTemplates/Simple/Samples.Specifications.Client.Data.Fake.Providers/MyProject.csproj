@@ -56,6 +56,9 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'IntegrationWithFake|AnyCPU'">
+    <OutputPath>bin\IntegrationWithFake\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Attest.Fake.Builders, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Attest.Fake.Builders.1.1.2\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\Attest.Fake.Builders.dll</HintPath>
@@ -118,21 +121,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\$saferootprojectname$.Client.Data.Fake.Containers\$saferootprojectname$.Client.Data.Fake.Containers.csproj">
-      <Project>{064BD680-2955-4CEC-A56B-B48891EC6AA1}</Project>
-      <Name>$saferootprojectname$.Client.Data.Fake.Containers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\$saferootprojectname$.Client.Data.Fake.ProviderBuilders\$saferootprojectname$.Client.Data.Fake.ProviderBuilders.csproj">
-      <Project>{AF68283B-5283-4DEF-8DA0-6FB6CA85C1BD}</Project>
-      <Name>$saferootprojectname$.Client.Data.Fake.ProviderBuilders</Name>
-    </ProjectReference>
     <ProjectReference Include="..\$saferootprojectname$.Client.Data.Contracts.Dto\$saferootprojectname$.Client.Data.Contracts.Dto.csproj">
-      <Project>{8A567338-89FB-49AA-80FE-B47AE861D6A7}</Project>
+      <Project>{CD0CE0AC-568C-4C78-A70C-0865D38D84F7}</Project>
       <Name>$saferootprojectname$.Client.Data.Contracts.Dto</Name>
     </ProjectReference>
     <ProjectReference Include="..\$saferootprojectname$.Client.Data.Contracts.Providers\$saferootprojectname$.Client.Data.Contracts.Providers.csproj">
-      <Project>{D2432BC9-C269-47CA-85AC-7B1F79BDD2B7}</Project>
+      <Project>{4ADC03FA-37C2-4DBD-B0C2-A645116C3130}</Project>
       <Name>$saferootprojectname$.Client.Data.Contracts.Providers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\$saferootprojectname$.Client.Data.Fake.Containers\$saferootprojectname$.Client.Data.Fake.Containers.csproj">
+      <Project>{10E21AAA-998D-4B09-9728-2B66B13B29ED}</Project>
+      <Name>$saferootprojectname$.Client.Data.Fake.Containers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\$saferootprojectname$.Client.Data.Fake.ProviderBuilders\$saferootprojectname$.Client.Data.Fake.ProviderBuilders.csproj">
+      <Project>{B69DF3AB-45B8-4C86-9AC5-A5ED1A61E341}</Project>
+      <Name>$saferootprojectname$.Client.Data.Fake.ProviderBuilders</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

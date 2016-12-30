@@ -12,7 +12,8 @@ namespace $safeprojectname$
         {
             base.OnRegisterProviders(iocContainer);
             RegisterAllBuilders(iocContainer, LoginProviderBuilder.CreateBuilder);
-            RegisterAllBuilders(iocContainer, WarehouseProviderBuilder.CreateBuilder);            
+            RegisterAllBuilders(iocContainer, WarehouseProviderBuilder.CreateBuilder);
+            RegisterAllBuilders(iocContainer, EventsProviderBuilder.CreateBuilder);
         }
     }
 }
