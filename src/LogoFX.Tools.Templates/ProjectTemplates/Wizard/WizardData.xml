@@ -986,13 +986,13 @@
                               <Name>DebugWithFake|Any CPU</Name>
                               <ConfigurationName>DebugWithFake</ConfigurationName>
                               <PlatformName>AnyCPU</PlatformName>
-                              <IncludeInBuild>true</IncludeInBuild>
+                              <IncludeInBuild>false</IncludeInBuild>
                             </ProjectConfigurationData>
                             <ProjectConfigurationData>
                               <Name>DebugWithReal|Any CPU</Name>
                               <ConfigurationName>DebugWithReal</ConfigurationName>
                               <PlatformName>AnyCPU</PlatformName>
-                              <IncludeInBuild>true</IncludeInBuild>
+                              <IncludeInBuild>false</IncludeInBuild>
                             </ProjectConfigurationData>
                             <ProjectConfigurationData>
                               <Name>IntegrationWithFake|Any CPU</Name>
@@ -1010,13 +1010,13 @@
                               <Name>TestsWithFake|Any CPU</Name>
                               <ConfigurationName>TestsWithFake</ConfigurationName>
                               <PlatformName>AnyCPU</PlatformName>
-                              <IncludeInBuild>true</IncludeInBuild>
+                              <IncludeInBuild>false</IncludeInBuild>
                             </ProjectConfigurationData>
                             <ProjectConfigurationData>
                               <Name>TestsWithReal|Any CPU</Name>
                               <ConfigurationName>TestsWithReal</ConfigurationName>
                               <PlatformName>AnyCPU</PlatformName>
-                              <IncludeInBuild>true</IncludeInBuild>
+                              <IncludeInBuild>false</IncludeInBuild>
                             </ProjectConfigurationData>
                           </ProjectConfigurations>
                         </SolutionItemData>
@@ -2237,13 +2237,13 @@
                               <Name>DebugWithFake|Any CPU</Name>
                               <ConfigurationName>DebugWithFake</ConfigurationName>
                               <PlatformName>AnyCPU</PlatformName>
-                              <IncludeInBuild>true</IncludeInBuild>
+                              <IncludeInBuild>false</IncludeInBuild>
                             </ProjectConfigurationData>
                             <ProjectConfigurationData>
                               <Name>DebugWithReal|Any CPU</Name>
                               <ConfigurationName>DebugWithReal</ConfigurationName>
                               <PlatformName>AnyCPU</PlatformName>
-                              <IncludeInBuild>true</IncludeInBuild>
+                              <IncludeInBuild>false</IncludeInBuild>
                             </ProjectConfigurationData>
                             <ProjectConfigurationData>
                               <Name>IntegrationWithFake|Any CPU</Name>
@@ -2261,13 +2261,13 @@
                               <Name>TestsWithFake|Any CPU</Name>
                               <ConfigurationName>TestsWithFake</ConfigurationName>
                               <PlatformName>AnyCPU</PlatformName>
-                              <IncludeInBuild>true</IncludeInBuild>
+                              <IncludeInBuild>false</IncludeInBuild>
                             </ProjectConfigurationData>
                             <ProjectConfigurationData>
                               <Name>TestsWithReal|Any CPU</Name>
                               <ConfigurationName>TestsWithReal</ConfigurationName>
                               <PlatformName>AnyCPU</PlatformName>
-                              <IncludeInBuild>true</IncludeInBuild>
+                              <IncludeInBuild>false</IncludeInBuild>
                             </ProjectConfigurationData>
                           </ProjectConfigurations>
                         </SolutionItemData>
