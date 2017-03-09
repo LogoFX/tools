@@ -23,8 +23,11 @@ namespace $safeprojectname$
 
         private async Task LoginInternal(string username, string password)
         {
-            await _loginProvider.Login(username, password);
-            UserContext.Current = new User(username);
+            await ServiceRunner.RunAsync(() =>
+            {
+                _loginProvider.Login(username, password);
+                UserContext.Current = new User(username);
+            });
         }
     }
 }

@@ -35,12 +35,12 @@ namespace $safeprojectname$
         public void ThenTheLoginScreenIsDisplayed()
         {
             LoginSteps.ThenTheLoginScreenIsDisplayed();            
-        }
+        }        
 
-        [Then(@"Application navigates to the main screen")]
-        public void ThenApplicationNavigatesToTheMainScreen()
+        [Then(@"Login error message is displayed with the following text ""(.*)""")]
+        public void ThenLoginErrorMessageIsDisplayedWithTheFollowingText(string errorMessage)
         {
-            //for readability reasons
+            LoginSteps.ThenLoginErrorMessageIsDisplayedWithTheFollowingText(errorMessage);
         }
     }
 }

@@ -1,6 +1,4 @@
 using System;
-using System.Diagnostics;
-using System.Windows;
 using System.Windows.Input;
 using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.Commanding;
@@ -122,27 +120,6 @@ namespace $safeprojectname$.ViewModels
             get { return string.IsNullOrWhiteSpace(LoginFailureCause) == false; }
         }
         
-        private bool _isUserAuthenticated;
-
-        public bool IsUserAuthenticated
-        {
-            get { return _isUserAuthenticated; }
-            private set
-            {
-                if (_isUserAuthenticated == value)
-                    return;
-
-                _isUserAuthenticated = value;
-                NotifyOfPropertyChange();
-            }
-        }              
-
-        public string CurrentDomain
-        {
-            get;
-            private set;
-        }
-
         private string _userName;
 
         public string UserName

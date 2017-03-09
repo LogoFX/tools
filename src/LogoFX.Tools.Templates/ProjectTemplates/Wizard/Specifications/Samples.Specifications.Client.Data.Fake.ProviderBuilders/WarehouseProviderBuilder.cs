@@ -32,11 +32,11 @@ namespace $safeprojectname$
         protected override IServiceCall<IWarehouseProvider> CreateServiceCall(IHaveNoMethods<IWarehouseProvider> serviceCallTemplate)
         {
             var setup = serviceCallTemplate
-                .AddMethodCallWithResultAsync(t => t.GetWarehouseItems(),
+                .AddMethodCallWithResult(t => t.GetWarehouseItems(),
                     r => r.Complete(GetWarehouseItems))
-                .AddMethodCallWithResultAsync<Guid, bool>(t => t.DeleteWarehouseItem(It.IsAny<Guid>()),
+                .AddMethodCallWithResult<Guid, bool>(t => t.DeleteWarehouseItem(It.IsAny<Guid>()),
                     (r, id) => r.Complete(DeleteWarehouseItem(id)))
-                .AddMethodCallAsync<WarehouseItemDto>(t => t.SaveWarehouseItem(It.IsAny<WarehouseItemDto>()),
+                .AddMethodCall<WarehouseItemDto>(t => t.SaveWarehouseItem(It.IsAny<WarehouseItemDto>()),
                     (r, dto) =>
                     {
                         SaveWarehouseItem(dto);
@@ -62,7 +62,16 @@ namespace $safeprojectname$
 
         private void SaveWarehouseItem(WarehouseItemDto dto)
         {
-            _warehouseItemsStorage.Add(dto);
+            var oldDto = _warehouseItemsStorage.SingleOrDefault(x => x.Id == dto.Id);
+            if (oldDto == null)
+            {
+                _warehouseItemsStorage.Add(dto);
+                return;
+            }
+
+            oldDto.Kind = dto.Kind;
+            oldDto.Price = dto.Price;
+            oldDto.Quantity = dto.Quantity;
         }
     }
 }

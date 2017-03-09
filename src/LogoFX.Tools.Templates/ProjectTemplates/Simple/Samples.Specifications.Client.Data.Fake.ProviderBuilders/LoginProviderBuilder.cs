@@ -9,8 +9,7 @@ namespace $safeprojectname$
 {    
     public class LoginProviderBuilder : FakeBuilderBase<ILoginProvider>
     {        
-        private readonly List<Tuple<string, string>> _users = new List<Tuple<string, string>>();
-        private readonly Dictionary<string, bool> _isLoginAttemptSuccessfulCollection = new Dictionary<string, bool>();
+        private readonly Dictionary<string, string> _users = new Dictionary<string, string>();
         
         private LoginProviderBuilder()
         {
@@ -24,25 +23,19 @@ namespace $safeprojectname$
 
         public void WithUser(string username, string password)
         {
-            _users.Add(new Tuple<string, string>(username, password));            
-        }        
+            _users.Add(username, password);            
+        }
 
         protected override IServiceCall<ILoginProvider> CreateServiceCall(IHaveNoMethods<ILoginProvider> serviceCallTemplate)
         {
             var setup = serviceCallTemplate
-               .AddMethodCallAsync<string, string>(t => t.Login(It.IsAny<string>(), It.IsAny<string>()),
-                    (r, login, password) =>
-                           _isLoginAttemptSuccessfulCollection.ContainsKey(login)
-                               ? _isLoginAttemptSuccessfulCollection[login]
-                                   ? r.Complete()
-                                   : r.Throw(new Exception("Unable to login"))
-                               : r.Throw(new Exception("Login not found.")));
+               .AddMethodCall<string, string>(t => t.Login(It.IsAny<string>(), It.IsAny<string>()),
+                    (r, login, password) => _users.ContainsKey(login)
+                        ? _users[login] == password
+                            ? r.Complete()
+                            : r.Throw(new Exception("Unable to login."))
+                        : r.Throw(new Exception("Login not found.")));
             return setup;
-        }
-
-        public void WithSuccessfulLogin(string username)
-        {
-            _isLoginAttemptSuccessfulCollection[username] = true;
         }
     }
 }

@@ -3,7 +3,7 @@ using $saferootprojectname$.Tests.Domain.ScreenObjects;
 
 namespace $safeprojectname$.ScreenObjects
 {
-    public class LoginScreenObject : ILoginScreenObject
+    class LoginScreenObject : ILoginScreenObject
     {
         public StructureHelper StructureHelper { get; }
 
@@ -34,6 +34,12 @@ namespace $safeprojectname$.ScreenObjects
         {
             var loginViewModel = StructureHelper.GetLogin();
             loginViewModel.LoginCommand.Execute(null);
+        }
+
+        public string GetErrorMessage()
+        {
+            var loginViewModel = StructureHelper.GetLogin();
+            return loginViewModel.LoginFailureCause;
         }
     }
 }

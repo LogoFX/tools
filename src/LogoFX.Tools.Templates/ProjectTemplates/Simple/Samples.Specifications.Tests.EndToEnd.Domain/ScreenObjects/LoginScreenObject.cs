@@ -18,8 +18,15 @@ namespace $safeprojectname$.ScreenObjects
         public void SetUsername(string username)
         {
             var loginScreen = GetLoginScreen();
-            var userNameTextBox = loginScreen.Get<TextBox>("Login_UserName");
-            userNameTextBox.Enter(username);            
+            for (int i = 0; i < 3; i++)
+            {
+                var userNameTextBox = loginScreen.Get<TextBox>("Login_UserName");
+                userNameTextBox.Enter(username);
+                if (userNameTextBox.Text == username)
+                {
+                    break;
+                }
+            }            
         }
 
         public void SetPassword(string password)
@@ -34,6 +41,13 @@ namespace $safeprojectname$.ScreenObjects
             var application = ApplicationContext.Application;
             var loginScreen = application.GetWindowEx("Login View");
             return loginScreen;
+        }
+
+        public string GetErrorMessage()
+        {
+            var loginScreen = GetLoginScreen();
+            var errorLabel = loginScreen.Get<Label>(SearchCriteria.ByAutomationId("Login_FailureTextBlock"));
+            return errorLabel.Text;
         }
     }
 }

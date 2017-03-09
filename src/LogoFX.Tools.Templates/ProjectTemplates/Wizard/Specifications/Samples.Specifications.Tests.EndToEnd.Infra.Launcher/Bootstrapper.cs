@@ -22,8 +22,7 @@ namespace $safeprojectname$
 
         public Bootstrapper(IIocContainerRegistrator registrator)
         {
-            Registrator = registrator;         
-            PlatformProvider.Current = new NetPlatformProvider();
+            Registrator = registrator;     
         }
 
         /// <summary>

@@ -1,24 +1,25 @@
-using BoDi;
+using System;
 using LogoFX.Bootstrapping;
-using LogoFX.Client.Testing.EndToEnd.SpecFlow;
-using TechTalk.SpecFlow;
+using Solid.Practices.IoC;
 
 namespace $safeprojectname$
-{
-    /// <summary>
-    /// Represents SpecFlow bridge which performs the required registrations
-    /// for screen objects and application services
-    /// </summary>
-    [Binding]
-    class Startup : EndToEndTestsBase
+{    
+    class Startup
     {
-        public Startup(IObjectContainer objectContainer)
+        private readonly IIocContainer _iocContainer;
+
+        public Startup(IIocContainer iocContainer)
         {
-            var containerAdapter = new ObjectContainerAdapter(objectContainer);
+            _iocContainer = iocContainer;                   
+        }
+
+        public void Initialize(Action beforeInitialize)
+        {
             var bootstrapper =
-                new Bootstrapper(containerAdapter)
-                .Use(new RegisterCompositionModulesMiddleware<Bootstrapper>());            
-            bootstrapper.Initialize();            
-        }                       
+                new Bootstrapper(_iocContainer)
+                    .Use(new RegisterCompositionModulesMiddleware<Bootstrapper>());
+            beforeInitialize();                 
+            bootstrapper.Initialize();
+        }
     }
 }

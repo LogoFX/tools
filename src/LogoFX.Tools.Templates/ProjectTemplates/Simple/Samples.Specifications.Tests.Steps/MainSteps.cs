@@ -1,7 +1,4 @@
-using System;
-using System.Linq;
 using FluentAssertions;
-using $saferootprojectname$.Tests.Data;
 using $saferootprojectname$.Tests.Domain.ScreenObjects;
 
 namespace $safeprojectname$
@@ -15,50 +12,10 @@ namespace $safeprojectname$
             _mainScreenObject = mainScreenObject;
         }
 
-        public void WhenISetThePriceForItemTo(string kind, int newPrice)
-        {
-            _mainScreenObject.EditWarehouseItem(kind, "Price", newPrice.ToString());
-        }
-
-        public void ThenIExpectToSeeTheFollowingDataOnTheScreen(WarehouseItemAssertionTestData[] warehouseItems)
-        {
-            var actualWarehouseItems = _mainScreenObject.GetWarehouseItems().ToArray();
-            for (int i = 0; i < Math.Max(warehouseItems.Length, actualWarehouseItems.Length); i++)
-            {
-                var expectedWarehouseItem = warehouseItems[i];
-                var actualWarehouseItem = actualWarehouseItems[i];
-                actualWarehouseItem.Kind.Should().Be(expectedWarehouseItem.Kind);
-                actualWarehouseItem.Price.Should().Be(expectedWarehouseItem.Price);
-                actualWarehouseItem.Quantity.Should().Be(expectedWarehouseItem.Quantity);
-                actualWarehouseItem.TotalCost.Should().Be(expectedWarehouseItem.TotalCost);               
-            }            
-        }
-
-        public void ThenTotalCostOfItemIs(string kind, int expectedTotalCost)
-        {
-            var actualWarehouseItem = _mainScreenObject.GetWarehouseItemByKind(kind);
-            actualWarehouseItem.TotalCost.Should().Be(expectedTotalCost);
-        }
-
         public void ThenApplicationNavigatesToTheMainScreen()
         {
             var isActive = _mainScreenObject.IsActive();
             isActive.Should().BeTrue();
-        }
-
-        public void WhenIDeleteItem(string kind)
-        {
-            _mainScreenObject.DeleteWarehouseItem(kind);
-        }
-
-        public void WhenICreateANewWarehouseItemWithTheFollowingData(WarehouseItemAssertionTestData[] warehouseItems)
-        {
-            warehouseItems.Should().HaveCount(1);
-
-            foreach (var warehouseItem in warehouseItems)
-            {
-                _mainScreenObject.AddWarehouseItem(warehouseItem);
-            }
         }
     }
 }

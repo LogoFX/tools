@@ -7,6 +7,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
         xmlns:viewModels="clr-namespace:$safeprojectname$.ViewModels"
+        xmlns:actions="clr-namespace:LogoFX.Client.Mvvm.View.Interactivity.Actions;assembly=LogoFX.Client.Mvvm.View.Platform"
         mc:Ignorable="d"
         MaxWidth="600"
         d:DataContext="{d:DesignInstance viewModels:LoginViewModel}"
@@ -44,7 +45,13 @@
                  Height="21"
                  VerticalAlignment="Center"
                  AutomationProperties.AutomationId="Login_UserName"
-                 Text="{Binding Path=UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Loaded">
+                    <actions:SetFocusAction />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
         <Border Grid.Row="0"
                 Grid.Column="2"
                 Margin="5,0,5,0"
@@ -79,7 +86,7 @@
                 Background="Transparent"
                 BorderBrush="Black"
                 BorderThickness="1"
-                ToolTip="Password: '1234'">
+                ToolTip="Password: 'pass'">
             <TextBlock VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        Text="?" />
@@ -91,8 +98,9 @@
                   Content="Save Password"
                   VerticalAlignment="Center"
                   IsChecked="{Binding Path=SavePassword, Mode=TwoWay}" />
-        
-        <TextBlock Grid.Row="3"
+
+        <TextBlock AutomationProperties.AutomationId="Login_FailureTextBlock"
+                   Grid.Row="3"
                    Grid.Column="0"
                    Grid.ColumnSpan="2"
                    VerticalAlignment="Center"

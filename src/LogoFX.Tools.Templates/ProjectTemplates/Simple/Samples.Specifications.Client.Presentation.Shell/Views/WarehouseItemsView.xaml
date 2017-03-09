@@ -9,22 +9,27 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <DataGrid AutomationProperties.AutomationId="WarehouseItemsDataGrid" 
-                  ItemsSource="{Binding Path=WarehouseItems, Mode=OneWay}"
+                  ItemsSource="{Binding Path=Items, Mode=OneWay}"
+                  SelectionUnit="FullRow"
+                  SelectionMode="Single"
                   IsReadOnly="True"
                   AutoGenerateColumns="False">
             <DataGrid.RowStyle>
                 <Style BasedOn="{StaticResource {x:Type DataGridRow}}"
                        TargetType="{x:Type DataGridRow}">
+                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                     <Setter Property="IsSelected"
                             Value="{Binding Path=IsSelected, Mode=TwoWay}" />
                 </Style>
             </DataGrid.RowStyle>
 
             <DataGrid.Columns>
+                <!-- ReSharper disable Xaml.BindingWithContextNotResolved -->
                 <DataGridTextColumn Header="Kind" Binding="{Binding Path=Model.Kind}" />
                 <DataGridTextColumn Header="Price" Binding="{Binding Path=Model.Price}" />
                 <DataGridTextColumn Header="Quantity" Binding="{Binding Path=Model.Quantity}" />
                 <DataGridTextColumn Header="Total cost" Binding="{Binding Path=Model.TotalCost}" />
+                <!-- ReSharper restore Xaml.BindingWithContextNotResolved -->
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

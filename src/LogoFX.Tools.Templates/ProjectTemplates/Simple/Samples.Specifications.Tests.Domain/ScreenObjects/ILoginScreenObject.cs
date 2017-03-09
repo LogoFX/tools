@@ -5,5 +5,6 @@ namespace $safeprojectname$.ScreenObjects
         void Login();
         void SetUsername(string username);
         void SetPassword(string password);
+        string GetErrorMessage();
     }
 }

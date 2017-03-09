@@ -8,7 +8,8 @@ namespace $safeprojectname$.Mappers
     {
         internal static IWarehouseItem MapToWarehouseItem(WarehouseItemDto warehouseItemDto)
         {
-            return Mapper.Map<WarehouseItem>(warehouseItemDto);
+            var item = Mapper.Map<WarehouseItem>(warehouseItemDto);
+            return item;
         }
 
         internal static WarehouseItemDto MapToWarehouseDto(IWarehouseItem warehouseItem)

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Attest.Fake.Builders;
 using JetBrains.Annotations;
 using $saferootprojectname$.Client.Data.Contracts.Dto;
@@ -19,10 +18,10 @@ namespace $safeprojectname$
             _eventsProviderBuilder = eventsProviderBuilder;
         }
 
-        async Task<IEnumerable<EventDto>> IEventsProvider.GetLastEvents(DateTime lastEventTime)
+        IEnumerable<EventDto> IEventsProvider.GetLastEvents(DateTime lastEventTime)
         {
             var service = GetService(() => _eventsProviderBuilder, b => b);
-            return await service.GetLastEvents(lastEventTime);
+            return service.GetLastEvents(lastEventTime);
         }
     }
 }

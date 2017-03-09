@@ -5,8 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:viewModels="clr-namespace:$safeprojectname$.ViewModels"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -25,79 +23,14 @@
               Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="32" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <ContentControl Grid.Row="0"
-                            IsEnabled="{Binding Path=ActiveWarehouseItem.IsEnabled}"
-                            cal:View.Model="{Binding Path=ActiveWarehouseItem, Mode=OneWay}"                            
-                            cal:View.Context="Edit" />
+                            cal:View.Model="{Binding Path=ActiveWarehouseItem, Mode=OneWay}"/>
             
-            <Grid Grid.Row="1" IsEnabled="{Binding Path=ActiveWarehouseItem.IsEnabled}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-
-                <Button AutomationProperties.AutomationId="WarehouseItemNewButton" 
-                        Grid.Column="0"
-                        Content="New"
-                        Width="100"
-                        Height="24"
-                        VerticalAlignment="Center">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Click">
-                            <commanding:ExecuteCommandAction Command="{Binding Path=NewCommand, Mode=OneTime}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </Button>
-
-                <Button AutomationProperties.AutomationId="WarehouseItemDeleteButton" 
-                        Grid.Column="1"
-                        Content="Delete"
-                        Width="100"
-                        Height="24"
-                        VerticalAlignment="Center">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Click">
-                            <commanding:ExecuteCommandAction Command="{Binding Path=DeleteCommand, Mode=OneTime}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </Button>
-
-                <Button AutomationProperties.AutomationId="WarehouseItemApplyButton" 
-                        Grid.Column="3"
-                        Content="Apply"
-                        Width="100"
-                        Height="24"
-                        VerticalAlignment="Center">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Click">
-                            <commanding:ExecuteCommandAction Command="{Binding Path=ApplyCommand, Mode=OneTime}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </Button>
-
-                <Button Grid.Column="4"
-                        Margin="5,0,0,0"
-                        Content="Discard"
-                        Width="100"
-                        Height="24"
-                        VerticalAlignment="Center">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Click">
-                            <commanding:ExecuteCommandAction Command="{Binding Path=DiscardCommand, Mode=OneTime}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </Button>
-            </Grid>
-            
-            <ContentControl Grid.Row="2"
-                            cal:View.Model="{Binding WarehouseItems, Mode=OneTime}" />     
+            <ContentControl Grid.Row="1"
+                            cal:View.Model="{Binding Path=WarehouseItems, Mode=OneTime}" />     
         </Grid>
 
         <GridSplitter Grid.Column="1"

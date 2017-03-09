@@ -9,6 +9,10 @@ namespace $safeprojectname$
     {
         public static Window GetWindowEx(this Application app, string title)
         {
+            if (app.HasExited)
+            {
+                return null;
+            }
             app.WaitWhileBusy();
             return RetryHelper.ExecuteWithRetry(() => app.GetWindows().SingleOrDefault(x => x.Title == title), 3,
                 TimeSpan.FromSeconds(5));            

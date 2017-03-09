@@ -1,6 +1,7 @@
 using System;
 using JetBrains.Annotations;
 using $safeprojectname$.Contracts;
+using $safeprojectname$.Shared.Validation;
 
 namespace $safeprojectname$
 {
@@ -13,62 +14,48 @@ namespace $safeprojectname$
             int quantity)
         {
             Id = Guid.NewGuid();
-            Kind = kind;
-            Price = price;
-            Quantity = quantity;            
+            _kind = kind;
+            _price = price;
+            _quantity = quantity;            
         }
 
         private string _kind;
 
+        [StringValidation(IsNulOrEmptyAllowed = false, MaxLength = 63)]
         public string Kind
         {
             get { return _kind; }
             set
-            {
-                if (_kind == value)
-                {
-                    return;
-                }
-
-                _kind = value;
-                MakeDirty();
-                NotifyOfPropertyChange();
+            {                
+                SetProperty(ref _kind, value);
             }
         }
 
         private double _price;
+
+        [DoublePositiveValidation(ErrorMessage = "Price must be positive.")]
         public double Price
         {
             get { return _price;}
             set
             {
-                if (value == _price)
-                {
-                    return;
-                }
-                _price = value;
-                MakeDirty();
-                NotifyOfPropertyChange();
+                SetProperty(ref _price, value);
                 NotifyOfPropertyChange(() => TotalCost);
             }
         }
 
         private int _quantity;
+
+        [NumberValidation(Minimum = 0, ErrorMessage = "Quantity must be positive.")]
         public int Quantity
         {
             get { return _quantity; }
             set
-            {
-                if (value == _quantity)
-                {
-                    return;
-                }
-                _quantity = value;
-                MakeDirty();
-                NotifyOfPropertyChange();
+            {                
+                SetProperty(ref _quantity, value);
                 NotifyOfPropertyChange(() => TotalCost);
             }
-        }
+        }        
 
         public double TotalCost
         {

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using Attest.Fake.Builders;
 using JetBrains.Annotations;
@@ -8,7 +7,6 @@ using $saferootprojectname$.Client.Data.Contracts.Dto;
 using $saferootprojectname$.Client.Data.Contracts.Providers;
 using $saferootprojectname$.Client.Data.Fake.Containers;
 using $saferootprojectname$.Client.Data.Fake.ProviderBuilders;
-using Solid.Practices.Scheduling;
 
 namespace $safeprojectname$
 {
@@ -26,27 +24,28 @@ namespace $safeprojectname$
             _warehouseProviderBuilder.WithWarehouseItems(warehouseContainer.WarehouseItems);
         }
 
-        async Task<IEnumerable<WarehouseItemDto>> IWarehouseProvider.GetWarehouseItems()
+        IEnumerable<WarehouseItemDto> IWarehouseProvider.GetWarehouseItems()
         {
-            await Task.Delay(_random.Next(2000));
+            Task.Delay(_random.Next(2000));
             var service = GetService(() => _warehouseProviderBuilder, b => b);
-            var warehouseItems = await service.GetWarehouseItems();
+            var warehouseItems = service.GetWarehouseItems();
             return warehouseItems;
         }
 
-        async Task<bool> IWarehouseProvider.DeleteWarehouseItem(Guid id)
+        bool IWarehouseProvider.DeleteWarehouseItem(Guid id)
         {
-            await Task.Delay(_random.Next(2000));
+            Task.Delay(_random.Next(2000));
             var service = GetService(() => _warehouseProviderBuilder, b => b);
-            var retVal = await service.DeleteWarehouseItem(id);
+            var retVal = service.DeleteWarehouseItem(id);
             return retVal;
         }
 
-        async Task IWarehouseProvider.SaveWarehouseItem(WarehouseItemDto dto)
+        void IWarehouseProvider.SaveWarehouseItem(WarehouseItemDto dto)
         {
-            await Task.Delay(_random.Next(2000));
+            var delayTask = Task.Delay(_random.Next(2000));
+            delayTask.Wait();
             var service = GetService(() => _warehouseProviderBuilder, b => b);
-            await service.SaveWarehouseItem(dto);
+            service.SaveWarehouseItem(dto);
         }
     }
 }

@@ -9,9 +9,9 @@ namespace $safeprojectname$
         {
             iocContainer.RegisterSingleton<GeneralSteps, GeneralSteps>();
             iocContainer.RegisterSingleton<GivenLoginSteps, GivenLoginSteps>();
-            iocContainer.RegisterSingleton<LoginSteps, LoginSteps>();
-            iocContainer.RegisterSingleton<LoginSteps, LoginSteps>();
+            iocContainer.RegisterSingleton<LoginSteps, LoginSteps>();            
             iocContainer.RegisterSingleton<MainSteps, MainSteps>();
+            iocContainer.RegisterSingleton<ExitSteps, ExitSteps>();
         }
     }
 }

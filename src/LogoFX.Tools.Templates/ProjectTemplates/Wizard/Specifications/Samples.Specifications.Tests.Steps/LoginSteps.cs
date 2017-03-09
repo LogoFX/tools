@@ -1,3 +1,4 @@
+using FluentAssertions;
 using $saferootprojectname$.Tests.Domain.ScreenObjects;
 
 namespace $safeprojectname$
@@ -29,6 +30,12 @@ namespace $safeprojectname$
         public void ThenTheLoginScreenIsDisplayed()
         {
            
+        }
+
+        public void ThenLoginErrorMessageIsDisplayedWithTheFollowingText(string errorMessage)
+        {
+            var actualErrorMessage = _loginScreenObject.GetErrorMessage();
+            actualErrorMessage.Should().Be(errorMessage);
         }
     }
 }

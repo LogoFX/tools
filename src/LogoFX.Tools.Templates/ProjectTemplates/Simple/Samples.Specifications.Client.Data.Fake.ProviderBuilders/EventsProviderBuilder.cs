@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using Attest.Fake.Setup.Contracts;
 using LogoFX.Client.Data.Fake.ProviderBuilders;
 using $saferootprojectname$.Client.Data.Contracts.Dto;
@@ -9,7 +8,7 @@ using $saferootprojectname$.Client.Data.Contracts.Providers;
 using Attest.Fake.Core;
 
 namespace $safeprojectname$
-{
+{    
     public sealed class EventsProviderBuilder : FakeBuilderBase<IEventsProvider>
     {
         private readonly List<EventDto> _events = new List<EventDto>();
@@ -20,6 +19,16 @@ namespace $safeprojectname$
         private EventsProviderBuilder()
         {
             _timer = new Timer(OnTimer, null, 1000, 1000);
+        }
+
+        ~EventsProviderBuilder()
+        {
+            var timer = _timer;
+            if (timer != null)
+            {
+                timer.Dispose();
+                _timer = null;
+            }
         }
 
         private void OnTimer(object state)
@@ -40,7 +49,7 @@ namespace $safeprojectname$
         protected override IServiceCall<IEventsProvider> CreateServiceCall(IHaveNoMethods<IEventsProvider> serviceCallTemplate)
         {
             var setup = serviceCallTemplate
-                .AddMethodCallWithResultAsync<DateTime, IEnumerable<EventDto>>(
+                .AddMethodCallWithResult<DateTime, IEnumerable<EventDto>>(
                     t => t.GetLastEvents(It.IsAny<DateTime>()),
                     (r, lastEventTime) => r.Complete(_events.Where(x => x.Time >= lastEventTime)));
             return setup;

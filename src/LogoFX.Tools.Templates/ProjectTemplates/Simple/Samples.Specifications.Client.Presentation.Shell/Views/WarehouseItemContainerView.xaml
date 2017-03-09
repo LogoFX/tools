@@ -1,0 +1,32 @@
+<UserControl x:Class="$safeprojectname$.Views.WarehouseItemContainerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:$safeprojectname$.ViewModels"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:converters="clr-namespace:$safeprojectname$.Converters"
+             mc:Ignorable="d" 
+             AutomationProperties.AutomationId="WarehouseItemsContainer"
+             d:DataContext="{d:DesignInstance viewModels:WarehouseItemContainerViewModel}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:BooleanToCommandsContextConverter x:Key="BooleanToCommandsContextConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <ContentControl cal:View.Model="{Binding Path=Item, Mode=OneWay}" 
+                        Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <ContentControl cal:View.Model="{Binding Path=Commands, Mode=OneWay}" 
+                        cal:View.Context="{Binding Path=Item.Model.IsNew, Mode=OneWay, Converter={StaticResource BooleanToCommandsContextConverter}}"
+                        Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+    </Grid>
+</UserControl>

@@ -21,7 +21,7 @@ namespace $safeprojectname$.ViewModels
         }
 
         private WrappingCollection.WithSelection _warehouseItems;
-        public WrappingCollection.WithSelection WarehouseItems
+        public WrappingCollection.WithSelection Items
         {
             get { return _warehouseItems ?? (_warehouseItems = CreateWarehouseItems()); }
         }
@@ -30,7 +30,11 @@ namespace $safeprojectname$.ViewModels
         {
             var wc = new WrappingCollection.WithSelection
             {
-                FactoryMethod = o => _viewModelCreatorService.CreateViewModel<IWarehouseItem, WarehouseItemViewModel>((IWarehouseItem) o)
+                FactoryMethod = o =>
+                {
+                    var viewModel = _viewModelCreatorService.CreateViewModel<IWarehouseItem, WarehouseItemViewModel>((IWarehouseItem) o);
+                    return viewModel;
+                }
             }.WithSource(_dataService.WarehouseItems);
 
             return wc;

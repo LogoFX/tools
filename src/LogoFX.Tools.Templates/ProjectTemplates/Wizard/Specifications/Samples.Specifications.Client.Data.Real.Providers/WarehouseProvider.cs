@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using $saferootprojectname$.Client.Data.Contracts.Dto;
 using $saferootprojectname$.Client.Data.Contracts.Providers;
 
@@ -8,10 +7,10 @@ namespace $safeprojectname$
 {
     class WarehouseProvider : IWarehouseProvider
     {
-        public Task<IEnumerable<WarehouseItemDto>> GetWarehouseItems()
+        public IEnumerable<WarehouseItemDto> GetWarehouseItems()
         {
             //put here real data logic
-            return Task.FromResult((IEnumerable<WarehouseItemDto>) new[]
+            return (IEnumerable<WarehouseItemDto>) new[]
             {
                 new WarehouseItemDto
                 {
@@ -40,15 +39,15 @@ namespace $safeprojectname$
                     Price = 1,
                     Quantity = 10
                 },
-            });           
+            };           
         }
 
-        public Task<bool> DeleteWarehouseItem(Guid id)
+        public bool DeleteWarehouseItem(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task SaveWarehouseItem(WarehouseItemDto dto)
+        public void SaveWarehouseItem(WarehouseItemDto dto)
         {
             throw new NotImplementedException();
         }

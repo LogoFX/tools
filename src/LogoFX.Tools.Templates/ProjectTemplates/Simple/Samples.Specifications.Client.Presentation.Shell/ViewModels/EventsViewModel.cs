@@ -1,7 +1,6 @@
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Input;
-using Caliburn.Micro;
 using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.ViewModel;
 using LogoFX.Client.Mvvm.ViewModel.Extensions;
@@ -11,8 +10,7 @@ namespace $safeprojectname$.ViewModels
 {
     public sealed class EventsViewModel : BusyScreen
     {
-        private readonly IDataService _dataService;
-        private IEnumerable _events;
+        private readonly IDataService _dataService;        
 
         public EventsViewModel(IDataService dataService)
         {
@@ -20,7 +18,6 @@ namespace $safeprojectname$.ViewModels
         }
 
         private ICommand _clearCommand;
-
         public ICommand ClearCommand
         {
             get
@@ -46,7 +43,6 @@ namespace $safeprojectname$.ViewModels
         }
 
         private ICommand _startCommand;
-
         public ICommand StartCommand
         {
             get
@@ -57,13 +53,12 @@ namespace $safeprojectname$.ViewModels
                            .Do(() =>
                            {
                                _dataService.StartEventMonitoring();
-                           })
+                           })                           
                            .RequeryOnPropertyChanged(this, () => _dataService.EventMonitoringStarted));
             }
         }
 
         private ICommand _stopCommand;
-
         public ICommand StopCommand
         {
             get
@@ -79,6 +74,7 @@ namespace $safeprojectname$.ViewModels
             }
         }
 
+        private IEnumerable _events;
         public IEnumerable Events
         {
             get { return _events ?? (_events = CreateEvents()); }

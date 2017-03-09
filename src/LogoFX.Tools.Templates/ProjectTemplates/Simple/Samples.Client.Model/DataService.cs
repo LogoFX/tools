@@ -2,18 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 using JetBrains.Annotations;
+using LogoFX.Client.Core;
 using LogoFX.Core;
 using $saferootprojectname$.Client.Data.Contracts.Providers;
 using $safeprojectname$.Contracts;
 using $safeprojectname$.Mappers;
-using System.Windows.Threading;
-using Caliburn.Micro;
 
 namespace $safeprojectname$
 {
     [UsedImplicitly]
-    internal sealed class DataService : PropertyChangedBase, IDataService
+    internal sealed class DataService : NotifyPropertyChangedBase<DataService>, IDataService
     {
         private readonly IWarehouseProvider _warehouseProvider;
         private readonly IEventsProvider _eventsProvider;
@@ -36,29 +36,36 @@ namespace $safeprojectname$
 
         private async void OnTimer(object sender, EventArgs e)
         {
-            var events = (await _eventsProvider.GetLastEvents(_lastEvenTime))
-                .Select(EventMapper.MapToEvent)
-                .ToList();
+            await ServiceRunner.RunAsync(() =>
+             {
+                 var events = (_eventsProvider.GetLastEvents(_lastEvenTime))
+                     .Select(EventMapper.MapToEvent)
+                     .ToList();
 
-            if (events.Count == 0)
-            {
-                return;
-            }
+                 if (events.Count == 0)
+                 {
+                     return;
+                 }
 
-            var max = events.Max(x => x.Time);
-            if (max > _lastEvenTime)
-            {
-                _lastEvenTime = max;
-            }
+                 var max = events.Max(x => x.Time);
+                 if (max > _lastEvenTime)
+                 {
+                     _lastEvenTime = max;
+                 }
 
-            _events.AddRange(events);
+                 _events.AddRange(events);
+             });
         }
 
         private async Task GetWarehouseItemsInternal()
         {
-            var warehouseItems = (await _warehouseProvider.GetWarehouseItems()).Select(WarehouseMapper.MapToWarehouseItem);
-            _warehouseItems.Clear();
-            _warehouseItems.AddRange(warehouseItems);
+            await ServiceRunner.RunAsync(() =>
+            {
+                var warehouseItems = _warehouseProvider.GetWarehouseItems().Select(WarehouseMapper.MapToWarehouseItem);
+                _warehouseItems.Clear();
+                _warehouseItems.AddRange(warehouseItems);
+            });
+            
         }
 
         IEnumerable<IWarehouseItem> IDataService.WarehouseItems
@@ -74,19 +81,25 @@ namespace $safeprojectname$
         async Task<IWarehouseItem> IDataService.NewWarehouseItemAsync()
         {
             await Task.Delay(1000);
-            return new WarehouseItem("", 0d, 1);
+            return new WarehouseItem("New Kind", 0d, 1)
+            {
+                IsNew = true
+            };
         }
 
         async Task IDataService.SaveWarehouseItemAsync(IWarehouseItem item)
         {
             var dto = WarehouseMapper.MapToWarehouseDto(item);
-            await _warehouseProvider.SaveWarehouseItem(dto);
+            await ServiceRunner.RunAsync(() => _warehouseProvider.SaveWarehouseItem(dto));            
         }
 
         async Task IDataService.DeleteWarehouseItemAsync(IWarehouseItem item)
         {
-            await _warehouseProvider.DeleteWarehouseItem(item.Id);
-            _warehouseItems.Remove(item);
+            await ServiceRunner.RunAsync(() =>
+             {
+                 _warehouseProvider.DeleteWarehouseItem(item.Id);
+                 _warehouseItems.Remove(item);
+             });
         }
 
         void IDataService.StartEventMonitoring()
@@ -101,7 +114,7 @@ namespace $safeprojectname$
             _timer.Stop();
             NotifyOfPropertyChange(() => EventMonitoringStarted);
         }
-
+        
         async Task IDataService.ClearEventsAsync()
         {
             await Task.Delay(400);

@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Attest.Fake.Builders;
 using JetBrains.Annotations;
 using $saferootprojectname$.Client.Data.Contracts.Providers;
@@ -20,14 +19,13 @@ namespace $safeprojectname$
             foreach (var user in userContainer.Users)
             {
                 _loginProviderBuilder.WithUser(user.Item1, user.Item2);
-                _loginProviderBuilder.WithSuccessfulLogin(user.Item1);
             }            
         }
 
-        async Task ILoginProvider.Login(string username, string password)
+        void ILoginProvider.Login(string username, string password)
         {
             var service = GetService(() => _loginProviderBuilder, b => b);
-            await service.Login(username, password);
+            service.Login(username, password);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace $safeprojectname$.ViewModels
             _viewModelCreatorService = viewModelCreatorService;            
             
             EventHandler strongHandler = OnLoggedInSuccessfully;
-            LoginViewModel.LoggedInSuccessfully += WeakDelegate.From(strongHandler);
+            LoginViewModel.LoggedInSuccessfully += WeakDelegate.From(strongHandler);            
         }
 
         private ICommand _closeCommand;
@@ -64,7 +64,7 @@ namespace $safeprojectname$.ViewModels
         public bool IsLoggedIn
         {
             get { return UserContext.Current != null; }
-        }        
+        }                  
 
         private LoginViewModel _loginViewModel;
         public LoginViewModel LoginViewModel

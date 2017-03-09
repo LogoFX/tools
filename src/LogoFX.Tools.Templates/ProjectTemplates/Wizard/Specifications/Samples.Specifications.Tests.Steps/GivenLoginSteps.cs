@@ -35,16 +35,16 @@ namespace $safeprojectname$
 #endif
         }
 
-        public void SetupLoginSuccessfullyWithUsername(string username)
-        {
-#if FAKE
-            _loginProviderBuilder.WithSuccessfulLogin(username);
-            _builderRegistrationService.RegisterBuilder(_loginProviderBuilder);
-#endif
+//        public void SetupLoginSuccessfullyWithUsername(string username)
+//        {
+//#if FAKE
+//            _loginProviderBuilder.WithSuccessfulLogin(username);
+//            _builderRegistrationService.RegisterBuilder(_loginProviderBuilder);
+//#endif
 
-#if REAL
-            //put here real Setup
-#endif
-        }
+//#if REAL
+//            //put here real Setup
+//#endif
+//        }
     }
 }

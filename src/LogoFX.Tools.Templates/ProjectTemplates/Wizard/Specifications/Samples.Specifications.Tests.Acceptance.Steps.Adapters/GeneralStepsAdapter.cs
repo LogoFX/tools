@@ -18,5 +18,11 @@ namespace $safeprojectname$
         {
             GeneralSteps.WhenIOpenTheApplication();
         }
+
+        [When(@"I close the application")]
+        public void WhenICloseTheApplication()
+        {
+            GeneralSteps.WhenICloseTheApplication();
+        }
     }
 }
