@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Linq;
+using System.Windows.Input;
 using Caliburn.Micro;
 using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.ViewModel;
@@ -113,7 +114,8 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         {
             return !string.IsNullOrEmpty(Name) &&
                    !string.IsNullOrEmpty(DefaultName) &&
-                   Model.Solutions.Count > 0;
+                   Model.Solutions.Count > 0 &&
+                   Model.Solutions.All(x => x.SolutionVariants != null && x.SolutionVariants.Length > 0);
         }
     }
 }
