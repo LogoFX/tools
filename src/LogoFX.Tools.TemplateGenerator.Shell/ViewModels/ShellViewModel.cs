@@ -1,12 +1,13 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Input;
-using Avalon.Windows.Dialogs;
 using Caliburn.Micro;
 using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Tools.TemplateGenerator.Shell.Properties;
+using LogoFX.Tools.TemplateGenerator.Shell.UIServices;
+using Screen = Caliburn.Micro.Screen;
 
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {
@@ -72,10 +73,10 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                                FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog
                                {
                                    SelectedPath = DestinationPath,
-                                   Title = "Destination Path"
+                                   Description = "Destination Path"
                                };
 
-                               var retVal = folderBrowserDialog.ShowDialog() ?? false;
+                               var retVal = FolderBrowserLauncher.ShowFolderBrowser(folderBrowserDialog) == DialogResult.OK;
 
                                if (!retVal)
                                {

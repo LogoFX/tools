@@ -16,8 +16,6 @@ namespace LogoFX.Tools.TemplateGenerator.Launcher
                 .UseResolver()
                 .UseViewModelCreatorService()
                 .Initialize();
-
-            var c = AssemblySource.Instance.Count;
         }
     }
 }
