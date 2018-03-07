@@ -45,7 +45,7 @@
     <Compile Include="IProjectConfiguration.cs" />
     <Compile Include="IProjectTemplateInfo.cs" />
     <Compile Include="ISolutionFolderTemplateInfo.cs" />
-    <Compile Include="ISolutionFolderTemplateInfoExtensions.cs" />
+    <Compile Include="SolutionFolderTemplateInfoExtensions.cs" />
     <Compile Include="ISolutionItemTemplateInfo.cs" />
     <Compile Include="ISolutionTemplateInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
