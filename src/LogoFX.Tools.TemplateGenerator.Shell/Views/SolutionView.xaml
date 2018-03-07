@@ -36,6 +36,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             
@@ -53,6 +54,20 @@
                     <i:EventTrigger EventName="Click">
                         <commanding:ExecuteCommandAction Command="{Binding Path=EditSolutionCommand, Mode=OneTime}"
                                                          ManageEnableState="True" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+
+            <Button Grid.Column="2"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    Width="80"
+                    Content="Remove…">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <commanding:ExecuteNamedCommandAction CommandName="RemoveSolutionCommand"
+                                                              Parameter="{Binding Path=Model, Mode=OneWay}"
+                                                              ManageEnableState="True" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>

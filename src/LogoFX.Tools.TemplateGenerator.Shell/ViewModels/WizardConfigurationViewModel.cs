@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using Caliburn.Micro;
 using LogoFX.Client.Mvvm.Commanding;
@@ -42,6 +43,34 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                                    Name = createSolutionViewModel.Name
                                };
                                Model.Solutions.Add(solutionInfo);
+                               OnCanGenerateUpdated();
+                           }));
+            }
+        }
+
+        private ICommand _removeSolutionCommand;
+
+        public ICommand RemoveSolutionCommand
+        {
+            get
+            {
+                return _removeSolutionCommand ??
+                       (_removeSolutionCommand = ActionCommand<SolutionInfo>
+                           .When(s => true)
+                           .Do(s =>
+                           {
+                               var retVal = MessageBox.Show(
+                                   "Are you sure you want to delete solution '" + s.Name + "'?",
+                                   "Solution Removing",
+                                   MessageBoxButton.YesNo);
+
+                               if (retVal != MessageBoxResult.Yes)
+                               {
+                                   return;
+                               }
+
+                               Model.Solutions.Remove(s);
+                               OnCanGenerateUpdated();
                            }));
             }
         }
