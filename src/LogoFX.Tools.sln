@@ -1,8 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.1
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VSIX", "VSIX", "{A1B11387-FE47-4966-AA0E-12C4BF7C220E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{77784143-5C4E-4BE2-9A0F-E1BA5E9464D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Generator", "Generator", "{DB660404-A4CD-4206-BD1D-0CD76EB3F27B}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.Templates", "LogoFX.Tools.Templates\LogoFX.Tools.Templates.csproj", "{EDF177C8-9FD3-4219-97E4-1A6D5122C777}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.Templates.Wizard", "LogoFX.Tools.Templates.Wizard\LogoFX.Tools.Templates.Wizard.csproj", "{49CC73EF-E0EC-48F2-8F53-A6FDA3EB7631}"
@@ -10,12 +16,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.Templates.ViewModel", "LogoFX.Tools.Templates.ViewModel\LogoFX.Tools.Templates.ViewModel.csproj", "{DC84D34F-DE39-4B7B-8F47-6BEC8D071165}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.Templates.UserControlView", "LogoFX.Tools.Templates.UserControlView\LogoFX.Tools.Templates.UserControlView.csproj", "{D2AAB89A-99FC-4693-A8A2-CFDA734BFB57}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VSIX", "VSIX", "{A1B11387-FE47-4966-AA0E-12C4BF7C220E}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{77784143-5C4E-4BE2-9A0F-E1BA5E9464D7}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Generator", "Generator", "{DB660404-A4CD-4206-BD1D-0CD76EB3F27B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.TemplateGenerator", "LogoFX.Tools.TemplateGenerator\LogoFX.Tools.TemplateGenerator.csproj", "{6588154F-33F5-458E-8445-433228326999}"
 EndProject
@@ -83,5 +83,8 @@ Global
 		{3E119547-01CC-47AD-88A1-6F9F00352A36} = {DB660404-A4CD-4206-BD1D-0CD76EB3F27B}
 		{EA8D96DD-5289-4B7D-8C93-E6AD7DC090FC} = {DB660404-A4CD-4206-BD1D-0CD76EB3F27B}
 		{134A21A4-30A3-47DC-8B2F-14FAD5670477} = {77784143-5C4E-4BE2-9A0F-E1BA5E9464D7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E0EEE4D5-3DB2-4C9E-9649-9C015A750FD6}
 	EndGlobalSection
 EndGlobal
