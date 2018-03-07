@@ -1,4 +1,6 @@
-﻿using LogoFX.Client.Bootstrapping;
+﻿using Caliburn.Micro;
+using LogoFX.Client.Bootstrapping;
+using LogoFX.Client.Mvvm.ViewModel.Services;
 
 namespace LogoFX.Tools.TemplateGenerator.Launcher
 {
@@ -10,7 +12,12 @@ namespace LogoFX.Tools.TemplateGenerator.Launcher
         public App()
         {
             var bootstrapper = new AppBootstrapper();
-            bootstrapper.UseResolver().Initialize();
+            bootstrapper
+                .UseResolver()
+                .UseViewModelCreatorService()
+                .Initialize();
+
+            var c = AssemblySource.Instance.Count;
         }
     }
 }
