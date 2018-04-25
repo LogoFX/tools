@@ -79,7 +79,7 @@
     <None Include="EditableViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="ViewModel.resources.cs" />
-    <Compile Include="ViewModelBase.cs" />
+    <None Include="ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ViewModel.cs" />

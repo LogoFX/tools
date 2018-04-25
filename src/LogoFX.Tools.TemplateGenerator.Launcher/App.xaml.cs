@@ -1,5 +1,4 @@
-﻿using Caliburn.Micro;
-using LogoFX.Client.Bootstrapping;
+﻿using LogoFX.Client.Bootstrapping;
 using LogoFX.Client.Mvvm.ViewModel.Services;
 
 namespace LogoFX.Tools.TemplateGenerator.Launcher

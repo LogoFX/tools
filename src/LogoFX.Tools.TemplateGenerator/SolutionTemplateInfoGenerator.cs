@@ -48,6 +48,7 @@ namespace LogoFX.Tools.TemplateGenerator
             if (!folders.TryGetValue(parentId, out folder))
             {
                 ProjectInSolution parentProj;
+                Debug.Assert(proj.ParentProjectGuid != null, "proj.ParentProjectGuid != null");
                 if (solution.ProjectsByGuid.TryGetValue(proj.ParentProjectGuid, out parentProj))
                 {
                     folder = (SolutionFolderTemplateInfo)await CreateSolutionItemTemplateInfoAsync(solution, solutionTemplateInfo, parentProj, folders);

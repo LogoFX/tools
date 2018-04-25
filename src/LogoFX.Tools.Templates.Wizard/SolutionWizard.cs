@@ -83,6 +83,7 @@ namespace LogoFX.Tools.Templates.Wizard
             //System.Threading.Thread.Sleep(500);
         }
 
+        // ReSharper disable once UnusedParameter.Local
         private void RemoveSamples(Microsoft.Build.Evaluation.Project buildProject, SolutionDataViewModel solutionData)
         {
             var items = buildProject.Items.ToArray();
@@ -107,6 +108,7 @@ namespace LogoFX.Tools.Templates.Wizard
                         {
                             var body = CreateEmptyShell(buildProject);
                             var itemFileName = Path.GetDirectoryName(item.Xml.IncludeLocation.File);
+                            Debug.Assert(itemFileName != null, nameof(itemFileName) + " != null");
                             itemFileName = Path.Combine(itemFileName, name);
                             File.WriteAllText(itemFileName, body);
                             continue;
@@ -227,8 +229,6 @@ namespace LogoFX.Tools.Templates.Wizard
             foreach (var file in files)
             {
                 var name = Path.GetFileName(file);
-                if (name == null) continue;
-
                 var dest = Path.Combine(destDirectory, name);
                 File.Copy(file, dest);
             }
@@ -508,7 +508,9 @@ namespace LogoFX.Tools.Templates.Wizard
             string oldFileName,
             string newFileName)
         {
-            var ext = Path.GetExtension(newFileName).ToLower();
+            var extension = Path.GetExtension(newFileName);
+            Debug.Assert(extension != null, nameof(extension) + " != null");
+            var ext = extension.ToLower();
 
             switch (ext)
             {
@@ -547,6 +549,8 @@ namespace LogoFX.Tools.Templates.Wizard
 
             var vstemplateName = (string)customParams[0];
             _tmpFolder = Path.GetDirectoryName(vstemplateName);
+            Debug.Assert(_tmpFolder != null, nameof(_tmpFolder) + " != null");
+
             replacementsDictionary["$saferootprojectname$"] = replacementsDictionary["$safeprojectname$"];
 
             var wizardDataFileName = Path.Combine(_tmpFolder, WizardDataLoader.WizardDataFielName);

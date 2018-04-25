@@ -87,7 +87,7 @@ namespace LogoFX.Tools.TemplateGenerator
                 {
                     case ".cs":
                     case ".config":
-                        fileGenerator = new CSFileGenerator(newFileName, rootNamespace, _rootNamespaces, _projects);
+                        fileGenerator = new CsFileGenerator(newFileName, rootNamespace, _rootNamespaces, _projects);
                         break;
                     case ".xaml":
                         fileGenerator = new XamlFileGenerator(newFileName, rootNamespace, _projects);
@@ -134,6 +134,9 @@ namespace LogoFX.Tools.TemplateGenerator
             var fileName = Path.GetFileName(include);
             var dir = Path.GetFileNameWithoutExtension(fileName);
             var ddir = Path.GetDirectoryName(Path.GetDirectoryName(include));
+            
+            Debug.Assert(ddir != null, nameof(ddir) + " != null");
+            
             include = Path.Combine(ddir, Path.Combine(dir, fileName));
             var rootName = GetRootName(include);
             reference.UnevaluatedInclude = include.Replace(rootName, "$saferootprojectname$");

@@ -73,7 +73,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                                FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog
                                {
                                    SelectedPath = DestinationPath,
-                                   Description = "Destination Path"
+                                   Description = @"Destination Path"
                                };
 
                                var retVal = FolderBrowserLauncher.ShowFolderBrowser(folderBrowserDialog) == DialogResult.OK;
@@ -238,11 +238,12 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             set { }
         }
 
-        protected override async void OnActivate()
+        protected override void OnActivate()
         {
             base.OnActivate();
 
             IsBusy = true;
+            
             try
             {
             }

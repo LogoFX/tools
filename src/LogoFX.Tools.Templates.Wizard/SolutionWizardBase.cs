@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using EnvDTE;
 using EnvDTE100;
 using EnvDTE80;
@@ -87,9 +88,12 @@ namespace LogoFX.Tools.Templates.Wizard
             }
 
             DTE2 dtE2 = automationObject as DTE2;
+            Debug.Assert(dtE2 != null, nameof(dtE2) + " != null");
+            // ReSharper disable once SuspiciousTypeConversion.Global
             var solution4 = dtE2.Solution as Solution4;
             if (solution4 != null)
             {
+                // ReSharper disable once SuspiciousTypeConversion.Global
                 _solution = (Solution4)dtE2.Solution;
             }
 

@@ -4,8 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance viewModels:SolutionOptionsViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">

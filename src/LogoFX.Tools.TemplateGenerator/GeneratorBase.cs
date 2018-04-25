@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Xml.Linq;
 using LogoFX.Tools.TemplateGenerator.Contracts;
@@ -7,7 +8,7 @@ namespace LogoFX.Tools.TemplateGenerator
 {
     public abstract class GeneratorBase
     {
-        private static readonly string[] s_names = { ".Client.", ".Tests." };
+        private static readonly string[] _names = { ".Client.", ".Tests." };
 
         protected static readonly XNamespace Ns = XNamespace.Get("http://schemas.microsoft.com/developer/vstemplate/2005");
 
@@ -15,8 +16,10 @@ namespace LogoFX.Tools.TemplateGenerator
         {
             projectName = Path.GetFileName(projectName);
 
+            Debug.Assert(projectName != null, nameof(projectName) + " != null");
+
             int index = -1;
-            foreach (var name in s_names)
+            foreach (var name in _names)
             {
                 index = projectName.IndexOf(name, StringComparison.InvariantCulture);
                 if (index >= 0)

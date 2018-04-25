@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace LogoFX.Tools.Common.Model
+﻿namespace LogoFX.Tools.Common.Model
 {
     public class ProjectData : SolutionItemData
     {

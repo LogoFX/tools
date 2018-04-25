@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace LogoFX.Tools.Templates.Wizard.Views
+﻿namespace LogoFX.Tools.Templates.Wizard.Views
 {
     /// <summary>
     /// Interaction logic for WizardWindow.xaml

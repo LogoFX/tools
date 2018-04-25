@@ -27,6 +27,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.Controls
             ((BusyIndicator) d).OnIsBusyChanged((bool) e.NewValue, (bool) e.OldValue);
         }
 
+        // ReSharper disable once UnusedParameter.Local
         private void OnIsBusyChanged(bool newValue, bool oldValue)
         {
             Visibility = newValue ? Visibility.Visible : Visibility.Collapsed;

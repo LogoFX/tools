@@ -39,7 +39,11 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                                if (!string.IsNullOrEmpty(SolutionFileName))
                                {
                                    var folder = Path.GetDirectoryName(SolutionFileName);
-                                   openFileDialog.InitialDirectory = folder;
+
+                                   if (!string.IsNullOrEmpty(folder))
+                                   {
+                                       openFileDialog.InitialDirectory = folder;
+                                   }
                                }
 
                                var retVal = openFileDialog.ShowDialog() ?? false;

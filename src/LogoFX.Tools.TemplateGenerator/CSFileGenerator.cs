@@ -4,13 +4,13 @@ using LogoFX.Tools.TemplateGenerator.Contracts;
 
 namespace LogoFX.Tools.TemplateGenerator
 {
-    internal sealed class CSFileGenerator : ProjectItemTemplateGenerator
+    internal sealed class CsFileGenerator : ProjectItemTemplateGenerator
     {
         private readonly string _rootNamespace;
         private readonly IEnumerable<string> _rootNamespaces;
         private readonly IEnumerable<IProjectTemplateInfo> _projects;
 
-        public CSFileGenerator(string fileName, string rootNamespace, IEnumerable<string> rootNamespaces, IEnumerable<IProjectTemplateInfo> projects) 
+        public CsFileGenerator(string fileName, string rootNamespace, IEnumerable<string> rootNamespaces, IEnumerable<IProjectTemplateInfo> projects) 
             : base(fileName)
         {
             _rootNamespace = rootNamespace;
