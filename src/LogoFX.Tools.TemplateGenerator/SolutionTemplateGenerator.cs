@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,6 +27,7 @@ namespace LogoFX.Tools.TemplateGenerator
 
             CreatePrepropcess(destinationFolder);
 
+            var folderDic = new Dictionary<string, string>();
             foreach (var solution in _wizardConfiguration.Solutions)
             {
                 foreach (var variant in solution.SolutionVariants)
@@ -36,7 +38,7 @@ namespace LogoFX.Tools.TemplateGenerator
                     {
                         var folderName = Path.GetDirectoryName(projectTemplateInfo.FileName);
                         folderName = Path.GetFileName(folderName);
-                        var destinationFileName = CreateNewFileName(folderName, solution.Name, destinationFolder);
+                        var destinationFileName = CreateNewFileName(folderName, solution.Name, destinationFolder, folderDic);
                         projectTemplateInfo.SetDestinationFileName(destinationFileName);
                         if (File.Exists(destinationFileName))
                         {
@@ -51,7 +53,7 @@ namespace LogoFX.Tools.TemplateGenerator
             await CreateWizardSolutionFileAsync(destinationFolder, _wizardConfiguration);
         }
 
-        private string CreateNewFileName(string projectName, string solutionName, string destinationFolder)
+        private string CreateNewFileName(string projectName, string solutionName, string destinationFolder, Dictionary<string, string> folderDic)
         {
             var solutionFolder = _wizardConfiguration.Solutions.Count > 1
                 ? Path.Combine(destinationFolder, solutionName)
@@ -64,7 +66,13 @@ namespace LogoFX.Tools.TemplateGenerator
                 newProjectName = "MyProject.csproj";
             }
 
-            var result = Path.Combine(solutionFolder, projectName);
+            if (!folderDic.TryGetValue(projectName, out var shortProjectName))
+            {
+                shortProjectName = $"Proj{folderDic.Count + 1:D3}";
+                folderDic.Add(projectName, shortProjectName);
+            }
+
+            var result = Path.Combine(solutionFolder, shortProjectName);
             result = Path.Combine(result, newProjectName);
 
             return result;
