@@ -21,7 +21,7 @@
                       <Items>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Presentation.Shared</Name>
-                          <FileName>Proj001\MyProject.csproj</FileName>
+                          <FileName>..\Proj001\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -64,7 +64,7 @@
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Presentation.Shell</Name>
-                          <FileName>Proj002\MyProject.csproj</FileName>
+                          <FileName>..\Proj002\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -112,7 +112,7 @@
                       <Items>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Model.Contracts</Name>
-                          <FileName>Proj003\MyProject.csproj</FileName>
+                          <FileName>..\Proj003\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -155,7 +155,7 @@
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Model.Shared</Name>
-                          <FileName>Proj004\MyProject.csproj</FileName>
+                          <FileName>..\Proj004\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -198,7 +198,7 @@
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Model</Name>
-                          <FileName>Proj005\MyProject.csproj</FileName>
+                          <FileName>..\Proj005\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -249,7 +249,7 @@
                           <Items>
                             <SolutionItemData xsi:type="ProjectData">
                               <Name>Client.Data.Contracts.Dto</Name>
-                              <FileName>Proj006\MyProject.csproj</FileName>
+                              <FileName>..\Proj006\MyProject.csproj</FileName>
                               <IsStartup>false</IsStartup>
                               <ProjectConfigurations>
                                 <ProjectConfigurationData>
@@ -292,7 +292,7 @@
                             </SolutionItemData>
                             <SolutionItemData xsi:type="ProjectData">
                               <Name>Client.Data.Contracts.Providers</Name>
-                              <FileName>Proj007\MyProject.csproj</FileName>
+                              <FileName>..\Proj007\MyProject.csproj</FileName>
                               <IsStartup>false</IsStartup>
                               <ProjectConfigurations>
                                 <ProjectConfigurationData>
@@ -340,7 +340,7 @@
                           <Items>
                             <SolutionItemData xsi:type="ProjectData">
                               <Name>Client.Data.Fake.Containers</Name>
-                              <FileName>Proj008\MyProject.csproj</FileName>
+                              <FileName>..\Proj008\MyProject.csproj</FileName>
                               <IsStartup>false</IsStartup>
                               <ProjectConfigurations>
                                 <ProjectConfigurationData>
@@ -383,7 +383,7 @@
                             </SolutionItemData>
                             <SolutionItemData xsi:type="ProjectData">
                               <Name>Client.Data.Fake.ProviderBuilders</Name>
-                              <FileName>Proj009\MyProject.csproj</FileName>
+                              <FileName>..\Proj009\MyProject.csproj</FileName>
                               <IsStartup>false</IsStartup>
                               <ProjectConfigurations>
                                 <ProjectConfigurationData>
@@ -426,7 +426,7 @@
                             </SolutionItemData>
                             <SolutionItemData xsi:type="ProjectData">
                               <Name>Client.Data.Fake.Providers</Name>
-                              <FileName>Proj010\MyProject.csproj</FileName>
+                              <FileName>..\Proj010\MyProject.csproj</FileName>
                               <IsStartup>false</IsStartup>
                               <ProjectConfigurations>
                                 <ProjectConfigurationData>
@@ -469,7 +469,7 @@
                             </SolutionItemData>
                             <SolutionItemData xsi:type="ProjectData">
                               <Name>Client.Data.Fake.ProviderBuilders.Setup</Name>
-                              <FileName>Proj011\MyProject.csproj</FileName>
+                              <FileName>..\Proj011\MyProject.csproj</FileName>
                               <IsStartup>false</IsStartup>
                               <ProjectConfigurations>
                                 <ProjectConfigurationData>
@@ -517,7 +517,7 @@
                           <Items>
                             <SolutionItemData xsi:type="ProjectData">
                               <Name>Client.Data.Real.Providers</Name>
-                              <FileName>Proj012\MyProject.csproj</FileName>
+                              <FileName>..\Proj012\MyProject.csproj</FileName>
                               <IsStartup>false</IsStartup>
                               <ProjectConfigurations>
                                 <ProjectConfigurationData>
@@ -564,7 +564,7 @@
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Launcher</Name>
-                      <FileName>Proj013\MyProject.csproj</FileName>
+                      <FileName>..\Proj013\MyProject.csproj</FileName>
                       <IsStartup>true</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -607,7 +607,7 @@
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Launcher.Shared</Name>
-                      <FileName>Proj014\MyProject.csproj</FileName>
+                      <FileName>..\Proj014\MyProject.csproj</FileName>
                       <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -660,7 +660,7 @@
                   <Items>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Tests.Acceptance.Steps.Adapters</Name>
-                      <FileName>Proj015\MyProject.csproj</FileName>
+                      <FileName>..\Proj015\MyProject.csproj</FileName>
                       <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -703,7 +703,7 @@
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Tests.Acceptance.Specs</Name>
-                      <FileName>Proj016\MyProject.csproj</FileName>
+                      <FileName>..\Proj016\MyProject.csproj</FileName>
                       <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -754,7 +754,7 @@
                       <Items>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Tests.EndToEnd.Infra.Fake</Name>
-                          <FileName>Proj017\MyProject.csproj</FileName>
+                          <FileName>..\Proj017\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -797,7 +797,7 @@
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Tests.EndToEnd.Infra.Launcher</Name>
-                          <FileName>Proj018\MyProject.csproj</FileName>
+                          <FileName>..\Proj018\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -840,7 +840,7 @@
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Tests.EndToEnd.Infra.Providers</Name>
-                          <FileName>Proj019\MyProject.csproj</FileName>
+                          <FileName>..\Proj019\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -883,7 +883,7 @@
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Tests.EndToEnd.Infra.Real</Name>
-                          <FileName>Proj020\MyProject.csproj</FileName>
+                          <FileName>..\Proj020\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -928,7 +928,7 @@
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Tests.EndToEnd.Domain</Name>
-                      <FileName>Proj021\MyProject.csproj</FileName>
+                      <FileName>..\Proj021\MyProject.csproj</FileName>
                       <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -979,7 +979,7 @@
                       <Items>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Tests.Integration.Infra.Core</Name>
-                          <FileName>Proj022\MyProject.csproj</FileName>
+                          <FileName>..\Proj022\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -1022,7 +1022,7 @@
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Tests.Integration.Infra</Name>
-                          <FileName>Proj023\MyProject.csproj</FileName>
+                          <FileName>..\Proj023\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -1067,7 +1067,7 @@
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Tests.Integration.Domain</Name>
-                      <FileName>Proj024\MyProject.csproj</FileName>
+                      <FileName>..\Proj024\MyProject.csproj</FileName>
                       <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -1110,7 +1110,7 @@
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Tests.Integration</Name>
-                      <FileName>Proj025\MyProject.csproj</FileName>
+                      <FileName>..\Proj025\MyProject.csproj</FileName>
                       <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -1158,7 +1158,7 @@
                   <Items>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Tests.Domain</Name>
-                      <FileName>Proj026\MyProject.csproj</FileName>
+                      <FileName>..\Proj026\MyProject.csproj</FileName>
                       <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -1206,7 +1206,7 @@
                   <Items>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Tests.Data</Name>
-                      <FileName>Proj027\MyProject.csproj</FileName>
+                      <FileName>..\Proj027\MyProject.csproj</FileName>
                       <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -1254,7 +1254,7 @@
                   <Items>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Tests.Steps</Name>
-                      <FileName>Proj028\MyProject.csproj</FileName>
+                      <FileName>..\Proj028\MyProject.csproj</FileName>
                       <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -1315,7 +1315,7 @@
                       <Items>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Presentation.Shared</Name>
-                          <FileName>Proj001\MyProject.csproj</FileName>
+                          <FileName>..\Proj001\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -1358,7 +1358,7 @@
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Presentation.Shell</Name>
-                          <FileName>Proj002\MyProject.csproj</FileName>
+                          <FileName>..\Proj002\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -1406,7 +1406,7 @@
                       <Items>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Model.Contracts</Name>
-                          <FileName>Proj003\MyProject.csproj</FileName>
+                          <FileName>..\Proj003\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -1449,7 +1449,7 @@
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Model.Shared</Name>
-                          <FileName>Proj004\MyProject.csproj</FileName>
+                          <FileName>..\Proj004\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -1492,7 +1492,7 @@
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Model</Name>
-                          <FileName>Proj005\MyProject.csproj</FileName>
+                          <FileName>..\Proj005\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -1543,7 +1543,7 @@
                           <Items>
                             <SolutionItemData xsi:type="ProjectData">
                               <Name>Client.Data.Contracts.Dto</Name>
-                              <FileName>Proj006\MyProject.csproj</FileName>
+                              <FileName>..\Proj006\MyProject.csproj</FileName>
                               <IsStartup>false</IsStartup>
                               <ProjectConfigurations>
                                 <ProjectConfigurationData>
@@ -1586,7 +1586,7 @@
                             </SolutionItemData>
                             <SolutionItemData xsi:type="ProjectData">
                               <Name>Client.Data.Contracts.Providers</Name>
-                              <FileName>Proj007\MyProject.csproj</FileName>
+                              <FileName>..\Proj007\MyProject.csproj</FileName>
                               <IsStartup>false</IsStartup>
                               <ProjectConfigurations>
                                 <ProjectConfigurationData>
@@ -1634,7 +1634,7 @@
                           <Items>
                             <SolutionItemData xsi:type="ProjectData">
                               <Name>Client.Data.Fake.Containers</Name>
-                              <FileName>Proj008\MyProject.csproj</FileName>
+                              <FileName>..\Proj008\MyProject.csproj</FileName>
                               <IsStartup>false</IsStartup>
                               <ProjectConfigurations>
                                 <ProjectConfigurationData>
@@ -1677,7 +1677,7 @@
                             </SolutionItemData>
                             <SolutionItemData xsi:type="ProjectData">
                               <Name>Client.Data.Fake.ProviderBuilders</Name>
-                              <FileName>Proj009\MyProject.csproj</FileName>
+                              <FileName>..\Proj009\MyProject.csproj</FileName>
                               <IsStartup>false</IsStartup>
                               <ProjectConfigurations>
                                 <ProjectConfigurationData>
@@ -1720,7 +1720,7 @@
                             </SolutionItemData>
                             <SolutionItemData xsi:type="ProjectData">
                               <Name>Client.Data.Fake.Providers</Name>
-                              <FileName>Proj010\MyProject.csproj</FileName>
+                              <FileName>..\Proj010\MyProject.csproj</FileName>
                               <IsStartup>false</IsStartup>
                               <ProjectConfigurations>
                                 <ProjectConfigurationData>
@@ -1763,7 +1763,7 @@
                             </SolutionItemData>
                             <SolutionItemData xsi:type="ProjectData">
                               <Name>Client.Data.Fake.ProviderBuilders.Setup</Name>
-                              <FileName>Proj011\MyProject.csproj</FileName>
+                              <FileName>..\Proj011\MyProject.csproj</FileName>
                               <IsStartup>false</IsStartup>
                               <ProjectConfigurations>
                                 <ProjectConfigurationData>
@@ -1811,7 +1811,7 @@
                           <Items>
                             <SolutionItemData xsi:type="ProjectData">
                               <Name>Client.Data.Real.Providers</Name>
-                              <FileName>Proj012\MyProject.csproj</FileName>
+                              <FileName>..\Proj012\MyProject.csproj</FileName>
                               <IsStartup>false</IsStartup>
                               <ProjectConfigurations>
                                 <ProjectConfigurationData>
@@ -1858,7 +1858,7 @@
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Launcher</Name>
-                      <FileName>Proj029\MyProject.csproj</FileName>
+                      <FileName>..\Proj029\MyProject.csproj</FileName>
                       <IsStartup>true</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -1901,7 +1901,7 @@
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Launcher.Shared</Name>
-                      <FileName>Proj030\MyProject.csproj</FileName>
+                      <FileName>..\Proj030\MyProject.csproj</FileName>
                       <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -1954,7 +1954,7 @@
                   <Items>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Tests.Acceptance.Steps.Adapters</Name>
-                      <FileName>Proj015\MyProject.csproj</FileName>
+                      <FileName>..\Proj015\MyProject.csproj</FileName>
                       <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -1997,7 +1997,7 @@
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Tests.Acceptance.Specs</Name>
-                      <FileName>Proj016\MyProject.csproj</FileName>
+                      <FileName>..\Proj016\MyProject.csproj</FileName>
                       <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -2048,7 +2048,7 @@
                       <Items>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Tests.EndToEnd.Infra.Fake</Name>
-                          <FileName>Proj017\MyProject.csproj</FileName>
+                          <FileName>..\Proj017\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -2091,7 +2091,7 @@
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Tests.EndToEnd.Infra.Launcher</Name>
-                          <FileName>Proj018\MyProject.csproj</FileName>
+                          <FileName>..\Proj018\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -2134,7 +2134,7 @@
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Tests.EndToEnd.Infra.Providers</Name>
-                          <FileName>Proj019\MyProject.csproj</FileName>
+                          <FileName>..\Proj019\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -2177,7 +2177,7 @@
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Tests.EndToEnd.Infra.Real</Name>
-                          <FileName>Proj020\MyProject.csproj</FileName>
+                          <FileName>..\Proj020\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -2222,7 +2222,7 @@
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Tests.EndToEnd.Domain</Name>
-                      <FileName>Proj021\MyProject.csproj</FileName>
+                      <FileName>..\Proj021\MyProject.csproj</FileName>
                       <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -2273,7 +2273,7 @@
                       <Items>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Tests.Integration.Infra.Core</Name>
-                          <FileName>Proj022\MyProject.csproj</FileName>
+                          <FileName>..\Proj022\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -2316,7 +2316,7 @@
                         </SolutionItemData>
                         <SolutionItemData xsi:type="ProjectData">
                           <Name>Client.Tests.Integration.Infra</Name>
-                          <FileName>Proj023\MyProject.csproj</FileName>
+                          <FileName>..\Proj023\MyProject.csproj</FileName>
                           <IsStartup>false</IsStartup>
                           <ProjectConfigurations>
                             <ProjectConfigurationData>
@@ -2361,7 +2361,7 @@
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Tests.Integration.Domain</Name>
-                      <FileName>Proj024\MyProject.csproj</FileName>
+                      <FileName>..\Proj024\MyProject.csproj</FileName>
                       <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -2404,7 +2404,7 @@
                     </SolutionItemData>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Client.Tests.Integration</Name>
-                      <FileName>Proj025\MyProject.csproj</FileName>
+                      <FileName>..\Proj025\MyProject.csproj</FileName>
                       <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -2452,7 +2452,7 @@
                   <Items>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Tests.Domain</Name>
-                      <FileName>Proj026\MyProject.csproj</FileName>
+                      <FileName>..\Proj026\MyProject.csproj</FileName>
                       <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -2500,7 +2500,7 @@
                   <Items>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Tests.Data</Name>
-                      <FileName>Proj027\MyProject.csproj</FileName>
+                      <FileName>..\Proj027\MyProject.csproj</FileName>
                       <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>
@@ -2548,7 +2548,7 @@
                   <Items>
                     <SolutionItemData xsi:type="ProjectData">
                       <Name>Tests.Steps</Name>
-                      <FileName>Proj028\MyProject.csproj</FileName>
+                      <FileName>..\Proj028\MyProject.csproj</FileName>
                       <IsStartup>false</IsStartup>
                       <ProjectConfigurations>
                         <ProjectConfigurationData>

@@ -11,6 +11,8 @@ namespace LogoFX.Tools.TemplateGenerator
 {
     public sealed class SolutionTemplateGenerator : GeneratorBase
     {
+        private const string DefinitionsFolderName = "Definitions";
+
         private readonly WizardConfiguration _wizardConfiguration;
 
         public SolutionTemplateGenerator(WizardConfiguration wizardConfiguration)
@@ -81,6 +83,8 @@ namespace LogoFX.Tools.TemplateGenerator
         private async Task CreateWizardSolutionFileAsync(string destinationFolder, WizardConfiguration wizardConfiguration)
         {
             var wizardDataGenrator = new WizardDataGenerator(wizardConfiguration);
+
+            destinationFolder = Path.Combine(destinationFolder, DefinitionsFolderName);
             await wizardDataGenrator.GenerateAndSaveAsync(destinationFolder);
         }
 
@@ -97,6 +101,7 @@ namespace LogoFX.Tools.TemplateGenerator
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Indent = true;
 
+            destinationFolder = Path.Combine(destinationFolder, DefinitionsFolderName);
             var definitionFile = Path.Combine(destinationFolder, "_preprocess.xml");
 
             using (XmlWriter xw = XmlWriter.Create(definitionFile, settings))
