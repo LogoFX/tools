@@ -3,11 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
-        xmlns:controls="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.Controls"
         xmlns:cal="http://www.caliburnproject.org"
-        xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModels:ShellViewModel}"
         WindowStartupLocation="CenterOwner"
@@ -16,91 +13,6 @@
         Width="1024">
     
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="32" />
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0" Margin="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <TextBlock Grid.Column="0"
-                       VerticalAlignment="Center"
-                       Text="Destination Folder:" />
-            <TextBox Grid.Column="1"
-                     Margin="5,0,5,0"
-                     VerticalAlignment="Center"
-                     IsReadOnly="True"
-                     Text="{Binding Path=DestinationPath, Mode=OneWay}" />
-            <Button Grid.Column="2"
-                    Content="..."
-                    ToolTip="Browse for destination folder."
-                    Width="20"
-                    VerticalAlignment="Center">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Click">
-                        <commanding:ExecuteCommandAction Command="{Binding Path=BrowseDestinationFolderCommand, Mode=OneTime}" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </Button>
-
-        </Grid>
-        
-        <TabControl Grid.Row="1" Margin="5">
-            <TabItem Header="Configuration">
-                <ContentControl Margin="5"
-                                cal:View.Model="{Binding Path=WizardConfiguration, Mode=OneWay}" />
-            </TabItem>
-
-            <TabItem Header="Solutions">
-                <ContentControl Margin="5"
-                                cal:View.Model="{Binding Path=WizardConfiguration, Mode=OneWay}" 
-                                cal:View.Context="Solutions" />
-            </TabItem>
-        </TabControl>
-
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <Button Grid.Column="3"
-                    Margin="5"                    
-                    Width="120"
-                    Content="Save">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Click">
-                        <commanding:ExecuteCommandAction Command="{Binding Path=SaveCommand, Mode=OneTime}"
-                                                         ManageEnableState="True" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </Button>
-
-            <Button Grid.Column="4"
-                    Margin="5"                    
-                    Width="200"
-                    Content="Generate Template">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Click">
-                        <commanding:ExecuteCommandAction Command="{Binding Path=GenerateTemplateCommand, Mode=OneTime}"
-                                                         ManageEnableState="True" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </Button>
-        </Grid>
-
-        <controls:BusyIndicator Grid.Row="0"
-                                Grid.RowSpan="4"
-                                IsBusy="{Binding Path=IsBusy, Mode=OneWay}"/>
+        <ContentControl cal:View.Model="{Binding Path=ActiveItem, Mode=OneWay}" />
     </Grid>
 </Window>

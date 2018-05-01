@@ -86,10 +86,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LogoFX.Tools.Common.Model\LogoFX.Tools.Common.Model.csproj">
-      <Project>{134A21A4-30A3-47DC-8B2F-14FAD5670477}</Project>
+      <Project>{134a21a4-30a3-47dc-8b2f-14fad5670477}</Project>
       <Name>LogoFX.Tools.Common.Model</Name>
-      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
-      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
     </ProjectReference>
     <ProjectReference Include="..\LogoFX.Tools.Templates.UserControlView\LogoFX.Tools.Templates.UserControlView.csproj">
       <Project>{d2aab89a-99fc-4693-a8a2-cfda734bfb57}</Project>

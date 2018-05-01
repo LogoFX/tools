@@ -1,7 +1,7 @@
 ﻿namespace LogoFX.Tools.TemplateGenerator.Shell.Models
 {
-    public sealed class ConfigurationModel
+    public class ConfigurationModel
     {
-        public string DestinationPath { get; set; }
+
     }
 }
