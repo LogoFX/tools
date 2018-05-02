@@ -5,48 +5,88 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
              xmlns:cal="http://www.caliburnproject.org"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModels:MainViewModel}">
 
-    <Grid Margin="8">
+    <Grid Margin="8,0,8,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="32" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="32" />
+            </Grid.RowDefinitions>
             
-            <TextBlock Grid.Column="0"
+            <TextBlock Grid.Row="0"
                        VerticalAlignment="Center"
-                       Text="Solution:" />
+                       Text="Solutions" />
+
+            <ListBox Grid.Row="1" 
+                     ItemsSource="{Binding Path=Items, Mode=OneWay}"
+                     SelectedItem="{Binding Path=ActiveItem, Mode=TwoWay}" 
+                     DisplayMemberPath="DisplayName" />
             
-            <ComboBox x:Name="Items" 
-                      Grid.Column="1"
-                      SelectedValue="{Binding Path=ActiveItem, Mode=TwoWay}"
-                      VerticalAlignment="Center"
-                      Margin="5,0,0,0" />
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                       
+                <Button Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Content="Add...">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <commanding:ExecuteCommandAction Command="{Binding Path=AddSolutionCommand, Mode=OneTime}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
 
-            <Button Grid.Column="2"
-                    Margin="5,0,0,0"
-                    Width="24"
-                    Height="24"
-                    VerticalAlignment="Center"
-                    Content="+">
-            </Button>
-
-            <Button Grid.Column="3"
-                    Margin="5,0,0,0"
-                    Width="24"
-                    Height="24"
-                    VerticalAlignment="Center"
-                    Content="-">
-            </Button>
+                <Button Grid.Column="2"
+                        VerticalAlignment="Center"
+                        Content="Remove">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <commanding:ExecuteCommandAction Command="{Binding Path=RemoveSolutionCommand, Mode=OneTime}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </Grid>
         </Grid>
+        
+        <GridSplitter Grid.Row="0" 
+                      Grid.RowSpan="2" 
+                      Grid.Column="1"
+                      Width="4"
+                      Margin="4"
+                      VerticalAlignment="Stretch"
+                      HorizontalAlignment="Stretch"
+                      ResizeDirection="Columns" />
+        
+        <Button Grid.Row="0"
+                Grid.Column="2"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Height="22"
+                Width="200"
+                Content="Start generation" />
+
+        <Grid Grid.Row="1"
+              Grid.Column="2">
+            <ContentControl cal:View.Model="{Binding Path=ActiveItem, Mode=OneWay}" />
+        </Grid>        
     </Grid>
 </UserControl>

@@ -1,10 +1,9 @@
-﻿    using System;
-    using LogoFX.Client.Mvvm.Model.Contracts;
-
-namespace LogoFX.Tools.TemplateGenerator.Model.Contract
+﻿namespace LogoFX.Tools.TemplateGenerator.Model.Contract
 {
-    public interface ISolutionConfiguration : IModel<Guid>
+    public interface ISolutionConfiguration : IAppModel
     {
         string Path { get; }
+
+        bool Vs2017 { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using LogoFX.Tools.TemplateGenerator.Model.Contract;
@@ -41,17 +42,34 @@ namespace LogoFX.Tools.TemplateGenerator.Model
             }
         }
 
+        public ISolutionConfiguration AddSolution(string name)
+        {
+            if (_configuration.Solutions.Any(x => x.Name == name))
+            {
+                throw new ArgumentException($"This name already added to Configuration: {name}", nameof(name));
+            }
+
+            var solutionConfiguration = new SolutionConfiguration
+            {
+                Name = name
+            };
+
+            _configuration.Solutions.Add(solutionConfiguration);
+
+            return solutionConfiguration;
+        }
+
+        public void RemoveSolution(ISolutionConfiguration solution)
+        {
+            _configuration.Solutions.Remove((SolutionConfiguration) solution);
+        }
+
+        public void SetSolutionPath(ISolutionConfiguration solution, string path)
+        {
+            ((SolutionConfiguration) solution).Path = path;
+        }
+
         Task IDataService.SaveConfigurationAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        ISolutionConfiguration IDataService.AddSolution(string path)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDataService.RemoveSolution(ISolutionConfiguration solution)
         {
             throw new NotImplementedException();
         }

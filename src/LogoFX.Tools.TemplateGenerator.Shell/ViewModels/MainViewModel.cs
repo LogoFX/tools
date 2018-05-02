@@ -1,7 +1,9 @@
 ﻿using System.Collections.Specialized;
 using System.Linq;
+using System.Windows.Input;
 using Caliburn.Micro;
 using JetBrains.Annotations;
+using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.ViewModel.Contracts;
 using LogoFX.Client.Mvvm.ViewModel.Services;
 using LogoFX.Core;
@@ -13,14 +15,60 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
     [UsedImplicitly]
     public class MainViewModel : Conductor<SolutionConfigurationViewModel>.Collection.OneActive, IModelWrapper<IConfiguration>
     {
+        private readonly IDataService _dataService;
         private readonly IViewModelCreatorService _viewModelCreatorService;
 
         public MainViewModel(
             IConfiguration model,
+            IDataService dataService,
             IViewModelCreatorService viewModelCreatorService)
         {
+            _dataService = dataService;
             _viewModelCreatorService = viewModelCreatorService;
             Model = model;
+        }
+
+        private ICommand _addSolutionCommand;
+
+        public ICommand AddSolutionCommand
+        {
+            get
+            {
+                return _addSolutionCommand ??
+                       (_addSolutionCommand = ActionCommand
+                           .When(() => true)
+                           .Do(() =>
+                           {
+                               var newName = "New Solution ";
+                               int index = 1;
+                               // ReSharper disable once AccessToModifiedClosure
+                               while (Items.Any(x => x.Model.Name == newName + index))
+                               {
+                                   ++index;
+                               }
+
+                               var solution = _dataService.AddSolution(newName + index);
+                               var solutionVm = Items.Single(x => x.Model == solution);
+                               ActivateItem(solutionVm);
+                           }));
+            }
+        }
+
+        private ICommand _removeSolutionCommand;
+
+        public ICommand RemoveSolutionCommand
+        {
+            get
+            {
+                return _removeSolutionCommand ??
+                       (_removeSolutionCommand = ActionCommand
+                           .When(() => ActiveItem != null)
+                           .Do(() =>
+                           {
+                               _dataService.RemoveSolution(ActiveItem.Model);
+                           })
+                           .RequeryOnPropertyChanged(this, () => ActiveItem));
+            }
         }
 
         private void CreateSolutions()

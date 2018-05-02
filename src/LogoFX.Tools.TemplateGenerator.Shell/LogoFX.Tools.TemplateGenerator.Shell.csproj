@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LogoFX.Tools.TemplateGenerator.Shell</RootNamespace>
     <AssemblyName>LogoFX.Tools.TemplateGenerator.Shell</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -177,10 +177,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="UIServices\FolderBrowserLauncher.cs" />
-    <Compile Include="ViewModels\AddSolutionVariantViewModel.cs" />
-    <Compile Include="ViewModels\CanGenerateViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\RootNamespaceViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\SolutionConfigurationViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -200,9 +197,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddSolutionVariantView.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\SolutionConfigurationView.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>

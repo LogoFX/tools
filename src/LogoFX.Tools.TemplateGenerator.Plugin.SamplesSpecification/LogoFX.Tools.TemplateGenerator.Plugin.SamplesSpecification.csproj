@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\bin\Debug\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Caliburn.Micro.Core" Version="4.0.0-alpha.1" />
+    <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
+    <PackageReference Include="Solid.Practices.Modularity" Version="1.2.1-rc2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Model.Contract\LogoFX.Tools.TemplateGenerator.Model.Contract.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Caliburn.Micro">
+      <HintPath>..\packages\Caliburn.Micro.Core.4.0.0-alpha.1\lib\netstandard1.0\Caliburn.Micro.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

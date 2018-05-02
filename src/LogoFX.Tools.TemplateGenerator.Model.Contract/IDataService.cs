@@ -7,11 +7,13 @@ namespace LogoFX.Tools.TemplateGenerator.Model.Contract
     {
         Task<IConfiguration> GetConfigurationAsync();
 
-        Task SaveConfigurationAsync();
-
-        ISolutionConfiguration AddSolution(string path);
+        ISolutionConfiguration AddSolution(string name);
 
         void RemoveSolution(ISolutionConfiguration solution);
+
+        void SetSolutionPath(ISolutionConfiguration solution, string path);
+
+        Task SaveConfigurationAsync();
 
         Task GenerateTemplates(ISolutionConfiguration[] solutions, IProgress<double> progress);
     }

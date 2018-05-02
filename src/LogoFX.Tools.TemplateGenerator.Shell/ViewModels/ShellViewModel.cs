@@ -35,6 +35,12 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             }
         }
 
+        public override string DisplayName
+        {
+            get { return "LogoFX Template Generator"; }
+            set { }
+        }
+
         private bool _isBusy;
 
         public bool IsBusy
