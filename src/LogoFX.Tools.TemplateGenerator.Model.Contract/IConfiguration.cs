@@ -1,7 +1,9 @@
-﻿namespace LogoFX.Tools.TemplateGenerator.Model.Contract
+﻿using System.Collections.Generic;
+
+namespace LogoFX.Tools.TemplateGenerator.Model.Contract
 {
     public interface IConfiguration
     {
-        ISolutionConfiguration[] Solutions { get; }
+        IEnumerable<ISolutionConfiguration> Solutions { get; }
     }
 }

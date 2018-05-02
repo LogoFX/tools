@@ -4,4 +4,14 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="LogoFX.Client.Mvvm.Model" Version="1.1.1-rc4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="LogoFX.Client.Mvvm.Model.Contracts">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.1.1-rc4\lib\netstandard2.0\LogoFX.Client.Mvvm.Model.Contracts.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

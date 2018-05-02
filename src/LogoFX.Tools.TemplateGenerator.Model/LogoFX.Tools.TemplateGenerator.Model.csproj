@@ -28,10 +28,4 @@
     <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Model.Contract\LogoFX.Tools.TemplateGenerator.Model.Contract.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Solid.Practices.Modularity">
-      <HintPath>..\packages\Solid.Practices.Modularity.1.2.1-rc2\lib\netstandard2.0\Solid.Practices.Modularity.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>

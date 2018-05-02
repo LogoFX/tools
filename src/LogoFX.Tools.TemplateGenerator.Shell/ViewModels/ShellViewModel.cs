@@ -3,6 +3,7 @@ using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.ViewModel.Contracts;
 using LogoFX.Client.Mvvm.ViewModel.Services;
 using LogoFX.Tools.TemplateGenerator.Model.Contract;
+using LogoFX.Tools.TemplateGenerator.Shell.Properties;
 
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {
@@ -16,6 +17,22 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         {
             _dataService = dataService;
             _viewModelCreatorService = viewModelCreatorService;
+        }
+
+        private async void StartAcivateMainViewModel()
+        {
+            IsBusy = true;
+
+            try
+            {
+                var configuration = await _dataService.GetConfigurationAsync();
+                ActivateItem(_viewModelCreatorService.CreateViewModel<IConfiguration, MainViewModel>(configuration));
+            }
+
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         private bool _isBusy;
@@ -32,19 +49,13 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             StartAcivateMainViewModel();
         }
 
-        private async void StartAcivateMainViewModel()
+        protected override void OnDeactivate(bool close)
         {
-            IsBusy = true;
+            base.OnDeactivate(close);
 
-            try
+            if (close)
             {
-                var configuration = await _dataService.GetConfigurationAsync();
-                ActivateItem(_viewModelCreatorService.CreateViewModel<IConfiguration, MainViewModel>(configuration));
-            }
-
-            finally
-            {
-                IsBusy = false;
+                Settings.Default.Save();
             }
         }
     }
