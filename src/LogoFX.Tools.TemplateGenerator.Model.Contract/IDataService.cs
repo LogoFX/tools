@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace LogoFX.Tools.TemplateGenerator.Model.Contract
@@ -7,14 +8,16 @@ namespace LogoFX.Tools.TemplateGenerator.Model.Contract
     {
         Task<IConfiguration> GetConfigurationAsync();
 
+        Task SaveConfigurationAsync();
+
         ISolutionConfiguration AddSolution(string name);
 
         void RemoveSolution(ISolutionConfiguration solution);
 
         void SetSolutionPath(ISolutionConfiguration solution, string path);
 
-        Task SaveConfigurationAsync();
-
+        IEnumerable<ISolutionConfigurationPlugin> GetAvailablePlugins();
+        
         Task GenerateTemplates(ISolutionConfiguration[] solutions, IProgress<double> progress);
     }
 }

@@ -2,8 +2,10 @@
 {
     public interface ISolutionConfiguration : IAppModel
     {
+        ISolutionConfigurationPlugin Plugin { get;set; }
+
         string Path { get; }
 
-        bool Vs2017 { get; set; }
+        string StartupProjectName { get; set; }
     }
 }

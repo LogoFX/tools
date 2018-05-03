@@ -6,18 +6,18 @@ namespace LogoFX.Tools.TemplateGenerator.Model
     {
         private string _path;
 
+        private ISolutionConfigurationPlugin _plugin;
+
+        public ISolutionConfigurationPlugin Plugin
+        {
+            get { return _plugin; }
+            set { Set(ref _plugin, value); }
+        }
+
         public string Path
         {
             get { return _path; }
             set { Set(ref _path, value); }
-        }
-
-        private bool _vs2017;
-
-        public bool Vs2017
-        {
-            get { return _vs2017; }
-            set { Set(ref _vs2017, value); }
         }
 
         private string _startupProjectName;
