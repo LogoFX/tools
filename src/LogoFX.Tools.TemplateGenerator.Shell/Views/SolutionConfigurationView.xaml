@@ -6,7 +6,10 @@
              xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
+             xmlns:behaviors="clr-namespace:LogoFX.Tools.TemplateGenerator.Shared.Behaviors;assembly=LogoFX.Tools.TemplateGenerator.Shared"
              mc:Ignorable="d"
+             d:DesignWidth="800"
+             d:DesignHeight="600"
              d:DataContext="{d:DesignInstance viewModels:SolutionConfigurationViewModel}">
 
     <Grid>
@@ -14,7 +17,13 @@
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
         </Grid.RowDefinitions>
         
         <Grid.ColumnDefinitions>
@@ -23,36 +32,13 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         
+        <!--Solution File-->
         <TextBlock Grid.Row="0"
-                   Grid.Column="0"
-                   VerticalAlignment="Center"
-                   Text="Solution Name:" />
-        
-        <TextBox Grid.Row="0"
-                 Grid.Column="1"
-                 VerticalAlignment="Center"
-                 Height="22"
-                 Margin="5,0,0,0"
-                 Text="{Binding Path=Model.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-        <TextBlock Grid.Row="1"
-                   Grid.Column="0"
-                   VerticalAlignment="Center"
-                   Text="Solution Description:" />
-        
-        <TextBox Grid.Row="1"
-                 Grid.Column="1"
-                 VerticalAlignment="Center"
-                 Height="22"
-                 Margin="5,0,0,0"
-                 Text="{Binding Path=Model.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-        <TextBlock Grid.Row="2"
                    Grid.Column="0"
                    VerticalAlignment="Center"
                    Text="Solution File:" />
         
-        <TextBox Grid.Row="2"
+        <TextBox Grid.Row="0"
                  Grid.Column="1"
                  VerticalAlignment="Center"
                  Height="22"
@@ -60,7 +46,7 @@
                  IsReadOnly="True"
                  Text="{Binding Path=Model.Path, Mode=OneWay}" />
 
-        <Button Grid.Row="2"
+        <Button Grid.Row="0"
                 Grid.Column="2"
                 VerticalAlignment="Center"
                 Width="22"
@@ -73,5 +59,136 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </Button>
+
+        <!--Solution Name-->
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Text="Solution Name:" />
+        
+        <TextBox Grid.Row="1"
+                 Grid.Column="1"
+                 VerticalAlignment="Center"
+                 Height="22"
+                 Margin="5,0,0,0"
+                 Text="{Binding Path=Model.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!--Description-->
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Text="Solution Description:" />
+        
+        <TextBox Grid.Row="2"
+                 Grid.Column="1"
+                 VerticalAlignment="Center"
+                 Height="22"
+                 Margin="5,0,0,0"
+                 Text="{Binding Path=Model.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!--Description-->
+        <TextBlock Grid.Row="3"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Text="Plugin:" />
+        
+        <ComboBox Grid.Row="3"
+                  Grid.Column="1"
+                  VerticalAlignment="Center"
+                  Height="22"
+                  Margin="5,0,0,0"
+                  ItemsSource="{Binding Path=Plugins, Mode=OneWay}"
+                  DisplayMemberPath="DisplayName">
+            <i:Interaction.Behaviors>
+                <behaviors:WrappingCollectionSelectorControlBehavior SelectedItemBinding="{Binding Path=IsSelected, Mode=TwoWay}"/>
+            </i:Interaction.Behaviors>
+        </ComboBox>
+
+        <!--Default Name-->
+        <TextBlock Grid.Row="4"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Text="Default Name:" />
+        
+        <TextBox Grid.Row="4"
+                 Grid.Column="1"
+                 VerticalAlignment="Center"
+                 Height="22"
+                 Margin="5,0,0,0"
+                 Text="{Binding Path=Model.DefaultName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!--Post Create URL-->
+        <TextBlock Grid.Row="5"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Text="Post Create URL:" />
+        
+        <TextBox Grid.Row="5"
+                 Grid.Column="1"
+                 VerticalAlignment="Center"
+                 Height="22"
+                 Margin="5,0,0,0"
+                 Text="{Binding Path=Model.PostCreateUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!--Solution Icon-->
+        <TextBlock Grid.Row="6"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Text="Solution Icon:" />
+        
+        <TextBox Grid.Row="6"
+                 Grid.Column="1"
+                 VerticalAlignment="Center"
+                 Height="22"
+                 Margin="5,0,0,0"
+                 Text="{Binding Path=Model.IconPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!--Template Folder-->
+        <TextBlock Grid.Row="8"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Text="Template Folder:" />
+        
+        <TextBox Grid.Row="8"
+                 Grid.Column="1"
+                 VerticalAlignment="Center"
+                 Height="22"
+                 Margin="5,0,0,0"
+                 IsReadOnly="True"
+                 Text="{Binding Path=Model.TemplateFolder, Mode=OneWay}" />
+
+        <Button Grid.Row="8"
+                Grid.Column="2"
+                VerticalAlignment="Center"
+                Width="22"
+                Height="22"
+                Margin="5,0,0,0"
+                Content="...">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <commanding:ExecuteCommandAction Command="{Binding Path=BrowseTemplateFolderCommand, Mode=OneTime}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+
+        <Button Grid.Row="9"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Stretch"
+                Height="22"
+                Content="Start Generation">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <commanding:ExecuteCommandAction Command="{Binding Path=StartGenerationCommand, Mode=OneTime}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+
+        <TextBlock Grid.Row="9"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   FontWeight="Bold"
+                   Margin="5,0,0,0"
+                   Text="{Binding Path=TemplatePath, Mode=OneWay}" />
     </Grid>
 </UserControl>

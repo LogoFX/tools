@@ -176,9 +176,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="UIServices\FolderBrowserLauncher.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="ViewModels\SolutionConfigurationPluginViewModel.cs" />
     <Compile Include="ViewModels\SolutionConfigurationViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -214,6 +214,10 @@
     <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Model.Contract\LogoFX.Tools.TemplateGenerator.Model.Contract.csproj">
       <Project>{2B8FC086-9B2F-4554-8B7D-807775E79019}</Project>
       <Name>LogoFX.Tools.TemplateGenerator.Model.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Shared\LogoFX.Tools.TemplateGenerator.Shared.csproj">
+      <Project>{D11946D7-BA41-4F70-A6FC-F7E3F30BA8DA}</Project>
+      <Name>LogoFX.Tools.TemplateGenerator.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -4,9 +4,13 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.Commanding;
+using LogoFX.Client.Mvvm.ViewModel;
 using LogoFX.Client.Mvvm.ViewModel.Extensions;
+using LogoFX.Client.Mvvm.ViewModel.Services;
 using LogoFX.Core;
 using LogoFX.Tools.TemplateGenerator.Model.Contract;
+using LogoFX.Tools.TemplateGenerator.Shared.UIServices;
+using SelectionMode = LogoFX.Client.Mvvm.ViewModel.SelectionMode;
 
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {
@@ -14,12 +18,30 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
     public class SolutionConfigurationViewModel : ScreenObjectViewModel<ISolutionConfiguration>
     {
         private readonly IDataService _dataService;
+        private readonly IViewModelCreatorService _viewModelCreatorService;
 
-        public SolutionConfigurationViewModel(ISolutionConfiguration model, IDataService dataService)
+        public SolutionConfigurationViewModel(
+            ISolutionConfiguration model, 
+            IDataService dataService,
+            IViewModelCreatorService viewModelCreatorService)
             : base(model)
         {
             _dataService = dataService;
+            _viewModelCreatorService = viewModelCreatorService;
             model.PropertyChanged += WeakDelegate.From(OnModelPropertyChanged);
+        }
+
+        private ICommand _startGenerationCommand;
+
+        public ICommand StartGenerationCommand
+        {
+            get
+            {
+                return _startGenerationCommand ??
+                       (_startGenerationCommand = ActionCommand
+                           .When(() => false)
+                           .Do(() => { }));
+            }
         }
 
         private ICommand _browseSolutionPathCommand;
@@ -62,17 +84,86 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             }
         }
 
+        private ICommand _browseTemplateFolderCommand;
+
+        public ICommand BrowseTemplateFolderCommand
+        {
+            get
+            {
+                return _browseTemplateFolderCommand ??
+                       (_browseTemplateFolderCommand = ActionCommand
+                           .When(() => true)
+                           .Do(() =>
+                           {
+                               FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog
+                               {
+                                   SelectedPath = Model.TemplateFolder,
+                                   Description = @"Destination Path"
+                               };
+
+                               var retVal = FolderBrowserLauncher.ShowFolderBrowser(folderBrowserDialog) == DialogResult.OK;
+
+                               if (!retVal)
+                               {
+                                   return;
+                               }
+
+                               Model.TemplateFolder = folderBrowserDialog.SelectedPath;
+                           }));
+            }
+        }
+
+        private WrappingCollection.WithSelection _plugins;
+
+        public WrappingCollection.WithSelection Plugins
+        {
+            get { return _plugins ?? (_plugins = CreatePlugins()); }
+        }
+
+        private WrappingCollection.WithSelection CreatePlugins()
+        {
+            var wc = new WrappingCollection.WithSelection(SelectionMode.One)
+            {
+                FactoryMethod = o =>
+                    _viewModelCreatorService
+                        .CreateViewModel<ISolutionConfigurationPlugin, SolutionConfigurationPluginViewModel>(
+                            (ISolutionConfigurationPlugin) o)
+            };
+
+            wc.AddSource(_dataService.GetAvailablePlugins());
+
+            return wc;
+        }
+
+        public string TemplatePath
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Model.TemplateFolder) || string.IsNullOrEmpty(Model.Name))
+                {
+                    return string.Empty;
+                }
+
+                return Path.Combine(Model.TemplateFolder, Model.Name);
+            }
+        }
+
         private void OnModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(ISolutionConfiguration.Name))
             {
                 NotifyOfPropertyChange(() => DisplayName);
+                NotifyOfPropertyChange(() => TemplatePath);
+            }
+            else if (e.PropertyName == nameof(ISolutionConfiguration.TemplateFolder))
+            {
+                NotifyOfPropertyChange(() => TemplatePath);
             }
         }
 
         public override string DisplayName
         {
-            get { return Model.Name;}
+            get => Model.Name;
             set { }
         }
     }

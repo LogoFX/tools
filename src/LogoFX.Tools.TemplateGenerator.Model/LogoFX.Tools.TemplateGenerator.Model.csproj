@@ -18,6 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Caliburn.Micro" Version="4.0.0-alpha.1" />
     <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
     <PackageReference Include="LogoFX.Client.Mvvm.Model" Version="1.1.1-rc4" />
     <PackageReference Include="Solid.Practices.IoC" Version="1.2.1-rc4" />
@@ -26,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Model.Contract\LogoFX.Tools.TemplateGenerator.Model.Contract.csproj" />
+    <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Model.Shared\LogoFX.Tools.TemplateGenerator.Model.Shared.csproj" />
   </ItemGroup>
 
 </Project>

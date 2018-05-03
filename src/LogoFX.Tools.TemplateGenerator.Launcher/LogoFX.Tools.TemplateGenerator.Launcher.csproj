@@ -220,6 +220,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Shared\LogoFX.Tools.TemplateGenerator.Shared.csproj">
+      <Project>{d11946d7-ba41-4f70-a6fc-f7e3f30ba8da}</Project>
+      <Name>LogoFX.Tools.TemplateGenerator.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Shell\LogoFX.Tools.TemplateGenerator.Shell.csproj">
       <Project>{F4EAE3F0-643B-48AD-8C01-C40C781836D7}</Project>
       <Name>LogoFX.Tools.TemplateGenerator.Shell</Name>

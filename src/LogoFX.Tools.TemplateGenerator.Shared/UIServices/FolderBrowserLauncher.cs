@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace LogoFX.Tools.TemplateGenerator.Shell.UIServices
+namespace LogoFX.Tools.TemplateGenerator.Shared.UIServices
 {
     public static class FolderBrowserLauncher
     {

@@ -25,7 +25,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.Common.Model",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugin", "Plugin", "{55DE36A7-C3B0-4681-941E-FFC6916F7576}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.TemplateGenerator.Plugin.SamplesSpecification", "LogoFX.Tools.TemplateGenerator.Plugin.SamplesSpecification\LogoFX.Tools.TemplateGenerator.Plugin.SamplesSpecification.csproj", "{40A03183-D82A-417C-BAC2-CE4C4B97CE50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogoFX.Tools.TemplateGenerator.Plugin.SamplesSpecification", "LogoFX.Tools.TemplateGenerator.Plugin.SamplesSpecification\LogoFX.Tools.TemplateGenerator.Plugin.SamplesSpecification.csproj", "{40A03183-D82A-417C-BAC2-CE4C4B97CE50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.TemplateGenerator.Model.Shared", "LogoFX.Tools.TemplateGenerator.Model.Shared\LogoFX.Tools.TemplateGenerator.Model.Shared.csproj", "{4E193405-4301-4477-959A-03EA1DE75E4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.TemplateGenerator.Shared", "LogoFX.Tools.TemplateGenerator.Shared\LogoFX.Tools.TemplateGenerator.Shared.csproj", "{D11946D7-BA41-4F70-A6FC-F7E3F30BA8DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +61,14 @@ Global
 		{40A03183-D82A-417C-BAC2-CE4C4B97CE50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40A03183-D82A-417C-BAC2-CE4C4B97CE50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40A03183-D82A-417C-BAC2-CE4C4B97CE50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E193405-4301-4477-959A-03EA1DE75E4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E193405-4301-4477-959A-03EA1DE75E4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E193405-4301-4477-959A-03EA1DE75E4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E193405-4301-4477-959A-03EA1DE75E4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D11946D7-BA41-4F70-A6FC-F7E3F30BA8DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D11946D7-BA41-4F70-A6FC-F7E3F30BA8DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D11946D7-BA41-4F70-A6FC-F7E3F30BA8DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D11946D7-BA41-4F70-A6FC-F7E3F30BA8DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +84,8 @@ Global
 		{134A21A4-30A3-47DC-8B2F-14FAD5670477} = {77784143-5C4E-4BE2-9A0F-E1BA5E9464D7}
 		{55DE36A7-C3B0-4681-941E-FFC6916F7576} = {DB660404-A4CD-4206-BD1D-0CD76EB3F27B}
 		{40A03183-D82A-417C-BAC2-CE4C4B97CE50} = {55DE36A7-C3B0-4681-941E-FFC6916F7576}
+		{4E193405-4301-4477-959A-03EA1DE75E4B} = {F3EE0916-35DA-47CB-96AE-AABFEA02A7E1}
+		{D11946D7-BA41-4F70-A6FC-F7E3F30BA8DA} = {962FA91C-9A20-486E-B653-8E55F6F4E6BF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E0EEE4D5-3DB2-4C9E-9649-9C015A750FD6}

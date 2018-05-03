@@ -22,10 +22,4 @@
     <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Model.Contract\LogoFX.Tools.TemplateGenerator.Model.Contract.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Caliburn.Micro">
-      <HintPath>..\packages\Caliburn.Micro.Core.4.0.0-alpha.1\lib\netstandard1.0\Caliburn.Micro.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>

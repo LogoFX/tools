@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using LogoFX.Tools.TemplateGenerator.Model.Contract;
 
@@ -9,6 +10,7 @@ namespace LogoFX.Tools.TemplateGenerator.Model
     {
         private readonly object _loadConfigurationSync = new object();
         private Configuration _configuration;
+        private IEnumerable<ISolutionConfigurationPlugin> _plugins;
 
         private Task LoadOrCreateConfigurationAsync()
         {

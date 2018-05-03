@@ -76,14 +76,6 @@
                       HorizontalAlignment="Stretch"
                       ResizeDirection="Columns" />
         
-        <Button Grid.Row="0"
-                Grid.Column="2"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Height="22"
-                Width="200"
-                Content="Start generation" />
-
         <Grid Grid.Row="1"
               Grid.Column="2">
             <ContentControl cal:View.Model="{Binding Path=ActiveItem, Mode=OneWay}" />

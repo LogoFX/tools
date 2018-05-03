@@ -2,6 +2,6 @@
 {
     public interface ISolutionConfigurationPlugin
     {
-
+        string Name { get; }
     }
 }

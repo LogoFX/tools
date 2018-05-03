@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Caliburn.Micro;
 using LogoFX.Tools.TemplateGenerator.Model.Contract;
 
 namespace LogoFX.Tools.TemplateGenerator.Model
@@ -50,7 +51,12 @@ namespace LogoFX.Tools.TemplateGenerator.Model
 
         public IEnumerable<ISolutionConfigurationPlugin> GetAvailablePlugins()
         {
-            throw new NotImplementedException();
+            if (_plugins == null)
+            {
+                _plugins = IoC.GetAll<ISolutionConfigurationPlugin>();
+            }
+
+            return _plugins;
         }
 
         Task IDataService.SaveConfigurationAsync()
