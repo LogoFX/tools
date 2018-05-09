@@ -5,15 +5,15 @@ namespace LogoFX.Tools.TemplateGenerator.Model
 {
     internal sealed class SolutionConfiguration : AppModel, ISolutionConfiguration
     {
-        private string _path;
+        private string _pluginName;
 
-        private ISolutionConfigurationPlugin _plugin;
-
-        public ISolutionConfigurationPlugin Plugin
+        public string PluginName
         {
-            get => _plugin;
-            set => Set(ref _plugin, value);
+            get => _pluginName;
+            set => Set(ref _pluginName, value);
         }
+
+        private string _path;
 
         public string Path
         {

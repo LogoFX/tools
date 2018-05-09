@@ -1,5 +1,8 @@
-﻿using Caliburn.Micro;
+﻿using System.ComponentModel;
+using System.Windows.Input;
+using Caliburn.Micro;
 using JetBrains.Annotations;
+using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.ViewModel.Contracts;
 using LogoFX.Client.Mvvm.ViewModel.Services;
 using LogoFX.Tools.TemplateGenerator.Model.Contract;
@@ -12,11 +15,38 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
     {
         private readonly IDataService _dataService;
         private readonly IViewModelCreatorService _viewModelCreatorService;
+        private bool _closingState;
 
         public ShellViewModel(IDataService dataService, IViewModelCreatorService viewModelCreatorService)
         {
             _dataService = dataService;
             _viewModelCreatorService = viewModelCreatorService;
+        }
+
+        private ICommand _closingCommand;
+
+        public ICommand ClosingCommand
+        {
+            get
+            {
+                return _closingCommand ??
+                       (_closingCommand = ActionCommand<CancelEventArgs>
+                           .Do(e =>
+                           {
+                               if (!_closingState)
+                               {
+                                   _closingState = true;
+                                   e.Cancel = true;
+                                   StartClose();
+                               }
+                           }));
+            }
+        }
+
+        private async void StartClose()
+        {
+            await _dataService.SaveConfigurationAsync();
+            TryClose();
         }
 
         private async void StartAcivateMainViewModel()
@@ -55,7 +85,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             StartAcivateMainViewModel();
         }
 
-        protected override void OnDeactivate(bool close)
+        protected async override void OnDeactivate(bool close)
         {
             base.OnDeactivate(close);
 

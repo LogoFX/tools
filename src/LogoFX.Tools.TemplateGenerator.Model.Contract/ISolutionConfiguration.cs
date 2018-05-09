@@ -2,7 +2,7 @@
 {
     public interface ISolutionConfiguration : IAppModel
     {
-        ISolutionConfigurationPlugin Plugin { get;set; }
+        string PluginName { get; set; }
 
         string Path { get; }
 

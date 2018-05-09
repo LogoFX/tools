@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Caliburn.Micro;
+using LogoFX.Tools.TemplateGenerator.Data.Contracts;
 using LogoFX.Tools.TemplateGenerator.Model.Contract;
+using LogoFX.Tools.TemplateGenerator.Model.Mappers;
 
 namespace LogoFX.Tools.TemplateGenerator.Model
 {
@@ -24,9 +25,12 @@ namespace LogoFX.Tools.TemplateGenerator.Model
 
         ISolutionConfiguration IDataService.AddSolution(string name)
         {
-            if (_configuration.Solutions.Any(x => x.Name == name))
+            lock (_loadConfigurationSync)
             {
-                throw new ArgumentException($"This name already added to Configuration: {name}", nameof(name));
+                if (_configuration.Solutions.Any(x => x.Name == name))
+                {
+                    throw new ArgumentException($"This name already added to Configuration: {name}", nameof(name));
+                }
             }
 
             var solutionConfiguration = new SolutionConfiguration
@@ -34,14 +38,20 @@ namespace LogoFX.Tools.TemplateGenerator.Model
                 Name = name
             };
 
-            _configuration.Solutions.Add(solutionConfiguration);
+            lock (_loadConfigurationSync)
+            {
+                _configuration.Solutions.Add(solutionConfiguration);
+            }
 
             return solutionConfiguration;
         }
 
         void IDataService.RemoveSolution(ISolutionConfiguration solution)
         {
-            _configuration.Solutions.Remove((SolutionConfiguration) solution);
+            lock (_loadConfigurationSync)
+            {
+                _configuration.Solutions.Remove((SolutionConfiguration) solution);
+            }
         }
 
         void IDataService.SetSolutionPath(ISolutionConfiguration solution, string path)
@@ -51,17 +61,23 @@ namespace LogoFX.Tools.TemplateGenerator.Model
 
         public IEnumerable<ISolutionConfigurationPlugin> GetAvailablePlugins()
         {
-            if (_plugins == null)
-            {
-                _plugins = IoC.GetAll<ISolutionConfigurationPlugin>();
-            }
-
-            return _plugins;
+            return _plugins ?? (_plugins = _pluginProvider.GetPlugins());
         }
 
         Task IDataService.SaveConfigurationAsync()
         {
-            throw new NotImplementedException();
+            return Task.Run(() =>
+            {
+                lock (_loadConfigurationSync)
+                {
+                    if (_configuration == null)
+                    {
+                        return;
+                    }
+
+                    _configurationProvider.SaveConfiguration(ConfigurationMapper.MapFromConfiguration(_configuration));
+                }
+            });
         }
 
         Task IDataService.GenerateTemplates(ISolutionConfiguration[] solutions, IProgress<double> progress)

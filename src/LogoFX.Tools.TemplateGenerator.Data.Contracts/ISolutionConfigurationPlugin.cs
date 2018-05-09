@@ -1,4 +1,4 @@
-﻿namespace LogoFX.Tools.TemplateGenerator.Model.Contract
+﻿namespace LogoFX.Tools.TemplateGenerator.Data.Contracts
 {
     public interface ISolutionConfigurationPlugin
     {

@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Model.Contract\LogoFX.Tools.TemplateGenerator.Model.Contract.csproj" />
+    <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Data.Contracts\LogoFX.Tools.TemplateGenerator.Data.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

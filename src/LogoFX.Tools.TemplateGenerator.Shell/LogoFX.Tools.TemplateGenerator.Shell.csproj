@@ -211,6 +211,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Data.Contracts\LogoFX.Tools.TemplateGenerator.Data.Contracts.csproj">
+      <Project>{B12B9DF4-82A6-47BC-A47E-86B135CF2713}</Project>
+      <Name>LogoFX.Tools.TemplateGenerator.Data.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Model.Contract\LogoFX.Tools.TemplateGenerator.Model.Contract.csproj">
       <Project>{2B8FC086-9B2F-4554-8B7D-807775E79019}</Project>
       <Name>LogoFX.Tools.TemplateGenerator.Model.Contract</Name>

@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Data.Contracts.Dto\LogoFX.Tools.TemplateGenerator.Data.Contracts.Dto.csproj" />
+    <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Data.Contracts\LogoFX.Tools.TemplateGenerator.Data.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

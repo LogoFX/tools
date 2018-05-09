@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:LogoFX.Tools.TemplateGenerator.Shell.ViewModels"
         xmlns:cal="http://www.caliburnproject.org"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModels:ShellViewModel}"
         WindowStartupLocation="CenterOwner"
@@ -15,4 +17,11 @@
     <Grid>
         <ContentControl cal:View.Model="{Binding Path=ActiveItem, Mode=OneWay}" />
     </Grid>
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <commanding:ExecuteCommandAction Command="{Binding ClosingCommand, Mode=OneTime}"
+                                             UseTriggerParameter="True" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 </Window>

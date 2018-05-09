@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using LogoFX.Tools.TemplateGenerator.Data.Contracts;
 
 namespace LogoFX.Tools.TemplateGenerator.Model.Contract
 {

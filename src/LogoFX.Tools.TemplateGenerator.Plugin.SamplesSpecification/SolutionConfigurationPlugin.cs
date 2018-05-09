@@ -1,5 +1,5 @@
 ﻿using JetBrains.Annotations;
-using LogoFX.Tools.TemplateGenerator.Model.Contract;
+using LogoFX.Tools.TemplateGenerator.Data.Contracts;
 
 namespace LogoFX.Tools.TemplateGenerator.Plugin.SamplesSpecification
 {

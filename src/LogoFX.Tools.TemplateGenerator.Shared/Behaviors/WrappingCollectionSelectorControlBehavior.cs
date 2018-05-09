@@ -51,7 +51,8 @@ namespace LogoFX.Tools.TemplateGenerator.Shared.Behaviors
         {
             while (true)
             {
-                if (generator.Status != GeneratorStatus.ContainersGenerated)
+                if (generator.Status != GeneratorStatus.ContainersGenerated &&
+                    generator.Status != GeneratorStatus.NotStarted)
                 {
                     return;
                 }
