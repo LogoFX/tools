@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 using System.Windows.Input;
 using Caliburn.Micro;
 using LogoFX.Client.Mvvm.Commanding;
@@ -39,6 +40,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
                                if (!string.IsNullOrEmpty(SolutionFileName))
                                {
                                    var folder = Path.GetDirectoryName(SolutionFileName);
+                                   Debug.Assert(folder != null, nameof(folder) + " != null");
                                    openFileDialog.InitialDirectory = folder;
                                }
 

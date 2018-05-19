@@ -10,6 +10,7 @@
              xmlns:cal="http://www.caliburnproject.org"
              d:DataContext="{d:DesignInstance viewModels:SolutionViewModel}"
              mc:Ignorable="d" 
+             Background="AliceBlue"
              d:DesignHeight="300" 
              d:DesignWidth="300">
     <Grid>

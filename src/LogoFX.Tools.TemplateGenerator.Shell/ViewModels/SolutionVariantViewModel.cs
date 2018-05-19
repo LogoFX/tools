@@ -116,20 +116,20 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             }
         }
 
-        private WrappingCollection CreateRootNamespaces()
-        {
-            var result = new WrappingCollection
-            {
-                FactoryMethod = o => new RootNamespaceViewModel((string) o)
-            };
+        //private WrappingCollection CreateRootNamespaces()
+        //{
+        //    var result = new WrappingCollection
+        //    {
+        //        FactoryMethod = o => new RootNamespaceViewModel((string) o)
+        //    };
 
-            if (Model.SolutionTemplateInfo != null)
-            {
-                result.AddSource(Model.SolutionTemplateInfo.RootNamespaces);
-            }
+        //    if (Model.SolutionTemplateInfo != null)
+        //    {
+        //        result.AddSource(Model.SolutionTemplateInfo.RootNamespaces);
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
 
         #endregion
 

@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace LogoFX.Tools.TemplateGenerator.Contracts
 {
+    // ReSharper disable once InconsistentNaming
     public static class ISolutionFolderTemplateInfoExtensions
     {
         public static IEnumerable<IProjectTemplateInfo> GetProjectsPlain(this IEnumerable<ISolutionTemplateInfo> solutionTemplates)

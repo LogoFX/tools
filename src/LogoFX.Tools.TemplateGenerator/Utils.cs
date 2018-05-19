@@ -23,6 +23,7 @@ namespace LogoFX.Tools.TemplateGenerator
                 Debugger.Break();
             }
 
+            Debug.Assert(filespec != null, nameof(filespec) + " != null");
             Uri pathUri = new Uri(filespec);
             // Folders must end in a slash
             if (!folder.EndsWith(Path.DirectorySeparatorChar.ToString()))

@@ -44,11 +44,10 @@ namespace LogoFX.Tools.TemplateGenerator
             var id = Guid.Parse(proj.ProjectGuid);
             var parentId = proj.ParentProjectGuid == null ? Guid.Empty : Guid.Parse(proj.ParentProjectGuid);
 
-            SolutionFolderTemplateInfo folder;
-            if (!folders.TryGetValue(parentId, out folder))
+            if (!folders.TryGetValue(parentId, out var folder))
             {
-                ProjectInSolution parentProj;
-                if (solution.ProjectsByGuid.TryGetValue(proj.ParentProjectGuid, out parentProj))
+                Debug.Assert(proj.ParentProjectGuid != null, "proj.ParentProjectGuid != null");
+                if (solution.ProjectsByGuid.TryGetValue(proj.ParentProjectGuid, out var parentProj))
                 {
                     folder = (SolutionFolderTemplateInfo)await CreateSolutionItemTemplateInfoAsync(solution, solutionTemplateInfo, parentProj, folders);
                 }
