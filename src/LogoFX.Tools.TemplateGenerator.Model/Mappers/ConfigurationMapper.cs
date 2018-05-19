@@ -11,6 +11,11 @@ namespace LogoFX.Tools.TemplateGenerator.Model.Mappers
             return Mapper.Map<Configuration>(configurationDto);
         }
 
+        public static ProjectConfiguration MapToProjectConfiguration(ProjectConfigurationDto projectConfigurationDto)
+        {
+            return Mapper.Map<ProjectConfiguration>(projectConfigurationDto);
+        }
+
         public static ConfigurationDto MapFromConfiguration(IConfiguration configuration)
         {
             return Mapper.Map<ConfigurationDto>(configuration);

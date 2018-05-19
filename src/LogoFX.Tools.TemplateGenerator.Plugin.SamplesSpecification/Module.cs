@@ -1,5 +1,5 @@
 ﻿using JetBrains.Annotations;
-using LogoFX.Tools.TemplateGenerator.Data.Contracts;
+using LogoFX.Tools.TemplateGenerator.Engine.Contracts;
 using Solid.Practices.IoC;
 using Solid.Practices.Modularity;
 

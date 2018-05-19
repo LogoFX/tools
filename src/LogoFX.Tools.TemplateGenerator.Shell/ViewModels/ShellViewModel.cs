@@ -49,7 +49,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             TryClose();
         }
 
-        private async void StartAcivateMainViewModel()
+        private async void StartActivateMainViewModel()
         {
             IsBusy = true;
 
@@ -82,10 +82,10 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         protected override void OnActivate()
         {
             base.OnActivate();
-            StartAcivateMainViewModel();
+            StartActivateMainViewModel();
         }
 
-        protected async override void OnDeactivate(bool close)
+        protected override void OnDeactivate(bool close)
         {
             base.OnDeactivate(close);
 

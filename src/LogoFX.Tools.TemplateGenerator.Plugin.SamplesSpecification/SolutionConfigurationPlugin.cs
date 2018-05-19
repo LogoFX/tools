@@ -1,5 +1,5 @@
 ﻿using JetBrains.Annotations;
-using LogoFX.Tools.TemplateGenerator.Data.Contracts;
+using LogoFX.Tools.TemplateGenerator.Engine.Contracts;
 
 namespace LogoFX.Tools.TemplateGenerator.Plugin.SamplesSpecification
 {
@@ -7,5 +7,8 @@ namespace LogoFX.Tools.TemplateGenerator.Plugin.SamplesSpecification
     internal sealed class SolutionConfigurationPlugin : ISolutionConfigurationPlugin
     {
         public string Name => "Samples.Specification";
+
+        private TemplateGeneratorEngine _engine;
+        public ITemplateGeneratorEngine Engine => _engine ?? (_engine = new TemplateGeneratorEngine());
     }
 }

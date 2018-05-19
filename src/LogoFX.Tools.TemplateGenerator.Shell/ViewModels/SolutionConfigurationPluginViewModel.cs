@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.ViewModel;
-using LogoFX.Tools.TemplateGenerator.Data.Contracts;
+using LogoFX.Tools.TemplateGenerator.Engine.Contracts;
 
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {

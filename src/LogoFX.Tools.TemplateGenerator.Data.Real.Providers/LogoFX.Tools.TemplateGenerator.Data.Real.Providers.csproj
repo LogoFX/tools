@@ -70,9 +70,9 @@
       <Project>{B8DA25C8-D3B7-4732-BC41-B60A0F342ABF}</Project>
       <Name>LogoFX.Tools.TemplateGenerator.Data.Contracts.Providers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Data.Contracts\LogoFX.Tools.TemplateGenerator.Data.Contracts.csproj">
-      <Project>{B12B9DF4-82A6-47BC-A47E-86B135CF2713}</Project>
-      <Name>LogoFX.Tools.TemplateGenerator.Data.Contracts</Name>
+    <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Engine.Contracts\LogoFX.Tools.TemplateGenerator.Engine.Contracts.csproj">
+      <Project>{A52804F3-7A02-4B6A-B540-FFA9E86DB75D}</Project>
+      <Name>LogoFX.Tools.TemplateGenerator.Engine.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -8,7 +8,7 @@ using LogoFX.Client.Mvvm.ViewModel;
 using LogoFX.Client.Mvvm.ViewModel.Extensions;
 using LogoFX.Client.Mvvm.ViewModel.Services;
 using LogoFX.Core;
-using LogoFX.Tools.TemplateGenerator.Data.Contracts;
+using LogoFX.Tools.TemplateGenerator.Engine.Contracts;
 using LogoFX.Tools.TemplateGenerator.Model.Contract;
 using LogoFX.Tools.TemplateGenerator.Shared.UIServices;
 using SelectionMode = LogoFX.Client.Mvvm.ViewModel.SelectionMode;
@@ -40,8 +40,12 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             {
                 return _startGenerationCommand ??
                        (_startGenerationCommand = ActionCommand
-                           .When(() => false)
-                           .Do(() => { }));
+                           .When(() => CanStartGeneration)
+                           .Do(() =>
+                           {
+
+                           })
+                           .RequeryOnPropertyChanged(this, () => CanStartGeneration));
             }
         }
 
@@ -158,6 +162,26 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             {
                 NotifyOfPropertyChange(() => TemplatePath);
             }
+        }
+
+        private bool CanStartGeneration
+        {
+            get { return GetCanStartGeneration(); }
+        }
+
+        private bool GetCanStartGeneration()
+        {
+            if (string.IsNullOrEmpty(Model.Path) || !File.Exists(Model.Path))
+            {
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(Model.Name))
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public override string DisplayName

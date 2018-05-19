@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using LogoFX.Tools.TemplateGenerator.Data.Contracts.Dto;
 using NDatabase;
 

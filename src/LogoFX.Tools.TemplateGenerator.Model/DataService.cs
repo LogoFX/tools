@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
-using LogoFX.Tools.TemplateGenerator.Data.Contracts;
 using LogoFX.Tools.TemplateGenerator.Data.Contracts.Providers;
+using LogoFX.Tools.TemplateGenerator.Engine.Contracts;
 using LogoFX.Tools.TemplateGenerator.Model.Contract;
 using LogoFX.Tools.TemplateGenerator.Model.Mappers;
 

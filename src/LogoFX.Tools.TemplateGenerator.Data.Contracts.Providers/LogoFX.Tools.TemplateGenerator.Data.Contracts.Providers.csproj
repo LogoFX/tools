@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Data.Contracts.Dto\LogoFX.Tools.TemplateGenerator.Data.Contracts.Dto.csproj" />
-    <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Data.Contracts\LogoFX.Tools.TemplateGenerator.Data.Contracts.csproj" />
+    <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Engine.Contracts\LogoFX.Tools.TemplateGenerator.Engine.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

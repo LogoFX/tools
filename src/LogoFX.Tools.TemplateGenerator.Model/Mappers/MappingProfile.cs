@@ -13,12 +13,11 @@ namespace LogoFX.Tools.TemplateGenerator.Model.Mappers
 
         private void CreateConfigurationMaps()
         {
+            CreateDomainObjectMap<ProjectConfigurationDto, Contract.IProjectConfiguration, ProjectConfiguration>();
             CreateDomainObjectMap<SolutionConfigurationDto, Contract.ISolutionConfiguration, SolutionConfiguration>();
             CreateDomainObjectMap<ConfigurationDto, Contract.IConfiguration, Configuration>();
         }
 
-        //TODO: put this piece of functionality into 
-        //an external package, e.g. Model.Mapping.AutoMapper
         private void CreateDomainObjectMap<TDto, TContract, TModel>()
             where TModel : TContract
             where TContract : class
