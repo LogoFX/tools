@@ -2,8 +2,8 @@
 
 namespace LogoFX.Tools.TemplateGenerator.Data.Contracts.Providers
 {
-    public interface IPluginProvider
+    public interface IEngineProvider
     {
-        ISolutionConfigurationPlugin[] GetPlugins();
+        ITemplateGeneratorEngine[] GetEngines();
     }
 }

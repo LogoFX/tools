@@ -11,7 +11,7 @@ namespace LogoFX.Tools.TemplateGenerator.Data.Real.Providers
         public void RegisterModule(IDependencyRegistrator dependencyRegistrator)
         {
             dependencyRegistrator.AddSingleton<IConfigurationProvider, ConfigurationProvider>();
-            dependencyRegistrator.AddSingleton<IPluginProvider, PluginProvider>();
+            dependencyRegistrator.AddSingleton<IEngineProvider, EngineProvider>();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace LogoFX.Tools.TemplateGenerator.Model.Contract
 
         void SetSolutionPath(ISolutionConfiguration solution, string path);
 
-        IEnumerable<ISolutionConfigurationPlugin> GetAvailablePlugins();
+        IEnumerable<ITemplateGeneratorEngine> GetAvailableEngines();
 
         IProjectConfiguration[] GetProjectConfigurations(ISolutionConfiguration solutionConfiguration, ITemplateGeneratorEngine engine);
         

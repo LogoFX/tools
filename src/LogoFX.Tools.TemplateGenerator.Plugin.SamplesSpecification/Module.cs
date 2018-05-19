@@ -10,7 +10,7 @@ namespace LogoFX.Tools.TemplateGenerator.Plugin.SamplesSpecification
     {
         public void RegisterModule(IDependencyRegistrator dependencyRegistrator)
         {
-            dependencyRegistrator.RegisterSingleton<ISolutionConfigurationPlugin, SolutionConfigurationPlugin>();
+            dependencyRegistrator.RegisterSingleton<ITemplateGeneratorEngine, TemplateGeneratorEngine>();
         }
     }
 }

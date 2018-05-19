@@ -5,9 +5,9 @@ using LogoFX.Tools.TemplateGenerator.Engine.Contracts;
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {
     [UsedImplicitly]
-    public sealed class SolutionConfigurationPluginViewModel : ObjectViewModel<ISolutionConfigurationPlugin>
+    public sealed class TemplateGeneratorEngineViewModel : ObjectViewModel<ITemplateGeneratorEngine>
     {
-        public SolutionConfigurationPluginViewModel(ISolutionConfigurationPlugin model)
+        public TemplateGeneratorEngineViewModel(ITemplateGeneratorEngine model)
             : base(model)
         {
 

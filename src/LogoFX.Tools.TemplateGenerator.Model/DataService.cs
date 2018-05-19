@@ -12,17 +12,17 @@ namespace LogoFX.Tools.TemplateGenerator.Model
     internal sealed partial class DataService : IDataService
     {
         private readonly IConfigurationProvider _configurationProvider;
-        private readonly IPluginProvider _pluginProvider;
+        private readonly IEngineProvider _engineProvider;
         private readonly object _loadConfigurationSync = new object();
         private Configuration _configuration;
-        private IEnumerable<ISolutionConfigurationPlugin> _plugins;
+        private IEnumerable<ITemplateGeneratorEngine> _plugins;
 
         public DataService(
             IConfigurationProvider configurationProvider,
-            IPluginProvider pluginProvider)
+            IEngineProvider engineProvider)
         {
             _configurationProvider = configurationProvider;
-            _pluginProvider = pluginProvider;
+            _engineProvider = engineProvider;
         }
 
         private Task LoadOrCreateConfigurationAsync()

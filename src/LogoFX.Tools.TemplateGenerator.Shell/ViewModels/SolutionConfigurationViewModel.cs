@@ -118,22 +118,22 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             }
         }
 
-        private WrappingCollection.WithSelection _plugins;
+        private WrappingCollection.WithSelection _engines;
 
-        public WrappingCollection.WithSelection Plugins
+        public WrappingCollection.WithSelection Engines
         {
-            get { return _plugins ?? (_plugins = CreatePlugins()); }
+            get { return _engines ?? (_engines = CreateEngines()); }
         }
 
-        private WrappingCollection.WithSelection CreatePlugins()
+        private WrappingCollection.WithSelection CreateEngines()
         {
             var wc = new WrappingCollection.WithSelection(SelectionMode.One)
             {
-                FactoryMethod = o => _viewModelCreatorService.CreateViewModel<ISolutionConfigurationPlugin, SolutionConfigurationPluginViewModel>((ISolutionConfigurationPlugin) o),
-                SelectionPredicate = o => string.IsNullOrEmpty(Model.PluginName) || ((SolutionConfigurationPluginViewModel) o).Model.Name == Model.PluginName
+                FactoryMethod = o => _viewModelCreatorService.CreateViewModel<ITemplateGeneratorEngine, TemplateGeneratorEngineViewModel>((ITemplateGeneratorEngine) o),
+                SelectionPredicate = o => string.IsNullOrEmpty(Model.PluginName) || ((TemplateGeneratorEngineViewModel) o).Model.Name == Model.PluginName
             };
 
-            wc.AddSource(_dataService.GetAvailablePlugins());
+            wc.AddSource(_dataService.GetAvailableEngines());
 
             return wc;
         }

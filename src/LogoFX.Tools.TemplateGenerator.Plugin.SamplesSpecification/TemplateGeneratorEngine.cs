@@ -1,14 +1,17 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using JetBrains.Annotations;
 using LogoFX.Tools.TemplateGenerator.Engine.Contracts;
 
 namespace LogoFX.Tools.TemplateGenerator.Plugin.SamplesSpecification
 {
+    [UsedImplicitly]
     internal sealed class TemplateGeneratorEngine : ITemplateGeneratorEngine
     {
-        Task<ISolutionInfo> ITemplateGeneratorEngine.CreateSolutionInfo(string solutionFilename)
+        public string Name => "Samples.Specification";
+        
+        public Task<ISolutionInfo> CreateSolutionInfo(string solutionFilename)
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -5,11 +5,11 @@ using LogoFX.Tools.TemplateGenerator.Engine.Contracts;
 
 namespace LogoFX.Tools.TemplateGenerator.Data.Real.Providers
 {
-    internal sealed class PluginProvider : IPluginProvider
+    internal sealed class EngineProvider : IEngineProvider
     {
-        public ISolutionConfigurationPlugin[] GetPlugins()
+        public ITemplateGeneratorEngine[] GetEngines()
         {
-            return IoC.GetAll<ISolutionConfigurationPlugin>().ToArray();
+            return IoC.GetAll<ITemplateGeneratorEngine>().ToArray();
         }
     }
 }

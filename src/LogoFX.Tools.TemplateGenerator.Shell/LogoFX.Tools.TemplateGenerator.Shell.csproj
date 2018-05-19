@@ -178,7 +178,7 @@
     </Compile>
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
-    <Compile Include="ViewModels\SolutionConfigurationPluginViewModel.cs" />
+    <Compile Include="ViewModels\TemplateGeneratorEngineViewModel.cs" />
     <Compile Include="ViewModels\SolutionConfigurationViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

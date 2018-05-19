@@ -59,9 +59,9 @@ namespace LogoFX.Tools.TemplateGenerator.Model
             ((SolutionConfiguration) solution).Path = path;
         }
 
-        IEnumerable<ISolutionConfigurationPlugin> IDataService.GetAvailablePlugins()
+        IEnumerable<ITemplateGeneratorEngine> IDataService.GetAvailableEngines()
         {
-            return _plugins ?? (_plugins = _pluginProvider.GetPlugins());
+            return _plugins ?? (_plugins = _engineProvider.GetEngines());
         }
 
         IProjectConfiguration[] IDataService.GetProjectConfigurations(ISolutionConfiguration solutionConfiguration, ITemplateGeneratorEngine engine)
