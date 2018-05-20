@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LogoFX.Tools.TemplateGenerator.Engine.Contracts;
 using LogoFX.Tools.TemplateGenerator.Model.Contract;
 using LogoFX.Tools.TemplateGenerator.Model.Mappers;
 
@@ -59,14 +57,13 @@ namespace LogoFX.Tools.TemplateGenerator.Model
             ((SolutionConfiguration) solution).Path = path;
         }
 
-        IEnumerable<ITemplateGeneratorEngine> IDataService.GetAvailableEngines()
+        ITemplateGeneratorEngineInfo[] IDataService.GetAvailableEngines()
         {
-            return _plugins ?? (_plugins = _engineProvider.GetEngines());
-        }
-
-        IProjectConfiguration[] IDataService.GetProjectConfigurations(ISolutionConfiguration solutionConfiguration, ITemplateGeneratorEngine engine)
-        {
-            throw new NotImplementedException();
+            return _templateGeneratorService
+                .GetAvailableEngines()
+                .Select(EngineMapper.MapToTemplateGeneratorEngineInfo)
+                .OfType<ITemplateGeneratorEngineInfo>()
+                .ToArray();
         }
 
         Task IDataService.SaveConfigurationAsync()

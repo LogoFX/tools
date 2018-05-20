@@ -1,13 +1,13 @@
 ﻿using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.ViewModel;
-using LogoFX.Tools.TemplateGenerator.Engine.Contracts;
+using LogoFX.Tools.TemplateGenerator.Model.Contract;
 
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {
     [UsedImplicitly]
-    public sealed class TemplateGeneratorEngineViewModel : ObjectViewModel<ITemplateGeneratorEngine>
+    public sealed class TemplateGeneratorEngineViewModel : ObjectViewModel<ITemplateGeneratorEngineInfo>
     {
-        public TemplateGeneratorEngineViewModel(ITemplateGeneratorEngine model)
+        public TemplateGeneratorEngineViewModel(ITemplateGeneratorEngineInfo model)
             : base(model)
         {
 

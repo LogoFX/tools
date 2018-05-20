@@ -8,7 +8,6 @@ using LogoFX.Client.Mvvm.ViewModel;
 using LogoFX.Client.Mvvm.ViewModel.Extensions;
 using LogoFX.Client.Mvvm.ViewModel.Services;
 using LogoFX.Core;
-using LogoFX.Tools.TemplateGenerator.Engine.Contracts;
 using LogoFX.Tools.TemplateGenerator.Model.Contract;
 using LogoFX.Tools.TemplateGenerator.Shared.UIServices;
 using SelectionMode = LogoFX.Client.Mvvm.ViewModel.SelectionMode;
@@ -129,7 +128,7 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         {
             var wc = new WrappingCollection.WithSelection(SelectionMode.One)
             {
-                FactoryMethod = o => _viewModelCreatorService.CreateViewModel<ITemplateGeneratorEngine, TemplateGeneratorEngineViewModel>((ITemplateGeneratorEngine) o),
+                FactoryMethod = o => _viewModelCreatorService.CreateViewModel<ITemplateGeneratorEngineInfo, TemplateGeneratorEngineViewModel>((ITemplateGeneratorEngineInfo) o),
                 SelectionPredicate = o => string.IsNullOrEmpty(Model.PluginName) || ((TemplateGeneratorEngineViewModel) o).Model.Name == Model.PluginName
             };
 

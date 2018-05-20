@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using JetBrains.Annotations;
 using LogoFX.Tools.TemplateGenerator.Data.Contracts.Providers;
 using LogoFX.Tools.TemplateGenerator.Engine.Contracts;
@@ -12,17 +11,14 @@ namespace LogoFX.Tools.TemplateGenerator.Model
     internal sealed partial class DataService : IDataService
     {
         private readonly IConfigurationProvider _configurationProvider;
-        private readonly IEngineProvider _engineProvider;
+        private readonly ITemplateGeneratorService _templateGeneratorService;
         private readonly object _loadConfigurationSync = new object();
         private Configuration _configuration;
-        private IEnumerable<ITemplateGeneratorEngine> _plugins;
 
-        public DataService(
-            IConfigurationProvider configurationProvider,
-            IEngineProvider engineProvider)
+        public DataService(IConfigurationProvider configurationProvider, ITemplateGeneratorService templateGeneratorService)
         {
             _configurationProvider = configurationProvider;
-            _engineProvider = engineProvider;
+            _templateGeneratorService = templateGeneratorService;
         }
 
         private Task LoadOrCreateConfigurationAsync()

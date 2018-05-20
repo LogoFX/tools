@@ -9,6 +9,12 @@ namespace LogoFX.Tools.TemplateGenerator.Model.Mappers
         public MappingProfile()
         {
             CreateConfigurationMaps();
+            CreateEngineMaps();
+        }
+
+        private void CreateEngineMaps()
+        {
+            CreateDomainObjectMap<TemplateGeneratorEngineInfoDto, Contract.ITemplateGeneratorEngineInfo, TemplateGeneratorEngineInfo>();
         }
 
         private void CreateConfigurationMaps()

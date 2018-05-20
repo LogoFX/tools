@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogoFX.Tools.TemplateGenera
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.Common.Model", "LogoFX.Tools.Common.Model\LogoFX.Tools.Common.Model.csproj", "{134A21A4-30A3-47DC-8B2F-14FAD5670477}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogoFX.Tools.TemplateGenerator.Plugin.SamplesSpecification", "LogoFX.Tools.TemplateGenerator.Plugin.SamplesSpecification\LogoFX.Tools.TemplateGenerator.Plugin.SamplesSpecification.csproj", "{40A03183-D82A-417C-BAC2-CE4C4B97CE50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogoFX.Tools.TemplateGenerator.Engine.SamplesSpecification", "LogoFX.Tools.TemplateGenerator.Engine.SamplesSpecification\LogoFX.Tools.TemplateGenerator.Engine.SamplesSpecification.csproj", "{40A03183-D82A-417C-BAC2-CE4C4B97CE50}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogoFX.Tools.TemplateGenerator.Model.Shared", "LogoFX.Tools.TemplateGenerator.Model.Shared\LogoFX.Tools.TemplateGenerator.Model.Shared.csproj", "{4E193405-4301-4477-959A-03EA1DE75E4B}"
 EndProject
@@ -39,11 +39,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Real", "Real", "{341688E8-6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.TemplateGenerator.Data.Real.Providers", "LogoFX.Tools.TemplateGenerator.Data.Real.Providers\LogoFX.Tools.TemplateGenerator.Data.Real.Providers.csproj", "{8E410922-5A21-4022-9DF7-D48ABDCA7F8A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{F06CBF02-D9D3-4708-ABC8-E054AE07A2C1}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{BE826FB4-56BD-4271-8AA5-9FF0D49BFDE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.TemplateGenerator.Engine.Contracts", "LogoFX.Tools.TemplateGenerator.Engine.Contracts\LogoFX.Tools.TemplateGenerator.Engine.Contracts.csproj", "{A52804F3-7A02-4B6A-B540-FFA9E86DB75D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogoFX.Tools.TemplateGenerator.Engine.Contracts", "LogoFX.Tools.TemplateGenerator.Engine.Contracts\LogoFX.Tools.TemplateGenerator.Engine.Contracts.csproj", "{A52804F3-7A02-4B6A-B540-FFA9E86DB75D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.TemplateGenerator.Engine.Services", "LogoFX.Tools.TemplateGenerator.Engine.Services\LogoFX.Tools.TemplateGenerator.Engine.Services.csproj", "{E8EE307B-B263-4831-A9BC-D1A1A48545A2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SamplesSpecification", "SamplesSpecification", "{7611D494-057C-4D10-A204-326CEAB1ED05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{A52804F3-7A02-4B6A-B540-FFA9E86DB75D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A52804F3-7A02-4B6A-B540-FFA9E86DB75D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A52804F3-7A02-4B6A-B540-FFA9E86DB75D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8EE307B-B263-4831-A9BC-D1A1A48545A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8EE307B-B263-4831-A9BC-D1A1A48545A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8EE307B-B263-4831-A9BC-D1A1A48545A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8EE307B-B263-4831-A9BC-D1A1A48545A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -112,7 +118,7 @@ Global
 		{962FA91C-9A20-486E-B653-8E55F6F4E6BF} = {DB660404-A4CD-4206-BD1D-0CD76EB3F27B}
 		{2B8FC086-9B2F-4554-8B7D-807775E79019} = {F3EE0916-35DA-47CB-96AE-AABFEA02A7E1}
 		{134A21A4-30A3-47DC-8B2F-14FAD5670477} = {77784143-5C4E-4BE2-9A0F-E1BA5E9464D7}
-		{40A03183-D82A-417C-BAC2-CE4C4B97CE50} = {F06CBF02-D9D3-4708-ABC8-E054AE07A2C1}
+		{40A03183-D82A-417C-BAC2-CE4C4B97CE50} = {7611D494-057C-4D10-A204-326CEAB1ED05}
 		{4E193405-4301-4477-959A-03EA1DE75E4B} = {F3EE0916-35DA-47CB-96AE-AABFEA02A7E1}
 		{D11946D7-BA41-4F70-A6FC-F7E3F30BA8DA} = {962FA91C-9A20-486E-B653-8E55F6F4E6BF}
 		{73DAE89F-0A7B-4976-9898-28E099638607} = {51985F3C-9DA9-4A11-88B4-5E7865D1E689}
@@ -120,9 +126,10 @@ Global
 		{B8DA25C8-D3B7-4732-BC41-B60A0F342ABF} = {73DAE89F-0A7B-4976-9898-28E099638607}
 		{341688E8-6447-4E35-A1F5-7491CA14AE91} = {51985F3C-9DA9-4A11-88B4-5E7865D1E689}
 		{8E410922-5A21-4022-9DF7-D48ABDCA7F8A} = {341688E8-6447-4E35-A1F5-7491CA14AE91}
-		{F06CBF02-D9D3-4708-ABC8-E054AE07A2C1} = {DB660404-A4CD-4206-BD1D-0CD76EB3F27B}
 		{BE826FB4-56BD-4271-8AA5-9FF0D49BFDE7} = {DB660404-A4CD-4206-BD1D-0CD76EB3F27B}
 		{A52804F3-7A02-4B6A-B540-FFA9E86DB75D} = {BE826FB4-56BD-4271-8AA5-9FF0D49BFDE7}
+		{E8EE307B-B263-4831-A9BC-D1A1A48545A2} = {BE826FB4-56BD-4271-8AA5-9FF0D49BFDE7}
+		{7611D494-057C-4D10-A204-326CEAB1ED05} = {BE826FB4-56BD-4271-8AA5-9FF0D49BFDE7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E0EEE4D5-3DB2-4C9E-9649-9C015A750FD6}

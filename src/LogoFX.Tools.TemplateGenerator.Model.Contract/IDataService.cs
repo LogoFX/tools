@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using LogoFX.Tools.TemplateGenerator.Engine.Contracts;
 
 namespace LogoFX.Tools.TemplateGenerator.Model.Contract
 {
@@ -17,9 +15,7 @@ namespace LogoFX.Tools.TemplateGenerator.Model.Contract
 
         void SetSolutionPath(ISolutionConfiguration solution, string path);
 
-        IEnumerable<ITemplateGeneratorEngine> GetAvailableEngines();
-
-        IProjectConfiguration[] GetProjectConfigurations(ISolutionConfiguration solutionConfiguration, ITemplateGeneratorEngine engine);
+        ITemplateGeneratorEngineInfo[] GetAvailableEngines();
         
         Task GenerateTemplates(ISolutionConfiguration[] solutions, IProgress<double> progress);
     }

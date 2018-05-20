@@ -4,4 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Data.Contracts.Dto\LogoFX.Tools.TemplateGenerator.Data.Contracts.Dto.csproj" />
+  </ItemGroup>
+
 </Project>
