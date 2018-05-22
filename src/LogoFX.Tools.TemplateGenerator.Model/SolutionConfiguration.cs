@@ -1,5 +1,4 @@
 ﻿using LogoFX.Tools.TemplateGenerator.Model.Contract;
-using LogoFX.Tools.TemplateGenerator.Model.Shared;
 
 namespace LogoFX.Tools.TemplateGenerator.Model
 {

@@ -16,6 +16,8 @@ namespace LogoFX.Tools.TemplateGenerator.Model.Contract
         void SetSolutionPath(ISolutionConfiguration solution, string path);
 
         ITemplateGeneratorEngineInfo[] GetAvailableEngines();
+
+        Task<IProjectInfo[]> GetProjectsAsync(ISolutionConfiguration solutionConfiguration, ITemplateGeneratorEngineInfo engine);
         
         Task GenerateTemplates(ISolutionConfiguration[] solutions, IProgress<double> progress);
     }

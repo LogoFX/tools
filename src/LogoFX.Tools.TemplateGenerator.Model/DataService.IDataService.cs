@@ -61,9 +61,15 @@ namespace LogoFX.Tools.TemplateGenerator.Model
         {
             return _templateGeneratorService
                 .GetAvailableEngines()
-                .Select(EngineMapper.MapToTemplateGeneratorEngineInfo)
+                .Select(InfoMapper.MapToTemplateGeneratorEngineInfo)
                 .OfType<ITemplateGeneratorEngineInfo>()
                 .ToArray();
+        }
+
+        async Task<IProjectInfo[]> IDataService.GetProjectsAsync(ISolutionConfiguration solutionConfiguration, ITemplateGeneratorEngineInfo engine)
+        {
+            var projects = await _templateGeneratorService.GetProjects(ConfigurationMapper.MapFromSolutionConfiguration(solutionConfiguration), engine.Id);
+            return projects.Select(InfoMapper.MapToProjectInfo).OfType<IProjectInfo>().ToArray();
         }
 
         Task IDataService.SaveConfigurationAsync()

@@ -1,7 +1,10 @@
-﻿namespace LogoFX.Tools.TemplateGenerator.Model.Contract
+﻿using System;
+using LogoFX.Client.Mvvm.Model.Contracts;
+
+namespace LogoFX.Tools.TemplateGenerator.Model.Contract
 {
-    public interface ITemplateGeneratorEngineInfo
+    public interface ITemplateGeneratorEngineInfo : IModel<Guid>
     {
-        string Name { get; }
+
     }
 }

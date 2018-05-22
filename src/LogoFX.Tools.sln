@@ -47,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.TemplateGenera
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SamplesSpecification", "SamplesSpecification", "{7611D494-057C-4D10-A204-326CEAB1ED05}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.TemplateGenerator.Engine.Shared", "LogoFX.Tools.TemplateGenerator.Engine.Shared\LogoFX.Tools.TemplateGenerator.Engine.Shared.csproj", "{BBF1A19F-FE44-4735-B0B1-948209BA41FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{E8EE307B-B263-4831-A9BC-D1A1A48545A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8EE307B-B263-4831-A9BC-D1A1A48545A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8EE307B-B263-4831-A9BC-D1A1A48545A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBF1A19F-FE44-4735-B0B1-948209BA41FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBF1A19F-FE44-4735-B0B1-948209BA41FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBF1A19F-FE44-4735-B0B1-948209BA41FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBF1A19F-FE44-4735-B0B1-948209BA41FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -130,6 +136,7 @@ Global
 		{A52804F3-7A02-4B6A-B540-FFA9E86DB75D} = {BE826FB4-56BD-4271-8AA5-9FF0D49BFDE7}
 		{E8EE307B-B263-4831-A9BC-D1A1A48545A2} = {BE826FB4-56BD-4271-8AA5-9FF0D49BFDE7}
 		{7611D494-057C-4D10-A204-326CEAB1ED05} = {BE826FB4-56BD-4271-8AA5-9FF0D49BFDE7}
+		{BBF1A19F-FE44-4735-B0B1-948209BA41FD} = {BE826FB4-56BD-4271-8AA5-9FF0D49BFDE7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E0EEE4D5-3DB2-4C9E-9649-9C015A750FD6}

@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 
 namespace LogoFX.Tools.TemplateGenerator.Data.Contracts.Dto
 {
-    public abstract class AppDto
+    public abstract class BaseAppDto
     {
         [UsedImplicitly] 
         private Guid Id { get; set; }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using LogoFX.Tools.TemplateGenerator.Data.Contracts.Dto;
+using LogoFX.Tools.TemplateGenerator.Model.Contract;
 using IConfiguration = LogoFX.Tools.TemplateGenerator.Model.Contract.IConfiguration;
 
 namespace LogoFX.Tools.TemplateGenerator.Model.Mappers
@@ -11,14 +12,14 @@ namespace LogoFX.Tools.TemplateGenerator.Model.Mappers
             return Mapper.Map<Configuration>(configurationDto);
         }
 
-        public static ProjectConfiguration MapToProjectConfiguration(ProjectConfigurationDto projectConfigurationDto)
-        {
-            return Mapper.Map<ProjectConfiguration>(projectConfigurationDto);
-        }
-
         public static ConfigurationDto MapFromConfiguration(IConfiguration configuration)
         {
             return Mapper.Map<ConfigurationDto>(configuration);
+        }
+
+        public static SolutionConfigurationDto MapFromSolutionConfiguration(ISolutionConfiguration solutionConfiguration)
+        {
+            return Mapper.Map<SolutionConfigurationDto>(solutionConfiguration);
         }
     }
 }

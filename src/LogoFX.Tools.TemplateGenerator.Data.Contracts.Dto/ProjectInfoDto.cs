@@ -3,7 +3,7 @@
 namespace LogoFX.Tools.TemplateGenerator.Data.Contracts.Dto
 {
     [UsedImplicitly]
-    public sealed class ProjectConfigurationDto : AppDto
+    public sealed class ProjectInfoDto : BaseInfoDto
     {
 
     }

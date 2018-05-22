@@ -9,17 +9,17 @@ namespace LogoFX.Tools.TemplateGenerator.Model.Mappers
         public MappingProfile()
         {
             CreateConfigurationMaps();
-            CreateEngineMaps();
+            CreateInfoMaps();
         }
 
-        private void CreateEngineMaps()
+        private void CreateInfoMaps()
         {
             CreateDomainObjectMap<TemplateGeneratorEngineInfoDto, Contract.ITemplateGeneratorEngineInfo, TemplateGeneratorEngineInfo>();
+            CreateDomainObjectMap<ProjectInfoDto, Contract.IProjectInfo, ProjectInfo>();
         }
 
         private void CreateConfigurationMaps()
         {
-            CreateDomainObjectMap<ProjectConfigurationDto, Contract.IProjectConfiguration, ProjectConfiguration>();
             CreateDomainObjectMap<SolutionConfigurationDto, Contract.ISolutionConfiguration, SolutionConfiguration>();
             CreateDomainObjectMap<ConfigurationDto, Contract.IConfiguration, Configuration>();
         }

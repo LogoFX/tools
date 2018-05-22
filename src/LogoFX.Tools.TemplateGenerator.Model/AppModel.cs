@@ -4,9 +4,9 @@ using System.Runtime.CompilerServices;
 using LogoFX.Client.Mvvm.Model;
 using LogoFX.Tools.TemplateGenerator.Model.Contract;
 
-namespace LogoFX.Tools.TemplateGenerator.Model.Shared
+namespace LogoFX.Tools.TemplateGenerator.Model
 {
-    public abstract class AppModel : EditableModel<Guid>, IAppModel
+    internal abstract class AppModel : EditableModel<Guid>, IAppModel
     {
         public virtual bool Set<T>(ref T oldValue, T newValue, [CallerMemberName] string propertyName = null)
         {

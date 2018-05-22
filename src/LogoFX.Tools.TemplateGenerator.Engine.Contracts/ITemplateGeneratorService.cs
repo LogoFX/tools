@@ -1,4 +1,6 @@
-﻿using LogoFX.Tools.TemplateGenerator.Data.Contracts.Dto;
+﻿using System;
+using System.Threading.Tasks;
+using LogoFX.Tools.TemplateGenerator.Data.Contracts.Dto;
 
 namespace LogoFX.Tools.TemplateGenerator.Engine.Contracts
 {
@@ -6,7 +8,7 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.Contracts
     {
         TemplateGeneratorEngineInfoDto[] GetAvailableEngines();
 
-        //IProjectConfiguration[] GetProjectConfigurations(ISolutionConfiguration solutionConfiguration, ITemplateGeneratorEngine engine);
+        Task<ProjectInfoDto[]> GetProjects(SolutionConfigurationDto solutionConfiguration, Guid engineId);
 
     }
 }

@@ -31,6 +31,11 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             model.PropertyChanged += WeakDelegate.From(OnModelPropertyChanged);
         }
 
+        private async void Start()
+        {
+            var projects = await _dataService.GetProjectsAsync(Model, ((TemplateGeneratorEngineViewModel) Engines.SelectedItem).Model);
+        }
+
         private ICommand _startGenerationCommand;
 
         public ICommand StartGenerationCommand
@@ -39,10 +44,10 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             {
                 return _startGenerationCommand ??
                        (_startGenerationCommand = ActionCommand
-                           .When(() => CanStartGeneration)
+                           .When(() => true)
                            .Do(() =>
                            {
-
+                               Start();
                            })
                            .RequeryOnPropertyChanged(this, () => CanStartGeneration));
             }

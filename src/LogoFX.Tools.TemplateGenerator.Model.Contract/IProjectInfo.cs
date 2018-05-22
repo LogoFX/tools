@@ -1,6 +1,6 @@
 ﻿namespace LogoFX.Tools.TemplateGenerator.Model.Contract
 {
-    public interface IProjectConfiguration : IAppModel
+    public interface IProjectInfo : IInfoModel
     {
 
     }
