@@ -15,14 +15,15 @@
   <ItemGroup>
     <PackageReference Include="Caliburn.Micro.Core" Version="4.0.0-alpha.1" />
     <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
-    <PackageReference Include="Microsoft.Build" Version="15.6.85" />
-    <PackageReference Include="Microsoft.Build.Framework" Version="15.6.85" />
-    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.6.85" />
+    <PackageReference Include="Microsoft.Build" Version="15.7.179" />
+    <PackageReference Include="Microsoft.Build.Framework" Version="15.7.179" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.7.179" />
     <PackageReference Include="Solid.Practices.Modularity" Version="1.2.1-rc2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Engine.Contracts\LogoFX.Tools.TemplateGenerator.Engine.Contracts.csproj" />
+    <ProjectReference Include="..\LogoFX.Tools.Templates.Wizard\LogoFX.Tools.Templates.Wizard.csproj" />
   </ItemGroup>
 
 </Project>

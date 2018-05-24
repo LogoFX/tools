@@ -23,7 +23,7 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.Services
 
         Task ITemplateGeneratorService.GenerateAsync(SolutionConfigurationDto solutionConfiguration, Guid engineId, IProgress<double> progress)
         {
-            return GenerateInternalAsync(solutionConfiguration, engineId, progress);
+            return GenerateInternalAsync(solutionConfiguration, engineId);
         }
     }
 }

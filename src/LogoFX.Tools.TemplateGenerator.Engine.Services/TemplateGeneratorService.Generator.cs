@@ -15,7 +15,7 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.Services
 {
     internal sealed partial class TemplateGeneratorService
     {
-        private async Task GenerateInternalAsync(SolutionConfigurationDto solutionConfiguration, Guid engineId, IProgress<double> progress)
+        private async Task GenerateInternalAsync(SolutionConfigurationDto solutionConfiguration, Guid engineId)
         {
             var destinationFolder = solutionConfiguration.TemplateFolder;
             var engine = GetOrCreateEngine(engineId);

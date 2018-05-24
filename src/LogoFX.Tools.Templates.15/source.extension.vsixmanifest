@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
-  <Metadata>
-    <Identity Id="LogoFX.Tools.Templates._15.be42e8b9-cfff-4f23-a70a-e4b7d99467a7" Version="1.0.1" Language="en-US" Publisher="LogoFX Team" />
-    <DisplayName>LogoFX Template Pack (VS 2017)</DisplayName>
-    <Description xml:space="preserve">A collection of Visual Studio Item- and Project Templates to facilitate the development process using Caliburn.Micro and LogoFX MVVM frameworks.</Description>
-    <MoreInfo>http://www.logoui.co.il/en</MoreInfo>
-    <License>LICENSE</License>
-    <GettingStartedGuide>index.html</GettingStartedGuide>
-    <Tags>WPF,UWP, Windows Store, XAML, MVVM, Specflow, Spec, TDD, BDD, Windows Phone, Patterns, Design Patterns, Patterns &amp; Practices</Tags>
-  </Metadata>
-  <Installation AllUsers="true">
-    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0]" />
-    <InstallationTarget Version="[15.0]" Id="Microsoft.VisualStudio.Enterprise" />
-    <InstallationTarget Version="[15.0]" Id="Microsoft.VisualStudio.Pro" />
-  </Installation>
-  <Dependencies>
-    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.6,)" />
-  </Dependencies>
-  <Assets>
-    <Asset Type="Microsoft.VisualStudio.ItemTemplate" Path="Output\ItemTemplates" />
-    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" Path="Output\ProjectTemplates" />
-    <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="File" Path="TemplateBuilder.dll" AssemblyName="TemplateBuilder, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null" />
-    <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="%CurrentProject%.Wizard" Path="|LogoFX.Tools.Templates.Wizard|" AssemblyName="|LogoFX.Tools.Templates.Wizard;AssemblyName|" />
-    <Asset d:Source="Project" Type="Microsoft.VisualStudio.Assembly" d:ProjectName="LogoFX.Tools.Common.Model" Path="|LogoFX.Tools.Common.Model|" AssemblyName="|LogoFX.Tools.Common.Model;AssemblyName|" />
-  </Assets>
-  <Prerequisites>
-    <Prerequisite Id="Microsoft.Net.Component.4.6.2.SDK" Version="[15.6.27406.0,16.0)" DisplayName=".NET Framework 4.6.2 SDK" />
-  </Prerequisites>
+    <Metadata>
+        <Identity Id="LogoFX.Tools.Templates._15.be42e8b9-cfff-4f23-a70a-e4b7d99467a7" Version="1.0.1" Language="en-US" Publisher="LogoFX Team" />
+        <DisplayName>LogoFX Template Pack (VS 2017)</DisplayName>
+        <Description xml:space="preserve">A collection of Visual Studio Item- and Project Templates to facilitate the development process using Caliburn.Micro and LogoFX MVVM frameworks.</Description>
+        <MoreInfo>http://www.logoui.co.il/en</MoreInfo>
+        <License>LICENSE</License>
+        <GettingStartedGuide>index.html</GettingStartedGuide>
+        <Tags>WPF,UWP, Windows Store, XAML, MVVM, Specflow, Spec, TDD, BDD, Windows Phone, Patterns, Design Patterns, Patterns &amp; Practices</Tags>
+    </Metadata>
+    <Installation AllUsers="true">
+        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0]" />
+        <InstallationTarget Version="[15.0]" Id="Microsoft.VisualStudio.Enterprise" />
+        <InstallationTarget Version="[15.0]" Id="Microsoft.VisualStudio.Pro" />
+    </Installation>
+    <Dependencies>
+        <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.6,)" />
+    </Dependencies>
+    <Assets>
+        <Asset Type="Microsoft.VisualStudio.ItemTemplate" Path="Output\ItemTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" Path="Output\ProjectTemplates" />
+        <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="File" Path="TemplateBuilder.dll" AssemblyName="TemplateBuilder, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null" />
+        <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="LogoFX.Tools.Templates.Wizard" Path="|LogoFX.Tools.Templates.Wizard|" AssemblyName="|LogoFX.Tools.Templates.Wizard;AssemblyName|" />
+        <Asset d:Source="Project" Type="Microsoft.VisualStudio.Assembly" d:ProjectName="LogoFX.Tools.Common.Model" Path="|LogoFX.Tools.Common.Model|" AssemblyName="|LogoFX.Tools.Common.Model;AssemblyName|" />
+    </Assets>
+    <Prerequisites>
+        <Prerequisite Id="Microsoft.Net.Component.4.6.2.SDK" Version="[15.6.27406.0,16.0)" DisplayName=".NET Framework 4.6.2 SDK" />
+    </Prerequisites>
 </PackageManifest>
