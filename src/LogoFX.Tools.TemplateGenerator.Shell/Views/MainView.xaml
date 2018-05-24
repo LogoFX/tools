@@ -9,6 +9,10 @@
              xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModels:MainViewModel}">
+    
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
 
     <Grid Margin="8,0,8,0">
         <Grid.RowDefinitions>
@@ -79,6 +83,17 @@
         <Grid Grid.Row="1"
               Grid.Column="2">
             <ContentControl cal:View.Model="{Binding Path=ActiveItem, Mode=OneWay}" />
+
+            <Grid Visibility="{Binding Path=ActiveItem.IsBusy, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Border Background="Black"
+                        Opacity="0.6" />
+                
+                <ProgressBar VerticalAlignment="Center"
+                             HorizontalAlignment="Stretch"
+                             Margin="20"
+                             Height="24"
+                             IsIndeterminate="{Binding Path=ActiveItem.IsBusy, Mode=OneWay}" />
+            </Grid>
         </Grid>        
     </Grid>
 </UserControl>

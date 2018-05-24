@@ -76,11 +76,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             Items.AddRange(Model.Solutions.Select(CreateSolutionConfiguration));
             var selectedSolutionName = Settings.Default.SelectedSolutionName;
 
-            if (string.IsNullOrEmpty(selectedSolutionName))
-            {
-                return;
-            }
-
             var selectedSolution = Items.FirstOrDefault(x => x.Model.Name == selectedSolutionName);
             if (selectedSolution == null && Items.Count > 0)
             {
