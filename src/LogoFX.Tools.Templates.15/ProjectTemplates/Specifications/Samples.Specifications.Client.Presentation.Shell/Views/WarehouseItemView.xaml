@@ -1,0 +1,102 @@
+<UserControl x:Class="$safeprojectname$.Views.WarehouseItemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:actions="clr-namespace:LogoFX.Client.Mvvm.View.Interactivity.Actions;assembly=LogoFX.Client.Mvvm.View.Platform"
+             xmlns:behaviors="clr-namespace:$saferootprojectname$.pecifications.Client.Presentation.Shared.Behaviors;assembly=$saferootprojectname$.pecifications.Client.Presentation.Shared"
+             xmlns:viewModels="clr-namespace:$safeprojectname$.ViewModels"
+             d:DataContext="{d:DesignInstance viewModels:WarehouseItemViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!--Kind-->
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Text="Kind" />
+        <TextBox AutomationProperties.AutomationId="WarehouseItemKindTextBox"
+                 Grid.Row="0"
+                 Grid.Column="1"
+                 Margin="5,0,0,0"
+                 VerticalAlignment="Center"
+                 Text="{Binding Path=Model.Kind, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Loaded">
+                    <actions:SetFocusAction />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <i:Interaction.Behaviors>
+                <behaviors:NextControlOnReturnBehavior />
+            </i:Interaction.Behaviors>
+        </TextBox>
+
+        <!--Price-->
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Text="Price" />
+        <TextBox AutomationProperties.AutomationId="WarehouseItemPriceTextBox"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 Margin="5,0,0,0"
+                 VerticalAlignment="Center"
+                 Text="{Binding Path=Model.Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True}">
+            <i:Interaction.Behaviors>
+                <behaviors:NextControlOnReturnBehavior />
+            </i:Interaction.Behaviors>
+        </TextBox>
+
+        <!--Quantity-->
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Text="Quantity" />
+        <TextBox AutomationProperties.AutomationId="WarehouseItemQuantityTextBox"
+                 Grid.Row="2"
+                 Grid.Column="1"
+                 Margin="5,0,0,0"
+                 VerticalAlignment="Center"
+                 Text="{Binding Path=Model.Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <i:Interaction.Behaviors>
+                <behaviors:NextControlOnReturnBehavior />
+            </i:Interaction.Behaviors>
+        </TextBox>
+
+        <!--TotalCost-->
+        <TextBlock Grid.Row="3"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Text="Total Cost" />
+        <TextBox Grid.Row="3"
+                 Grid.Column="1"
+                 Margin="5,0,0,0"
+                 VerticalAlignment="Center"
+                 Focusable="False"
+                 IsReadOnly="True"
+                 Text="{Binding Path=Model.TotalCost, Mode=OneWay}" />
+
+        <!--Error Info-->
+        <TextBlock AutomationProperties.AutomationId="WarehouseItemErrorTextBlock"
+                   Grid.Row="4"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   Foreground="Red"
+                   Text="{Binding Path=Model.Error, Mode=OneWay}" />
+    </Grid>
+</UserControl>
+

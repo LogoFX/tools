@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+    <AssemblyName>$safeprojectname$</AssemblyName>
+    <PackageId>Samples.Specifications.Server.Storage.MongoDb</PackageId>
+    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\$saferootprojectname$Specifications.Server.Domain\$saferootprojectname$Specifications.Server.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="mongocsharpdriver" Version="2.3.0" />
+  </ItemGroup>
+</Project>

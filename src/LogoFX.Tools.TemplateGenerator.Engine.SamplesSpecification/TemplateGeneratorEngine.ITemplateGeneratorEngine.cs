@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using LogoFX.Tools.TemplateGenerator.Data.Contracts.Dto;
@@ -22,7 +24,7 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.SamplesSpecification
 
             foreach (var proj in solution.ProjectsInOrder)
             {
-                await CreateSolutionItemTemplateInfoAsync(solution, solutionTemplateInfo, proj, folders);
+                await CreateSolutionItemTemplateInfoAsync(solution, proj, folders);
             }
 
             return solutionTemplateInfo;
@@ -31,6 +33,44 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.SamplesSpecification
         public XDocument CreateDefinitionDocument(SolutionConfigurationDto solutionConfiguration)
         {
             return CreateDefinitionInternal(solutionConfiguration);
+        }
+
+        public string GetRootName(string projectName)
+        {
+            projectName = Path.GetFileName(projectName);
+
+            Debug.Assert(projectName != null, nameof(projectName) + " != null");
+
+            string rootName = null;
+            foreach (var rootNamespace in _rootNamespaces)
+            {
+                if (projectName.StartsWith(rootNamespace))
+                {
+                    rootName = rootNamespace;
+                }
+            }
+
+            return rootName;
+        }
+
+        public string[] GetRootNamespaces()
+        {
+            return _rootNamespaces;
+        }
+        
+        public Task ProcessFileAsync(string fileName, string rootNamespace, ProjectTemplateInfo[] projects)
+        {
+            var ext = Path.GetExtension(fileName);
+            switch (ext)
+            {
+                case ".cs":
+                case ".config":
+                    return ProcessCs(fileName, rootNamespace, projects);
+                case ".xaml":
+                    return ProcessXaml(fileName, rootNamespace, projects);
+            }
+
+            return Task.CompletedTask;
         }
     }
 }

@@ -26,21 +26,132 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.Services
 
             var projects = await GetProjects(solutionConfiguration, engine);
 
-            foreach (var projectTemplateInfo in projects)
+            foreach (var projectInfo in projects)
             {
-                var folderName = Path.GetDirectoryName(projectTemplateInfo.FileName);
+                var folderName = Path.GetDirectoryName(projectInfo.FileName);
                 folderName = Path.GetFileName(folderName);
                 var destinationFileName = CreateNewFileName(folderName, solutionConfiguration.Name, destinationFolder);
-                projectTemplateInfo.DestinationFileName = destinationFileName;
+                projectInfo.DestinationFileName = destinationFileName;
                 if (File.Exists(destinationFileName))
                 {
                     continue;
                 }
-                //var projectGenerator = new ProjectTemplateGenerator(projectTemplateInfo, variant.SolutionTemplateInfo.RootNamespaces, projects);
-                //await projectGenerator.GenerateAsync();
+
+                await CopyProjectToTemplateAsync(projectInfo, engine, projects);
             }
         }
 
+        private async Task CopyProjectToTemplateAsync(ProjectTemplateInfo projectInfo, ITemplateGeneratorEngine engine, ProjectTemplateInfo[] projects)
+        {
+            var projectFolder = Path.GetDirectoryName(projectInfo.DestinationFileName);
+            Debug.Assert(projectFolder != null, "projectFolder != null");
+            Directory.CreateDirectory(projectFolder);
+
+            var from = Path.GetDirectoryName(projectInfo.FileName);
+
+            if (File.Exists(projectInfo.DestinationFileName))
+            {
+                return;
+            }
+
+            File.Copy(projectInfo.FileName, projectInfo.DestinationFileName);
+
+            Project project = new Project(projectInfo.DestinationFileName);
+
+            var x = project.GetProperty("ProjectGuid");
+            if (x != null)
+            {
+                x.UnevaluatedValue = "{$guid1$}";
+            }
+
+            x = project.GetProperty("RootNamespace");
+            var rootNamespace = x.EvaluatedValue;
+            if (!x.UnevaluatedValue.StartsWith("$("))
+            {
+                x.UnevaluatedValue = "$safeprojectname$";
+            }
+
+            x = project.GetProperty("AssemblyName");
+            x.UnevaluatedValue = "$safeprojectname$";
+
+            foreach (var item in project.Items.ToList())
+            {
+                string newFileName = null;
+
+                switch (item.ItemType)
+                {
+                    case "ProjectReference":
+                        FixReference(item, engine);
+                        break;
+                    case "Compile":
+                    case "None":
+                    case "Page":
+                    case "ApplicationDefinition":
+                    case "EmbeddedResource":
+                    case "Content":
+                    case "AppxManifest":
+                    case "Service":
+                    case "SDKReference":
+                    case "Resource":
+                        newFileName = await CopyProjectItem(item, from, projectFolder);
+                        break;
+                }
+
+                if (string.IsNullOrWhiteSpace(newFileName))
+                {
+                    continue;
+                }
+
+                await engine.ProcessFileAsync(newFileName, rootNamespace, projects);
+            }
+
+            project.Save();
+        }
+
+        private async Task<string> CopyProjectItem(ProjectItem item, string from, string to)
+        {
+            var oldFileName = Path.Combine(from, item.EvaluatedInclude);
+
+            if (!File.Exists(oldFileName))
+            {
+                return null;
+            }
+
+            var newFileName = Path.Combine(to, item.EvaluatedInclude);
+
+            if (File.Exists(newFileName))
+            {
+                return newFileName;
+            }
+
+            var newFolder = Path.GetDirectoryName(newFileName);
+            Debug.Assert(newFolder != null, "newFolder != null");
+            if (!Directory.Exists(newFolder))
+            {
+                Directory.CreateDirectory(newFolder);
+            }
+
+            await Task.Run(() => { File.Copy(oldFileName, newFileName); });
+
+            return newFileName;
+        }
+
+        private void FixReference(ProjectItem reference, ITemplateGeneratorEngine engine)
+        {
+            var include = reference.EvaluatedInclude;
+            var fileName = Path.GetFileName(include);
+            var dir = Path.GetFileNameWithoutExtension(fileName);
+            var ddir = Path.GetDirectoryName(Path.GetDirectoryName(include));
+            Debug.Assert(ddir != null, nameof(ddir) + " != null");
+            include = Path.Combine(ddir, Path.Combine(dir, fileName));
+            var rootName = engine.GetRootName(include);
+            reference.UnevaluatedInclude = include.Replace(rootName, "$saferootprojectname$");
+            var name = reference.Metadata.SingleOrDefault(x => x.Name == "Name");
+            if (name != null)
+            {
+                name.UnevaluatedValue = name.EvaluatedValue.Replace(rootName, "$saferootprojectname$");
+            }
+        }
 
         private string CreateNewFileName(string projectName, string solutionName, string destinationFolder)
         {

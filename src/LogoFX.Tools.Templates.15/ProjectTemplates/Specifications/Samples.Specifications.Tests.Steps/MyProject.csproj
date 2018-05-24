@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>$safeprojectname$</AssemblyName>
+    <RootNamespace>$safeprojectname$</RootNamespace>
+    <Configurations>Debug;Release;EndToEndWithFake;IntegrationWithFake</Configurations>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='EndToEndWithFake|AnyCPU'">
+    <OutputPath>..\Bin\EndToEndWithFake\Infra\</OutputPath>
+    <DefineConstants>TRACE;FAKE;NETSTANDARD2_0</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IntegrationWithFake|AnyCPU'">
+    <OutputPath>..\Bin\IntegrationWithFake\</OutputPath>
+    <DefineConstants>TRACE;FAKE;NETSTANDARD2_0;INTEGRATIONWITHFAKE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.3.0" />
+    <PackageReference Include="LogoFX.Client.Data.Fake.ProviderBuilders" Version="1.1.1-rc2" />
+    <PackageReference Include="LogoFX.Client.Tests.Contracts" Version="1.1.1-rc2" />
+    <PackageReference Include="Solid.Practices.Modularity" Version="1.2.1-rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\$saferootprojectname$Client.Data.Contracts.Dto\$saferootprojectname$Client.Data.Contracts.Dto.csproj" />
+    <ProjectReference Include="..\$saferootprojectname$Client.Data.Contracts.Providers\$saferootprojectname$Client.Data.Contracts.Providers.csproj" />
+    <ProjectReference Include="..\$saferootprojectname$Specifications.Client.Data.Fake.ProviderBuilders\$saferootprojectname$Specifications.Client.Data.Fake.ProviderBuilders.csproj" />
+    <ProjectReference Include="..\$saferootprojectname$Specifications.Tests.Data\$saferootprojectname$Specifications.Tests.Data.csproj" />
+    <ProjectReference Include="..\$saferootprojectname$Specifications.Tests.Domain\$saferootprojectname$Specifications.Tests.Domain.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,36 @@
+<UserControl x:Class="$safeprojectname$.Views.WarehouseItemsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:$safeprojectname$.ViewModels"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance viewModels:WarehouseItemsViewModel}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <DataGrid AutomationProperties.AutomationId="WarehouseItemsDataGrid" 
+                  ItemsSource="{Binding Path=Items, Mode=OneWay}"
+                  SelectionUnit="FullRow"
+                  SelectionMode="Single"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False">
+            <DataGrid.RowStyle>
+                <Style BasedOn="{StaticResource {x:Type DataGridRow}}"
+                       TargetType="{x:Type DataGridRow}">
+                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                    <Setter Property="IsSelected"
+                            Value="{Binding Path=IsSelected, Mode=TwoWay}" />
+                </Style>
+            </DataGrid.RowStyle>
+
+            <DataGrid.Columns>
+                <!-- ReSharper disable Xaml.BindingWithContextNotResolved -->
+                <DataGridTextColumn Header="Kind" Binding="{Binding Path=Model.Kind}" />
+                <DataGridTextColumn Header="Price" Binding="{Binding Path=Model.Price}" />
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Path=Model.Quantity}" />
+                <DataGridTextColumn Header="Total cost" Binding="{Binding Path=Model.TotalCost}" />
+                <!-- ReSharper restore Xaml.BindingWithContextNotResolved -->
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

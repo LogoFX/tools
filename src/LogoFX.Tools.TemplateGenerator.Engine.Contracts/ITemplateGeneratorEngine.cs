@@ -14,5 +14,11 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.Contracts
         XDocument CreateDefinitionDocument(SolutionConfigurationDto solutionConfiguration);
 
         XDocument CreatePreprocessDocument(SolutionConfigurationDto solutionConfiguration);
+
+        string GetRootName(string projectName);
+
+        string[] GetRootNamespaces();
+
+        Task ProcessFileAsync(string fileName, string rootNamespace, ProjectTemplateInfo[] projects);
     }
 }

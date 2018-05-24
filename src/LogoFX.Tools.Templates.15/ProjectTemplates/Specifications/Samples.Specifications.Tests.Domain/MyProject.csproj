@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>$safeprojectname$</AssemblyName>
+    <RootNamespace>$safeprojectname$</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="ScreenObjects\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Solid.Practices.IoC" Version="1.2.1-rc4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\$saferootprojectname$Specifications.Tests.Data\$saferootprojectname$Specifications.Tests.Data.csproj" />
+  </ItemGroup>
+</Project>

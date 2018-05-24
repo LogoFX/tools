@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
@@ -23,7 +22,6 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.SamplesSpecification
 
         private async Task<SolutionItemTemplateInfo> CreateSolutionItemTemplateInfoAsync(
             SolutionFile solution,
-            SolutionTemplateInfo solutionTemplateInfo,
             ProjectInSolution proj,
             IDictionary<Guid, SolutionFolderTemplateInfo> folders)
         {
@@ -35,7 +33,7 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.SamplesSpecification
                 Debug.Assert(proj.ParentProjectGuid != null, "proj.ParentProjectGuid != null");
                 if (solution.ProjectsByGuid.TryGetValue(proj.ParentProjectGuid, out var parentProj))
                 {
-                    folder = (SolutionFolderTemplateInfo)await CreateSolutionItemTemplateInfoAsync(solution, solutionTemplateInfo, parentProj, folders);
+                    folder = (SolutionFolderTemplateInfo) await CreateSolutionItemTemplateInfoAsync(solution, parentProj, folders);
                 }
             }
 
@@ -49,7 +47,7 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.SamplesSpecification
                     var project = new Project(proj.AbsolutePath);
                     var rootNamespace = project.Properties.Single(x => x.Name == "RootNamespace").EvaluatedValue;
                     var targetName = project.Properties.Single(x => x.Name == "TargetName").EvaluatedValue;
-                    var rootName = AddRootName(rootNamespace, solutionTemplateInfo);
+                    var rootName = GetRootName(rootNamespace);
                     result = new ProjectTemplateInfo(id, proj.ProjectName)
                     {
                         NameWithoutRoot = targetName.Substring(rootName.Length + 1),
@@ -72,36 +70,6 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.SamplesSpecification
             folder.Items.Add(result);
 
             return result;
-        }
-
-        private string AddRootName(string projectName, SolutionTemplateInfo solutionTemplateInfo)
-        {
-            var rootName = GetRootName(projectName);
-
-            if (!solutionTemplateInfo.RootNamespaces.Contains(rootName))
-            {
-                solutionTemplateInfo.RootNamespaces.Add(rootName);
-            }
-
-            return rootName;
-        }
-
-        private string GetRootName(string projectName)
-        {
-            projectName = Path.GetFileName(projectName);
-
-            Debug.Assert(projectName != null, nameof(projectName) + " != null");
-
-            string rootName = null;
-            foreach (var rootNamespace in _rootNamespaces)
-            {
-                if (projectName.StartsWith(rootNamespace))
-                {
-                    rootName = rootNamespace;
-                }
-            }
-
-            return rootName;
         }
     }
 }
