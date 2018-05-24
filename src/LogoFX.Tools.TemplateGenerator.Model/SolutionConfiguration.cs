@@ -4,12 +4,12 @@ namespace LogoFX.Tools.TemplateGenerator.Model
 {
     internal sealed class SolutionConfiguration : AppModel, ISolutionConfiguration
     {
-        private string _pluginName;
+        private string _engineName;
 
-        public string PluginName
+        public string EngineName
         {
-            get => _pluginName;
-            set => Set(ref _pluginName, value);
+            get => _engineName;
+            set => Set(ref _engineName, value);
         }
 
         private string _path;
@@ -18,14 +18,6 @@ namespace LogoFX.Tools.TemplateGenerator.Model
         {
             get => _path;
             set => Set(ref _path, value);
-        }
-
-        private string _startupProjectName;
-
-        public string StartupProjectName
-        {
-            get => _startupProjectName;
-            set => Set(ref _startupProjectName, value);
         }
 
         private string _iconPath;

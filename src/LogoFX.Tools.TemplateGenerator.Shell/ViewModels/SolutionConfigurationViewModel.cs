@@ -1,10 +1,13 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Input;
 using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.ViewModel;
+using LogoFX.Client.Mvvm.ViewModel.Contracts;
 using LogoFX.Client.Mvvm.ViewModel.Extensions;
 using LogoFX.Client.Mvvm.ViewModel.Services;
 using LogoFX.Core;
@@ -15,7 +18,7 @@ using SelectionMode = LogoFX.Client.Mvvm.ViewModel.SelectionMode;
 namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 {
     [UsedImplicitly]
-    public class SolutionConfigurationViewModel : ScreenObjectViewModel<ISolutionConfiguration>
+    public class SolutionConfigurationViewModel : ScreenObjectViewModel<ISolutionConfiguration>, ICanBeBusy
     {
         private readonly IDataService _dataService;
         private readonly IViewModelCreatorService _viewModelCreatorService;
@@ -31,11 +34,6 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             model.PropertyChanged += WeakDelegate.From(OnModelPropertyChanged);
         }
 
-        private async void Start()
-        {
-            var projects = await _dataService.GetProjectsAsync(Model, ((TemplateGeneratorEngineViewModel) Engines.SelectedItem).Model);
-        }
-
         private ICommand _startGenerationCommand;
 
         public ICommand StartGenerationCommand
@@ -44,11 +42,8 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             {
                 return _startGenerationCommand ??
                        (_startGenerationCommand = ActionCommand
-                           .When(() => true)
-                           .Do(() =>
-                           {
-                               Start();
-                           })
+                           .When(() => CanStartGeneration)
+                           .Do(Start)
                            .RequeryOnPropertyChanged(this, () => CanStartGeneration));
             }
         }
@@ -123,23 +118,27 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
         }
 
         private WrappingCollection.WithSelection _engines;
-
-        public WrappingCollection.WithSelection Engines
-        {
-            get { return _engines ?? (_engines = CreateEngines()); }
-        }
+        public WrappingCollection.WithSelection Engines => _engines ?? (_engines = CreateEngines());
 
         private WrappingCollection.WithSelection CreateEngines()
         {
             var wc = new WrappingCollection.WithSelection(SelectionMode.One)
             {
                 FactoryMethod = o => _viewModelCreatorService.CreateViewModel<ITemplateGeneratorEngineInfo, TemplateGeneratorEngineViewModel>((ITemplateGeneratorEngineInfo) o),
-                SelectionPredicate = o => string.IsNullOrEmpty(Model.PluginName) || ((TemplateGeneratorEngineViewModel) o).Model.Name == Model.PluginName
+                SelectionPredicate = o => string.IsNullOrEmpty(Model.EngineName) || ((TemplateGeneratorEngineViewModel) o).Model.Name == Model.EngineName
             };
 
+            wc.SelectionChanged += WeakDelegate.From((EventHandler) EnginesSelectionChanged);
             wc.AddSource(_dataService.GetAvailableEngines());
 
             return wc;
+        }
+
+        private void EnginesSelectionChanged(object sender, EventArgs e)
+        {
+            var wc = (WrappingCollection.WithSelection) sender;
+            var item = wc.SelectedItem as TemplateGeneratorEngineViewModel;
+            Model.EngineName = item?.Model.Name;
         }
 
         public string TemplatePath
@@ -157,6 +156,15 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
 
         private void OnModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            string[] propertyArray =
+            {
+                nameof(ISolutionConfiguration.Path),
+                nameof(ISolutionConfiguration.Name),
+                nameof(ISolutionConfiguration.EngineName),
+                nameof(ISolutionConfiguration.DefaultName),
+                nameof(ISolutionConfiguration.TemplateFolder)
+            };
+
             if (e.PropertyName == nameof(ISolutionConfiguration.Name))
             {
                 NotifyOfPropertyChange(() => DisplayName);
@@ -164,28 +172,39 @@ namespace LogoFX.Tools.TemplateGenerator.Shell.ViewModels
             }
             else if (e.PropertyName == nameof(ISolutionConfiguration.TemplateFolder))
             {
-                NotifyOfPropertyChange(() => TemplatePath);
+                NotifyOfPropertyChange(() => TemplatePath);                
+            }
+
+            if (propertyArray.Any(x => x == e.PropertyName))
+            {
+                NotifyOfPropertyChange(() => CanStartGeneration);
             }
         }
 
-        private bool CanStartGeneration
-        {
-            get { return GetCanStartGeneration(); }
-        }
+        private bool CanStartGeneration => GetCanStartGeneration();
 
         private bool GetCanStartGeneration()
         {
-            if (string.IsNullOrEmpty(Model.Path) || !File.Exists(Model.Path))
+            return !string.IsNullOrEmpty(Model.Path) &&
+                   !string.IsNullOrEmpty(Model.Name) &&
+                   !string.IsNullOrEmpty(Model.EngineName) &&
+                   !string.IsNullOrEmpty(Model.DefaultName) &&
+                   File.Exists(Model.Path);
+        }
+
+        private async void Start()
+        {
+            IsBusy = true;
+
+            try
             {
-                return false;
+                await _dataService.GenerateAsync(Model, ((TemplateGeneratorEngineViewModel) Engines.SelectedItem).Model, null);
             }
 
-            if (string.IsNullOrEmpty(Model.Name))
+            finally
             {
-                return false;
+                IsBusy = false;
             }
-
-            return true;
         }
 
         public override string DisplayName

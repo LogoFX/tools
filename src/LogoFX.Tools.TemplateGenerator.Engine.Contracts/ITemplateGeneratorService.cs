@@ -8,7 +8,6 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.Contracts
     {
         TemplateGeneratorEngineInfoDto[] GetAvailableEngines();
 
-        Task<ProjectInfoDto[]> GetProjects(SolutionConfigurationDto solutionConfiguration, Guid engineId);
-
+        Task GenerateAsync(SolutionConfigurationDto solutionConfiguration, Guid engineId, IProgress<double> progress);
     }
 }

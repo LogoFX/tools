@@ -13,31 +13,13 @@ using Microsoft.Build.Evaluation;
 namespace LogoFX.Tools.TemplateGenerator.Engine.SamplesSpecification
 {
     [UsedImplicitly]
-    internal sealed class TemplateGeneratorEngine : ITemplateGeneratorEngine
+    internal sealed partial class TemplateGeneratorEngine : ITemplateGeneratorEngine
     {
         private static readonly string[] _rootNamespaces =
         {
             "Samples.Specifications.",
             "Samples."
         };
-
-        public string Name => "Samples.Specifications";
-
-        public async Task<SolutionTemplateInfo> CreateSolutionInfoAsync(string solutionFileName)
-        {
-            SolutionFile solution = SolutionFile.Parse(solutionFileName);
-
-            var folders = new Dictionary<Guid, SolutionFolderTemplateInfo>();
-            var solutionTemplateInfo = new SolutionTemplateInfo();
-            folders.Add(Guid.Empty, solutionTemplateInfo);
-
-            foreach (var proj in solution.ProjectsInOrder)
-            {
-                await CreateSolutionItemTemplateInfoAsync(solution, solutionTemplateInfo, proj, folders);
-            }
-
-            return solutionTemplateInfo;
-        }
 
         private async Task<SolutionItemTemplateInfo> CreateSolutionItemTemplateInfoAsync(
             SolutionFile solution,

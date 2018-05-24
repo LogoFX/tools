@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using LogoFX.Tools.TemplateGenerator.Model.Contract;
@@ -54,7 +55,12 @@ namespace LogoFX.Tools.TemplateGenerator.Model
 
         void IDataService.SetSolutionPath(ISolutionConfiguration solution, string path)
         {
-            ((SolutionConfiguration) solution).Path = path;
+            var solutionConfiguration = (SolutionConfiguration) solution;
+            solutionConfiguration.Path = path;
+            if (string.IsNullOrWhiteSpace(solutionConfiguration.Name))
+            {
+                solutionConfiguration.Name = Path.GetFileNameWithoutExtension(path);
+            }
         }
 
         ITemplateGeneratorEngineInfo[] IDataService.GetAvailableEngines()
@@ -66,10 +72,10 @@ namespace LogoFX.Tools.TemplateGenerator.Model
                 .ToArray();
         }
 
-        async Task<IProjectInfo[]> IDataService.GetProjectsAsync(ISolutionConfiguration solutionConfiguration, ITemplateGeneratorEngineInfo engine)
+        Task IDataService.GenerateAsync(ISolutionConfiguration solutionConfiguration, ITemplateGeneratorEngineInfo engine, IProgress<double> progress)
         {
-            var projects = await _templateGeneratorService.GetProjects(ConfigurationMapper.MapFromSolutionConfiguration(solutionConfiguration), engine.Id);
-            return projects.Select(InfoMapper.MapToProjectInfo).OfType<IProjectInfo>().ToArray();
+            var solutionConfigurationDto = ConfigurationMapper.MapFromSolutionConfiguration(solutionConfiguration);
+            return _templateGeneratorService.GenerateAsync(solutionConfigurationDto, engine.Id, progress);
         }
 
         Task IDataService.SaveConfigurationAsync()
@@ -86,11 +92,6 @@ namespace LogoFX.Tools.TemplateGenerator.Model
                     _configurationProvider.SaveConfiguration(ConfigurationMapper.MapFromConfiguration(_configuration));
                 }
             });
-        }
-
-        Task IDataService.GenerateTemplates(ISolutionConfiguration[] solutions, IProgress<double> progress)
-        {
-            throw new NotImplementedException();
         }
     }
 }

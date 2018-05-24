@@ -3,19 +3,14 @@
     public interface ISolutionConfiguration : IAppModel
     {
         /// <summary>
-        /// Name of processing plugin.
+        /// Name of processing engine.
         /// </summary>
-        string PluginName { get; set; }
+        string EngineName { get; set; }
 
         /// <summary>
         /// Solution file name with full path.
         /// </summary>
         string Path { get; }
-
-        /// <summary>
-        /// Name of startup project in solution.
-        /// </summary>
-        string StartupProjectName { get; set; }
 
         string IconPath { get; set; }
 

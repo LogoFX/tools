@@ -15,7 +15,6 @@ namespace LogoFX.Tools.TemplateGenerator.Model.Mappers
         private void CreateInfoMaps()
         {
             CreateDomainObjectMap<TemplateGeneratorEngineInfoDto, Contract.ITemplateGeneratorEngineInfo, TemplateGeneratorEngineInfo>();
-            CreateDomainObjectMap<ProjectInfoDto, Contract.IProjectInfo, ProjectInfo>();
         }
 
         private void CreateConfigurationMaps()

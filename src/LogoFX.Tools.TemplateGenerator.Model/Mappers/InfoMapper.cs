@@ -9,11 +9,5 @@ namespace LogoFX.Tools.TemplateGenerator.Model.Mappers
         {
             return Mapper.Map<TemplateGeneratorEngineInfo>(dto);
         }
-    
-        public static ProjectInfo MapToProjectInfo(ProjectInfoDto projectInfoDto)
-        {
-            return Mapper.Map<ProjectInfo>(projectInfoDto);
-        }
-
     }
 }

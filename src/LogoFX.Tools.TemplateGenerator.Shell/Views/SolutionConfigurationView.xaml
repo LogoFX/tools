@@ -11,6 +11,19 @@
              d:DesignWidth="800"
              d:DesignHeight="600"
              d:DataContext="{d:DesignInstance viewModels:SolutionConfigurationViewModel}">
+    
+    <UserControl.Resources>
+        <Style x:Key="DefaultTextBlockStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        
+        <Style x:Key="MandatoryTextBlockStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource DefaultTextBlockStyle}">
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+        
+        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource DefaultTextBlockStyle}">
+        </Style>       
+    </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -35,7 +48,7 @@
         <!--Solution File-->
         <TextBlock Grid.Row="0"
                    Grid.Column="0"
-                   VerticalAlignment="Center"
+                   Style="{StaticResource MandatoryTextBlockStyle}"
                    Text="Solution File:" />
         
         <TextBox Grid.Row="0"
@@ -63,7 +76,7 @@
         <!--Solution Name-->
         <TextBlock Grid.Row="1"
                    Grid.Column="0"
-                   VerticalAlignment="Center"
+                   Style="{StaticResource MandatoryTextBlockStyle}"
                    Text="Solution Name:" />
         
         <TextBox Grid.Row="1"
@@ -73,26 +86,13 @@
                  Margin="5,0,0,0"
                  Text="{Binding Path=Model.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-        <!--Description-->
+        <!--Engine-->
         <TextBlock Grid.Row="2"
                    Grid.Column="0"
-                   VerticalAlignment="Center"
-                   Text="Solution Description:" />
-        
-        <TextBox Grid.Row="2"
-                 Grid.Column="1"
-                 VerticalAlignment="Center"
-                 Height="22"
-                 Margin="5,0,0,0"
-                 Text="{Binding Path=Model.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-        <!--Engine-->
-        <TextBlock Grid.Row="3"
-                   Grid.Column="0"
-                   VerticalAlignment="Center"
+                   Style="{StaticResource MandatoryTextBlockStyle}"
                    Text="Engine:" />
         
-        <ComboBox Grid.Row="3"
+        <ComboBox Grid.Row="2"
                   Grid.Column="1"
                   VerticalAlignment="Center"
                   Height="22"
@@ -105,22 +105,33 @@
         </ComboBox>
 
         <!--Default Name-->
-        <TextBlock Grid.Row="4"
+        <TextBlock Grid.Row="3"
                    Grid.Column="0"
-                   VerticalAlignment="Center"
+                   Style="{StaticResource MandatoryTextBlockStyle}"
                    Text="Default Name:" />
         
-        <TextBox Grid.Row="4"
+        <TextBox Grid.Row="3"
                  Grid.Column="1"
                  VerticalAlignment="Center"
                  Height="22"
                  Margin="5,0,0,0"
                  Text="{Binding Path=Model.DefaultName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
+        <!--Description-->
+        <TextBlock Grid.Row="4"
+                   Grid.Column="0"
+                   Text="Description:" />
+        
+        <TextBox Grid.Row="4"
+                 Grid.Column="1"
+                 VerticalAlignment="Center"
+                 Height="22"
+                 Margin="5,0,0,0"
+                 Text="{Binding Path=Model.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
         <!--Post Create URL-->
         <TextBlock Grid.Row="5"
                    Grid.Column="0"
-                   VerticalAlignment="Center"
                    Text="Post Create URL:" />
         
         <TextBox Grid.Row="5"
@@ -133,7 +144,6 @@
         <!--Solution Icon-->
         <TextBlock Grid.Row="6"
                    Grid.Column="0"
-                   VerticalAlignment="Center"
                    Text="Solution Icon:" />
         
         <TextBox Grid.Row="6"
@@ -146,7 +156,7 @@
         <!--Template Folder-->
         <TextBlock Grid.Row="8"
                    Grid.Column="0"
-                   VerticalAlignment="Center"
+                   Style="{StaticResource MandatoryTextBlockStyle}"
                    Text="Template Folder:" />
         
         <TextBox Grid.Row="8"
@@ -186,7 +196,6 @@
 
         <TextBlock Grid.Row="9"
                    Grid.Column="1"
-                   VerticalAlignment="Center"
                    FontWeight="Bold"
                    Margin="5,0,0,0"
                    Text="{Binding Path=TemplatePath, Mode=OneWay}" />
