@@ -196,3 +196,5 @@ FakesAssemblies/
 *.opt
 /src/LogoFX.Tools.Templates/template-report.xml
 /src/LogoFX.Tools.Universal.Template/template-report.xml
+/src/LogoFX.Tools.Templates/ProjectTemplates
+/src/LogoFX.Tools.Templates.15/ProjectTemplates
