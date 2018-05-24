@@ -61,7 +61,7 @@
     <Content Include="LICENSE.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ProjectTemplates\Wizard\Definitions\CSharp.vstemplate" />
+    <Content Include="ProjectTemplates\Definitions\CSharp.vstemplate" />
     <Content Include="stylesheet.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

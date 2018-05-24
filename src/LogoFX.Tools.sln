@@ -47,7 +47,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.TemplateGenera
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SamplesSpecification", "SamplesSpecification", "{7611D494-057C-4D10-A204-326CEAB1ED05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.TemplateGenerator.Engine.Shared", "LogoFX.Tools.TemplateGenerator.Engine.Shared\LogoFX.Tools.TemplateGenerator.Engine.Shared.csproj", "{BBF1A19F-FE44-4735-B0B1-948209BA41FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogoFX.Tools.TemplateGenerator.Engine.Shared", "LogoFX.Tools.TemplateGenerator.Engine.Shared\LogoFX.Tools.TemplateGenerator.Engine.Shared.csproj", "{BBF1A19F-FE44-4735-B0B1-948209BA41FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VSIX", "VSIX", "{98BCF3D4-70A2-4525-8DC8-F9A71F565C18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.Templates", "LogoFX.Tools.Templates\LogoFX.Tools.Templates.csproj", "{EDF177C8-9FD3-4219-97E4-1A6D5122C777}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.Templates.15", "LogoFX.Tools.Templates.15\LogoFX.Tools.Templates.15.csproj", "{F5D58E83-547D-4E49-B064-229ED384ACE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Tools.Templates.Wizard", "LogoFX.Tools.Templates.Wizard\LogoFX.Tools.Templates.Wizard.csproj", "{49CC73EF-E0EC-48F2-8F53-A6FDA3EB7631}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +119,18 @@ Global
 		{BBF1A19F-FE44-4735-B0B1-948209BA41FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBF1A19F-FE44-4735-B0B1-948209BA41FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBF1A19F-FE44-4735-B0B1-948209BA41FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDF177C8-9FD3-4219-97E4-1A6D5122C777}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDF177C8-9FD3-4219-97E4-1A6D5122C777}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDF177C8-9FD3-4219-97E4-1A6D5122C777}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDF177C8-9FD3-4219-97E4-1A6D5122C777}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5D58E83-547D-4E49-B064-229ED384ACE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5D58E83-547D-4E49-B064-229ED384ACE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5D58E83-547D-4E49-B064-229ED384ACE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5D58E83-547D-4E49-B064-229ED384ACE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49CC73EF-E0EC-48F2-8F53-A6FDA3EB7631}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49CC73EF-E0EC-48F2-8F53-A6FDA3EB7631}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49CC73EF-E0EC-48F2-8F53-A6FDA3EB7631}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49CC73EF-E0EC-48F2-8F53-A6FDA3EB7631}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,6 +157,9 @@ Global
 		{E8EE307B-B263-4831-A9BC-D1A1A48545A2} = {BE826FB4-56BD-4271-8AA5-9FF0D49BFDE7}
 		{7611D494-057C-4D10-A204-326CEAB1ED05} = {BE826FB4-56BD-4271-8AA5-9FF0D49BFDE7}
 		{BBF1A19F-FE44-4735-B0B1-948209BA41FD} = {BE826FB4-56BD-4271-8AA5-9FF0D49BFDE7}
+		{EDF177C8-9FD3-4219-97E4-1A6D5122C777} = {98BCF3D4-70A2-4525-8DC8-F9A71F565C18}
+		{F5D58E83-547D-4E49-B064-229ED384ACE2} = {98BCF3D4-70A2-4525-8DC8-F9A71F565C18}
+		{49CC73EF-E0EC-48F2-8F53-A6FDA3EB7631} = {98BCF3D4-70A2-4525-8DC8-F9A71F565C18}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E0EEE4D5-3DB2-4C9E-9649-9C015A750FD6}

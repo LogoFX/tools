@@ -73,7 +73,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="ProjectTemplates\Wizard\Definitions\CSharp.vstemplate" />
     <Content Include="readme.txt" />
     <Content Include="stylesheet.css" />
   </ItemGroup>
