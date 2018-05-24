@@ -23,25 +23,13 @@ namespace $safeprojectname$.ViewModels
         }
 
         private WarehouseItemCommandsViewModel _commands;
-        public WarehouseItemCommandsViewModel Commands
-        {
-            get
-            {
-                return _commands ??
-                       (_commands = _viewModelCreatorService.CreateViewModel<WarehouseItemCommandsViewModel>());
-            }
-        }
+        public WarehouseItemCommandsViewModel Commands => _commands ??
+                                                          (_commands = _viewModelCreatorService.CreateViewModel<WarehouseItemCommandsViewModel>());
 
         private WarehouseItemViewModel _item;
-        public WarehouseItemViewModel Item
-        {
-            get
-            {
-                return _item ??
-                       (_item =
-                           _viewModelCreatorService.CreateViewModel<IWarehouseItem, WarehouseItemViewModel>(_model));
-            }
-        }
+        public WarehouseItemViewModel Item => _item ??
+                                              (_item =
+                                                  _viewModelCreatorService.CreateViewModel<IWarehouseItem, WarehouseItemViewModel>(_model));
 
         protected override async Task<bool> SaveMethod(IWarehouseItem model)
         {

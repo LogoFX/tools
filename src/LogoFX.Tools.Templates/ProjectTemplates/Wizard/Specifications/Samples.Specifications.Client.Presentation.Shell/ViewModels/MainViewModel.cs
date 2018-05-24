@@ -33,13 +33,7 @@ namespace $safeprojectname$.ViewModels
         }
 
         private ICommand _newCommand;
-        public ICommand NewCommand
-        {
-            get
-            {
-                return _newCommand ?? (_newCommand = ActionCommand.Do(NewWarehouseItem));
-            }
-        }
+        public ICommand NewCommand => _newCommand ?? (_newCommand = ActionCommand.Do(NewWarehouseItem));
 
         private ICommand _deleteCommand;
         public ICommand DeleteCommand
@@ -57,7 +51,7 @@ namespace $safeprojectname$.ViewModels
         private WarehouseItemContainerViewModel _activeWarehouseItem;
         public WarehouseItemContainerViewModel ActiveWarehouseItem
         {
-            get { return _activeWarehouseItem; }
+            get => _activeWarehouseItem;
             set
             {
                 if (_activeWarehouseItem == value)
@@ -104,10 +98,7 @@ namespace $safeprojectname$.ViewModels
         }
 
         private WarehouseItemsViewModel _warehouseItems;
-        public WarehouseItemsViewModel WarehouseItems
-        {
-            get { return _warehouseItems ?? (_warehouseItems = CreateWarehouseItems()); }
-        }
+        public WarehouseItemsViewModel WarehouseItems => _warehouseItems ?? (_warehouseItems = CreateWarehouseItems());
 
         private WarehouseItemsViewModel CreateWarehouseItems()
         {
@@ -126,10 +117,7 @@ namespace $safeprojectname$.ViewModels
         }
 
         private EventsViewModel _events;
-        public EventsViewModel Events
-        {
-            get { return _events ?? (_events = _viewModelCreatorService.CreateViewModel<EventsViewModel>()); }
-        }        
+        public EventsViewModel Events => _events ?? (_events = _viewModelCreatorService.CreateViewModel<EventsViewModel>());
 
         private async void NewWarehouseItem()
         {            
@@ -155,6 +143,7 @@ namespace $safeprojectname$.ViewModels
             try
             {
                 await _dataService.DeleteWarehouseItemAsync(ActiveWarehouseItem?.Item.Model);
+                await _dataService.GetWarehouseItemsAsync();
             }
 
             finally

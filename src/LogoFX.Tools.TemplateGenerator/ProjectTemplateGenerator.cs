@@ -36,7 +36,6 @@ namespace LogoFX.Tools.TemplateGenerator
 
             if (File.Exists(_projectTemplateInfo.DestinationFileName))
             {
-                //Debugger.Break();
                 return;
             }
 

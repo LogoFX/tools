@@ -46,6 +46,7 @@
               Grid.ColumnSpan="3"
               Visibility="{Binding Path=IsBusy, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
             <ProgressBar Height="24" 
+                         AutomationProperties.AutomationId="Main_Progress"
                          HorizontalAlignment="Stretch"
                          VerticalAlignment="Center" 
                          IsIndeterminate="True"/>

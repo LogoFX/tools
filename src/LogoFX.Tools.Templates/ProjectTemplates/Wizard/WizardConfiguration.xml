@@ -24,7 +24,7 @@
         <SolutionVariant>
           <ContainerName>Simple</ContainerName>
           <SolutionFileName>E:\Projects\LogoFX\Samples.Specifications\Specifications.sln</SolutionFileName>
-          <StartupProjectName>Client.Presentation.Shared</StartupProjectName>
+          <StartupProjectName>Client.Launcher</StartupProjectName>
         </SolutionVariant>
       </SolutionVariants>
     </SolutionInfo>

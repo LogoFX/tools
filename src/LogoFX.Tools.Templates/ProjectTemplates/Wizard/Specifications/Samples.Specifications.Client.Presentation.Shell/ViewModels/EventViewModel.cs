@@ -12,14 +12,8 @@ namespace $safeprojectname$.ViewModels
 
         }
 
-        public DateTime Time
-        {
-            get { return Model.Time; }
-        }
+        public DateTime Time => Model.Time;
 
-        public string Message
-        {
-            get { return Model.Message; }
-        }        
+        public string Message => Model.Message;
     }
 }

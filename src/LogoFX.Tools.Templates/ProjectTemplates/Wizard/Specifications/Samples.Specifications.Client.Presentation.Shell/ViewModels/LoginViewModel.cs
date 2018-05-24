@@ -86,7 +86,7 @@ namespace $safeprojectname$.ViewModels
 
         public bool SavePassword
         {
-            get { return _savePassword; }
+            get => _savePassword;
             set
             {
                 if (_savePassword == value)
@@ -103,7 +103,7 @@ namespace $safeprojectname$.ViewModels
 
         public string LoginFailureCause
         {
-            get { return _loginFailureCause; }
+            get => _loginFailureCause;
             set
             {
                 if (_loginFailureCause == value)
@@ -115,16 +115,13 @@ namespace $safeprojectname$.ViewModels
             }
         }
 
-        public bool IsLoginFailureTextVisible
-        {
-            get { return string.IsNullOrWhiteSpace(LoginFailureCause) == false; }
-        }
-        
+        public bool IsLoginFailureTextVisible => string.IsNullOrWhiteSpace(LoginFailureCause) == false;
+
         private string _userName;
 
         public string UserName
         {
-            get { return _userName; }
+            get => _userName;
             set
             {
                 _userName = value;
@@ -136,7 +133,7 @@ namespace $safeprojectname$.ViewModels
 
         public string Password
         {
-            get { return _password; }
+            get => _password;
             set
             {
                 if (_password == value)

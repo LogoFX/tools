@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>$safeprojectname$</RootNamespace>
     <AssemblyName>$safeprojectname$</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -46,18 +46,18 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestsWithFake|AnyCPU'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'EndToEndWithFake|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\Bin\TestsWithFake\</OutputPath>
+    <OutputPath>..\Bin\EndToEndWithFake\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestsWithReal|AnyCPU'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'EndToEndWithReal|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\Bin\TestsWithReal\</OutputPath>
+    <OutputPath>..\Bin\EndToEndWithReal\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -77,159 +77,130 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Caliburn.Micro, Version=3.0.3.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Caliburn.Micro.Core.3.0.3\lib\net45\Caliburn.Micro.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Caliburn.Micro, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.Core.4.0.0-alpha.1\lib\netstandard1.0\Caliburn.Micro.dll</HintPath>
     </Reference>
-    <Reference Include="Caliburn.Micro.Platform, Version=3.0.3.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Caliburn.Micro.3.0.3\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Caliburn.Micro.Platform, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.4.0.0-alpha.1\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="Caliburn.Micro.Platform.Core, Version=3.0.3.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Caliburn.Micro.3.0.3\lib\net45\Caliburn.Micro.Platform.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Caliburn.Micro.Platform.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.4.0.0-alpha.1\lib\net45\Caliburn.Micro.Platform.Core.dll</HintPath>
     </Reference>
-    <Reference Include="JetBrains.Annotations, Version=10.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\packages\JetBrains.Annotations.10.2.1\lib\net\JetBrains.Annotations.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="JetBrains.Annotations, Version=11.1.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.11.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Client.Core, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Core.Core.1.1.0\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LogoFX.Client.Core, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Core.Core.1.2.1-rc2\lib\netstandard2.0\LogoFX.Client.Core.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Client.Core.Platform, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Core.1.1.0\lib\net45\LogoFX.Client.Core.Platform.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LogoFX.Client.Core.Platform, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Core.1.2.1-rc3\lib\net461\LogoFX.Client.Core.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.Commanding, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Commanding.Core.1.0.6\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Mvvm.Commanding.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LogoFX.Client.Mvvm.Commanding, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.Commanding.Core.1.1.1-rc3\lib\netstandard2.0\LogoFX.Client.Mvvm.Commanding.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.Commanding.Platform, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Commanding.1.0.6\lib\net45\LogoFX.Client.Mvvm.Commanding.Platform.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LogoFX.Client.Mvvm.Commanding.Platform, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.Commanding.1.1.1-rc3\lib\net461\LogoFX.Client.Mvvm.Commanding.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.Core.Platform, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Core.1.0.6\lib\net45\LogoFX.Client.Mvvm.Core.Platform.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LogoFX.Client.Mvvm.Core.Platform, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.Core.1.1.1-rc2\lib\net461\LogoFX.Client.Mvvm.Core.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.Model, Version=1.0.11.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.11\lib\net45\LogoFX.Client.Mvvm.Model.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LogoFX.Client.Mvvm.Model, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.1.1-rc4\lib\netstandard2.0\LogoFX.Client.Mvvm.Model.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.Model.Contracts, Version=1.0.11.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.11\lib\net45\LogoFX.Client.Mvvm.Model.Contracts.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LogoFX.Client.Mvvm.Model.Contracts, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.1.1-rc4\lib\netstandard2.0\LogoFX.Client.Mvvm.Model.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.View, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.View.Core.1.0.5\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Mvvm.View.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LogoFX.Client.Mvvm.View, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.View.Core.1.1.1-rc1\lib\netstandard2.0\LogoFX.Client.Mvvm.View.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.View.Platform, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.View.1.0.5\lib\net45\LogoFX.Client.Mvvm.View.Platform.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LogoFX.Client.Mvvm.View.Platform, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.View.1.1.1-rc2\lib\net461\LogoFX.Client.Mvvm.View.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.ViewModel, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Core.1.0.6\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Mvvm.ViewModel.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LogoFX.Client.Mvvm.ViewModel, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Core.1.1.1-rc3\lib\netstandard2.0\LogoFX.Client.Mvvm.ViewModel.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Contracts, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Core.1.0.6\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Mvvm.ViewModel.Contracts.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Contracts, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Core.1.1.1-rc3\lib\netstandard2.0\LogoFX.Client.Mvvm.ViewModel.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Extensions, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Extensions.Core.1.0.8\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Mvvm.ViewModel.Extensions.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Extensions, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Extensions.Core.1.2.1-rc5\lib\netstandard2.0\LogoFX.Client.Mvvm.ViewModel.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Extensions.Platform, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Extensions.1.0.8\lib\net45\LogoFX.Client.Mvvm.ViewModel.Extensions.Platform.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Extensions.Platform, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Extensions.1.2.1-rc4\lib\net461\LogoFX.Client.Mvvm.ViewModel.Extensions.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Platform, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.1.0.6\lib\net45\LogoFX.Client.Mvvm.ViewModel.Platform.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Platform, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.1.1.1-rc2\lib\net461\LogoFX.Client.Mvvm.ViewModel.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Services, Version=1.1.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Services.Core.1.1.4\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Mvvm.ViewModel.Services.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Services, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Services.Core.1.2.1-rc3\lib\netstandard2.0\LogoFX.Client.Mvvm.ViewModel.Services.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Services.Middleware, Version=1.1.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Services.Core.1.1.4\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Mvvm.ViewModel.Services.Middleware.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Services.Middleware, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Services.Core.1.2.1-rc3\lib\netstandard2.0\LogoFX.Client.Mvvm.ViewModel.Services.Middleware.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Shared, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Shared.1.0.4\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Mvvm.ViewModel.Shared.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Shared, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Shared.1.2.1-rc2\lib\netstandard2.0\LogoFX.Client.Mvvm.ViewModel.Shared.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.ViewModelFactory, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModelFactory.1.1.0\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Mvvm.ViewModelFactory.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LogoFX.Client.Mvvm.ViewModelFactory, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModelFactory.1.2.1-rc2\lib\netstandard2.0\LogoFX.Client.Mvvm.ViewModelFactory.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Core, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Core.1.0.7\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch\LogoFX.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LogoFX.Core, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Core.1.1.1-rc2\lib\netstandard2.0\LogoFX.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Solid.Bootstrapping, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Bootstrapping.1.1.1\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\Solid.Bootstrapping.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Solid.Bootstrapping, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Bootstrapping.1.2.1-rc3\lib\netstandard2.0\Solid.Bootstrapping.dll</HintPath>
     </Reference>
-    <Reference Include="Solid.Extensibility, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Extensibility.1.1.0\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\Solid.Extensibility.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Solid.Extensibility, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Extensibility.1.2.1-rc2\lib\netstandard2.0\Solid.Extensibility.dll</HintPath>
     </Reference>
-    <Reference Include="Solid.Patterns.Memento, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Patterns.Memento.1.0.5\lib\portable-net45+wpa8+win8\Solid.Patterns.Memento.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Solid.Patterns.Memento, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Patterns.Memento.1.2.1-rc2\lib\netstandard2.0\Solid.Patterns.Memento.dll</HintPath>
     </Reference>
-    <Reference Include="Solid.Practices.Composition, Version=1.1.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Composition.Core.1.1.7\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\Solid.Practices.Composition.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Solid.Practices.Composition, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Composition.Core.1.2.1-rc6\lib\netstandard2.0\Solid.Practices.Composition.dll</HintPath>
     </Reference>
-    <Reference Include="Solid.Practices.Composition.Container, Version=1.1.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Composition.Core.1.1.7\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\Solid.Practices.Composition.Container.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Solid.Practices.Composition.Container, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Composition.Core.1.2.1-rc6\lib\netstandard2.0\Solid.Practices.Composition.Container.dll</HintPath>
     </Reference>
-    <Reference Include="Solid.Practices.Composition.Contracts, Version=1.1.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Composition.Core.1.1.7\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\Solid.Practices.Composition.Contracts.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Solid.Practices.Composition.Contracts, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Composition.Core.1.2.1-rc6\lib\netstandard2.0\Solid.Practices.Composition.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="Solid.Practices.IoC, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.IoC.1.1.1\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\Solid.Practices.IoC.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Solid.Practices.IoC, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.IoC.1.2.1-rc4\lib\netstandard2.0\Solid.Practices.IoC.dll</HintPath>
     </Reference>
-    <Reference Include="Solid.Practices.Middleware, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Middleware.1.1.1\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\Solid.Practices.Middleware.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Solid.Practices.Middleware, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Middleware.1.2.1-rc2\lib\netstandard2.0\Solid.Practices.Middleware.dll</HintPath>
     </Reference>
-    <Reference Include="Solid.Practices.Modularity, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Solid.Practices.Modularity.1.1.3\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\Solid.Practices.Modularity.dll</HintPath>
+    <Reference Include="Solid.Practices.Modularity, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Modularity.1.2.1-rc2\lib\netstandard2.0\Solid.Practices.Modularity.dll</HintPath>
     </Reference>
-    <Reference Include="Solid.Practices.Scheduling, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Scheduling.1.0.7\lib\portable-net45+wpa8+win8\Solid.Practices.Scheduling.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Solid.Practices.Scheduling, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Scheduling.1.2.1-rc2\lib\netstandard2.0\Solid.Practices.Scheduling.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.4.1\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.Reactive, Version=4.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.4.0.0-preview00001\lib\net46\System.Reactive.dll</HintPath>
     </Reference>
-    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.Reactive.Core, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Core.4.0.0-preview00001\lib\net46\System.Reactive.Core.dll</HintPath>
     </Reference>
-    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.Reactive.Interfaces, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Interfaces.4.0.0-preview00001\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Linq.4.0.0-preview00001\lib\net46\System.Reactive.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Caliburn.Micro.3.0.3\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\Caliburn.Micro.4.0.0-alpha.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
@@ -245,7 +216,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\BoolToCommandsContextConverter.cs" />
+    <Compile Include="Converters\BooleanToCommandsContextConverter.cs" />
     <Compile Include="ViewModels\EventsViewModel.cs" />
     <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="ViewModels\ExitOptionsViewModel.cs" />
@@ -330,11 +301,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\$saferootprojectname$.Client.Model.Contracts\$saferootprojectname$.Client.Model.Contracts.csproj">
-      <Project>{536D34E4-A409-4567-B7C6-58F50206740E}</Project>
+      <Project>{848aeeae-e52f-4aa4-888c-c9a6d9005f01}</Project>
       <Name>$saferootprojectname$.Client.Model.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\$saferootprojectname$.Client.Model.Shared\$saferootprojectname$.Client.Model.Shared.csproj">
-      <Project>{49724A56-9FA9-44C4-B731-1E414EE598BC}</Project>
+      <Project>{c68f2be4-0d91-4854-b937-f903edfa266a}</Project>
       <Name>$saferootprojectname$.Client.Model.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\$saferootprojectname$.Client.Presentation.Shared\$saferootprojectname$.Client.Presentation.Shared.csproj">
