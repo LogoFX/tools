@@ -47,8 +47,6 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.Services
             Debug.Assert(projectFolder != null, "projectFolder != null");
             Directory.CreateDirectory(projectFolder);
 
-            var from = Path.GetDirectoryName(projectInfo.FileName);
-
             if (File.Exists(projectInfo.DestinationFileName))
             {
                 return;
@@ -58,31 +56,53 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.Services
 
             Project project = new Project(projectInfo.DestinationFileName);
 
-            var x = project.GetProperty("ProjectGuid");
-            if (x != null)
+            var from = Path.GetDirectoryName(projectInfo.FileName);
+
+            await ClassicCopyProjectToTemplateAsync(projectInfo, project, engine, from, projectFolder, projects);
+
+            project.Save();
+        }
+
+        private async Task ClassicCopyProjectToTemplateAsync(
+            ProjectTemplateInfo projectInfo,
+            Project destProject,
+            ITemplateGeneratorEngine engine,
+            string from,
+            string projectFolder,
+            ProjectTemplateInfo[] projects)
+        {
+
+            //Fix properties
+            var property = destProject.GetProperty("ProjectGuid");
+            if (property != null)
             {
-                x.UnevaluatedValue = "{$guid1$}";
+                property.UnevaluatedValue = "{$guid1$}";
             }
 
-            x = project.GetProperty("RootNamespace");
-            var rootNamespace = x.EvaluatedValue;
-            if (!x.UnevaluatedValue.StartsWith("$("))
+            property = destProject.GetProperty("RootNamespace");
+            var rootNamespace = property.EvaluatedValue;
+            if (!property.UnevaluatedValue.StartsWith("$("))
             {
-                x.UnevaluatedValue = "$safeprojectname$";
+                property.UnevaluatedValue = "$safeprojectname$";
             }
 
-            x = project.GetProperty("AssemblyName");
-            x.UnevaluatedValue = "$safeprojectname$";
+            property = destProject.GetProperty("AssemblyName");
+            property.UnevaluatedValue = "$safeprojectname$";
 
+            //Fix references
+            foreach (var item in destProject.Items.Where(x => x.ItemType == "ProjectReference").ToList())
+            {
+                FixReference(item, engine);
+            }
+
+            //Copy files
+            var project = new Project(projectInfo.FileName);
             foreach (var item in project.Items.ToList())
             {
                 string newFileName = null;
 
                 switch (item.ItemType)
                 {
-                    case "ProjectReference":
-                        FixReference(item, engine);
-                        break;
                     case "Compile":
                     case "None":
                     case "Page":
@@ -93,7 +113,9 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.Services
                     case "Service":
                     case "SDKReference":
                     case "Resource":
-                        newFileName = await CopyProjectItem(item, from, projectFolder);
+                        newFileName = await CopyProjectItem(item.EvaluatedInclude, from, projectFolder);
+                        break;
+                    case "Folder":
                         break;
                 }
 
@@ -104,20 +126,18 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.Services
 
                 await engine.ProcessFileAsync(newFileName, rootNamespace, projects);
             }
-
-            project.Save();
         }
 
-        private async Task<string> CopyProjectItem(ProjectItem item, string from, string to)
+        private async Task<string> CopyProjectItem(string include, string from, string to)
         {
-            var oldFileName = Path.Combine(from, item.EvaluatedInclude);
+            var oldFileName = Path.Combine(from, include);
 
             if (!File.Exists(oldFileName))
             {
                 return null;
             }
 
-            var newFileName = Path.Combine(to, item.EvaluatedInclude);
+            var newFileName = Path.Combine(to, include);
 
             if (File.Exists(newFileName))
             {

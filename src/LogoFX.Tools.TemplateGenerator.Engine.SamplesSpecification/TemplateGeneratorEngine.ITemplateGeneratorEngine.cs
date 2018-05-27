@@ -57,7 +57,7 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.SamplesSpecification
         {
             return _rootNamespaces;
         }
-        
+
         public Task ProcessFileAsync(string fileName, string rootNamespace, ProjectTemplateInfo[] projects)
         {
             var ext = Path.GetExtension(fileName);

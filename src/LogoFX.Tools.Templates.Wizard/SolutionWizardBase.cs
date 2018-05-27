@@ -89,13 +89,13 @@ namespace LogoFX.Tools.Templates.Wizard
 
             DTE2 dtE2 = automationObject as DTE2;
             Debug.Assert(dtE2 != null, nameof(dtE2) + " != null");
-            // ReSharper disable once SuspiciousTypeConversion.Global
+            // ReSharper disable SuspiciousTypeConversion.Global
             var solution4 = dtE2.Solution as Solution4;
             if (solution4 != null)
             {
-                // ReSharper disable once SuspiciousTypeConversion.Global
                 _solution = (Solution4)dtE2.Solution;
             }
+            // ReSharper restore SuspiciousTypeConversion.Global
 
             RunStartedOverride(solution4, replacementsDictionary, customParams);
         }
