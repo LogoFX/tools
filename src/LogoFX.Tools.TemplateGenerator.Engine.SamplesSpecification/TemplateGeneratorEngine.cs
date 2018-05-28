@@ -52,7 +52,7 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.SamplesSpecification
                     {
                         NameWithoutRoot = targetName.Substring(rootName.Length + 1),
                         FileName = proj.AbsolutePath,
-                        //ProjectConfigurations = GetProjectConfigurations(proj.ProjectConfigurations)
+                        ProjectConfigurations = GetProjectConfigurations(proj.ProjectConfigurations)
                     };
                     break;
                 case SolutionProjectType.SolutionFolder:
@@ -70,6 +70,24 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.SamplesSpecification
             folder.Items.Add(result);
 
             return result;
+        }
+
+        private ProjectConfiguration[] GetProjectConfigurations(IEnumerable<KeyValuePair<string,  ProjectConfigurationInSolution>> projectConfigurations)
+        {
+            var result = new List<ProjectConfiguration>();
+
+            foreach (var pair in projectConfigurations)
+            {
+                result.Add(new ProjectConfiguration
+                {
+                    Name = pair.Key,
+                    ConfigurationName = pair.Value.ConfigurationName,
+                    PlatformName = pair.Value.PlatformName,
+                    IncludeInBuild = pair.Value.IncludeInBuild
+                });
+            }
+
+            return result.ToArray();
         }
     }
 }

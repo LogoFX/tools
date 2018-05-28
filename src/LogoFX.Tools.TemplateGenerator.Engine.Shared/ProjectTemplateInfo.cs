@@ -13,6 +13,8 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.Shared
 
         public string FileName { get; set; }
 
+        public ProjectConfiguration[] ProjectConfigurations { get; set; }
+        
         public string DestinationFileName { get; set; }
 
         public bool IsStartup { get; set; }
