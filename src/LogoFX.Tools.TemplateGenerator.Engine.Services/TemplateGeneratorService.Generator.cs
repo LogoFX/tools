@@ -26,11 +26,12 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.Services
 
             var projects = await GetProjects(solutionConfiguration, engine);
 
+            int index = 0;
             foreach (var projectInfo in projects)
             {
                 var folderName = Path.GetDirectoryName(projectInfo.FileName);
                 folderName = Path.GetFileName(folderName);
-                var destinationFileName = CreateNewFileName(folderName, solutionConfiguration.Name, destinationFolder);
+                var destinationFileName = engine.CreateNewFileName(folderName, solutionConfiguration.Name, destinationFolder, ++index);
                 projectInfo.DestinationFileName = destinationFileName;
                 if (File.Exists(destinationFileName))
                 {
@@ -171,23 +172,6 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.Services
             {
                 name.UnevaluatedValue = name.EvaluatedValue.Replace(rootName, "$saferootprojectname$");
             }
-        }
-
-        private string CreateNewFileName(string projectName, string solutionName, string destinationFolder)
-        {
-            var solutionFolder = Path.Combine(destinationFolder, solutionName);
-
-            var newProjectName = projectName;
-            Debug.Assert(newProjectName != null, "newProjectName != null");
-            if (newProjectName.Length > 12)
-            {
-                newProjectName = "MyProject.csproj";
-            }
-
-            var result = Path.Combine(solutionFolder, projectName);
-            result = Path.Combine(result, newProjectName);
-
-            return result;
         }
 
         private Task CreatePrepropcess(string destinationFolder, XDocument preprocessDocument)

@@ -19,6 +19,8 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.Contracts
 
         string[] GetRootNamespaces();
 
+        string CreateNewFileName(string projectName, string solutionName, string destinationFolder, int index);
+
         Task ProcessFileAsync(string fileName, string rootNamespace, ProjectTemplateInfo[] projects);
     }
 }

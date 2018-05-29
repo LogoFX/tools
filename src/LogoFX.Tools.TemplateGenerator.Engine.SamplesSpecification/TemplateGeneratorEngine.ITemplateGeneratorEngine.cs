@@ -58,6 +58,16 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.SamplesSpecification
             return _rootNamespaces;
         }
 
+        public string CreateNewFileName(string projectName, string solutionName, string destinationFolder, int index)
+        {
+            var solutionFolder = Path.Combine(destinationFolder, solutionName);
+            projectName = "P" + index;
+            var result = Path.Combine(solutionFolder, projectName);
+            result = Path.Combine(result, projectName + ".csproj");
+
+            return result;
+        }
+
         public Task ProcessFileAsync(string fileName, string rootNamespace, ProjectTemplateInfo[] projects)
         {
             var ext = Path.GetExtension(fileName);
