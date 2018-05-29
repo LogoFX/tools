@@ -31,12 +31,12 @@ namespace LogoFX.Tools.TemplateGenerator
                 foreach (var variant in solution.SolutionVariants)
                 {
                     var projects = variant.SolutionTemplateInfo.GetProjectsPlain().ToList();
-
+                    int index = 0;
                     foreach (var projectTemplateInfo in projects)
                     {
                         var folderName = Path.GetDirectoryName(projectTemplateInfo.FileName);
                         folderName = Path.GetFileName(folderName);
-                        var destinationFileName = CreateNewFileName(folderName, solution.Name, destinationFolder);
+                        var destinationFileName = CreateNewFileName(folderName, solution.Name, destinationFolder, ++index);
                         projectTemplateInfo.SetDestinationFileName(destinationFileName);
                         if (File.Exists(destinationFileName))
                         {
@@ -51,21 +51,15 @@ namespace LogoFX.Tools.TemplateGenerator
             await CreateWizardSolutionFileAsync(destinationFolder, _wizardConfiguration);
         }
 
-        private string CreateNewFileName(string projectName, string solutionName, string destinationFolder)
+        private string CreateNewFileName(string projectName, string solutionName, string destinationFolder, int index)
         {
             var solutionFolder = _wizardConfiguration.Solutions.Count > 1
                 ? Path.Combine(destinationFolder, solutionName)
                 : destinationFolder;
 
-            var newProjectName = projectName;
-            Debug.Assert(newProjectName != null, "newProjectName != null");
-            if (newProjectName.Length > 12)
-            {
-                newProjectName = "MyProject.csproj";
-            }
-
+            projectName = "P" + index;
             var result = Path.Combine(solutionFolder, projectName);
-            result = Path.Combine(result, newProjectName);
+            result = Path.Combine(result, projectName + ".csproj");
 
             return result;
         }

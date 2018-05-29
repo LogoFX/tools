@@ -23,31 +23,12 @@
       <SolutionVariants>
         <SolutionVariant>
           <ContainerName>Simple</ContainerName>
-          <SolutionFileName>E:\Projects\LogoFX\Samples.Specifications\Specifications.sln</SolutionFileName>
+          <SolutionFileName>E:\Projects\LogoFX\Wizard\Specifications.SimpleContainer.sln</SolutionFileName>
           <StartupProjectName>Client.Launcher</StartupProjectName>
         </SolutionVariant>
-      </SolutionVariants>
-    </SolutionInfo>
-    <SolutionInfo>
-      <IsNotifying>true</IsNotifying>
-      <Name>Samples.Universal</Name>
-      <Caption>LogoFX UWP Application</Caption>
-      <PostCreateUrl>http://www.logoui.co.il/en</PostCreateUrl>
-      <Options>
-        <CanCreateTests>true</CanCreateTests>
-        <DefaultCreateTests>true</DefaultCreateTests>
-        <CanCreateFakes>true</CanCreateFakes>
-        <DefaultCreateFakes>true</DefaultCreateFakes>
-        <CanCreateSamples>false</CanCreateSamples>
-        <DefaultCreateSamples>false</DefaultCreateSamples>
-        <CanSupportNavigation>false</CanSupportNavigation>
-        <DefaultSupportNavigation>true</DefaultSupportNavigation>
-        <UseOnlyDefautValues>false</UseOnlyDefautValues>
-      </Options>
-      <SolutionVariants>
         <SolutionVariant>
-          <ContainerName>Default</ContainerName>
-          <SolutionFileName>C:\Projects\LogoUI\LogoFX\Samples.Universal\Samples.Universal.sln</SolutionFileName>
+          <ContainerName>Unity</ContainerName>
+          <SolutionFileName>E:\Projects\LogoFX\Wizard\Specifications.Unity.sln</SolutionFileName>
           <StartupProjectName>Client.Launcher</StartupProjectName>
         </SolutionVariant>
       </SolutionVariants>
