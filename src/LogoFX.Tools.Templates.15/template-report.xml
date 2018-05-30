@@ -2,7 +2,7 @@
 <TemplateReport>
   <ItemTemplates />
   <ProjectTemplates>
-    <ProjectTemplate Path="ProjectTemplates\Definitions\CSharp.vstemplate" Name="Specifications" Description="" ProjectType="CSharp" ProjectSubType="" />
+    <ProjectTemplate Path="ProjectTemplates\Definitions\CSharp.vstemplate" Name="Specifications" Description="Creates new LogoFX Application" ProjectType="CSharp" ProjectSubType="" />
   </ProjectTemplates>
   <Snippets />
 </TemplateReport>

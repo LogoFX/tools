@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="LogoFX.Tools.Templates._15.be42e8b9-cfff-4f23-a70a-e4b7d99467a7" Version="1.0.2" Language="en-US" Publisher="LogoFX Team" />
+        <Identity Id="LogoFX.Tools.Templates._15.be42e8b9-cfff-4f23-a70a-e4b7d99467a7" Version="1.0.4" Language="en-US" Publisher="LogoFX Team" />
         <DisplayName>LogoFX Template Pack (VS 2017)</DisplayName>
         <Description xml:space="preserve">A collection of Visual Studio Item- and Project Templates to facilitate the development process using Caliburn.Micro and LogoFX MVVM frameworks.</Description>
         <MoreInfo>http://www.logoui.co.il/en</MoreInfo>
