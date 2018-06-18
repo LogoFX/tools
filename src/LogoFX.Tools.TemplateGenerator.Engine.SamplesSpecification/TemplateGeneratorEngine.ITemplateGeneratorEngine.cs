@@ -58,6 +58,7 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.SamplesSpecification
             return _rootNamespaces;
         }
 
+        // ReSharper disable once RedundantAssignment
         public string CreateNewFileName(string projectName, string solutionName, string destinationFolder, int index)
         {
             var solutionFolder = Path.Combine(destinationFolder, solutionName);
