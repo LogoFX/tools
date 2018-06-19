@@ -10,8 +10,6 @@
 
         public string PostCreateUrl { get; set; }
 
-        public SolutionVariantData[] Variants { get; set; }
-
-        public SolutionOptionsData Options { get; set; }
+        public SolutionItemData[] Items { get; set; }
     }
 }

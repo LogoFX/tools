@@ -244,7 +244,7 @@ namespace LogoFX.Tools.Templates.Wizard
             }
         }
 
-        private void CreateSolution(SolutionVariantData solutionVariantData, SolutionDataViewModel solutionData)
+        private void CreateSolution(SolutionDataViewModel solutionDataViewModel)
         {
             var solution = GetSolution();
 
@@ -261,7 +261,7 @@ namespace LogoFX.Tools.Templates.Wizard
             waitViewModel.Caption = "Creating solution...";
             waitViewModel.Run((p, ct) =>
             {
-                int count = solutionVariantData.Items.Length;
+                int count = solutionDataViewModel.Model.Items.Length;
                 double k = 1.0/count;
                 for (int i = 0; i < count; ++i)
                 {
@@ -270,12 +270,12 @@ namespace LogoFX.Tools.Templates.Wizard
                     int j = i;
                     CreateSolutionItem(
                         null,
-                        solutionVariantData.Items[i], progress =>
+                        solutionDataViewModel.Model.Items[i], progress =>
                         {
                             pr = k*j + progress*k;
                             p.Report(pr);
                         },
-                        solutionData,
+                        solutionDataViewModel,
                         ct);
                     ct.ThrowIfCancellationRequested();
                 }
@@ -394,7 +394,7 @@ namespace LogoFX.Tools.Templates.Wizard
 
             File.Move(Path.Combine(destDir, oldFileName), newFullFileName);
 
-            var solutionData = _wizardDataViewModel.SelectedSolution;
+            var solutionData = _wizardDataViewModel.Solution;
             ModifyProject(newFullFileName, solutionData);
 
             var addedProject = solutionFolder == null
@@ -570,19 +570,6 @@ namespace LogoFX.Tools.Templates.Wizard
                 Title = $"{wizardData.Title} - {projectName}"
             };
 
-            var solutions = _wizardDataViewModel.Solutions.ToArray();
-
-            if (solutions.Length == 1)
-            {
-                var solutionDataViewModel = solutions[0];
-                if (solutionDataViewModel.UseOnlyDefautValues)
-                {
-                    solutionDataViewModel.SelectedVariant = solutionDataViewModel.Variants.First();
-                    _wizardDataViewModel.SetSelectedSolution(solutionDataViewModel);
-                    return;
-                }
-            }
-
             var window = WpfServices.CreateWindow<WizardWindow>(_wizardDataViewModel);
             WpfServices.SetWindowOwner(window, solution.DTE.MainWindow);
             var retVal = window.ShowDialog() ?? false;
@@ -594,10 +581,9 @@ namespace LogoFX.Tools.Templates.Wizard
 
         protected override void RunFinishedOverride()
         {
-            var solutionData = _wizardDataViewModel.SelectedSolution;
-            var solutionVariant = _wizardDataViewModel.SelectedSolution.SelectedVariant;
+            var solutionData = _wizardDataViewModel.Solution;
 
-            CreateSolution(solutionVariant.Model, solutionData);
+            CreateSolution(solutionData);
 
             if (!string.IsNullOrWhiteSpace(solutionData.Model.PostCreateUrl))
             {

@@ -127,7 +127,6 @@
     <Compile Include="SolutionWizardBase.cs" />
     <Compile Include="ViewModel\ObjectViewModel.cs" />
     <Compile Include="ViewModel\SolutionDataViewModel.cs" />
-    <Compile Include="ViewModel\SolutionVariantViewModel.cs" />
     <Compile Include="ViewModel\WaitViewModel.cs" />
     <Compile Include="Views\SolutionDataView.xaml.cs">
       <DependentUpon>SolutionDataView.xaml</DependentUpon>

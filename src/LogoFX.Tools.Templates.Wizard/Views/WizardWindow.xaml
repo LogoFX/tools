@@ -6,8 +6,8 @@
         xmlns:viewModel="clr-namespace:LogoFX.Tools.Templates.Wizard.ViewModel"
         xmlns:views="clr-namespace:LogoFX.Tools.Templates.Wizard.Views"
         mc:Ignorable="d"
-        Width="800"
-        Height="600"
+        Width="400"
+        Height="300"
         WindowStartupLocation="CenterOwner"
         WindowStyle="ToolWindow"
         Title="{Binding Path=Title, Mode=OneWay}"
@@ -26,88 +26,35 @@
     <Grid Margin="24">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="24" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <ContentControl Grid.Row="0"
+                        Content="{Binding Path=Solution, Mode=OneWay}" />
+
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Border Background="White"
-                    BorderBrush="Black"
-                    BorderThickness="1"
-                    Padding="24">
-                <ListBox ItemsSource="{Binding Path=Solutions, Mode=OneTime}"
-                         BorderThickness="0"
-                         SelectedValue="{Binding Path=SelectedSolution, Mode=TwoWay}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Width="100">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="64" />
-                                    <RowDefinition Height="32" />
-                                </Grid.RowDefinitions>
-                                
-                                <Border Grid.Row="0" Background="Gray">
-                                    
-                                </Border>
+            <Button Grid.Column="0"
+                    Width="100"
+                    Height="24"
+                    Content="Create"
+                    IsDefault="True"
+                    Click="OkClick">
+            </Button>
 
-                                <TextBlock Grid.Row="1"
-                                           VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"
-                                           TextAlignment="Center"
-                                           TextWrapping="WrapWithOverflow"
-                                           Text="{Binding Path=Model.Caption, Mode=OneWay}" />
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                    
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel Orientation="Horizontal" />
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                </ListBox>
-            </Border>
-            
-            <Grid Grid.Column="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="24" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <ContentControl Grid.Row="0"
-                                Content="{Binding Path=SelectedSolution, Mode=OneWay}" />
-
-                <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-
-                    <Button Grid.Column="0"
-                            Width="100"
-                            Height="24"
-                            Content="Create"
-                            IsDefault="True"
-                            Click="OkClick"
-                            IsEnabled="{Binding Path=OkEnabled, Mode=OneWay}">
-                    </Button>
-
-                    <Button Grid.Column="2"
-                            Width="100"
-                            Height="24"
-                            Content="Cancel"
-                            IsCancel="True"
-                            Click="CancelClick">
-                    </Button>
-                </Grid>
-            </Grid>
+            <Button Grid.Column="2"
+                    Width="100"
+                    Height="24"
+                    Content="Cancel"
+                    IsCancel="True"
+                    Click="CancelClick">
+            </Button>
         </Grid>
     </Grid>
 </Window>

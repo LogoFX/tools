@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using LogoFX.Tools.Common.Model;
+﻿using LogoFX.Tools.Common.Model;
 
 namespace LogoFX.Tools.Templates.Wizard.ViewModel
 {
@@ -10,51 +7,18 @@ namespace LogoFX.Tools.Templates.Wizard.ViewModel
         public SolutionDataViewModel(SolutionData model) 
             : base(model)
         {
-            Variants = Model.Variants.Select(x => new SolutionVariantViewModel(x)).ToList();
 
-            CreateTests = Model.Options.DefaultCreateTests;
-            CreateFakes = Model.Options.DefaultCreateFakes;
-            CreateSamples = Model.Options.DefaultCreateSamples;
-            SupportNavigation = Model.Options.DefaultSupportNavigation;
         }
 
-        public EventHandler SelectedVariantChanged = delegate { };
+        public bool MustRemoveConditions => !CreateFakes || !CreateTests;
 
-        public IEnumerable<SolutionVariantViewModel> Variants { get; private set; }
-
-        private SolutionVariantViewModel _selectedVariant;
-
-        public SolutionVariantViewModel SelectedVariant
-        {
-            get { return _selectedVariant; }
-            set
-            {
-                if (_selectedVariant == value)
-                {
-                    return;
-                }
-
-                _selectedVariant = value;
-                NotifyOfPropertyChange();
-
-                SelectedVariantChanged(this, EventArgs.Empty);
-            }
-        }
-        public bool MustRemoveConditions
-        {
-            get { return !CreateFakes || !CreateTests; }
-        }
-
-        public bool CanCreateTests
-        {
-            get { return CreateSamples && Model.Options.CanCreateTests; }
-        }
+        public bool CanCreateTests => CreateSamples;
 
         private bool _createTests;
 
         public bool CreateTests
         {
-            get { return _createTests; }
+            get => _createTests;
             set
             {
                 if (_createTests == value)
@@ -67,13 +31,13 @@ namespace LogoFX.Tools.Templates.Wizard.ViewModel
             }
         }
 
-        public bool CanCreateFakes => Model.Options.CanCreateFakes;
+        public bool CanCreateFakes => true;
 
         private bool _createFakes;
 
         public bool CreateFakes
         {
-            get { return _createFakes; }
+            get => _createFakes;
             set
             {
                 if (_createFakes == value)
@@ -86,13 +50,13 @@ namespace LogoFX.Tools.Templates.Wizard.ViewModel
             }
         }
 
-        public bool CanCreateSamples => Model.Options.CanCreateSamples;
+        public bool CanCreateSamples => true;
 
         private bool _createSamples;
 
         public bool CreateSamples
         {
-            get { return _createSamples; }
+            get => _createSamples;
             set
             {
                 if (_createSamples == value)
@@ -110,26 +74,5 @@ namespace LogoFX.Tools.Templates.Wizard.ViewModel
                 }
             }
         }
-
-        public bool CanSupportNavigation => Model.Options.CanSupportNavigation;
-
-        private bool _supportNavigation;
-
-        public bool SupportNavigation
-        {
-            get { return _supportNavigation; }
-            set
-            {
-                if (_supportNavigation == value)
-                {
-                    return;
-                }
-
-                _supportNavigation = value;
-                NotifyOfPropertyChange();
-            }
-        }
-
-        public bool UseOnlyDefautValues => Model.Options.UseOnlyDefautValues;
     }
 }

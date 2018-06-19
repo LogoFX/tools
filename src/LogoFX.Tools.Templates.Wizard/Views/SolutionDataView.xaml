@@ -14,7 +14,6 @@
             <RowDefinition Height="24" />
             <RowDefinition Height="24" />
             <RowDefinition Height="24" />
-            <RowDefinition Height="24" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -35,36 +34,5 @@
                   IsEnabled="{Binding Path=CanCreateSamples, Mode=OneWay}"
                   IsChecked="{Binding Path=CreateSamples, Mode=TwoWay}"
                   VerticalAlignment="Center" />
-
-        <CheckBox Grid.Row="3"
-                  Content="Support Navigation"
-                  IsEnabled="{Binding Path=CanSupportNavigation, Mode=OneWay}"
-                  IsChecked="{Binding Path=SupportNavigation, Mode=TwoWay}"
-                  VerticalAlignment="Center" />
-
-        <Border Grid.Row="4"
-                BorderBrush="Black"
-                Margin="0,6,0,0"
-                Padding="16"
-                BorderThickness="1">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="24" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="24" />
-                </Grid.RowDefinitions>
-
-                <TextBlock Grid.Row="0"
-                           VerticalAlignment="Center"
-                           Text="Containers:" />
-
-                <ComboBox Grid.Row="1"
-                          VerticalAlignment="Center" 
-                          ItemsSource="{Binding Path=Variants, Mode=OneWay}"
-                          SelectedItem="{Binding Path=SelectedVariant, Mode=OneWayToSource}"
-                          SelectedIndex="0"
-                          DisplayMemberPath="ContainerName" />
-            </Grid>
-        </Border>
     </Grid>
 </UserControl>
