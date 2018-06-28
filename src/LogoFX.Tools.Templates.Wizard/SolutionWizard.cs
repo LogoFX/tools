@@ -549,10 +549,10 @@ namespace LogoFX.Tools.Templates.Wizard
 
             var vstemplateName = (string)customParams[0];
             _tmpFolder = Path.GetDirectoryName(vstemplateName);
-            Debug.Assert(_tmpFolder != null, nameof(_tmpFolder) + " != null");
             _tmpFolder = Path.GetDirectoryName(_tmpFolder);
             replacementsDictionary["$saferootprojectname$"] = replacementsDictionary["$safeprojectname$"];
 
+            Debug.Assert(_tmpFolder != null, nameof(_tmpFolder) + " != null");
             var wizardDataFileName = Path.Combine(_tmpFolder, WizardDataLoader.WizardDataFielName);
             var wizardData = WizardDataLoader.LoadAsync(wizardDataFileName).Result;
 

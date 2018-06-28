@@ -52,7 +52,8 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.SamplesSpecification
                     {
                         NameWithoutRoot = targetName.Substring(rootName.Length),
                         FileName = proj.AbsolutePath,
-                        ProjectConfigurations = GetProjectConfigurations(proj.ProjectConfigurations)
+                        ProjectConfigurations = GetProjectConfigurations(proj.ProjectConfigurations),
+                        IsStartup = IsStartupProject(proj.ProjectName)
                     };
                     break;
                 case SolutionProjectType.SolutionFolder:
@@ -70,6 +71,11 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.SamplesSpecification
             folder.Items.Add(result);
 
             return result;
+        }
+
+        private bool IsStartupProject(string projProjectName)
+        {
+            return projProjectName.EndsWith(".Client.Launcher");
         }
 
         private ProjectConfiguration[] GetProjectConfigurations(IEnumerable<KeyValuePair<string,  ProjectConfigurationInSolution>> projectConfigurations)
