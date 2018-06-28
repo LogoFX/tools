@@ -1,4 +1,5 @@
 ﻿using System.Xml.Serialization;
+using JetBrains.Annotations;
 
 namespace LogoFX.Tools.Common.Model
 {
@@ -6,6 +7,6 @@ namespace LogoFX.Tools.Common.Model
     [XmlInclude(typeof(ProjectData))]
     public abstract class SolutionItemData
     {
-        public string Name { get; set; }
+        public string Name { get; [UsedImplicitly] set; }
     }
 }

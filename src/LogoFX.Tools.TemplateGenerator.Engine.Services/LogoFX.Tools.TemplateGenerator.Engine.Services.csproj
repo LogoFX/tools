@@ -116,12 +116,17 @@
     <Compile Include="TemplateGeneratorService.cs" />
     <Compile Include="TemplateGeneratorService.Generator.cs" />
     <Compile Include="TemplateGeneratorService.ITemplateGeneratorService.cs" />
+    <Compile Include="WizardDataGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Tools.Common.Model\LogoFX.Tools.Common.Model.csproj">
+      <Project>{134A21A4-30A3-47DC-8B2F-14FAD5670477}</Project>
+      <Name>LogoFX.Tools.Common.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogoFX.Tools.TemplateGenerator.Data.Contracts.Dto\LogoFX.Tools.TemplateGenerator.Data.Contracts.Dto.csproj">
       <Project>{43AD3665-F433-4B75-B6B5-563ED975FD1E}</Project>
       <Name>LogoFX.Tools.TemplateGenerator.Data.Contracts.Dto</Name>

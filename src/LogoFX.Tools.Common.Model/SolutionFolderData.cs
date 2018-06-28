@@ -1,7 +1,9 @@
-﻿namespace LogoFX.Tools.Common.Model
+﻿using JetBrains.Annotations;
+
+namespace LogoFX.Tools.Common.Model
 {
     public class SolutionFolderData : SolutionItemData
     {
-        public SolutionItemData[] Items { get; set; }
+        public SolutionItemData[] Items { get; [UsedImplicitly] set; }
     }
 }

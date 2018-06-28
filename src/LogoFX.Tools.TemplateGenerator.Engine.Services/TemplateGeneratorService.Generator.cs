@@ -24,7 +24,8 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.Services
             await CreateDefinitions(destinationFolder, engine.CreateDefinitionDocument(solutionConfiguration));
             await CreatePrepropcess(destinationFolder, engine.CreatePreprocessDocument(solutionConfiguration));
 
-            var projects = await GetProjects(solutionConfiguration, engine);
+            var solutionInfo = await engine.CreateSolutionInfoAsync(solutionConfiguration);
+            var projects = GetProjects(solutionInfo);
 
             int index = 0;
             foreach (var projectInfo in projects)
@@ -40,6 +41,14 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.Services
 
                 await CopyProjectToTemplateAsync(projectInfo, engine, projects);
             }
+
+            await CreateWizardSolutionFileAsync(solutionInfo, destinationFolder);
+        }
+
+        private Task CreateWizardSolutionFileAsync(SolutionTemplateInfo solutionInfo, string destinationFolder)
+        {
+            var wizardDataGenrator = new WizardDataGenerator();
+            return wizardDataGenrator.GenerateAndSaveAsync(solutionInfo, destinationFolder);
         }
 
         private async Task CopyProjectToTemplateAsync(ProjectTemplateInfo projectInfo, ITemplateGeneratorEngine engine, ProjectTemplateInfo[] projects)
@@ -239,18 +248,17 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.Services
             });
         }
 
-        private async Task<ProjectTemplateInfo[]> GetProjects(SolutionConfigurationDto solutionConfiguration, ITemplateGeneratorEngine engine)
+        private ProjectTemplateInfo[] GetProjects(SolutionTemplateInfo solutionTemplateInfo)
         {
-            var result = await CreateProjectsAsync(solutionConfiguration, engine);
+            var result = CreateProjectsAsync(solutionTemplateInfo);
             
             ProjectCollection.GlobalProjectCollection.UnloadAllProjects();
             
             return result;
         }
 
-        private async Task<ProjectTemplateInfo[]> CreateProjectsAsync(SolutionConfigurationDto solutionConfiguration, ITemplateGeneratorEngine engine)
+        private ProjectTemplateInfo[] CreateProjectsAsync(SolutionTemplateInfo solutionTemplateInfo)
         {
-            var solutionTemplateInfo = await engine.CreateSolutionInfoAsync(solutionConfiguration);
             return GetPlainProjects(solutionTemplateInfo.Items).ToArray();
         }
 

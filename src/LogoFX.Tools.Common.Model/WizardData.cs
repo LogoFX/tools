@@ -1,9 +1,11 @@
-﻿namespace LogoFX.Tools.Common.Model
+﻿using JetBrains.Annotations;
+
+namespace LogoFX.Tools.Common.Model
 {
     public class WizardData
     {
-        public string Title { get; set; }
+        public string Title { get; [UsedImplicitly] set; }
 
-        public SolutionData Solution { get; set; }
+        public SolutionData Solution { get; [UsedImplicitly] set; }
     }
 }

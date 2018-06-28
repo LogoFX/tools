@@ -19,7 +19,13 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.SamplesSpecification
             SolutionFile solution = SolutionFile.Parse(solutionConfiguration.Path);
 
             var folders = new Dictionary<Guid, SolutionFolderTemplateInfo>();
-            var solutionTemplateInfo = new SolutionTemplateInfo();
+            var solutionTemplateInfo =
+                new SolutionTemplateInfo(solutionConfiguration.Name)
+                {
+                    Description = solutionConfiguration.Description,
+                    IconPath = solutionConfiguration.IconPath,
+                    PostCreateUrl = solutionConfiguration.PostCreateUrl
+                };
             folders.Add(Guid.Empty, solutionTemplateInfo);
 
             foreach (var proj in solution.ProjectsInOrder)
