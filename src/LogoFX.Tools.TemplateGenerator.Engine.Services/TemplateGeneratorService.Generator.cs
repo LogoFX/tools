@@ -175,11 +175,11 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.Services
             Debug.Assert(ddir != null, nameof(ddir) + " != null");
             include = Path.Combine(ddir, Path.Combine(dir, fileName));
             var rootName = engine.GetRootName(include);
-            reference.UnevaluatedInclude = include.Replace(rootName, "$saferootprojectname$");
+            reference.UnevaluatedInclude = include.Replace(rootName, "$saferootprojectname$.");
             var name = reference.Metadata.SingleOrDefault(x => x.Name == "Name");
             if (name != null)
             {
-                name.UnevaluatedValue = name.EvaluatedValue.Replace(rootName, "$saferootprojectname$");
+                name.UnevaluatedValue = name.EvaluatedValue.Replace(rootName, "$saferootprojectname$.");
             }
         }
 

@@ -50,7 +50,7 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.SamplesSpecification
                     var rootName = GetRootName(rootNamespace);
                     result = new ProjectTemplateInfo(id, proj.ProjectName)
                     {
-                        NameWithoutRoot = targetName.Substring(rootName.Length + 1),
+                        NameWithoutRoot = targetName.Substring(rootName.Length),
                         FileName = proj.AbsolutePath,
                         ProjectConfigurations = GetProjectConfigurations(proj.ProjectConfigurations)
                     };

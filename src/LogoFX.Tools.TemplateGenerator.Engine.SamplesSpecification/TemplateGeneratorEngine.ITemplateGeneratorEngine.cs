@@ -53,6 +53,7 @@ namespace LogoFX.Tools.TemplateGenerator.Engine.SamplesSpecification
                 if (projectName.StartsWith(rootNamespace))
                 {
                     rootName = rootNamespace;
+                    break;
                 }
             }
 
