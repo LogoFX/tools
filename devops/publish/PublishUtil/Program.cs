@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using Newtonsoft.Json;
 using Solid.Core;
 
 namespace PublishUtil
@@ -11,9 +12,9 @@ namespace PublishUtil
     {
         private static void Main(string[] args)
         {
-            GoUp(5);
             var single = args != null && args.Length > 0 ? args[0] : null;
             var packageGroups = InitTopology();
+            GoUp(5);
             foreach (var packageGroup in packageGroups)
             {
                 PublishGroup(packageGroup.Id);
@@ -56,6 +57,10 @@ namespace PublishUtil
 
         private static IEnumerable<IPackageGroup> InitTopology()
         {
+            var contents = File.ReadAllText("topology.json");
+            var data = JsonConvert.DeserializeObject<Topology>(contents).Data;
+            
+            //TODO: Remove as this info is fetched from the topology file
             IEnumerable<IPackageGroup> directories = new[]
             {
                 new PackageGroup("cr"),
@@ -101,8 +106,8 @@ namespace PublishUtil
                         "cl-bs-ad-simple-container", "cl-ts-sh-caliburn-micro"
                     }),
             };
-            directories = directories.SortTopologically();
-            return directories;
+            data = data.SortTopologically().ToList();
+            return data;
         }
     }
 
@@ -113,6 +118,7 @@ namespace PublishUtil
 
     internal sealed class PackageGroup : IPackageGroup
     {
+        [JsonConstructor]
         public PackageGroup(
             string id, 
             string[] dependencies)
@@ -135,5 +141,10 @@ namespace PublishUtil
 
         public string[] Dependencies { get; }
         public string Id { get; }
+    }
+
+    internal sealed class Topology
+    {
+        public List<PackageGroup> Data { get; set; }
     }
 }

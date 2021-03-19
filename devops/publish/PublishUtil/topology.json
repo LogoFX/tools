@@ -1,0 +1,133 @@
+{
+  "data": [
+    {
+      "id": "cr"
+    },
+    {
+      "id": "ioc",
+      "dependencies": [ "cr" ]
+    },
+    {
+      "id": "cl-md"
+    },
+    {
+      "id": "cl-cr",
+      "dependencies": [ "cr" ]
+    },
+    {
+      "id": "cl-ts-cn"
+    },
+    {
+      "id": "cl-ts-sh-caliburn-micro"
+    },
+    {
+      "id": "cl-ts-sh",
+      "dependencies": [ "cl-cr" ]
+    },
+    {
+      "id": "cl-ts-in",
+      "dependencies": [ "cl-ts-cn" ]
+    },
+    {
+      "id": "cl-ts-e2e",
+      "dependencies": [ "cl-ts-cn" ]
+    },
+    {
+      "id": "cl-ts-in-xunit",
+      "dependencies": [ "cl-ts-sh" ]
+    },
+    {
+      "id": "cl-ts-in-nunit",
+      "dependencies": [ "cl-ts-sh" ]
+    },
+    {
+      "id": "cl-ts-in-sf",
+      "dependencies": [ "cl-ts-sh" ]
+    },
+    {
+      "id": "cl-ts-e2e-sf"
+    },
+    {
+      "id": "cl-ts-e2e-flaui"
+    },
+    {
+      "id": "cl-ts-e2e-white"
+    },
+    {
+      "id": "cl-bs-ad-cn"
+    },
+    {
+      "id": "cl-bs-ad-unity",
+      "dependencies": [ "cl-bs-ad-cn" ]
+    },
+    {
+      "id": "cl-bs-ad-simple-container",
+      "dependencies": [ "cl-bs-ad-cn" ]
+    },
+    {
+      "id": "cl-mvvm-cr",
+      "dependencies": [ "cr" ]
+    },
+    {
+      "id": "cl-mvvm-cm",
+      "dependencies": [ "cl-cr", "cl-mvvm-cr" ]
+    },
+    {
+      "id": "cl-mvvm-m",
+      "dependencies": [ "cl-cr", "cr" ]
+    },
+    {
+      "id": "cl-mvvm-vm",
+      "dependencies": [ "cr", "cl-cr", "cl-mvvm-cr" ]
+    },
+    {
+      "id": "cl-mvvm-vmf",
+      "dependencies": [ "cl-mvvm-vm" ]
+    },
+    {
+      "id": "cl-mvvm-vmf-simple-cnt",
+      "dependencies": [ "cl-mvvm-vmf", "ioc" ]
+    },
+    {
+      "id": "cl-mvvm-vmf-unity",
+      "dependencies": [ "cl-mvvm-vmf" ]
+    },
+    {
+      "id": "cl-mvvm-vm-ex",
+      "dependencies": [
+        "cr",
+        "cl-mvvm-cm",
+        "cl-mvvm-cr",
+        "cl-mvvm-m",
+        "cl-mvvm-vm",
+        "cl-mvvm-vmf",
+        "cl-bs",
+        "cl-bs-ad-simple-container",
+        "cl-ts-in-xunit",
+        "cl-ts-sh-caliburn-micro"
+      ]
+    },
+    {
+      "id": "cl-mvvm-v",
+      "dependencies": [ "cl-cr" ]
+    },
+    {
+      "id": "cl-mvvm-v-ex",
+      "dependencies": [ "cl-mvvm-cr", "cl-mvvm-vm-ex" ]
+    },
+    {
+      "id": "bs"
+    },
+    {
+      "id": "cl-bs",
+      "dependencies": [
+        "bs",
+        "cl-bs-ad-cn",
+        "cr",
+        "cl-cr",
+        "cl-bs-ad-simple-container",
+        "cl-ts-sh-caliburn-micro"
+      ]
+    }
+  ]
+}
