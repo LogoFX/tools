@@ -34,8 +34,15 @@ namespace PublishUtil
                     var publishBat = Path.Combine(Directory.GetCurrentDirectory(), "publish.bat");
                     if (File.Exists(publishBat))
                     {
-                        var process = Process.Start(publishBat, new [] { "../../../../packages/Tests-All" });
-                        process.WaitForExit();
+                        StartAndWait(publishBat);
+                    }
+                    else
+                    {
+                        publishBat = Path.Combine(Directory.GetCurrentDirectory(), "publish-all.bat");
+                        if (File.Exists(publishBat))
+                        {
+                            StartAndWait(publishBat);
+                        }
                     }
 
                     GoUp(3);
@@ -53,6 +60,13 @@ namespace PublishUtil
             var relativePath = new List<string> { Directory.GetCurrentDirectory() };
             relativePath.AddRange(Enumerable.Repeat("..", numberOfLevels));
             Directory.SetCurrentDirectory(Path.Combine(relativePath.ToArray()));
+        }
+
+        private static void StartAndWait(string path)
+        {
+            var args = new[] {"../../../../packages/Tests-All"};
+            var process = Process.Start(path, args);
+            process.WaitForExit();
         }
 
         private static IEnumerable<IPackageGroup> InitTopology()
