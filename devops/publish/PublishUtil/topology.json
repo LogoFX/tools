@@ -99,21 +99,6 @@
       "dependencies": [ "cl-mvvm-vmf" ]
     },
     {
-      "id": "cl-mvvm-vm-ex",
-      "dependencies": [
-        "cr",
-        "cl-mvvm-cm",
-        "cl-mvvm-cr",
-        "cl-mvvm-m",
-        "cl-mvvm-vm",
-        "cl-mvvm-vmf",
-        "cl-bs",
-        "cl-bs-ad-simple-container",
-        "cl-ts-in-xunit",
-        "cl-ts-sh-caliburn-micro"
-      ]
-    },
-    {
       "id": "cl-mvvm-v",
       "dependencies": [ "cl-cr" ]
     },
@@ -132,6 +117,21 @@
         "cr",
         "cl-cr",
         "cl-bs-ad-simple-container",
+        "cl-ts-sh-caliburn-micro"
+      ]
+    },
+    {
+      "id": "cl-mvvm-vm-ex",
+      "dependencies": [
+        "cr",
+        "cl-mvvm-cm",
+        "cl-mvvm-cr",
+        "cl-mvvm-m",
+        "cl-mvvm-vm",
+        "cl-mvvm-vmf",
+        "cl-bs",
+        "cl-bs-ad-simple-container",
+        "cl-ts-in-xunit",
         "cl-ts-sh-caliburn-micro"
       ]
     }
