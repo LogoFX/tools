@@ -16,29 +16,38 @@ namespace UpdateUtil
                 return;
             }
             var versionInfo = new VersionInfo(version);
-            var handlers = new List<FileTypeHandlerBase>();
-            switch (command)
+
+            var packageGroups = Common.TopologyUtils.InitTopology();
+            foreach (var packageGroup in packageGroups)
             {
-                case "bump-version":
-                    handlers.Add(new SdkProjectFileTypeHandler());
-                    handlers.Add(new AssemblyInfoFileTypeHandler());
-                    handlers.Add(new CIFileTypeHandler());
-                    handlers.Add(new ManifestFileTypeHandler(new ManifestFileTypeHandlerOptions 
-                    {
-                        UpdatePackageVersion = true,
-                        UpdateDependencyVersion = true
-                    }));
-                    break;
-                case "bump-dependency-version":                                                            
-                    handlers.Add(new ManifestFileTypeHandler(new ManifestFileTypeHandlerOptions 
-                    {
-                        UpdateDependencyVersion = true
-                    }));
-                    break;
-            }           
-            foreach (var handler in handlers)
-            {
-                handler.UpdateFiles(prefix, versionInfo);
+                var subDirectory = packageGroup.Id;
+                var handlers = new List<FileTypeHandlerBase>();
+                switch (command)
+                {
+                    case "bump-version":
+                        handlers.Add(new SdkProjectFileTypeHandler(subDirectory));
+                        handlers.Add(new AssemblyInfoFileTypeHandler(subDirectory));
+                        handlers.Add(new CIFileTypeHandler(subDirectory));
+                        handlers.Add(new ManifestFileTypeHandler(subDirectory, new ManifestFileTypeHandlerOptions
+                        {
+                            UpdatePackageVersion = true,
+                            UpdateDependencyVersion = true
+                        }));
+                        break;
+                    case "bump-dependency-version":
+                        handlers.Add(new ManifestFileTypeHandler(subDirectory, new ManifestFileTypeHandlerOptions
+                        {
+                            UpdateDependencyVersion = true
+                        }));
+                        break;
+                }
+
+                foreach (var handler in handlers)
+                {
+                    handler.SetCurrentDirectoryBefore();
+                    handler.UpdateFiles(prefix, versionInfo);
+                    handler.SetCurrentDirectoryAfter();
+                }
             }
         }
     }

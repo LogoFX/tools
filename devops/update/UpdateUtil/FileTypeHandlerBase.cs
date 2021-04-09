@@ -8,69 +8,89 @@ namespace UpdateUtil
 {
     abstract class FileTypeHandlerBase
     {
+        protected string SubDirectory { get; }
+
+        protected FileTypeHandlerBase(string subDirectory)
+        {
+            SubDirectory = subDirectory;
+        }
+
+        public virtual void SetCurrentDirectoryBefore()
+        {
+            NavigationHelper.GoUp(5);
+            NavigationHelper.Cd(SubDirectory);
+        }
+
+        public virtual void SetCurrentDirectoryAfter()
+        {
+            NavigationHelper.GoUp(1);
+            NavigationHelper.Cd("tools");
+            NavigationHelper.Cd("devops");
+            NavigationHelper.NavigateToBin();
+        }
+
         public abstract void UpdateFiles(string prefix, VersionInfo versionInfo);
     }
 
     class SdkProjectFileTypeHandler : FileTypeHandlerBase
     {
+        public SdkProjectFileTypeHandler(string subDirectory)
+        :base(subDirectory)
+        {
+            
+        }
+
         public override void UpdateFiles(string prefix, VersionInfo versionInfo)
         {
-            NavigationHelper.GoUp(5);
             var version = versionInfo.VersionCore;
-            var packageGroups = Common.TopologyUtils.InitTopology();
-            foreach (var packageGroup in packageGroups)
+            var projectFiles =
+                Directory.GetFiles(Directory.GetCurrentDirectory(), "*.csproj", SearchOption.AllDirectories);
+         
+            foreach (var projectFile in projectFiles)
             {
-                NavigationHelper.Cd(packageGroup.Id);
-                var projectFiles =
-                    Directory.GetFiles(Directory.GetCurrentDirectory(), "*.csproj", SearchOption.AllDirectories);
-
-                foreach (var projectFile in projectFiles)
+                if (projectFile.Contains("templatepack"))
                 {
-                    if (projectFile.Contains("templatepack"))
-                    {
-                        continue;
-                    }
-                    var doc = new XmlDocument();
-                    doc.Load(projectFile);
-                    var firstPropertyGroup = doc.GetElementsByTagName("Project")[0]["PropertyGroup"];
-                    var targetFrameworkElement = firstPropertyGroup?.GetElementsByTagName("TargetFramework")[0];
-                    if (targetFrameworkElement == null)
-                    {
-                        continue;
-                    }
-
-                    if (!targetFrameworkElement.InnerText.StartsWith("netcoreapp") &&
-                        !targetFrameworkElement.InnerText.StartsWith("net5") &&
-                        !targetFrameworkElement.InnerText.StartsWith("netstandard"))
-                    {
-                        continue;
-                    }
-                    var versionElement = doc.GetElementsByTagName("Project")[0]["PropertyGroup"].GetElementsByTagName("Version")[0];
-                    if (versionElement != null)
-                    {
-                        versionElement.InnerText = version;
-                    }
-                    doc.Save(projectFile);
+                    continue;
                 }
-                NavigationHelper.GoUp(1);
+                var doc = new XmlDocument();
+                doc.Load(projectFile);
+                var firstPropertyGroup = doc.GetElementsByTagName("Project")[0]["PropertyGroup"];
+                var targetFrameworkElement = firstPropertyGroup?.GetElementsByTagName("TargetFramework")[0];
+                if (targetFrameworkElement == null)
+                {
+                    continue;
+                }
+
+                if (!targetFrameworkElement.InnerText.StartsWith("netcoreapp") &&
+                    !targetFrameworkElement.InnerText.StartsWith("net5") &&
+                    !targetFrameworkElement.InnerText.StartsWith("netstandard"))
+                {
+                    continue;
+                }
+                var versionElement = doc.GetElementsByTagName("Project")[0]["PropertyGroup"].GetElementsByTagName("Version")[0];
+                if (versionElement != null)
+                {
+                    versionElement.InnerText = version;
+                }
+                doc.Save(projectFile);
             }
-            NavigationHelper.Cd("tools");
-            NavigationHelper.Cd("devops");
-            NavigationHelper.NavigateToBin();
         }
     }
 
     class AssemblyInfoFileTypeHandler : FileTypeHandlerBase
     {
+        public AssemblyInfoFileTypeHandler(string subDirectory)
+            : base(subDirectory)
+        {
+
+        }
+
         public override void UpdateFiles(string prefix, VersionInfo versionInfo)
         {
-            NavigationHelper.GoUp(4);
             var assemblyInfoFiles =
                 Directory.GetFiles(Directory.GetCurrentDirectory(), "AssemblyInfo.cs", SearchOption.AllDirectories)
                     .Where(t => !t.Contains("obj"));
-            NavigationHelper.Cd("devops");
-            NavigationHelper.NavigateToBin();
-            var ps1File = @"..\..\patch-assembly-info.ps1";
+            var ps1File = @".\devops\update\patch-assembly-info.ps1";
 
             foreach (var assemblyInfoFile in assemblyInfoFiles)
             {
@@ -87,9 +107,14 @@ namespace UpdateUtil
 
     class CIFileTypeHandler : FileTypeHandlerBase
     {
+        public CIFileTypeHandler(string subDirectory)
+            : base(subDirectory)
+        {
+
+        }
+
         public override void UpdateFiles(string prefix, VersionInfo versionInfo)
         {
-            NavigationHelper.GoUp(4);
             var ciFile = "appveyor.yml";
             var yaml = new YamlStream();
             using (var reader = new StreamReader(ciFile))
@@ -107,30 +132,43 @@ namespace UpdateUtil
             {
                 yaml.Save(writer, assignAnchors: false);
             }
-            NavigationHelper.Cd("devops");
-            NavigationHelper.NavigateToBin();
         }
     }
 
     class ManifestFileTypeHandler : FileTypeHandlerBase
     {
-        private ManifestFileTypeHandlerOptions _options;
+        private readonly ManifestFileTypeHandlerOptions _options;
 
-        public ManifestFileTypeHandler(ManifestFileTypeHandlerOptions options)
+        public ManifestFileTypeHandler(string subDirectory, ManifestFileTypeHandlerOptions options)
+            :base(subDirectory)
         {
             _options = options;
         }
 
-        public ManifestFileTypeHandler()
-            :this(new ManifestFileTypeHandlerOptions())
+        public ManifestFileTypeHandler(string subDirectory)
+            :this(subDirectory, new ManifestFileTypeHandlerOptions())
         {
 
         }
 
-        public override void UpdateFiles(string prefix, VersionInfo versionInfo)
+        public override void SetCurrentDirectoryBefore()
+        {
+            NavigationHelper.GoUp(5);
+            NavigationHelper.Cd(SubDirectory);
+            NavigationHelper.Cd("devops");
+            NavigationHelper.Cd("pack");
+        }
+
+        public override void SetCurrentDirectoryAfter()
         {
             NavigationHelper.GoUp(3);
-            NavigationHelper.Cd("pack");
+            NavigationHelper.Cd("tools");
+            NavigationHelper.Cd("devops");
+            NavigationHelper.NavigateToBin();
+        }
+
+        public override void UpdateFiles(string prefix, VersionInfo versionInfo)
+        {
             var version = versionInfo.ToString();
             var manifestFiles =
                 Directory.GetFiles(Directory.GetCurrentDirectory(), $"*.nuspec", SearchOption.AllDirectories);
@@ -161,8 +199,6 @@ namespace UpdateUtil
                 
                 doc.Save(manifestFile);
             }
-            NavigationHelper.GoUp(1);
-            NavigationHelper.NavigateToBin();
         }
     }
 
