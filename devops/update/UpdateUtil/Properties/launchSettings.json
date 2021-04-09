@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "UpdateUtil": {
+      "commandName": "Project",
+      "commandLineArgs": "bump-version LogoFX 2.1.0-rc2"
+    }
+  }
+}
