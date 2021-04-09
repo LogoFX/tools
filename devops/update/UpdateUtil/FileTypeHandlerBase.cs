@@ -90,7 +90,7 @@ namespace UpdateUtil
             var assemblyInfoFiles =
                 Directory.GetFiles(Directory.GetCurrentDirectory(), "AssemblyInfo.cs", SearchOption.AllDirectories)
                     .Where(t => !t.Contains("obj"));
-            var ps1File = @".\devops\update\patch-assembly-info.ps1";
+            var ps1File = @"../tools/devops/update/patch-assembly-info.ps1";
 
             foreach (var assemblyInfoFile in assemblyInfoFiles)
             {
@@ -100,7 +100,8 @@ namespace UpdateUtil
                     Arguments = $"-NoProfile -ExecutionPolicy unrestricted -File \"{ps1File}\" \"{assemblyInfoFile}\" \"{versionInfo.VersionCore}\"",
                     UseShellExecute = false
                 };
-                Process.Start(startInfo).WaitForExit();
+                var process = Process.Start(startInfo);
+                process.WaitForExit();
             }
         }
     }
