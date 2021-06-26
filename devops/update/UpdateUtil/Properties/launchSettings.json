@@ -2,7 +2,7 @@
   "profiles": {
     "UpdateUtil": {
       "commandName": "Project",
-      "commandLineArgs": "bump-version LogoFX 2.2.0-rc3"
+      "commandLineArgs": "bump-version LogoFX 2.2.0"
     }
   }
 }
